@@ -50,7 +50,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -66,9 +66,11 @@ const gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            { id: "u101", fullName: "Yossef Hamkapez", score: "126" },
+            { id: "u102", fullName: "David Hamkapez", score: "131" },
+            { id: "u103", fullName: "Jackson Hamkapez", score: "190" },
         ]
-    },{
+    }, {
         "_id": "q102",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -114,7 +116,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -132,7 +134,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q103",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -178,7 +180,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -196,7 +198,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "u104",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -242,7 +244,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -260,7 +262,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q105",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -306,7 +308,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -324,7 +326,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q106",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -370,7 +372,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -388,7 +390,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q107",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -434,7 +436,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -452,7 +454,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q108",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -498,7 +500,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -516,7 +518,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q109",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -562,7 +564,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -580,7 +582,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q110",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -626,7 +628,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -644,7 +646,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q111",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -690,7 +692,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -708,7 +710,7 @@ const gQuizzes = [
         "allTimesPlayers": [
             {}
         ]
-    },{
+    }, {
         "_id": "q112",
         "title": "dogs are awesome",
         "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
@@ -754,7 +756,7 @@ const gQuizzes = [
                         "count": 5
                     }
                 ],
-                
+
             }
         ],
         "reviews": [
@@ -793,8 +795,13 @@ function query() {
 // }
 
 function getById(quizId) {
-    return axios.get(`${BASE_URL}/${quizId}`)
-        .then(resolveData)
+    // return axios.get(`${BASE_URL}/${quizId}`)
+    //     .then(resolveData)
+
+
+
+    const quizToReturn = gQuizzes.find(quiz => quiz._id === quizId)
+    return quizToReturn
 
 }
 
