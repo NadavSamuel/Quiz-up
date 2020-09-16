@@ -1,7 +1,6 @@
 import React from 'react'
 
 export function QuizPreview({ quiz }) {
-    console.log(quiz.img);
     function getRate(){
         const sum=quiz.reviews.reduce((acc,review)=>{
             return acc+review.rate
