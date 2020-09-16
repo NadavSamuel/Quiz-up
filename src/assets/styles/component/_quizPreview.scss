@@ -1,0 +1,16 @@
+
+.quiz-preview{
+    img{
+        color: $clr1;
+        width: 100%;
+        height: 50%;
+        object-fit: cover
+    }
+    .info{
+        height: 50%;
+    }
+    .num-of-players{
+        font-size: rem(12px);
+        color: $clr5;
+    }
+}
