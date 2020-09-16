@@ -1,13 +1,13 @@
 const initialState = {
-    cars: []
+    quizzes: []
 }
 
 export function carReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SET_CARS':
+        case 'SET_QUIZZES':
             return {
                 ...state,
-                cars: action.cars
+                cars: action.quizzes
             }
 
         default:

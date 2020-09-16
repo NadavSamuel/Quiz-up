@@ -1,8 +1,9 @@
 import { carService } from '../../services/carService'
+import {quizService} from '../../services/quizService'
 
-export function loadCars() {
+export function loadQuizzes() {
     return dispatch => {
-        carService.query().then(cars => {
+        quizService.query().then(cars => {
             dispatch({ type: 'SET_CARS', cars })
         })
     }
