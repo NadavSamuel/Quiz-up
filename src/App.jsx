@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { CarApp } from './pages/CarApp'
+import { QuizApp } from './pages/QuizApp'
 
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route component={ CarApp } path='/' />
+        <Route component={ QuizApp } path='/' />
       </Switch>
     </div>
   );
