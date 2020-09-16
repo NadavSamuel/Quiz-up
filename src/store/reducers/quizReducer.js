@@ -2,12 +2,12 @@ const initialState = {
     quizzes: []
 }
 
-export function carReducer(state = initialState, action) {
+export function quizReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_QUIZZES':
             return {
                 ...state,
-                cars: action.quizzes
+                quizzes: action.quizzes
             }
 
         default:
