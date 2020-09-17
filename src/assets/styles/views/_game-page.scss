@@ -31,15 +31,17 @@
     }
 
     .answer{
-        width: 190px;
-        height: 117px;
-        background-color: $clr3;
+        text-align: center;
+        width: 300px;
+        height: 150px;
+        background-color: #07689f;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 20%;
-        transition:  background-color 0.3s;
+        border-radius: 8px;
+        transition: background-color 0.3s;
         font-size: 1.7rem;
+        cursor: pointer;
 
 
         cursor: pointer;
@@ -53,5 +55,7 @@
             margin: 0;
         }
         }
+   
     
 }
+

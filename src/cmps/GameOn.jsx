@@ -11,14 +11,24 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 class _GameOn extends Component {
     state = {
         currQuestionIdx: 0,
-        answerFeedback: null
+        answerFeedback: null,
+        chosenAnswerIdx:null,
+        correctAnsIdx:null,
+        chosenAnsIdx:null
     }
-    answerQuestion = answerResult => {
+    componentDidMount(){
+        this.getRightAnswerIdx(0)
+    }
+    getRightAnswerIdx = idx =>{
+        const rightAnswerIdx = this.props.questions[idx].answers.findIndex(answer => answer.isCorrect ==="true")
+        this.setState({correctAnsIdx:rightAnswerIdx})
+    }
+    answerQuestion = (answerResult,answerIdx) => {
         if (this.state.answerFeedback) return
         const nextQuestionIdx = this.state.currQuestionIdx + 1
-
-        this.setState({ answerFeedback: answerResult }, () => {
+        this.setState({chosenAnsIdx:answerIdx, answerFeedback: answerResult ,chosenAnswerIdx:answerIdx }, () => {
             if (answerResult === "true") this.props.onTrueAns()
+            console.log('state: ',this.state)
         })
         setTimeout(() => {
             if ((nextQuestionIdx) === this.props.questions.length) {
@@ -26,11 +36,11 @@ class _GameOn extends Component {
                 return
             }
 
-            this.setState({ currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null })
+            this.setState({chosenAnsIdx:null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null,chosenAnswerIdx:null },() =>{
+                this.getRightAnswerIdx(nextQuestionIdx)
+            })
         }, 1500)
     }
-
-
 
     render() {
         const { questions } = this.props
@@ -57,10 +67,10 @@ class _GameOn extends Component {
         if (!questions) return <div>Loading....</div>
         return (
             <main className="quiz-game-main">
+                <BorderLinearProgress variant="determinate" value={(currQuestionIdx/questions.length)*100} />
                 <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
-                <div className="answer-feedback" style={!this.state.answerFeedback ?
-                    { visibility: 'hidden' } : { visibility: 'visible' }}><h2>{this.state.answerFeedback === 'true' ? 'Right!' : 'Wrong!'}</h2></div>
-                          <BorderLinearProgress variant="determinate" value={(currQuestionIdx/questions.length)*100} />
+                {/* <div className="answer-feedback" style={!this.state.answerFeedback ?
+                    { visibility: 'hidden' } : { visibility: 'visible' }}><h2>{this.state.answerFeedback === 'true' ? 'Right!' : 'Wrong!'}</h2></div> */}
 
                 {/* <div className="timer-wrapper">
                     <CountdownCircleTimer
@@ -75,7 +85,7 @@ class _GameOn extends Component {
                     >
                     </CountdownCircleTimer>
                 </div> */}
-                <AnswersList answerFeedback={this.state.answerFeedback} answerQuestion={this.answerQuestion} answers={currQuestion.answers} />
+                <AnswersList chosenAnsIdx={this.state.chosenAnsIdx} correctAnsIdx = {this.state.correctAnsIdx}chosenAnswerIdx={this.state.chosenAnswerIdx} answerFeedback={this.state.answerFeedback} answerQuestion={this.answerQuestion} answers={currQuestion.answers} />
             </main>
         )
     }
