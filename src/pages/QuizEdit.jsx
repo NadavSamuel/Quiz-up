@@ -11,9 +11,10 @@ export class _QuizEdit extends Component {
         title: '',
         quests: [],
         style: 'solid',
-        img:'',
+        img: '',
         tags: '',
         difficulity: 1,
+        questImg:'',
         currQuest: '',
         answers: [
             { txt: "" },
@@ -60,6 +61,7 @@ export class _QuizEdit extends Component {
             txt: this.state.currQuest,
             displayedCount: 0,
             style: this.state.style,
+            img:this.state.questImg,
             answers: this.state.answers.reduce((acc, answer, idx) => {
                 if (idx === 0) acc.push({ txt: answer.txt, isCorrect: 'true', count: 0 })
                 else acc.push({ txt: answer.txt, isCorrect: 'false', count: 0 })
@@ -76,18 +78,19 @@ export class _QuizEdit extends Component {
                 { txt: "" },
                 { txt: "" }
             ],
-            currQuest: ''
+            currQuest: '',
+            questImg: ''
         }));
 
     }
 
     onSubmit = (event) => {
-        const {title,tags,difficulity,quests,img}=this.state
+        const { title, tags, difficulity, quests, img } = this.state
         event.preventDefault()
         const quiz = {
             _id: utils.makeId(),
             title,
-            tags:tags.split(' '),
+            tags: tags.split(' '),
             difficulity,
             img,
             createdBy: {
@@ -96,7 +99,8 @@ export class _QuizEdit extends Component {
                 imgUrl: "http://some-img"
             },
             quests,
-            reviews:[]
+            reviews: [],
+            allTimesPlayers:[]
         }
         console.log(quiz);
         quizService.add(quiz);
@@ -114,21 +118,34 @@ export class _QuizEdit extends Component {
         }
     }
 
-    onDeleteQuest= (questId)=>{
-        var quests=[...this.state.quests];
+    uploadQuestImg = async (ev) => {
+        try {
+            const newImg = await cloudinaryService.uploadImg(ev);
+            const questImg = newImg.secure_url;
+            this.setState({ questImg })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    onDeleteQuest = (questId) => {
+        var quests = [...this.state.quests];
         console.log(quests);
-        quests=quests.filter(quest=>quest.id!==questId)
-        this.setState({quests})
+        quests = quests.filter(quest => quest.id !== questId)
+        this.setState({ quests })
     }
 
 
 
 
     render() {
-        // console.log(this.state.answers);
         return (
             <div className="quiz-edit">
                 <QuestList quests={this.state.quests} onDeleteQuest={this.onDeleteQuest} />
+                    <label className="upload-btn" htmlFor="upload-file">{!this.state.questImg && <p>Choose Img to quest</p>}
+                        {this.state.questImg && <img src={this.state.questImg} alt="img" />}</label>
+                    <input hidden type="file" className="file-input" name="imgUrl" id="upload-file"
+                        onChange={this.uploadQuestImg} />
                 <form onSubmit={this.onSubmitAns}>
                     <input type="text" name='currQuest' placeholder='QUESTION' onChange={this.handleChange} value={this.state.currQuest} />
                     <input type="text" name='0' placeholder='COR ANSWER' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
@@ -145,9 +162,9 @@ export class _QuizEdit extends Component {
                 </form>
 
                 <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
-                {this.state.img && <img src={this.state.img} alt="img"/>}</label>
-                    <input hidden type="file" className="file-input" name="imgUrl" id="upload-file"
-                        onChange={this.uploadImg} />
+                    {this.state.img && <img src={this.state.img} alt="img" />}</label>
+                <input hidden type="file" className="file-input" name="imgUrl" id="upload-file"
+                    onChange={this.uploadImg} />
 
 
             </div>

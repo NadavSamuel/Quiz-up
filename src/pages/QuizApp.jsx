@@ -48,8 +48,8 @@ class _QuizApp extends Component {
         return (
             <div className="home-page full">
                 <img className="home-page-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif" alt="" />
-                <h1>Create and play quizzes</h1>
-                <Link to='/Edit'><button>add</button></Link>
+                <h1>Play quizzes. Challenge your friends. Have fun</h1>
+                {/* <Link to='/Edit'><button>add</button></Link> */}
                 <div className="main-container">
 
                     <h3>tag1:</h3>
