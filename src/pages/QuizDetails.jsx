@@ -24,17 +24,26 @@ export class _QuizDetails extends Component {
         const sum = quiz.reviews.reduce((acc, review) => {
             return acc + review.rate
         }, 0)
-
         return (sum / quiz.reviews.length).toFixed(1);
     }
 
+    addPlayerCount = () => {
+        // const { quiz } = this.state
+        // const { loggedInUser } = this.props
+        // if(loggedInUser) 
 
+        //  userToAdd = { id: loggedInUser._id, score: 0, fullName: loggedInUser.username }
+        // quiz.allTimesPlayers=[...quiz.allTimesPlayers,userToAdd]
+    }
 
     render() {
         const { quiz } = this.state
         if (!quiz) return <div>Loading...</div>
         const quizLength = quiz.quests.length
+        const playedTime = quiz.allTimesPlayers.length
         if (quiz.allTimesPlayers) var bestPlayers = utilService.getBestUsers(quiz);
+        const avgRate = this.getAvgRate()
+        console.log('avg rate:', avgRate);
 
         return (
             <section className="quiz-details-container ">
@@ -50,20 +59,21 @@ export class _QuizDetails extends Component {
                 <div className="quiz-details-body">
                     <div className="quiz-info">
                         <h1 className="title">{quiz.title} {<span className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</span>}</h1>
-                        <h4>Rated {this.getAvgRate()}</h4>
+                        <span className="creator">Created by {quiz.createdBy.fullName}</span>
 
-                        <h5 className="creator">Created by {quiz.createdBy.fullName}</h5>
-                        {quiz.allTimesPlayers.length && <h5 className="played-times">Played {quiz.allTimesPlayers.length} times</h5>}
-                        <div className="tags">
+                        {avgRate > 0 && <h4>Rated {avgRate}({quiz.reviews.length})</h4>}
+
+                        {quiz.allTimesPlayers.length > 0 && <h5 className="played-times">Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`} </h5>}
+                        {quiz.tags.length > 1 && <div className="tags">
                             <span>About </span>
                             {quiz.tags.map((tag, idx) => {
                                 return <span key={idx}> {tag} </span>
                             })}
-                        </div>
+                        </div>}
 
                     </div>
                     <div className="btns">
-                        <Link to={`/game/${quiz._id}`}>  <Button endIcon={<PersonOutlineSharp />
+                        <Link to={`/game/${quiz._id}`}>  <Button onClick={this.addPlayerCount} endIcon={<PersonOutlineSharp />
                         } variant="contained" color="primary">Play Single </Button></Link>
                         <Button endIcon={<PeopleAltOutlined />
                         } disabled variant="contained" color="primary">Play Online </Button></div></div>

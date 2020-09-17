@@ -31,7 +31,7 @@ export function QuizPreview({ quiz }) {
                     <h3>{quiz.title}</h3>
                     <p>
                         <span>{quiz.quests.length} Questions</span>
-                        <span className='num-of-players'> {quiz.allTimesPlayers.length}</span>
+                        <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
                     </p>
                     <div className="flex stars">
                         ({getNumOfReviews()}){getRate()}<StarIcon/>

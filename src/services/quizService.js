@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storageService from './asyncStorageService'
 const BASE_URL = 'http://localhost:3001/quiz'
 
 const resolveData = res => res.data
@@ -456,7 +457,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "u104",
@@ -1044,17 +1045,76 @@ var gQuizzes = [
     }
 ]
 export const quizService = {
+    getByTag,
     query,
     getById,
+    update,
+    remove,
     add
-    // remove,
     // save
 }
 
-function query() {
-    return [...gQuizzes];
+window.quizService = quizService;
+
+async function getByTag(tag) {
+    try {
+        var quizzes = await storageService.query('quiz');
+        var quizzesToReturn = quizzes.filter(quiz => quizzes.tags.includes(tag));
+        return quizzesToReturn;
+    } catch (err) {
+        console.log(err);
+    }
 }
 
+async function query() {
+    try {
+        var quizzes = await storageService.query('quiz');
+        if (quizzes.length === 0) {
+            var str = JSON.stringify(gQuizzes);
+            localStorage.setItem('quiz', str)
+        }
+
+        return quizzes
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function add(quiz) {
+    try {
+        var newQuiz = await storageService.post('quiz', quiz);
+        return newQuiz
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function update(quiz) {
+    try {
+        await storageService.put('quiz', quiz);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+
+async function getById(quizId) {
+    try {
+        var quiz = await storageService.get('quiz', quizId);
+        return quiz
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function remove(quizId) {
+    try {
+        await storageService.remove('quiz', quizId);
+    } catch (err) {
+        console.log(err);
+    }
+}
 // function query(filterBy = {}) {
 //     var queryParams = new URLSearchParams()
 //     if (filterBy.vendor) queryParams.set('q', filterBy.vendor)
@@ -1062,18 +1122,7 @@ function query() {
 //         .then(resolveData)
 // }
 
-function getById(quizId) {
-    // return axios.get(`${BASE_URL}/${quizId}`)
-    //     .then(resolveData)
-    const quizToReturn = gQuizzes.find(quiz => quiz._id === quizId)
-    return quizToReturn
-}
 
-function add(quiz){
-    let quizzes=[...gQuizzes];
-    quizzes.unshift(quiz);
-    gQuizzes=[...quizzes];
-}
 
 // function remove(quizId) {
 //     return axios.delete(`${BASE_URL}/${quizId}`)
