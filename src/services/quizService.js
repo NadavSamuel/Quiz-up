@@ -933,22 +933,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "yossi",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
                         "txt": "Miki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Puki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Riki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -996,23 +996,23 @@ const gQuizzes = [
                 "displayedCount": 100,
                 "answers": [
                     {
-                        "txt": "yossi",
-                        "isCorrect": true,
+                        "txt": "popolino",
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
-                        "txt": "Miki",
-                        "isCorrect": false,
+                        "txt": "baba",
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
-                        "txt": "Puki",
-                        "isCorrect": false,
+                        "txt": "buli",
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
-                        "txt": "Riki",
-                        "isCorrect": false,
+                        "txt": "ro",
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -1057,9 +1057,6 @@ function query() {
 function getById(quizId) {
     // return axios.get(`${BASE_URL}/${quizId}`)
     //     .then(resolveData)
-
-
-
     const quizToReturn = gQuizzes.find(quiz => quiz._id === quizId)
     return quizToReturn
 
