@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+// import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 class _GameOn extends Component {
     state = {

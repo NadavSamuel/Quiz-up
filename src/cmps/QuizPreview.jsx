@@ -36,6 +36,7 @@ export function QuizPreview({ quiz }) {
         </div>
     }
 
+
     return (
         <Link to={`/quiz/${quiz._id}`}>
             <div className="quiz-preview">

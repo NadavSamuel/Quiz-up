@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function QuestPreview({ quest }) {
+export function QuestPreview({ quest,onDeleteQuest }) {
 
 
     return (
@@ -10,10 +10,11 @@ export function QuestPreview({ quest }) {
             <ul>
                 {
                     quest.answers.map((answer, idx) =>
-                        <li>{answer.txt}</li>
+                        <li key={idx}>{answer.txt}</li>
                     )
                 }
             </ul>
+            <button onClick={()=>onDeleteQuest(quest.id)}>delete</button>
         </div>
 
     )

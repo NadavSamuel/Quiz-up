@@ -3,7 +3,7 @@ const BASE_URL = 'http://localhost:3001/quiz'
 
 const resolveData = res => res.data
 
-const gQuizzes = [
+var gQuizzes = [
     {
         "_id": "q101",
         "title": "The History of Israel",
@@ -1039,8 +1039,9 @@ const gQuizzes = [
 export const quizService = {
     query,
     getById,
-    remove,
-    save
+    add
+    // remove,
+    // save
 }
 
 function query() {
@@ -1059,17 +1060,22 @@ function getById(quizId) {
     //     .then(resolveData)
     const quizToReturn = gQuizzes.find(quiz => quiz._id === quizId)
     return quizToReturn
-
 }
 
-function remove(quizId) {
-    return axios.delete(`${BASE_URL}/${quizId}`)
+function add(quiz){
+    let quizzes=[...gQuizzes];
+    quizzes.unshift(quiz);
+    gQuizzes=[...quizzes];
 }
 
-function save(quiz) {
-    if (quiz._id) {
-        return axios.put(`${BASE_URL}/${quiz._id}`, quiz)
-    } else {
-        return axios.post(BASE_URL, quiz).then(resolveData)
-    }
-}
+// function remove(quizId) {
+//     return axios.delete(`${BASE_URL}/${quizId}`)
+// }
+
+// function save(quiz) {
+//     if (quiz._id) {
+//         return axios.put(`${BASE_URL}/${quiz._id}`, quiz)
+//     } else {
+//         return axios.post(BASE_URL, quiz).then(resolveData)
+//     }
+// }
