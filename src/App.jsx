@@ -8,6 +8,7 @@ import './assets/styles/global.scss';
 
 import { QuizDetails} from './pages/QuizDetails';
 import { Navbar } from './cmps/Navbar';
+import { LoginSignup } from './pages/LoginSignup';
 import { QuizEdit } from './pages/QuizEdit';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route component={ QuizGame } path='/game/:quizId'  />
         <Route component={ QuizEdit } path='/edit/:quizId?'  />
         <Route component={ QuizDetails } path='/quiz/:quizId' />
+        <Route component={ LoginSignup } path='/login' />
         <Route component={ TagPreview } path='/:tagId' />
         <Route component={ QuizApp } path='/' />
       </Switch>
