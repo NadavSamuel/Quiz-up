@@ -37,8 +37,8 @@ class _QuizApp extends Component {
         else if (this.state.tagCount < 3) this.setState({ tagCount: this.state.quizzes.length - (3 - this.state.tagCount) })
     }
 
-    loadQuizzes = () => {
-        const quizzes = quizService.query();
+    loadQuizzes = async () => {
+        const quizzes = await quizService.query();
         this.setState({ quizzes })
     }
 
