@@ -74,8 +74,8 @@ class _QuizGame extends Component {
        
     }
     
-    loadQuizz =()=>{
-        const quiz = quizService.getById(this.props.match.params.quizId)
+     loadQuizz = async ()=>{
+        const quiz = await quizService.getById(this.props.match.params.quizId)
         quiz.quests.forEach(quest =>{
             utilService.shuffleAnswers(quest.answers)
         })

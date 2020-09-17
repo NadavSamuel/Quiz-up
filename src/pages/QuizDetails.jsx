@@ -13,8 +13,8 @@ export class _QuizDetails extends Component {
     state = {
         quiz: null
     }
-    componentDidMount() {
-        const quiz = quizService.getById(this.props.match.params.quizId)
+    async componentDidMount() {
+        const quiz = await quizService.getById(this.props.match.params.quizId)
         this.setState({ quiz })
     }
 
