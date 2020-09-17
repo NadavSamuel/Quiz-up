@@ -2,6 +2,8 @@ import React from 'react'
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 export function ReviewsList({ reviews }) {
+    console.log('reviews:',reviews);
+    if(!reviews.length) return (<div>No reviews for this quiz</div>)
     function getRate(num) {
         var arr = []
         var fiveMinusArr = []
