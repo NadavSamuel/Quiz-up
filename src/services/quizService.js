@@ -6,22 +6,23 @@ const resolveData = res => res.data
 const gQuizzes = [
     {
         "_id": "q101",
-        "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "title": "The History of Israel",
+        "img": "https://images.unsplash.com/photo-1550103560-199ddb5aded5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
         "tags": [
-            "dogs",
-            "animals"
+            "history",
+            "israel",
+
         ],
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "David Cohen",
             "imgUrl": "http://some-img"
         },
         "quests": [
             {
                 "id": "bkjbk1434324",
-                "txt": "Whats the name?",
+                "txt": "Who was the israelian that won an Novel?",
                 "style": [
                     "solid",
                     "crazy",
@@ -30,78 +31,309 @@ const gQuizzes = [
                 "displayedCount": 100,
                 "answers": [
                     {
-                        "txt": "yossi",
-                        "isCorrect": true,
+                        "txt": "Shay Agnon",
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
-                        "txt": "Miki",
-                        "isCorrect": false,
+                        "txt": "Itzhak Rabin",
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
-                        "txt": "Puki",
-                        "isCorrect": false,
+                        "txt": "Menachem Begin",
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
-                        "txt": "Riki",
-                        "isCorrect": false,
+                        "txt": "Benjamin Netanyahu",
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
 
-            }
+            },
+            {
+                "id": "bkjbk1434324",
+                "txt": "When does Independence Day fall?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "5th Of Iyyar",
+                        "isCorrect": "true",
+                        "count": 7
+                    },
+                    {
+                        "txt": "5th of Nisan",
+                        "isCorrect": "false",
+                        "count": 14
+                    },
+                    {
+                        "txt": "3rd of Sh'vat",
+                        "isCorrect": "false",
+                        "count": 12
+                    },
+                    {
+                        "txt": "25th of Elul",
+                        "isCorrect": "false",
+                        "count": 5
+                    }
+                ],
+
+            },
+            {
+                "id": "bkjbk1434324",
+                "txt": "What is the length of the presidency?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "4 Years",
+                        "isCorrect": "false",
+                        "count": 7
+                    },
+                    {
+                        "txt": "5 Years",
+                        "isCorrect": "false",
+                        "count": 14
+                    },
+                    {
+                        "txt": "6 Years",
+                        "isCorrect": "false",
+                        "count": 12
+                    },
+                    {
+                        "txt": "7 Years",
+                        "isCorrect": "true",
+                        "count": 5
+                    }
+                ],
+
+            },
+            {
+                "id": "bkjbk1434324",
+                "txt": "Who was the third president?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "Efraim Katzir",
+                        "isCorrect": "false",
+                        "count": 7
+                    },
+                    {
+                        "txt": "Zalman Shazar",
+                        "isCorrect": "true",
+                        "count": 14
+                    },
+                    {
+                        "txt": "Moshe Sharet",
+                        "isCorrect": "false",
+                        "count": 12
+                    },
+                    {
+                        "txt": "Itzhak Ben Tzvi",
+                        "isCorrect": "false",
+                        "count": 5
+                    }
+                ],
+
+            },
+            {
+                "id": "bkjbk1434324",
+                "txt": "How many judges in the Supreme Court?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "21",
+                        "isCorrect": "false",
+                        "count": 7
+                    },
+                    {
+                        "txt": "12",
+                        "isCorrect": "false",
+                        "count": 14
+                    },
+                    {
+                        "txt": "15",
+                        "isCorrect": "true",
+                        "count": 12
+                    },
+                    {
+                        "txt": "9",
+                        "isCorrect": "false",
+                        "count": 5
+                    }
+                ],
+
+            },
+            {
+                "id": "bkjb11434324",
+                "txt": "Which country helped build the reactor in Dimona?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "France",
+                        "isCorrect": "true",
+                        "count": 5
+                    },
+                    {
+                        "txt": "U.S.A",
+                        "isCorrect": "false",
+                        "count": 25
+                    },
+                    {
+                        "txt": "China",
+                        "isCorrect": "false",
+                        "count": 12
+                    },
+                    {
+                        "txt": "United Arab Emirates",
+                        "isCorrect": "false",
+                        "count": 2
+                    }
+                ],
+
+            },
+            {
+                "id": "bqjb11434324",
+                "txt": "Whose image appears on a NIS 50 bill?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "Haim Nahman Bialik",
+                        "isCorrect": "false",
+                        "count": 5
+                    },
+                    {
+                        "txt": "David Ben Gurion",
+                        "isCorrect": "false",
+                        "count": 25
+                    },
+                    {
+                        "txt": "Haim Vaitzman",
+                        "isCorrect": "false",
+                        "count": 12
+                    },
+                    {
+                        "txt": "Shaul Tshernihovski",
+                        "isCorrect": "true",
+                        "count": 2
+                    }
+                ],
+
+            },
+            {
+                "id": "bqjb11434324",
+                "txt": "Whose image appears on a NIS 50 bill?",
+                "style": [
+                    "solid",
+                    "crazy",
+                    "school"
+                ],
+                "displayedCount": 100,
+                "answers": [
+                    {
+                        "txt": "Haim Nahman Bialik",
+                        "isCorrect": "false",
+                        "count": 5
+                    },
+                    {
+                        "txt": "David Ben Gurion",
+                        "isCorrect": "false",
+                        "count": 25
+                    },
+                    {
+                        "txt": "Haim Vaitzman",
+                        "isCorrect": "false",
+                        "count": 12
+                    },
+                    {
+                        "txt": "Shaul Tshernihovski",
+                        "isCorrect": "true",
+                        "count": 2
+                    }
+                ],
+
+            },
         ],
         "reviews": [
             {
-                "id": "ytryrtyrtd",
-                "txt": "Simple and fun quiz",
+                "id": "ytqyrtyrtd",
+                "txt": "Good quiz about israel! Every israelian should DO!",
                 "rate": 4,
                 "by": {
                     "_id": "u102",
-                    "fullName": "user2",
+                    "fullName": "Ronit Avrahami",
                     "imgUrl": "/img/img2.jpg"
                 }
             },
             {
                 "id": "ytry1tyrtd",
-                "txt": "boring quiz",
+                "txt": "Boring quiz.. gaza rules.",
                 "rate": 1,
                 "by": {
                     "_id": "u103",
-                    "fullName": "user3",
+                    "fullName": "Mohammad From Gaza",
                     "imgUrl": "/img/img3.jpg"
                 }
             },
             {
                 "id": "ytrrtyrtd",
-                "txt": "BEST QUIZ EVER",
+                "txt": "BEST QUIZ!! I LOVVE ISRAEL! WANT TO VISIT THERE AFAP",
                 "rate": 5,
                 "by": {
                     "_id": "u101",
-                    "fullName": "user1",
+                    "fullName": "David Levi",
                     "imgUrl": "/img/img1.jpg"
                 }
             },
         ],
         "allTimesPlayers": [
-            { id: "u101", fullName: "Yossef Hamkapez", score: "126" },
-            { id: "u102", fullName: "David Hamkapez", score: "131" },
-            { id: "u103", fullName: "Jackson Hamkapez", score: "190" },
-            { id: "u104", fullName: "Miki Hamkapez", score: "110" },
-            { id: "u105", fullName: "Puki Hamkapez", score: "490" },
-            { id: "u106", fullName: "Tuki Hamkapez", score: "15" },
-            { id: "u107", fullName: "Ruki Hamkapez", score: "140" },
-            { id: "u108", fullName: "Lula Hamkapez", score: "111" },
-            { id: "u109", fullName: "Zuzi Hamkapez", score: "211" },
-            { id: "u1010", fullName: "Burekas Hamkapez", score: "55" },
-            { id: "u1011", fullName: "Jiki Hamkapez", score: "82" },
+            { id: "u101", fullName: "David Levi", score: "100" },
+            { id: "u103", fullName: "Mohammad From Gaza", score: "12" },
+            { id: "u102", fullName: "Ronit Avrahami", score: "89" },
+            { id: "u104", fullName: "Guest", score: "86" },
+            { id: "u105", fullName: "Mike Jesfof", score: "52" },
+            { id: "u106", fullName: "Tal Lahyani", score: "99" },
+            { id: "u107", fullName: "Nadav Samuel", score: "95" },
+            { id: "u108", fullName: "Or Damari", score: "32" },
+            { id: "u109", fullName: "Meital Laza", score: "12" },
+            { id: "u1010", fullName: "Miki Geva", score: "44" },
+            { id: "u1011", fullName: "Tal Museri", score: "76" },
         ]
     }, {
         "_id": "q102",
-        "title": "dogs are awesome",
-        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600149294/zyxugb0oal4j9qujymrp.png",
+        "title": "History of USA",
+        "img": "https://images.unsplash.com/photo-1508433957232-3107f5fd5995?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1064&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -109,7 +341,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "James Buffet",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -125,22 +357,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "yossi",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
                         "txt": "Miki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Puki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Riki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -164,8 +396,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q103",
-        "title": "dogs are awesome",
-        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600149274/st1jaeov8p8ehbjexq5e.png",
+        "title": "History of Humanity",
+        "img": "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -173,7 +405,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Or Damari",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -194,12 +426,12 @@ const gQuizzes = [
                     },
                     {
                         "txt": "Miki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Puki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
@@ -228,8 +460,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "u104",
-        "title": "dogs are awesome",
-        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600011748/zovgcrhnelxprpzhphqx.jpg",
+        "title": "Computer Games",
+        "img": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -237,7 +469,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "John Smith",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -292,8 +524,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q105",
-        "title": "dogs are awesome",
-        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1599990402/sample.jpg",
+        "title": "MARVEL characters",
+        "img": "https://images.unsplash.com/photo-1505489435671-80a165c60816?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=531&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -301,7 +533,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Robert John Downey",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -356,8 +588,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q106",
-        "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "title": "Cats ",
+        "img": "https://images.unsplash.com/photo-1532386236358-a33d8a9434e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=978&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -365,7 +597,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Dima Vaisberg",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -420,8 +652,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q107",
-        "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "title": "TV Shows",
+        "img": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -429,7 +661,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Nadav Samuel",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -484,8 +716,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q108",
-        "title": "dogs are awesome",
-        "img": "https://images.unsplash.com/photo-1600195556579-d81d3f386e55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        "title": "Nutrition",
+        "img": "https://images.unsplash.com/photo-1548808957-e80207091212?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -493,7 +725,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Tal Lahyani",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -548,8 +780,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q109",
-        "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "title": "Javascript for Advanced ",
+        "img": "https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -557,7 +789,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Meital Lazarovich",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -612,8 +844,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q110",
-        "title": "dogs are awesome",
-        "img": "https://images.unsplash.com/photo-1600262486318-1848b5da491a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "title": "HTML Basics",
+        "img": "https://images.unsplash.com/photo-1585076641399-5c06d1b3365f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -621,7 +853,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Meital Lazarovich",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -676,8 +908,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q111",
-        "title": "dogs are awesome",
-        "img": "https://images.unsplash.com/photo-1600195077077-7c815f540a3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=636&q=80",
+        "title": "Spanish for starters",
+        "img": "https://images.unsplash.com/photo-1489945052260-4f21c52268b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -685,7 +917,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Rodrigo gonzales",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -701,22 +933,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "yossi",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
                         "txt": "Miki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Puki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Riki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -740,8 +972,8 @@ const gQuizzes = [
         ]
     }, {
         "_id": "q112",
-        "title": "dogs are awesome",
-        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600149253/n95kolhnzvxkn6ahg6c5.jpg",
+        "title": "React for EXPERTS",
+        "img": "https://wallpapercave.com/wp/wp2465926.jpg",
         "tags": [
             "dogs",
             "animals"
@@ -749,7 +981,7 @@ const gQuizzes = [
         "difficulity": 3,
         "createdBy": {
             "_id": "u105",
-            "fullName": "Bob",
+            "fullName": "Didi the Indian",
             "imgUrl": "http://some-img"
         },
         "quests": [
@@ -764,23 +996,23 @@ const gQuizzes = [
                 "displayedCount": 100,
                 "answers": [
                     {
-                        "txt": "yossi",
-                        "isCorrect": true,
+                        "txt": "popolino",
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
-                        "txt": "Miki",
-                        "isCorrect": false,
+                        "txt": "baba",
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
-                        "txt": "Puki",
-                        "isCorrect": false,
+                        "txt": "buli",
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
-                        "txt": "Riki",
-                        "isCorrect": false,
+                        "txt": "ro",
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -825,9 +1057,6 @@ function query() {
 function getById(quizId) {
     // return axios.get(`${BASE_URL}/${quizId}`)
     //     .then(resolveData)
-
-
-
     const quizToReturn = gQuizzes.find(quiz => quiz._id === quizId)
     return quizToReturn
 
