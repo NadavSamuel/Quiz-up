@@ -6,14 +6,18 @@
 
 // Basics
 @import "basics/layout.scss";
+@import "basics/helpers.scss";
 @import "basics/base.scss";
 
 // Components
 @import "component/quizPreview.scss";
+@import "component/navbar.scss";
+// @import "component/quizList.scss";
 
 
 
 // views
+@import "views/homePage.scss";
 
 
 

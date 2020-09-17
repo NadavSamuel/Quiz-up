@@ -31,29 +31,9 @@
 }
 
 .list {
+    
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
     grid-gap: 20px;
 }
 
-.preview{
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    
-    border-radius: 3px;
-    border: 1px solid black;
-    
-    .prev-btn button{
-        height: 50px;
-        margin-top: 30px;
-    }
-
-    img{
-        margin-top: 20px;
-        width: 290px;
-    }
-}

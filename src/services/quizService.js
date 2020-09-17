@@ -73,7 +73,7 @@ const gQuizzes = [
     }, {
         "_id": "q102",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600149294/zyxugb0oal4j9qujymrp.png",
         "tags": [
             "dogs",
             "animals"
@@ -137,7 +137,7 @@ const gQuizzes = [
     }, {
         "_id": "q103",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600149274/st1jaeov8p8ehbjexq5e.png",
         "tags": [
             "dogs",
             "animals"
@@ -201,7 +201,7 @@ const gQuizzes = [
     }, {
         "_id": "u104",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600011748/zovgcrhnelxprpzhphqx.jpg",
         "tags": [
             "dogs",
             "animals"
@@ -265,7 +265,7 @@ const gQuizzes = [
     }, {
         "_id": "q105",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1599990402/sample.jpg",
         "tags": [
             "dogs",
             "animals"
@@ -457,7 +457,7 @@ const gQuizzes = [
     }, {
         "_id": "q108",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://images.unsplash.com/photo-1600195556579-d81d3f386e55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -585,7 +585,7 @@ const gQuizzes = [
     }, {
         "_id": "q110",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://images.unsplash.com/photo-1600262486318-1848b5da491a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
         "tags": [
             "dogs",
             "animals"
@@ -649,7 +649,7 @@ const gQuizzes = [
     }, {
         "_id": "q111",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://images.unsplash.com/photo-1600195077077-7c815f540a3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=636&q=80",
         "tags": [
             "dogs",
             "animals"
@@ -713,7 +713,7 @@ const gQuizzes = [
     }, {
         "_id": "q112",
         "title": "dogs are awesome",
-        "img": "https://res-console.cloudinary.com/dif8yy3on/thumbnails/transform/v1/image/upload//v1599997001/dHVxaWdhMHJucHkzdGxjbjZpZXk=/drilldown?0.5685836439447682",
+        "img": "https://res.cloudinary.com/dif8yy3on/image/upload/v1600149253/n95kolhnzvxkn6ahg6c5.jpg",
         "tags": [
             "dogs",
             "animals"

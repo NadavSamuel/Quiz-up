@@ -1,0 +1,16 @@
+
+.navbar{
+    background-color: $clr3;
+
+    ul li a{
+        color: $clr2;
+        margin: 5px;
+    }
+    img{
+        width: 200px;
+        height: 70px;
+        object-fit: cover
+
+    }
+    
+}

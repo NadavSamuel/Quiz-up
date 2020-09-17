@@ -1,16 +1,27 @@
 
 .quiz-preview{
+    @include aspect-ratio(1, 1);
+    color: $clr1;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     img{
-        color: $clr1;
         width: 100%;
         height: 50%;
         object-fit: cover
     }
     .info{
         height: 50%;
+        margin-top: 50%;
     }
     .num-of-players{
         font-size: rem(12px);
         color: $clr5;
+    }
+    .stars{
+        position: absolute;
+        margin-left:auto; 
+        margin-right:0;
+        justify-content: flex-end;
+        bottom: 0;
+        right: 0;
     }
 }

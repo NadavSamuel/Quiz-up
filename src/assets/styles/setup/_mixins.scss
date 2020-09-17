@@ -29,7 +29,7 @@
     position: relative;
     overflow: hidden;
     &::before {
-      display: block;
+      display: flex;
       content: "";
       width: 100%;
       padding-top: ($height / $width) * 100%;
