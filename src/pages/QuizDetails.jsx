@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { ReviewsList } from '../cmps/ReviewsList'
 import { quizService } from '../services/quizService'
 import { RankTable } from '../cmps/RankTable'
+import { utilService } from '../services/utilService'
 export class _QuizDetails extends Component {
 
     state = {
@@ -17,14 +18,7 @@ export class _QuizDetails extends Component {
         this.setState({ quiz })
     }
 
-    getBestUsers = () => {
-        const { quiz } = this.state
-        var bestPlayers = [...quiz.allTimesPlayers];
-        bestPlayers.sort((player1, player2) => {
-            return (player2.score - player1.score)
-        })
-        return bestPlayers.slice(0, 10);
-    }
+
     getAvgRate = () => {
         const { quiz } = this.state
         const sum = quiz.reviews.reduce((acc, review) => {
@@ -40,9 +34,7 @@ export class _QuizDetails extends Component {
         const { quiz } = this.state
         if (!quiz) return <div>Loading...</div>
         const quizLength = quiz.quests.length
-
-        console.log(quiz);
-        const bestPlayers = this.getBestUsers();
+        const bestPlayers = utilService.getBestUsers(quiz);
         return (                       
             <section className="quiz-details-container ">
                 <div className="quiz-details-head">

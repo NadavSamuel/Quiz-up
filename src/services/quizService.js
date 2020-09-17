@@ -32,22 +32,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "Shay Agnon",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
                         "txt": "Itzhak Rabin",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Menachem Begin",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Benjamin Netanyahu",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -65,22 +65,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "5th Of Iyyar",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
                         "txt": "5th of Nisan",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "3rd of Sh'vat",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "25th of Elul",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -98,22 +98,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "4 Years",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 7
                     },
                     {
                         "txt": "5 Years",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "6 Years",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "7 Years",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 5
                     }
                 ],
@@ -131,22 +131,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "Efraim Katzir",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 7
                     },
                     {
                         "txt": "Zalman Shazar",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 14
                     },
                     {
                         "txt": "Moshe Sharet",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Itzhak Ben Tzvi",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -164,22 +164,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "21",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 7
                     },
                     {
                         "txt": "12",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "15",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 12
                     },
                     {
                         "txt": "9",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -197,22 +197,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "France",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 5
                     },
                     {
                         "txt": "U.S.A",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 25
                     },
                     {
                         "txt": "China",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "United Arab Emirates",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 2
                     }
                 ],
@@ -230,22 +230,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "Haim Nahman Bialik",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     },
                     {
                         "txt": "David Ben Gurion",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 25
                     },
                     {
                         "txt": "Haim Vaitzman",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Shaul Tshernihovski",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 2
                     }
                 ],
@@ -263,22 +263,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "Haim Nahman Bialik",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     },
                     {
                         "txt": "David Ben Gurion",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 25
                     },
                     {
                         "txt": "Haim Vaitzman",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Shaul Tshernihovski",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 2
                     }
                 ],
@@ -357,22 +357,22 @@ const gQuizzes = [
                 "answers": [
                     {
                         "txt": "yossi",
-                        "isCorrect": true,
+                        "isCorrect": "true",
                         "count": 7
                     },
                     {
                         "txt": "Miki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Puki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
                         "txt": "Riki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 5
                     }
                 ],
@@ -426,12 +426,12 @@ const gQuizzes = [
                     },
                     {
                         "txt": "Miki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 14
                     },
                     {
                         "txt": "Puki",
-                        "isCorrect": false,
+                        "isCorrect": "false",
                         "count": 12
                     },
                     {
