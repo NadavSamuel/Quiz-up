@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -15,29 +15,33 @@ body {
     background-color: $clr6;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: caveat; 
-    margin: 0 0 0.6em;
-    line-height: 1;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: caveat;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     font-size: rem(68px);
 }
 
-a{
+a {
     color: $clr5;
-    text-decoration: none ;
+    text-decoration: none;
 }
-ul{
-    list-style-type:none
+ul {
+    list-style-type: none;
 }
-button.btn{
+button.btn {
     margin: 0 5px 10px 0;
 }
 
-form{
+form {
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
