@@ -33,14 +33,23 @@
     .answer{
         width: 190px;
         height: 117px;
-        background: #40a8c4;
+        background-color: $clr3;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 20%;
+        transition:  background-color 0.3s;
+        font-size: 1.7rem;
+
+
         cursor: pointer;
+        &:hover{
+            background-color: $clr4;
+            transition: font-size 0.3s  background-color 0.3s;
+            font-size: 1.8rem;
+        }
         h3{
-            font-size: 2.3rem;
+            color:$clr2;
             margin: 0;
         }
         }
