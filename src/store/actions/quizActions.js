@@ -1,4 +1,3 @@
-import { carService } from '../../services/carService'
 import {quizService} from '../../services/quizService'
 
 export function loadQuizzes() {

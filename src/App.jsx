@@ -8,6 +8,7 @@ import './assets/styles/global.scss';
 
 import { QuizDetails} from './pages/QuizDetails';
 import { Navbar } from './cmps/Navbar';
+import { LoginSignup } from './pages/LoginSignup';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Switch>
         <Route component={ QuizGame } path='/game/:quizId'  />
         <Route component={ QuizDetails } path='/quiz/:quizId' />
+        <Route component={ LoginSignup } path='/login' />
         <Route component={ TagPreview } path='/:tagId' />
         <Route component={ QuizApp } path='/' />
       </Switch>

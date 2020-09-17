@@ -8,8 +8,9 @@ export function Navbar() {
             
             <ul className="flex">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/">profile</Link></li>
-                <li><Link to="/">browse</Link></li>
+                <li><Link to="/">Profile</Link></li>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/">Browse</Link></li>
             </ul>
         </div>
         

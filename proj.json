@@ -1,0 +1,88 @@
+{
+    "quizs": [
+        {
+            "_id": "asadsa43324",
+            "likes": 0,
+            "playCount": 0,
+            "topic": "dogs",
+            "img": "/somthing.jpg",
+            "tags": [
+                "dogs",
+                "animals"
+            ],
+            "difficulity": 3,
+            "createdBy": {
+                "_id": "u105",
+                "fullName": "Bob",
+                "imgUrl": "http://some-img"
+            },
+            "quests": [
+                {
+                    "id": "bkjbk1434324",
+                    "optionalImg": "",
+                    "questTxt": " whats the name?",
+                    "type": "multy",
+                    "questData": {
+                        "corrAns": "puki",
+                        " wrongAns": [
+                            "muki",
+                            "bar",
+                            "dan"
+                        ]
+                    }
+                },
+                {
+                    "id": "bk43534324",
+                    "optionalImg": "https://image.freepik.com/free-vector/quiz-logo_2728-12.jpg",
+                    "questTxt": " is?",
+                    "type": "bool",
+                    "questData": {
+                        "corrAns": true
+                    }
+                }
+            ],
+            "reviews": [
+                {
+                    "id": "ytryrtyrtd",
+                    "txt": "a great place to dine..",
+                    "rate": 4,
+                    "likes": 4,
+                    "by": {
+                        "_id": "u102",
+                        "fullName": "user2",
+                        "imgUrl": "/img/img2.jpg"
+                    }
+                }
+            ]
+        }
+    ],
+
+    "users": [
+        {
+            "_id": "asdasas32434234",
+            "profileImg": "https://image.freepik.com/free-vector/quiz-logo_2728-12.jpg",
+            "password": "gybvukbknnll",
+            "username": "popo",
+            "isAdmin":true,
+            "quizzes": [
+                {
+                    "quizId": "asdasd9787978",
+                    "topic": "bamias",
+                    "img": "/bamia.jpg"
+                }
+            ],
+            "friends": [
+                {
+                    "_id": "u105",
+                    "fullName": "Bob",
+                    "imgUrl": "http://some-img"
+                },
+                {
+                    "_id": "u106",
+                    "fullName": "yarom",
+                    "imgUrl": "http://some-img"
+                }
+            ]
+        }
+    ]
+}
