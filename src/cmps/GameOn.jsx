@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 // import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 class _GameOn extends Component {
@@ -34,7 +37,22 @@ class _GameOn extends Component {
         let { currQuestionIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
         // console.log("render -> quizzes", quizzes)
-        const answerDuration = 3
+        // const answerDuration = 3
+        const BorderLinearProgress = withStyles((theme) => ({
+            root: {
+              height: 10,
+              borderRadius: 5,
+            },
+            colorPrimary: {
+              backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+            },
+            bar: {
+              borderRadius: 5,
+              backgroundColor: '#a2d5f2',
+              animationDuration: '550ms'
+            },
+          }))(LinearProgress);
+
 
         if (!questions) return <div>Loading....</div>
         return (
@@ -42,8 +60,10 @@ class _GameOn extends Component {
                 <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
                 <div className="answer-feedback" style={!this.state.answerFeedback ?
                     { visibility: 'hidden' } : { visibility: 'visible' }}><h2>{this.state.answerFeedback === 'true' ? 'Right!' : 'Wrong!'}</h2></div>
-                <div className="timer-wrapper">
-                    {/* <CountdownCircleTimer
+                          <BorderLinearProgress variant="determinate" value={(currQuestionIdx/questions.length)*100} />
+
+                {/* <div className="timer-wrapper">
+                    <CountdownCircleTimer
                         key={key}
                         isPlaying
                         duration={answerDuration}
@@ -53,8 +73,8 @@ class _GameOn extends Component {
                             return [true, 1500]
                         }}
                     >
-                    </CountdownCircleTimer> */}
-                </div>
+                    </CountdownCircleTimer>
+                </div> */}
                 <AnswersList answerFeedback={this.state.answerFeedback} answerQuestion={this.answerQuestion} answers={currQuestion.answers} />
             </main>
         )
