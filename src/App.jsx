@@ -8,6 +8,7 @@ import './assets/styles/global.scss';
 
 import { QuizDetails} from './pages/QuizDetails';
 import { Navbar } from './cmps/Navbar';
+import { QuizEdit } from './pages/QuizEdit';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <div className="App main-container">
       <Switch>
         <Route component={ QuizGame } path='/game/:quizId'  />
+        <Route component={ QuizEdit } path='/edit/:quizId?'  />
         <Route component={ QuizDetails } path='/quiz/:quizId' />
         <Route component={ TagPreview } path='/:tagId' />
         <Route component={ QuizApp } path='/' />
