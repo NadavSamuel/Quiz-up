@@ -456,7 +456,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "u104",

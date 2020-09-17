@@ -16,7 +16,7 @@ export function RankTable({ bestPlayers }) {
                     <span className="table-score"> Scored {player.score}</span>
                 </p>
             })}
-            {!bestPlayers<= 1 && <p className="table-line" >
+            {!bestPlayers.length && <p className="table-line" >
                 <span className="table-position"></span>
                 <span className="table-name">No one played this game</span>
                 <span className="table-score"></span>
