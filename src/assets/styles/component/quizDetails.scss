@@ -4,13 +4,16 @@
         display: flex;
         justify-content: space-between;
         .quiz-img {
-            width: 60%;
+            // width: 60%;
+            width: 580px;
+            max-height: 370px;
+            object-fit: fill;
         }
         .rank-table {
             border: 1px solid black;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
             height: 100%;
             padding: 0 15px;
             .header {
