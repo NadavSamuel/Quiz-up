@@ -34,13 +34,14 @@ export class _QuizDetails extends Component {
         const { quiz } = this.state
         if (!quiz) return <div>Loading...</div>
         const quizLength = quiz.quests.length
-        const bestPlayers = utilService.getBestUsers(quiz);
-        return (                       
+        if (quiz.allTimesPlayers) var bestPlayers = utilService.getBestUsers(quiz);
+
+        return (
             <section className="quiz-details-container ">
                 <div className="quiz-details-head">
                     {/* <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" /> */}
                     {quiz.img && <img className="quiz-img" src={quiz.img} alt="" />}
-                    {!quiz.img && <img src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" />}
+                    {!quiz.img && <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" />}
                     <div className="rank-container">
 
                         <RankTable bestPlayers={bestPlayers} />
@@ -52,18 +53,20 @@ export class _QuizDetails extends Component {
                         <h4>Rated {this.getAvgRate()}</h4>
 
                         <h5 className="creator">Created by {quiz.createdBy.fullName}</h5>
+                        {quiz.allTimesPlayers.length && <h5 className="played-times">Played {quiz.allTimesPlayers.length} times</h5>}
                         <div className="tags">
-                            {/* {quiz.tags.map((tag, idx) => {
-                                return <span key={idx}>{tag} </span>
-                            })} */}
+                            <span>About </span>
+                            {quiz.tags.map((tag, idx) => {
+                                return <span key={idx}> {tag} </span>
+                            })}
                         </div>
 
                     </div>
                     <div className="btns">
                         <Link to={`/game/${quiz._id}`}>  <Button endIcon={<PersonOutlineSharp />
-                        } variant="contained" color="primary">Single Player</Button></Link>
+                        } variant="contained" color="primary">Play Single </Button></Link>
                         <Button endIcon={<PeopleAltOutlined />
-                        } disabled variant="contained" color="primary">Multi Player</Button></div></div>
+                        } disabled variant="contained" color="primary">Play Online </Button></div></div>
                 <div className="review-stats">
                     <h2 className="reviews-title">Reviews for this quiz:</h2>
                     {<ReviewsList reviews={quiz.reviews} />}
