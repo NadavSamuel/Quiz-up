@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import { QuizList } from '../cmps/QuizList'
+import { GameOn } from '../cmps/GameOn'
+import { EndGame } from '../cmps/EndGame'
 import { quizService } from '../services/quizService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 
@@ -61,8 +63,8 @@ class _QuizGame extends Component {
 
 
         ],
-        currQuestionIdx:0,
-        answerFeedback:null
+        gameOn:true,
+        rightAns:0
     }
 
     // componentDidMount() {
@@ -73,6 +75,9 @@ class _QuizGame extends Component {
     //     const quizzes= quizService.query();
     //     this.setState({quizzes})
     // }
+    onTrueAns = () =>{
+        this.setState({rightAns:this.state.rightAns+1})
+            }
     answerQuestion = answerResult => {
 
         this.setState({answerFeedback:answerResult}, () => console.log(this.state.answerFeedback))
@@ -80,6 +85,10 @@ class _QuizGame extends Component {
 
             this.setState({currQuestionIdx:this.state.currQuestionIdx+ 1,answerFeedback:null})
         },1500)
+    }
+    onEndGame = () =>{
+        // debugger
+         this.setState({gameOn:false})
     }
 
     render() {
@@ -90,10 +99,9 @@ class _QuizGame extends Component {
         
         if (!questions) return <div>Loading....</div>
         return (
-            <main className="quiz-game-main">
-                <div className = "curr-question"><h1>{currQuestion.txt}</h1></div>
-        <div className="answer-feedback" style={!this.state.answerFeedback?{visibility: 'hidden'}:{visibility: 'visible'}}><h2>{this.state.answerFeedback ==='true'? 'Right!': 'Wrong!' }</h2></div>
-                <AnswersList answerFeedback={this.state.answerFeedback} answerQuestion={this.answerQuestion}  answers={currQuestion.answers}/>
+            <main>
+                {this.state.gameOn ? <GameOn onTrueAns={this.onTrueAns}  questions = {this.state.questions} onEndGame={this.onEndGame}/>:<EndGame/>}
+
 
                 
 

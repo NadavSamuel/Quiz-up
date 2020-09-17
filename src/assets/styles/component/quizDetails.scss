@@ -1,0 +1,61 @@
+.quiz-details-container {
+    padding-top: 20px;
+    .quiz-details-head {
+        display: flex;
+        justify-content: space-between;
+        .quiz-img {
+            width: 60%;
+        }
+        .rank-table {
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100%;
+            padding: 0 15px;
+            .header {
+                display: flex;
+                justify-content: space-around;
+                text-decoration: underline;
+            }
+            .table-line{
+                border-bottom: 1px solid $clr4;
+            }
+        }
+    }
+
+    .quiz-details-body {
+        display: flex;
+        justify-content: space-between;
+        .btns {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            button {
+                padding: 8px 140px;
+            }
+        }
+        .quiz-info {
+            display: flex;
+            flex-direction: column;
+            .quiz-length {
+                font-size: 0.9rem;
+            }
+            .title {
+                margin: 0.3rem;
+            }
+        }
+    }
+    .review-stats {
+        .reviews-title {
+            text-align: center;
+            border-bottom: 3px solid $clr2;
+        }
+        .reviews-container {
+            .review-card {
+                text-align: center;
+                border-bottom: 3px solid $clr2;
+            }
+        }
+    }
+}

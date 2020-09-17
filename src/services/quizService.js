@@ -56,19 +56,47 @@ const gQuizzes = [
         "reviews": [
             {
                 "id": "ytryrtyrtd",
-                "txt": "a great quiz",
+                "txt": "Simple and fun quiz",
                 "rate": 4,
                 "by": {
                     "_id": "u102",
                     "fullName": "user2",
                     "imgUrl": "/img/img2.jpg"
                 }
-            }
+            },
+            {
+                "id": "ytry1tyrtd",
+                "txt": "boring quiz",
+                "rate": 1,
+                "by": {
+                    "_id": "u103",
+                    "fullName": "user3",
+                    "imgUrl": "/img/img3.jpg"
+                }
+            },
+            {
+                "id": "ytrrtyrtd",
+                "txt": "BEST QUIZ EVER",
+                "rate": 5,
+                "by": {
+                    "_id": "u101",
+                    "fullName": "user1",
+                    "imgUrl": "/img/img1.jpg"
+                }
+            },
         ],
         "allTimesPlayers": [
             { id: "u101", fullName: "Yossef Hamkapez", score: "126" },
             { id: "u102", fullName: "David Hamkapez", score: "131" },
             { id: "u103", fullName: "Jackson Hamkapez", score: "190" },
+            { id: "u104", fullName: "Miki Hamkapez", score: "110" },
+            { id: "u105", fullName: "Puki Hamkapez", score: "490" },
+            { id: "u106", fullName: "Tuki Hamkapez", score: "15" },
+            { id: "u107", fullName: "Ruki Hamkapez", score: "140" },
+            { id: "u108", fullName: "Lula Hamkapez", score: "111" },
+            { id: "u109", fullName: "Zuzi Hamkapez", score: "211" },
+            { id: "u1010", fullName: "Burekas Hamkapez", score: "55" },
+            { id: "u1011", fullName: "Jiki Hamkapez", score: "82" },
         ]
     }, {
         "_id": "q102",
