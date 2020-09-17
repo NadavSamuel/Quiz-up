@@ -79,7 +79,7 @@ class _QuizGame extends Component {
         quiz.quests.forEach(quest =>{
             utilService.shuffleAnswers(quest.answers)
         })
-        this.setState({ quiz })
+        this.setState({ quiz },() => console.log('all time players: ', this.state.quiz.allTimesPlayers))
     }
     onTrueAns = () =>{
         this.setState({rightAns:this.state.rightAns+1})
@@ -107,7 +107,7 @@ class _QuizGame extends Component {
         return (
             <main>
                 {this.state.gameOn ? <GameOn onTrueAns={this.onTrueAns}  questions = {questions} onEndGame={this.onEndGame}/>:
-                <EndGame category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length}/>}
+                <EndGame allTimesPlayers={this.state.quiz.allTimesPlayers}category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length}/>}
 
 
                 

@@ -1032,7 +1032,14 @@ const gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            {
+                "fullName": "asaf Margalit",
+                "score": 150
+            },
+            {
+                "fullName": "Popo the great",
+                "score": 220
+            }
         ]
     }
 ]
