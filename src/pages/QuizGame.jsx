@@ -10,70 +10,19 @@ import { AnswersList } from '../cmps/AnswersList.jsx'
 class _QuizGame extends Component {
     state={
         quiz:{},
-        // questions:[
-        //     {
-        //         "id": "bkjbk1434324",
-        //         "txt": "Whats the name?",
-
-        //         "displayedCount": 100,
-        //         "answers": [
-        //             {
-        //                 "txt": "yossi",
-        //                 "isCorrect": "true",
-        //                 "count": 7
-        //             },
-        //             {
-        //                 "txt": "Miki",
-        //                 "isCorrect": "false",
-        //                 "count": 14
-        //             },
-        //             {
-        //                 "txt": "Puki",
-        //                 "isCorrect": "false",
-        //                 "count": 12
-        //             },
-        //             {
-        //                 "txt": "Riki",
-        //                 "isCorrect": "false",
-        //                 "count": 5
-        //             },
-                    
-        //         ],
-                
-        //     },{
-        //         "id": "bkjbk1434324",
-        //         "txt": "is true?",
-
-        //         "displayedCount": 100,
-        //         "answers": [
-        //             {
-        //                 "txt": "true",
-        //                 "isCorrect": "true",
-        //                 "count": 7
-        //             },
-        //             {
-        //                 "txt": "false",
-        //                 "isCorrect": "false",
-        //                 "count": 14
-        //             },
-                    
-                    
-        //         ],
-                
-        //     }
-            
-
-
-        // ],
         gameOn:true,
-        rightAns:0
+        rightAns:0,
+        currTimeStamp:0
     }
 
     componentDidMount() {
        this.loadQuizz();
-       
+       const timer = setInterval(() =>{
+           this.updateTime()
+           if(!this.state.gameOn) clearInterval(timer)
+       },1000)
     }
-    
+
      loadQuizz = async ()=>{
         const quiz = await quizService.getById(this.props.match.params.quizId)
         quiz.quests.forEach(quest =>{
@@ -96,23 +45,25 @@ class _QuizGame extends Component {
          this.setState({gameOn:false})
     }
 
+
+    /////////////////////// Timer funcs
+    updateTime = () => {
+        if(this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp + 1000 })
+        return true
+    }
+    ///////////////////////
+
     render() {
         console.log('currQuiz: ',this.state.quiz)
         const questions=  this.state.quiz.quests
         let {currQuestionIdx} = this.state
-        // let currQuestion=questions[currQuestionIdx]
         // console.log("render -> quizzes", quizzes)
         
         if (!questions) return <div>Loading....</div>
         return (
             <main>
-                {this.state.gameOn ? <GameOn onTrueAns={this.onTrueAns}  questions = {questions} onEndGame={this.onEndGame}/>:
-                <EndGame allTimesPlayers={this.state.quiz.allTimesPlayers}category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length}/>}
-
-
-                
-
-                {/* <QuizList quizzes={ quizzes } /> */}
+                {this.state.gameOn ? <GameOn currTimeStamp={this.state.currTimeStamp} onTrueAns={this.onTrueAns}  questions = {questions} onEndGame={this.onEndGame}/>:
+                <EndGame quiz = {this.state.quiz} currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers}category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length}/>}
             </main>
         )
     }

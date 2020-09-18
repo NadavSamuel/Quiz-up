@@ -1,7 +1,8 @@
 
 export const utilService = {
   shuffleAnswers,
-  getBestUsers
+  getBestUsers,
+  getTime
 }
 function shuffleAnswers(answers) {
   var currentIndex = answers.length, temporaryValue, randomIndex;
@@ -29,4 +30,14 @@ function getBestUsers(quiz) {
     return (player2.score - player1.score)
   })
   return bestPlayers.slice(0, 10);
+}
+function getTime(timeStamp){
+let m = new Date(timeStamp).getMinutes();
+let s = new Date(timeStamp).getSeconds();
+
+m = (m<10) ? '0' + m : m;
+s = (s<10) ? '0' + s : s;
+
+const currTime = m + ':' +s;
+  return currTime
 }
