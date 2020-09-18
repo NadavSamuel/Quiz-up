@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { quizService } from '../services/quizService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { CircleTimer } from '../cmps/CircleTimer'
+import { GameTimer } from '../cmps/GameTimer'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -77,6 +78,7 @@ class _GameOn extends Component {
                     { visibility: 'hidden' } : { visibility: 'visible' }}><h2>{this.state.answerFeedback === 'true' ? 'Right!' : 'Wrong!'}</h2></div> */}
 
                 <div className="timer-wrapper">
+                    <GameTimer currTimeStamp={this.props.currTimeStamp}/>
                     {/* <CircleTimer ansSelected = {this.state.chosenAnsIdx}/> */}
                     {/* <CountdownCircleTimer
                         key={key}

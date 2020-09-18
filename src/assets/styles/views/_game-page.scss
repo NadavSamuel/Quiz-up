@@ -54,8 +54,15 @@
             color:$clr2;
             margin: 0;
         }
-        }
-   
+        }  
     
 }
 
+.timer-wrapper{
+    position: relative;
+    top: 115px;
+    .main-timer-container h2{
+    display: flex;
+    justify-content: center;
+        }
+    }
