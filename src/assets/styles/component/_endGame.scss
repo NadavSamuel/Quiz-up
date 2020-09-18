@@ -1,0 +1,25 @@
+.endgame-main{
+    .endgame-top{
+    @include  center-columns();
+    padding: 30px;
+    height: 500px;
+    justify-content: space-around;
+    h1{
+        font-size:3rem
+    }
+    .rank-table{
+        @include  center-columns();
+        font-size: 1.2rem;
+        width: 50%;
+    }
+    }
+    .endgame-actions{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 36px;
+        form{
+            flex-direction:column
+        }
+    }
+}

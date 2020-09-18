@@ -71,8 +71,8 @@ class _GameOn extends Component {
                 <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
                 {/* <div className="answer-feedback" style={!this.state.answerFeedback ?
                     { visibility: 'hidden' } : { visibility: 'visible' }}><h2>{this.state.answerFeedback === 'true' ? 'Right!' : 'Wrong!'}</h2></div> */}
-
-                {/* <div className="timer-wrapper">
+{/* 
+                <div className="timer-wrapper">
                     <CountdownCircleTimer
                         key={key}
                         isPlaying
