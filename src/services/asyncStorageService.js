@@ -8,23 +8,29 @@ export default {
     remove,
 }
 
-function query(entityType) {
+function query(entityType,filterBy={}) {
+    console.log("query -> filterBy", filterBy)
+    
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    return Promise.resolve(entities);
+    console.log(entities);
+    if(!filterBy) return Promise.resolve(entities);
+    if(filterBy.title)return Promise.resolve(entities.filter(entitie=>entitie.title.toLowerCase().includes(filterBy.title.toLowerCase()) ));
+    else return Promise.resolve(entities);
 }
 
 
 
 
 function get(entityType, entityId) {
+    console.log("get -> entityType, entityId", entityType, entityId)
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }
-function post(entityType, newEntity) {
+function post(entityType, newEntity) {    
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
-            entities.push(newEntity);
+            entities.unshift(newEntity);
             _save(entityType, entities)
             return newEntity;
         })

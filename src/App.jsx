@@ -3,13 +3,14 @@ import { Switch, Route } from 'react-router-dom';
 
 import { QuizApp } from './pages/QuizApp'
 import { QuizGame } from './pages/QuizGame'
-import { TagPreview } from './pages/TagPreview';
+import { TagQuizzes } from './pages/TagQuizzes';
 import './assets/styles/global.scss';
 
 import { QuizDetails} from './pages/QuizDetails';
 import { Navbar } from './cmps/Navbar';
 import { LoginSignup } from './pages/LoginSignup';
 import { QuizEdit } from './pages/QuizEdit';
+import { Browse } from './pages/Browse';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route component={ QuizEdit } path='/edit/:quizId?'  />
         <Route component={ QuizDetails } path='/quiz/:quizId' />
         <Route component={ LoginSignup } path='/login' />
-        <Route component={ TagPreview } path='/:tagId' />
+        <Route component={ Browse } path='/browse' />
+        <Route component={ TagQuizzes } path='/:tag' />
         <Route component={ QuizApp } path='/' />
       </Switch>
     </div>

@@ -14,12 +14,14 @@
 @import "component/navbar.scss";
 // @import "component/quizList.scss";
 @import "component/quizDetails.scss";
+@import "component/questPreview";
 
 
 
 // views
 @import "views/homePage.scss";
-@import "views/game-page";
+@import "views/game-page.scss";
+@import "views/quizEdit.scss";
 
 
 
