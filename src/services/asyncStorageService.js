@@ -9,10 +9,8 @@ export default {
 }
 
 function query(entityType,filterBy={}) {
-    console.log("query -> filterBy", filterBy)
     
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    console.log(entities);
     if(!filterBy) return Promise.resolve(entities);
     if(filterBy.title)return Promise.resolve(entities.filter(entitie=>entitie.title.toLowerCase().includes(filterBy.title.toLowerCase()) ));
     else return Promise.resolve(entities);

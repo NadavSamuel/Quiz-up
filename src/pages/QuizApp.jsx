@@ -15,27 +15,27 @@ class _QuizApp extends Component {
         this.loadQuizzes();
     }
 
-    getQuizzesToPrev = () => {
-        const quizzes = this.state.quizzes
-        if (quizzes.length < 3) return quizzes
-        const num = this.state.tagCount % quizzes.length
-        var res = quizzes.length - num
-        if (res >= 3) return quizzes.slice(num, num + 3)
-        if (res === 2) return [...(quizzes.slice(num, num + 2)), quizzes[0]]
-        if (res === 1) return [quizzes[num], ...quizzes.slice(0, 2)]
-        if (res === 0) return quizzes.slice(0, 3)
+    // getQuizzesToPrev = () => {
+    //     const quizzes = this.state.quizzes
+    //     if (quizzes.length < 3) return quizzes
+    //     const num = this.state.tagCount % quizzes.length
+    //     var res = quizzes.length - num
+    //     if (res >= 3) return quizzes.slice(num, num + 3)
+    //     if (res === 2) return [...(quizzes.slice(num, num + 2)), quizzes[0]]
+    //     if (res === 1) return [quizzes[num], ...quizzes.slice(0, 2)]
+    //     if (res === 0) return quizzes.slice(0, 3)
 
 
-    }
+    // }
 
-    next = () => {
-        this.setState({ tagCount: this.state.tagCount + 3 })
-    }
+    // next = () => {
+    //     this.setState({ tagCount: this.state.tagCount + 3 })
+    // }
 
-    prev = () => {
-        if (this.state.tagCount >= 3) this.setState({ tagCount: this.state.tagCount - 3 })
-        else if (this.state.tagCount < 3) this.setState({ tagCount: this.state.quizzes.length - (3 - this.state.tagCount) })
-    }
+    // prev = () => {
+    //     if (this.state.tagCount >= 3) this.setState({ tagCount: this.state.tagCount - 3 })
+    //     else if (this.state.tagCount < 3) this.setState({ tagCount: this.state.quizzes.length - (3 - this.state.tagCount) })
+    // }
 
     loadQuizzes = async () => {
         const quizzes = await quizService.query();
@@ -53,11 +53,11 @@ class _QuizApp extends Component {
                 <div className="main-container">
 
                     <h3>tag1:</h3>
-                    <QuizList next={this.next} prev={this.prev} quizzes={this.getQuizzesToPrev()} />
+                    <QuizList   quizzes={quizzes} />
                     <h3>tag2:</h3>
-                    <QuizList next={this.next} prev={this.prev} quizzes={this.getQuizzesToPrev()} />
+                    <QuizList  quizzes={quizzes} />
                     <h3>tag3:</h3>
-                    <QuizList next={this.next} prev={this.prev} quizzes={this.getQuizzesToPrev()} />
+                    <QuizList  quizzes={quizzes} />
                 </div>
             </div>
         )

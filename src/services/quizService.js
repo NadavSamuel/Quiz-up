@@ -1057,10 +1057,8 @@ export const quizService = {
 window.quizService = quizService;
 
 async function getByTag(tag,filterBy) {
-    console.log("getByTag -> tag,filterBy", tag,filterBy)
     try {
         var quizzes = await storageService.query('quiz',filterBy);
-        console.log("getByTag -> quizzes", quizzes)
         if(quizzes) var quizzesToReturn = quizzes.filter(quiz => quiz.tags.includes(tag));
         return quizzesToReturn;
     } catch (err) {

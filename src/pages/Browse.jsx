@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
+import { BrowseTagPreview } from '../cmps/BrowseTagPreview'
 
 class _Browse extends Component {
 
     state = {
         quizzes: [],
-        tagCount: 0
+        tagCount: 0,
+        tags:[]
     }
 
     getTags= ()=>{
@@ -19,7 +21,7 @@ class _Browse extends Component {
             });
             return acc
         },[])
-        console.log(tags);
+        this.setState({tags});
     }
 
     componentDidMount() {
@@ -27,47 +29,24 @@ class _Browse extends Component {
         this.loadQuizzes();
     }
 
-    getQuizzesToPrev = () => {
-        const quizzes = this.state.quizzes
-        if (quizzes.length < 3) return quizzes
-        const num = this.state.tagCount % quizzes.length
-        var res = quizzes.length - num
-        if (res >= 3) return quizzes.slice(num, num + 3)
-        if (res === 2) return [...(quizzes.slice(num, num + 2)), quizzes[0]]
-        if (res === 1) return [quizzes[num], ...quizzes.slice(0, 2)]
-        if (res === 0) return quizzes.slice(0, 3)
-
-
-    }
-
-    next = () => {
-        this.setState({ tagCount: this.state.tagCount + 3 })
-    }
-
-    prev = () => {
-        if (this.state.tagCount >= 3) this.setState({ tagCount: this.state.tagCount - 3 })
-        else if (this.state.tagCount < 3) this.setState({ tagCount: this.state.quizzes.length - (3 - this.state.tagCount) })
-    }
-
     loadQuizzes = async () => {
         const quizzes = await quizService.query();
         this.setState({ quizzes },()=>this.getTags())
     }
 
+    getQuizzesByTag= async(tag)=>{
+        const quizzes= await quizService.getByTag(tag)
+        console.log(quizzes);
+        return quizzes
+    }
+
     render() {
         const quizzes = this.state.quizzes
+        const tags=this.state.tags
         if (!quizzes) return <div>Loading....</div>
         return (
             <div className="home-page full">
-                <div className="main-container">
-
-                    <h3>tag1:</h3>
-                    <QuizList next={this.next} prev={this.prev} quizzes={this.getQuizzesToPrev()} />
-                    <h3>tag2:</h3>
-                    <QuizList next={this.next} prev={this.prev} quizzes={this.getQuizzesToPrev()} />
-                    <h3>tag3:</h3>
-                    <QuizList next={this.next} prev={this.prev} quizzes={this.getQuizzesToPrev()} />
-                </div>
+                {tags && tags.map((tag,idx)=><BrowseTagPreview key={idx} tag={tag}/>)}
             </div>
         )
     }
