@@ -1,12 +1,12 @@
 // import {httpService} from './httpService'
 
-const gUsers=[
+const gUsers = [
     {
         "_id": "asdasas32434234",
         "profileImg": "https://image.freepik.com/free-vector/quiz-logo_2728-12.jpg",
         "password": "1234",
         "username": "tal",
-        "isAdmin":false,
+        "isAdmin": false,
         "quizzes": [
             {
                 "quizId": "1",
@@ -29,16 +29,27 @@ const gUsers=[
     },
     {
         "_id": "asdasas32434234",
-        "profileImg": "https://image.freepik.com/free-vector/quiz-logo_2728-12.jpg",
+        "profileImg": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80",
         "password": "admin",
         "username": "admin",
-        "isAdmin":true,
+        "isAdmin": true,
         "quizzes": [
             {
-                "quizId": "1",
-                "topic": "History of bla bla",
-                "img": "/bamia.jpg"
-            }
+                "quizId": "q101",
+            },
+            {
+                "quizId": "q102",
+            },
+            {
+                "quizId": "q103",
+            },
+
+            {
+                "quizId": "q105",
+            },
+            {
+                "quizId": "q106",
+            },
         ],
         "friends": [
             {
@@ -66,8 +77,9 @@ export const userService = {
     // update
 }
 
-function login(credentials){
-    console.log('credentials:',credentials);
+function login({ username, password }) {
+    const userToLog = gUsers.find(user => user.username === username && user.password === password)
+    return Promise.resolve(_handleLogin(userToLog))
 }
 
 // async function loginAsync(credentials) {

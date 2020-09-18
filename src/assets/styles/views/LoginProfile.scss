@@ -1,0 +1,18 @@
+.login-profile-container{
+    .login-container{
+
+    }
+    .profile-container{
+        .profile-header{
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        img{
+            max-width: 315px;
+            // margin: 15px 0;
+        }
+    }
+}

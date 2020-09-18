@@ -20,7 +20,6 @@ function query(entityType,filterBy={}) {
 
 
 function get(entityType, entityId) {
-    console.log("get -> entityType, entityId", entityType, entityId)
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }
