@@ -42,8 +42,7 @@ export class _QuizDetails extends Component {
         const playedTime = quiz.allTimesPlayers.length
         if (quiz.allTimesPlayers) var bestPlayers = utilService.getBestUsers(quiz);
         const avgRate = this.getAvgRate()
-        console.log('avg rate:', avgRate);
-
+console.log('CURR QUIZ:',quiz);
         return (
             <section className="quiz-details-container ">
                 <div className="quiz-details-head">
@@ -63,7 +62,7 @@ export class _QuizDetails extends Component {
                         {avgRate > 0 && <h4>Rated {avgRate}({quiz.reviews.length})</h4>}
 
                         {quiz.allTimesPlayers.length > 0 && <h5 className="played-times">Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`} </h5>}
-                        {quiz.tags.length > 1 && <div className="tags">
+                        {quiz.tags[0].length >= 1 && <div className="tags">
                             <span>About </span>
                             {quiz.tags.map((tag, idx) => {
                                 return <span key={idx}> {tag} </span>

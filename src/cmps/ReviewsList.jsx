@@ -32,13 +32,15 @@ export function ReviewsList({ reviews }) {
 
     return (
         <div className="reviews-container">
-            {reviews.map(review => {
+            {reviews.map((review,idx) => {
+                if (idx>=3) return;
                 return <div className="review-card" key={review.id}>
                     <h3>By {review.by.fullName}</h3>
                     <p> {review.txt}</p>
                     {getRate(review.rate)}
                 </div>
             })}
+            <button>Read More</button>
         </div>
     )
 }
