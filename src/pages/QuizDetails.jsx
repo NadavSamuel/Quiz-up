@@ -1,6 +1,5 @@
 import { PeopleAltOutlined, PersonOutlineSharp } from '@material-ui/icons'
 import React, { Component } from 'react'
-// import {PersonSharpIcon } from '@material-ui/icons'
 import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -13,8 +12,8 @@ export class _QuizDetails extends Component {
     state = {
         quiz: null
     }
-    componentDidMount() {
-        const quiz = quizService.getById(this.props.match.params.quizId)
+    async componentDidMount() {
+        const quiz = await quizService.getById(this.props.match.params.quizId)
         this.setState({ quiz })
     }
 
@@ -31,7 +30,7 @@ export class _QuizDetails extends Component {
         // const { quiz } = this.state
         // const { loggedInUser } = this.props
         // if(loggedInUser) 
-
+        //Check if he already played...
         //  userToAdd = { id: loggedInUser._id, score: 0, fullName: loggedInUser.username }
         // quiz.allTimesPlayers=[...quiz.allTimesPlayers,userToAdd]
     }

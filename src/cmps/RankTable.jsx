@@ -1,7 +1,7 @@
 import React from 'react'
 
 export function RankTable({ bestPlayers }) {
-    console.log('best players in rank table endgame: ', bestPlayers)
+    console.log('best players in rank table endgame: ', bestPlayers, bestPlayers.length)
     return (
         <div className="rank-table">
             <div className="header">
