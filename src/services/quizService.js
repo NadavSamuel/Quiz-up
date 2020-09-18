@@ -1056,10 +1056,12 @@ export const quizService = {
 
 window.quizService = quizService;
 
-async function getByTag(tag) {
+async function getByTag(tag,filterBy) {
+    console.log("getByTag -> tag,filterBy", tag,filterBy)
     try {
-        var quizzes = await storageService.query('quiz');
-        var quizzesToReturn = quizzes.filter(quiz => quizzes.tags.includes(tag));
+        var quizzes = await storageService.query('quiz',filterBy);
+        console.log("getByTag -> quizzes", quizzes)
+        if(quizzes) var quizzesToReturn = quizzes.filter(quiz => quiz.tags.includes(tag));
         return quizzesToReturn;
     } catch (err) {
         console.log(err);
@@ -1072,6 +1074,7 @@ async function query() {
         if (quizzes.length === 0) {
             var str = JSON.stringify(gQuizzes);
             localStorage.setItem('quiz', str)
+            return gQuizzes
         }
 
         return quizzes
@@ -1081,6 +1084,7 @@ async function query() {
 }
 
 async function add(quiz) {
+    console.log(quiz);
     try {
         var newQuiz = await storageService.post('quiz', quiz);
         return newQuiz
