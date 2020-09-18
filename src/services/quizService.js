@@ -288,31 +288,51 @@ var gQuizzes = [
         ],
         "reviews": [
             {
-                "id": "ytqyrtyrtd",
+                "id": "yqyrtyrtd",
                 "txt": "Good quiz about israel! Every israelian should DO!",
                 "rate": 4,
                 "by": {
-                    "_id": "u102",
+                    "_id": "u101",
                     "fullName": "Ronit Avrahami",
                     "imgUrl": "/img/img2.jpg"
                 }
             },
             {
-                "id": "ytry1tyrtd",
+                "id": "ytr4tyrtd",
                 "txt": "Boring quiz.. gaza rules.",
                 "rate": 1,
                 "by": {
-                    "_id": "u103",
+                    "_id": "u102",
                     "fullName": "Mohammad From Gaza",
                     "imgUrl": "/img/img3.jpg"
                 }
             },
             {
-                "id": "ytrrtyrtd",
+                "id": "yt5tyrtd",
+                "txt": "Good quiz, waiting for harder one!",
+                "rate": 5,
+                "by": {
+                    "_id": "u103",
+                    "fullName": "Binyamin Levi",
+                    "imgUrl": "/img/img1.jpg"
+                }
+            },
+            {
+                "id": "ztrqtyrtd",
+                "txt": "Good one waiting for more!",
+                "rate": 4,
+                "by": {
+                    "_id": "u104",
+                    "fullName": "Ron Shmueli",
+                    "imgUrl": "/img/img1.jpg"
+                }
+            },
+            {
+                "id": "y5rtyrtd",
                 "txt": "BEST QUIZ!! I LOVVE ISRAEL! WANT TO VISIT THERE AFAP",
                 "rate": 5,
                 "by": {
-                    "_id": "u101",
+                    "_id": "u105",
                     "fullName": "David Levi",
                     "imgUrl": "/img/img1.jpg"
                 }
