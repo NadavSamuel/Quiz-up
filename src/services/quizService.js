@@ -1086,6 +1086,14 @@ async function getByTag(tag,filterBy) {
     }
 }
 
+function getImg(keyword) {
+    if(!keyword) return Promise.resolve('');
+    var prmRes = axios.get(`https://api.unsplash.com/photos/random?client_id=PA3Oow8kvS9lXoH0KnT7yxn2e_FAaKFzROSIXsAdPNE`)
+    return prmRes.then(res => {
+      return res.data
+    })
+  }
+
 async function query() {
     try {
         var quizzes = await storageService.query('quiz');
