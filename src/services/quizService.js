@@ -393,7 +393,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q103",
@@ -521,7 +521,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q105",
@@ -585,7 +585,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q106",
@@ -649,7 +649,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q107",
@@ -713,7 +713,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q108",
@@ -777,7 +777,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q109",
@@ -841,7 +841,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q110",
@@ -905,7 +905,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q111",
@@ -969,7 +969,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            {}
+            
         ]
     }, {
         "_id": "q112",
