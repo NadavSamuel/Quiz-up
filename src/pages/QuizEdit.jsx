@@ -9,6 +9,8 @@ import { utils } from '../services/utils'
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import EditIcon from '@material-ui/icons/Edit';
 import PublishIcon from '@material-ui/icons/Publish';
+import { setNotification } from '../store/actions/notificationActions.js'
+
 
 export class _QuizEdit extends Component {
 
@@ -72,29 +74,38 @@ export class _QuizEdit extends Component {
 
     onSubmitAns = (event) => {
         event.preventDefault()
-        var isDontHaveCurr=false
+        var isDontHaveCurr = false
         var quest = {
             txt: this.state.currQuest,
             displayedCount: 0,
             style: this.state.style,
             img: this.state.questImg,
             answers: this.state.answers.reduce((acc, answer, idx) => {
-                if(idx===0 && !answer.txt) isDontHaveCurr=true
-                if(!answer.txt) return acc;
+                if (idx === 0 && !answer.txt) {
+                    isDontHaveCurr = true
+                }
+                if (!answer.txt) return acc;
                 if (idx === 0) acc.push({ txt: answer.txt, isCorrect: 'true', count: 0 })
                 else acc.push({ txt: answer.txt, isCorrect: 'false', count: 0 })
                 return acc
             }, [])
         }
-        if(isDontHaveCurr || quest.answers.length===3 || quest.answers.length===0) return;
+        if (!quest.txt || isDontHaveCurr || quest.answers.length == 3 || quest.answers.length === 1 || quest.answers.length === 0) {
+            if (!quest.txt) this.props.setNotification('err', 'Dont have a question')
+            if (isDontHaveCurr) this.props.setNotification('err', 'Dont have currect answer')
+            if (quest.answers.length === 3 || quest.answers.length === 1 || quest.answers.length === 0) this.props.setNotification('err', 'You must to confirm two or four answers')
+            return;
+        }
         var quests = [...this.state.quests]
         if (!this.state.id) {
             quest.id = utils.makeId();
             quests.push(quest);
+            this.props.setNotification('info', `question added you have ${quests.length} questions `)
         } else {
             quest.id = this.state.id
             const idx = quests.findIndex(quest => quest.id === this.state.id);
             quests[idx] = quest;
+            this.props.setNotification('info', 'question editted ')
         }
         this.state.id = '';
         this.setState(prevState => ({
@@ -114,16 +125,22 @@ export class _QuizEdit extends Component {
 
     onSubmit = async (event) => {
         event.preventDefault()
-        const { title, tags, difficulity, quests, img, reviews, allTimesPlayers,_id } = this.state
-        if(!title || !tags || quests.length===0)return;
+        const { title, tags, difficulity, quests, img, reviews, allTimesPlayers, _id } = this.state
+        if (!title || !tags || quests.length === 0) {
+            if (!title) this.props.setNotification('err', `Dont have a title`)
+            if (!tags) this.props.setNotification('err', `Dont have a tags`)
+            if (quests.length === 0) this.props.setNotification('err', `Dont have a questions`)
+
+            return;
+        }
         const quiz = {
             _id,
             reviews,
             allTimesPlayers,
             title,
             tags: tags.split(' '),
-            difficulity:+difficulity,
-            img:(img)? img:'https://res.cloudinary.com/dif8yy3on/image/upload/v1600338177/soxwdqgc9djvlrlclkmk.png',
+            difficulity: +difficulity,
+            img: (img) ? img : 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600338177/soxwdqgc9djvlrlclkmk.png',
             createdBy: {
                 _id: utils.makeId(),
                 fullName: "guest202",
@@ -131,12 +148,13 @@ export class _QuizEdit extends Component {
             },
             quests,
         }
-        console.log("onSubmit -> this.state.id", this.state.id)
         if (!this.state._id) {
             await quizService.add(quiz);
+            this.props.setNotification('success', `quiz added`)
         } else {
             quiz._id = this.state._id;
             await quizService.update(quiz);
+            this.props.setNotification('success', `quiz edited`)
         }
         this.props.history.push('/')
     }
@@ -162,11 +180,12 @@ export class _QuizEdit extends Component {
 
 
     onDeleteQuest = (questId) => {
-        console.log();
         var quests = [...this.state.quests];
         console.log(quests);
         quests = quests.filter(quest => quest.id !== questId)
         this.setState({ quests })
+        this.props.setNotification('info', `Question delete`)
+
     }
 
 
@@ -177,7 +196,7 @@ export class _QuizEdit extends Component {
             <div className="full quiz-edit">
                 <div className='flex'>
                     <div className='quest-list-preview'>
-                        <QuestList quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
+                        <QuestList  quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
                     </div>
                     <div className='quest-layout'>
 
@@ -227,6 +246,6 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = {
-
+    setNotification
 }
 export const QuizEdit = connect(mapStateToProps, mapDispatchToProps)(_QuizEdit)

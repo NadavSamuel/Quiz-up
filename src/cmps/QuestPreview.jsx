@@ -23,3 +23,4 @@ export function QuestPreview({ quest, onDeleteQuest, onUpdateQuest }) {
 
     )
 }
+

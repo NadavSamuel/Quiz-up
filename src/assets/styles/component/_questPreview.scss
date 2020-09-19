@@ -1,20 +1,32 @@
 .quest-preview {
-    color: $clr5;
     position: relative;
     text-align: left;
     margin: 2px;
     border-radius: 2px;
-    border: 1px solid rgb(199, 192, 192);
+    background-color: #fff;
 
     h2 {
-        border-radius: 2px;
-        border: 1px solid rgb(199, 192, 192);
+        font-size: rem(15px);
+        text-align: center;
+        margin:3px;
+    }
+
+    ul{
+        color: $clr3;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        li{
+            margin:2px;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: rem(10px);
+        }
     }
 
     .quest-preview-btn{
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        
         *{
             cursor: pointer;
         }
