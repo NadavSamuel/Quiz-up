@@ -8,7 +8,7 @@ import { tada } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-
+import { utilService } from '../services/utilService';
 
 
 
@@ -60,13 +60,13 @@ export class EndGame extends Component {
     }
     getFinalScore = () => {
         const timeStampInSecs = this.props.currTimeStamp / 1000
-        const {allAns} =this.props
-        function calaTimeBonus(secs){
-            if(allAns<6) return 0 
-            if (secs<=40) return 40
-            if (secs<=45) return 30
-            if (secs<=60) return 20
-            if (secs<=75) return 10
+        const { allAns } = this.props
+        function calaTimeBonus(secs) {
+            if (allAns < 6) return 0
+            if (secs <= 40) return 40
+            if (secs <= 45) return 30
+            if (secs <= 60) return 20
+            if (secs <= 75) return 10
         }
         const gameTimeCalc = calaTimeBonus(timeStampInSecs)
         const finalScore = this.props.rightAns * 10 + gameTimeCalc
@@ -100,13 +100,15 @@ export class EndGame extends Component {
     }
 
     render() {
+
         const styles = {
             tada: {
                 animation: 'x 2s',
                 animationName: Radium.keyframes(tada, 'tada')
             }
         }
-        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp } = this.props
+        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz } = this.props
+        const bestPlayers = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
 
 
@@ -126,17 +128,19 @@ export class EndGame extends Component {
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1>Wow! you scored {this.getFinalScore()}</h1>
                     <h3>you answered {allAns} answeres right out of {allAns} questions <br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
-                    <RankTable bestPlayers={allTimesPlayers} />
-                </div>
-                <StyleRoot>
-                    <div className="game-records-break"> <h2 style={styles.tada}>Congratulations! you are 3rd place in Israel in the {category} category! </h2>
-                        <h2>Congratulations! you Broke your best score by 30 points! your new best score is 210</h2>
+                    <RankTable bestPlayers={bestPlayers} />
+
+                    <StyleRoot>
+                        <div className="game-records-break"> <h2 style={styles.tada}>Congratulations! you are 3rd place in Israel in the {category} category! </h2>
+                            <h2>Congratulations! you Broke your best score by 30 points! your new best score is 210</h2>
+                        </div>
+                    </StyleRoot>
+
+                    <div className="endgame-actions">
+                        <button onClick={this.props.getInitialState}>Play again</button>
+                        <button><Link to='/browse'> back to browse</Link></button>
+                        {!this.state.isReviewSent ? reviewForm : reviewFeedback}
                     </div>
-                </StyleRoot>
-                <div className="endgame-actions">
-                    <button onClick={this.props.getInitialState}>Play again</button>
-                    <button><Link to='/browse'> back to browse</Link></button>
-                    {!this.state.isReviewSent ? reviewForm : reviewFeedback}
                 </div>
             </main>
         )
