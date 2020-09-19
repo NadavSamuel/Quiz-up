@@ -1,28 +1,44 @@
 .quiz-game-main{
     h1{
         text-align: center;
-        position: absolute;
-        right: 0;
-        left: 0;
-        top: 80px; 
-        height: 220px;
+        // position: absolute;
+        // right: 0;
+        // left: 0;
+        // top: 80px; 
+        height: 150px;
         display:flex;
         align-items: center;
         justify-content: center;
+        font-size: 1.5rem;
        }
-    .answer-feedback{
-        font-size: 3rem;
-        text-align: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 165px;
+    // .answer-feedback{
+    //     font-size: 3rem;
+    //     text-align: center;
+    //     position: absolute;
+    //     left: 0;
+    //     right: 0;
+    //     top: 165px;
 
-    }
+    // }
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    
+.game-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 69px;
+    img{
+        height: 180px;
+    }
+    .game-progress{
+        width:75vw;
+
+    }
+}
     .game-answers-container{
         display: flex;
         justify-content: center;
@@ -31,14 +47,14 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 27px;
-            padding-top: 140px;
+            margin-bottom: 90px;
         }
     }
 
     .answer{
         text-align: center;
         width: 300px;
-        height: 150px;
+        height: 120px;
         background-color: #07689f;
         display: flex;
         justify-content: center;
@@ -62,8 +78,8 @@
 }
 
 .timer-wrapper{
-    position: relative;
-    top: 115px;
+    // position: relative;
+    // top: 115px;
     .main-timer-container h2{
     display: flex;
     justify-content: center;

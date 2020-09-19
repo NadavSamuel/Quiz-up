@@ -1,0 +1,15 @@
+button{
+    background: $clr3;
+    color:$clr2;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    transition:  background-color 0.3s;
+
+    /* border: 4px solid; */
+    &:hover{
+        cursor: pointer;
+        background-color: $clr4;
+        transition:  background-color 0.3s;
+
+    }
+}
