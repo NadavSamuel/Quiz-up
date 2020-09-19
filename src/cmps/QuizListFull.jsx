@@ -9,7 +9,7 @@ export function QuizListFull({ quizzes }) {
 
     return (
         <ul className="list">
-            {quizzes && quizzes.map(quiz => <li key={quiz._id}><QuizPreview key={quiz._id} quiz={quiz} /></li>)}
+            {quizzes && quizzes.map(quiz => <li key={quiz._id}><QuizPreview key={quiz._id} quizId={quiz._id} /></li>)}
         </ul>
     )
 }

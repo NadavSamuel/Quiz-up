@@ -51,7 +51,7 @@ export class QuizList extends Component {
                 <div className="list">
                     {
 
-                        this.getQuizzesToPrev() && this.getQuizzesToPrev().map(quiz => <QuizPreview key={quiz._id} quiz={quiz} />)
+                        this.getQuizzesToPrev() && this.getQuizzesToPrev().map(quiz => <QuizPreview key={quiz._id} quizId={quiz._id} />)
                     }
                 </div>
                 {<ArrowRightIcon onClick={() => this.next()} />}

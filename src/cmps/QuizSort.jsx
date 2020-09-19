@@ -7,6 +7,7 @@ export function QuizSort({setSortBy}) {
             <button onClick={()=>{setSortBy('title')}}>title</button>
             <button onClick={()=>{setSortBy('difficulity')}}>difficulity</button>
             <button onClick={()=>{setSortBy('popularity')}}>popularity</button>
+            <button onClick={()=>{setSortBy('rate')}}>rate</button>
         </div>
         
     )

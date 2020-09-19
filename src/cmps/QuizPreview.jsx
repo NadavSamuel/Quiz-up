@@ -1,30 +1,33 @@
-import React from 'react'
+
+import React, { Component } from 'react';
 import StarIcon from '@material-ui/icons/Star';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { Link } from 'react-router-dom'
-// import StarOutlineIcon from '@material-ui/icons/StarOutline';
-
-export function QuizPreview({ quiz }) {
-
-    function getRate() {
-        const sum = quiz.reviews.reduce((acc, review) => {
+import { quizService } from '../services/quizService';
+export class QuizPreview extends Component {
+    state = {
+        quiz: null
+    }
+    async componentDidMount() {
+        const quiz = await quizService.getById(this.props.quizId)
+        this.setState({ quiz })
+    }
+    getRate = () => {
+        const sum = this.state.quiz.reviews.reduce((acc, review) => {
             return acc + review.rate
         }, 0)
 
-        return (sum / quiz.reviews.length).toFixed(2);
+        return (sum / this.state.quiz.reviews.length).toFixed(2);
+    }
+    getNumOfReviews = () => {
+        return this.state.quiz.reviews.length
     }
 
-    function getNumOfReviews(){
-        return quiz.reviews.length
-    }
 
-    
-
-  
-
-
-    return (
-        <Link to={`/quiz/${quiz._id}`}>
+    render() {
+        const { quiz } = this.state
+        if (!quiz) return <div>Loading..</div>
+        return (
+            <Link to={`/quiz/${quiz._id}`}>
             <div className="quiz-preview">
                 <img className="main-img" src={quiz.img} alt="img" />
                 <div className="info">
@@ -33,11 +36,20 @@ export function QuizPreview({ quiz }) {
                         <span>{quiz.quests.length} Questions</span>
                         <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
                     </p>
-                    <div className="flex stars">
-                        ({getNumOfReviews()}){getRate()}<StarIcon/>
+                    <div className='difficulity'>
+
+                    {quiz.difficulity===1 && <h5 style={{color:'green'}}>Easy</h5>}
+                    {quiz.difficulity===2 && <h5 style={{color:'#07689f'}}>Medium</h5>}
+                    {quiz.difficulity===3 && <h5 style={{color:'red'}}>Hard</h5>}
                     </div>
+                    {this.getNumOfReviews()>0 &&
+                        <div className="flex stars">
+                        ({this.getNumOfReviews()}){this.getRate()}<StarIcon />
+                    </div>}
                 </div>
             </div>
-        </Link>
-    )
+            </Link>
+        );
+    }
 }
+

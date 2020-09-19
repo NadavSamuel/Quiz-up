@@ -58,6 +58,10 @@
             border-bottom: 3px solid $clr2;
         }
         .reviews-container {
+            .read-more-btn{
+                text-align: center;
+                margin: 10px 0;
+            }
             .review-card {
                 text-align: center;
                 border-bottom: 3px solid $clr2;

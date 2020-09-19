@@ -45,7 +45,7 @@ class _Browse extends Component {
         const tags=this.state.tags
         if (!quizzes) return <div>Loading....</div>
         return (
-            <div className="home-page ">
+            <div className="full browse">
                 {tags && tags.map((tag,idx)=><BrowseTagPreview key={idx} tag={tag}/>)}
             </div>
         )

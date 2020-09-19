@@ -18,6 +18,8 @@ export class _QuizEdit extends Component {
         style: 'solid',
         img: '',
         tags: '',
+        reviews: [],
+        allTimesPlayers: [],
         difficulity: 1,
         questImg: '',
         currQuest: '',
@@ -32,8 +34,18 @@ export class _QuizEdit extends Component {
 
     componentDidMount() {
         if (this.props.match.params.quizId) {
-            const quiz = quizService.getById(this.props.match.params.quizId)
-            this.setState({ quiz })
+            console.log(this.props.match.params.quizId);
+            this.setQuiz();
+        }
+    }
+
+    async setQuiz() {
+        try {
+            const quiz = await quizService.getById(this.props.match.params.quizId)
+            const { quests, title, img, tags, difficulity, _id, reviews, allTimesPlayers } = quiz
+            this.setState({ quests, title, img, tags: tags.join(' '), difficulity, _id, reviews, allTimesPlayers })
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -60,17 +72,21 @@ export class _QuizEdit extends Component {
 
     onSubmitAns = (event) => {
         event.preventDefault()
+        var isDontHaveCurr=false
         var quest = {
             txt: this.state.currQuest,
             displayedCount: 0,
             style: this.state.style,
             img: this.state.questImg,
             answers: this.state.answers.reduce((acc, answer, idx) => {
+                if(idx===0 && !answer.txt) isDontHaveCurr=true
+                if(!answer.txt) return acc;
                 if (idx === 0) acc.push({ txt: answer.txt, isCorrect: 'true', count: 0 })
                 else acc.push({ txt: answer.txt, isCorrect: 'false', count: 0 })
                 return acc
             }, [])
         }
+        if(isDontHaveCurr || quest.answers.length===3 || quest.answers.length===0) return;
         var quests = [...this.state.quests]
         if (!this.state.id) {
             quest.id = utils.makeId();
@@ -97,24 +113,31 @@ export class _QuizEdit extends Component {
     }
 
     onSubmit = async (event) => {
-        const { title, tags, difficulity, quests, img } = this.state
         event.preventDefault()
+        const { title, tags, difficulity, quests, img, reviews, allTimesPlayers,_id } = this.state
+        if(!title || !tags || quests.length===0)return;
         const quiz = {
+            _id,
+            reviews,
+            allTimesPlayers,
             title,
             tags: tags.split(' '),
-            difficulity,
-            img,
+            difficulity:+difficulity,
+            img:(img)? img:'https://res.cloudinary.com/dif8yy3on/image/upload/v1600338177/soxwdqgc9djvlrlclkmk.png',
             createdBy: {
                 _id: utils.makeId(),
                 fullName: "guest202",
                 imgUrl: "http://some-img"
             },
             quests,
-            reviews: [],
-            allTimesPlayers: []
         }
-        console.log(quiz);
-        await quizService.add(quiz);
+        console.log("onSubmit -> this.state.id", this.state.id)
+        if (!this.state._id) {
+            await quizService.add(quiz);
+        } else {
+            quiz._id = this.state._id;
+            await quizService.update(quiz);
+        }
         this.props.history.push('/')
     }
 
@@ -171,7 +194,7 @@ export class _QuizEdit extends Component {
                             <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
                             <div className='edit-btn flex align-center justify-center' onClick={this.onSubmitAns}>
                                 {/* <EditIcon /> */}
-                            <PlaylistAddIcon fontSize="large"/>
+                                <PlaylistAddIcon fontSize="large" />
 
                             </div>
                         </form>
@@ -180,14 +203,14 @@ export class _QuizEdit extends Component {
                 <div className='quiz-inputs'>
 
                     <form className='quiz-inputs-form' onSubmit={this.onSubmit}>
-                    <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
-                    <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
+                        <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
+                        <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
                         <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
-                    <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
-                        {this.state.img && <img src={this.state.img} alt="img" />}</label>
-                    <input hidden type="file" className="file-input" name="img" id="upload-file"
-                        onChange={this.uploadImg} />
-                        <PublishIcon  fontSize="large" onClick={this.onSubmit}/>
+                        <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
+                            {this.state.img && <img src={this.state.img} alt="img" />}</label>
+                        <input hidden type="file" className="file-input" name="img" id="upload-file"
+                            onChange={this.uploadImg} />
+                        <PublishIcon fontSize="large" onClick={this.onSubmit} />
                     </form>
 
 
