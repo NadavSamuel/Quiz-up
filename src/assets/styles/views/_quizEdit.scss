@@ -4,6 +4,10 @@
         align-items: center;
         flex-direction: column;
         gap: 10px;
+
+
+
+
     }
 
     .quiz-inputs {
@@ -21,8 +25,7 @@
         width: 350px;
         max-height: 600px;
         overflow-y: auto;
-        border: 1px solid rgba(0, 0, 0, 0.1)        
-
+        border: 1px solid rgba(0, 0, 0, 0.1)
     }
 
     .quest-list-preview::-webkit-scrollbar-track {
@@ -48,10 +51,43 @@
     .quest-answers {
         margin: 0 auto;
         display: grid;
-        width: 50%;
+        width: 100%;
         gap: 10px;
-        grid-template-columns: repeat(2, 200px);
-        grid-template-rows: repeat(3, auto);
+        grid-template-columns: 1fr repeat(2, 150px) 1fr;
+
+        div {
+            text-align: left;
+        }
+
+        div:nth-child(1) {
+            grid-column: 2/4;
+            grid-row: 1/2;
+        }
+
+        div:nth-child(2) {
+            grid-column: 2/3;
+            grid-row: 2/3;
+        }
+
+        div:nth-child(3) {
+            grid-column: 3/4;
+            grid-row: 2/3;
+        }
+
+        div:nth-child(4) {
+            grid-column: 2/3;
+            grid-row: 3/4;
+        }
+
+        div:nth-child(5) {
+            grid-column: 3/4;
+            grid-row: 3/4;
+        }
+
+        div:nth-child(6) {
+            grid-column: 2/3;
+            grid-row: 4/5;
+        }
 
         .edit-btn {
             cursor: pointer;
@@ -65,14 +101,51 @@
         }
     }
 
-    .quest {
-        grid-column-start: 1;
-        grid-column-end: 3;
+
+
+
+}
+
+@media(max-width: 575px) {
+    .quiz-edit {
+
+        .edit-layout {
+            flex-direction: column;
+
+
+
+            .quest-list-preview {
+                width: 100%;
+                min-height: 162px;
+                overflow-y: none;
+                overflow-x: auto;
+
+                .quest-preview {
+                    width: 200px;
+                    height: 140px;
+                    margin-bottom: 10px;
+                }
+
+                .quest-list {
+                    display: flex
+                }
+            }
+
+        }
+
+        .quiz-inputs {
+            width: 100%;
+            margin-left: 0;
+        }
+
     }
+
 
 
 }
 
 .quest-list {
     margin-top: 10px;
+
+
 }

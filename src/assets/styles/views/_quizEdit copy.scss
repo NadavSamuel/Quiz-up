@@ -1,0 +1,78 @@
+.quiz-edit {
+
+    .quiz-inputs-form {
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .quiz-inputs {
+        margin-left: 300px;
+    }
+
+
+    text-align: center;
+
+    .quest-layout {
+        width: 100%;
+    }
+
+    .quest-list-preview {
+        width: 350px;
+        max-height: 600px;
+        overflow-y: auto;
+        border: 1px solid rgba(0, 0, 0, 0.1)        
+
+    }
+
+    .quest-list-preview::-webkit-scrollbar-track {
+        background-color: $clr6;
+    }
+
+    .quest-list-preview::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    .quest-list-preview::-webkit-scrollbar-thumb {
+        background-color: $clr1;
+        border-radius: 3px;
+    }
+
+    .quest-img {
+        margin-top: 10px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .quest-answers {
+        margin: 0 auto;
+        display: grid;
+        width: 50%;
+        gap: 10px;
+        grid-template-columns: repeat(2, 200px);
+        grid-template-rows: repeat(3, auto);
+
+        .edit-btn {
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            color: $clr6;
+            border-radius: 50%;
+            background-color: $clr3;
+            justify-content: center;
+
+        }
+    }
+
+    .quest {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+
+}
+
+.quest-list {
+    margin-top: 10px;
+}

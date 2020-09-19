@@ -49,3 +49,8 @@ form {
 .App {
     min-height: 110vh;
 }
+
+::selection {
+    background-color: $clr2;
+    color: $clr6;
+}
