@@ -4,7 +4,12 @@
         position: absolute;
         right: 0;
         left: 0;
-        top: 80px;    }
+        top: 80px; 
+        height: 220px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+       }
     .answer-feedback{
         font-size: 3rem;
         text-align: center;
@@ -21,7 +26,7 @@
     .game-answers-container{
         display: flex;
         justify-content: center;
-        padding-bottom: 100px;
+        // padding-bottom: 100px;
         .game-answers{
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -39,15 +44,13 @@
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        transition: background-color 0.3s;
+        transition:  background-color 0.3s;
         font-size: 1.7rem;
         cursor: pointer;
 
-
-        cursor: pointer;
         &:hover{
             background-color: $clr4;
-            transition: font-size 0.3s  background-color 0.3s;
+            transition: font-size 0.3s background-color 0.3s;
             font-size: 1.8rem;
         }
         h3{

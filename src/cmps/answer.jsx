@@ -11,9 +11,11 @@ export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestio
     // console.log('chosenAnsIdx in ans div',idx,chosenAnsIdx)
     // console.log('correctAnsIdx in ans div',idx,correctAnsIdx)
     function setRightWrongClass() {
-        if((idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
-        if((chosenAnsIdx) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
+        
+        if(( idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
+        if((chosenAnsIdx === 0 ||chosenAnsIdx ) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
         if((idx === chosenAnsIdx) && (correctAnsIdx !== chosenAnsIdx)) return { backgroundColor: 'red' }
+        // if((chosenAnsIdx && chosenAnsIdx !== idx ) && (correctAnsIdx !== idx)) return { opacity: 0 }
     }
 
         return (

@@ -4,6 +4,12 @@ import { quizService } from '../services/quizService'
 import { GameTimer } from '../cmps/GameTimer'
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { tada } from 'react-animations';
+import Radium, {StyleRoot} from 'radium';
+import { Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+
+
 
 
 export class EndGame extends Component {
@@ -19,7 +25,8 @@ export class EndGame extends Component {
             id:123321
 
         }
-        , isReviewSent: false
+        , isReviewSent: false,
+        isInTable:false
     }
     componentDidMount(){
         console.log('currQuiz in EndGame: ',this.props.quiz)
@@ -38,13 +45,14 @@ export class EndGame extends Component {
         }
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
+        this.forceUpdate()
+        // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
     }
     onSubmitReview = ev => {
         ev.preventDefault()
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
         quizService.update(currQuiz)
-
         this.setState({ isReviewSent: true })
     }
     changeRate = num =>{
@@ -79,8 +87,15 @@ export class EndGame extends Component {
     }
 
     render() {
+        const styles = {
+            tada: {
+                animation: 'x 2s',
+                animationName: Radium.keyframes(tada, 'tada')
+              }
+        }
         const { rightAns, allAns, category, allTimesPlayers } = this.props
         const reviewForm = <form onSubmit={this.onSubmitReview}>
+        
 
             
             <label htmlFor="review">Review this quiz:</label>
@@ -97,14 +112,16 @@ export class EndGame extends Component {
                 <div className="endgame-top"> <h1>Wow! you scored {rightAns} out of {allAns} right!<br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h1>
                     <RankTable bestPlayers={allTimesPlayers} />
                 </div>
-                <div className="game-records-break"> <h2>Congratulations! you are 3rd place in Israel in the {category} category! </h2>
+                <StyleRoot>
+                <div className="game-records-break"> <h2 style ={styles.tada}>Congratulations! you are 3rd place in Israel in the {category} category! </h2>
                     <h2>Congratulations! you Broke your best score by 30 points! your new best score is 210</h2>
                 </div>
+                </StyleRoot>
                 <div className="endgame-actions">
-                    <button>Play again</button>
-                    <button>back to browse</button>
+               <Button onClick={this.props.getInitialState}>Play again</Button>
+                   <Link to='/browse'> <Button>back to browse</Button></Link>
                     {!this.state.isReviewSent ? reviewForm : reviewFeedback}
-                    <button>somthing</button>
+                    {/* <button>somthing</button> */}
                 </div>
                 {/* <img src="https://newcanaanlibrary.org/wp-content/uploads/2017/05/Fireworks-GIF.gif"></img> */}
             </main>

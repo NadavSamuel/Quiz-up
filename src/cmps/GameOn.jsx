@@ -13,7 +13,7 @@ class _GameOn extends Component {
     state = {
         currQuestionIdx: 0,
         answerFeedback: null,
-        chosenAnswerIdx: null,
+        // chosenAnswerIdx: null,
         correctAnsIdx: null,
         chosenAnsIdx: null
     }
@@ -28,7 +28,8 @@ class _GameOn extends Component {
     answerQuestion = (answerResult, answerIdx) => {
         if (this.state.answerFeedback) return
         const nextQuestionIdx = this.state.currQuestionIdx + 1
-        this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult, chosenAnswerIdx: answerIdx }, () => {
+        // this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult, chosenAnswerIdx: answerIdx }, () => {
+        this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult }, () => {
             if (answerResult === "true") this.props.onTrueAns()
             console.log('state: ', this.state)
         })
@@ -37,7 +38,6 @@ class _GameOn extends Component {
                 this.props.onEndGame()
                 return
             }
-
             this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
@@ -63,7 +63,7 @@ class _GameOn extends Component {
             },
             bar: {
                 borderRadius: 5,
-                backgroundColor: '#a2d5f2',
+                backgroundColor: '#07689f',
                 animationDuration: '550ms'
             },
         }))(LinearProgress);

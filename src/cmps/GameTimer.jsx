@@ -3,8 +3,6 @@ import React  from 'react'
 import { utilService } from '../services/utilService'
 
 export function GameTimer(props) {
-    console.log(props)
-
     function getTimer() {
         let { currTimeStamp } = props
         const editedTime = timestampToTime(currTimeStamp)
