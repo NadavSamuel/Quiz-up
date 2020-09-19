@@ -5,7 +5,8 @@ import { setNotification } from '../store/actions/notificationActions.js'
 import { onLogin, onLogout, onSignup } from '../store/actions/userActions.js'
 import { QuizPreview } from '../cmps/QuizPreview.jsx';
 import { Link } from 'react-router-dom';
-// import { QuizPreview } from '../cmps/QuizPreviewOrigin.jsx';
+import { UploadBtn } from '../cmps/UploadBtn.jsx';
+
 export class _LoginSignup extends Component {
     state = {
         loginInfo: {
@@ -66,18 +67,21 @@ export class _LoginSignup extends Component {
     }
 
     render() {
+
+
         const { loggedInUser } = this.props
         return (
             <div className="login-profile-container">
-
-
                 {!loggedInUser && <div className="signup-container">
                     <h1>Signup</h1>
                     <form className="signup-form" onSubmit={this.onSignup}>
                         <TextField onChange={this.handleChangeSign} name="username" id="outlined-basic" label="Username" variant="outlined" />
                         <TextField onChange={this.handleChangeSign} name="password" id="outlined-basic" label="Password" variant="outlined" />
-                        <input onChange={this.uploadImg} type="file" />
+                        {/* <label htmlFor="upload-btn"> */}
+                            <UploadBtn uploadImg={this.uploadImg}/>
                         <Button variant="contained" color="primary" onClick={this.onSignup}>Submit</Button>
+                        {/* </label> */}
+                        {/* <input onChange={this.uploadImg} id="upload-btn" type="file" /> */}
                     </form>
                 </div>}
                 {!loggedInUser && <div className="login-container">
@@ -94,12 +98,14 @@ export class _LoginSignup extends Component {
                     <div className="profile-header">
                         <h2>Welcome, {loggedInUser.username}</h2>
                         {loggedInUser.profileImg && <img src={loggedInUser.profileImg} alt="" />}
-                        <button onClick={this.onLogout}>Logout</button>
+                        {/* <button onClick={this.onLogout}>Logout</button> */}
+                        <div className="logout-btn mt10">
+                            <Button variant="outlined" color="secondary" className="mt10" onClick={this.onLogout}>Logout</Button></div>
                     </div>
 
                     <h2 className="quizzes-header">My Quizzes:</h2>
                     <div className="user-quizzes-container list ">
-                        {loggedInUser.quizzes.length>0 &&
+                        {loggedInUser.quizzes.length > 0 &&
                             loggedInUser.quizzes.map(quiz => {
                                 return <QuizPreview key={quiz.quizId} quizId={quiz.quizId} />
                             })}</div>
