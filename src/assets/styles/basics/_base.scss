@@ -33,9 +33,11 @@ a {
     color: $clr5;
     text-decoration: none;
 }
+
 ul {
     list-style-type: none;
 }
+
 button.btn {
     margin: 0 5px 10px 0;
 }
@@ -53,4 +55,11 @@ form {
 ::selection {
     background-color: $clr2;
     color: $clr6;
+}
+
+@media(min-width:$narrow-breakpoint) {
+    .App {
+        min-height: 130vh;
+    }
+
 }

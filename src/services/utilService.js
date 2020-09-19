@@ -1,10 +1,12 @@
 
 export const utilService = {
-  shuffleAnswers,
+  shuffle,
   getBestUsers,
-  getTime
+  getTime,
+  makeId
+  
 }
-function shuffleAnswers(answers) {
+function shuffle(answers,value = false) {
   var currentIndex = answers.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
@@ -19,6 +21,7 @@ function shuffleAnswers(answers) {
     answers[currentIndex] = answers[randomIndex];
     answers[randomIndex] = temporaryValue;
   }
+  if(value && answers.length> 10) answers = answers.slice(0,9)
 
   return answers
 }
@@ -41,3 +44,18 @@ s = (s<10) ? '0' + s : s;
 const currTime = m + ':' +s;
   return currTime
 }
+function makeId(length=5)
+{
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for(var i=0; i < length; i++)
+    {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
+
+//         let  questions  = this.state.quiz.quests || []
+// questions = utilService.shuffle(questions,true)

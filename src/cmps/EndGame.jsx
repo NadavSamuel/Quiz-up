@@ -29,7 +29,7 @@ export class EndGame extends Component {
         isInTable: false
     }
     componentDidMount() {
-        console.log('currQuiz in EndGame: ', this.props.quiz)
+        // console.log('currQuiz in EndGame: ', this.props.quiz)
         this.updateAllTimePlayers()
     }
     handleReviewChange = ({ target }) => {
@@ -39,9 +39,8 @@ export class EndGame extends Component {
     updateAllTimePlayers = () => {
         const currQuiz = this.props.quiz
         const currUserMiniObject = {
-            fullName: "user2",
-            id: "u102",
-            score: this.props.rightAns
+            ...this.props.currUser,
+            score: this.getFinalScore()
         }
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
@@ -58,6 +57,20 @@ export class EndGame extends Component {
     changeRate = num => {
         this.setState({ review: { ...this.state.review, rate: num } })
         // this.setState(...this.state,review:{...this.state.review,rate:num})
+    }
+    getFinalScore = () => {
+        const timeStampInSecs = this.props.currTimeStamp / 1000
+        const {allAns} =this.props
+        function calaTimeBonus(secs){
+            if(allAns<6) return 0 
+            if (secs<=40) return 40
+            if (secs<=45) return 30
+            if (secs<=60) return 20
+            if (secs<=75) return 10
+        }
+        const gameTimeCalc = calaTimeBonus(timeStampInSecs)
+        const finalScore = this.props.rightAns * 10 + gameTimeCalc
+        return finalScore
     }
     getRate = (num) => {
         var arr = []
@@ -107,18 +120,12 @@ export class EndGame extends Component {
         const reviewFeedback = <div>
             <p>Thank you for writing a review! </p>
         </div>
-        console.log('curr time stamp in endGame: ',currTimeStamp)
-        function getFinalScore() {
-            const timeStampInSecs = currTimeStamp/1000
-            const gameTimeCalc = timeStampInSecs<20 ? 0:gameTimeCalc-20
-            const finalScore = rightAns * 10 - ((gameTimeCalc) * 5)
-            return finalScore
-
-        }
+        // console.log('curr time stamp in endGame: ',currTimeStamp)
 
         return (
             <main className="endgame-main" >
-                <div className="endgame-top"> <h1>Wow! you scored { getFinalScore()} out of {allAns} right!<br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h1>
+                <div className="endgame-top"> <h1>Wow! you scored {this.getFinalScore()}</h1>
+                    <h3>you answered {allAns} answeres right out of {allAns} questions <br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
                     <RankTable bestPlayers={allTimesPlayers} />
                 </div>
                 <StyleRoot>
@@ -130,9 +137,7 @@ export class EndGame extends Component {
                     <button onClick={this.props.getInitialState}>Play again</button>
                     <button><Link to='/browse'> back to browse</Link></button>
                     {!this.state.isReviewSent ? reviewForm : reviewFeedback}
-                    {/* <button>somthing</button> */}
                 </div>
-                {/* <img src="https://newcanaanlibrary.org/wp-content/uploads/2017/05/Fireworks-GIF.gif"></img> */}
             </main>
         )
     }

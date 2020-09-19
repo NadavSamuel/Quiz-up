@@ -71,6 +71,7 @@ export const userService = {
     login,
     logout,
     add,
+    getCurrUser
     // getUsers,
     // getById,
     // remove,
@@ -85,6 +86,13 @@ function login({ username, password }) {
 function logout() {
     // await httpService.post('auth/logout');
     sessionStorage.clear();
+
+}
+function getCurrUser() {
+    // await httpService.post('auth/logout');
+    let currUser = sessionStorage.getItem('user')
+    currUser = JSON.parse(currUser)
+    return currUser
 
 }
 

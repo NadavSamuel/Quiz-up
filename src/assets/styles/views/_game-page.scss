@@ -85,3 +85,25 @@
     justify-content: center;
         }
     }
+
+@media(max-width:$narrow-breakpoint){
+    .quiz-game-main{
+        .game-answers-container{
+            .game-answers{
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-gap: 6px;
+                width: 100%
+
+            }
+        }
+        .answer{
+            height: 65px;
+            width: 100%
+        
+        }
+}
+}
+
+
+

@@ -14,9 +14,12 @@ export function GameTimer(props) {
         return utilService.getTime(timeStamp)
     }
     return (
-        <div className="main-timer-container">
-            <h2 >{getTimer()} </h2>
+        <React.Fragment>
+            {getTimer()}
+        </React.Fragment>
+        // <div className="main-timer-container">
+        //     <h2 >{getTimer()} </h2>
 
-        </div>
+        // </div>
     )
 }
