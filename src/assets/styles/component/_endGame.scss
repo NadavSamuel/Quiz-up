@@ -1,25 +1,37 @@
-.endgame-main{
-    .endgame-top{
-    @include  center-columns();
-    padding: 30px;
-    height: 500px;
-    justify-content: space-around;
-    h1{
-        font-size:3rem
+.endgame-main {
+    .endgame-top {
+        @include center-columns();
+        padding: 30px;
+        h1 {
+            font-size: 3rem;
+        }
+        .rank-table {
+            .header {
+                display: flex;
+                justify-content: space-around;
+                text-decoration: underline;
+            }
+            font-size: 1.2rem;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 15px;
+            .table-line {
+                border-bottom: 2px solid $clr2;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
     }
-    .rank-table{
-        @include  center-columns();
-        font-size: 1.2rem;
-        width: 50%;
-    }
-    }
-    .endgame-actions{
+    .endgame-actions {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         gap: 36px;
-        form{
-            flex-direction:column
+        form {
+            flex-direction: column;
         }
     }
 }

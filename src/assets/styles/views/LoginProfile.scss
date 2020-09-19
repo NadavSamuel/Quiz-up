@@ -1,18 +1,25 @@
-.login-profile-container{
-    .login-container{
-
+.login-profile-container {
+    .login-container {
     }
-    .profile-container{
-        .profile-header{
+    .profile-container {
+        .profile-header {
             margin: 20px 0;
             display: flex;
             flex-direction: column;
             text-align: center;
             align-items: center;
+
+            h2{
+                text-align: center;
+                margin-bottom: 15px;
+            }
         }
-        img{
+        img {
             max-width: 315px;
-            // margin: 15px 0;
+        }
+        .quizzes-header{
+            text-align: center;
+            margin-bottom: 15px;
         }
     }
 }

@@ -69,8 +69,8 @@ const gUsers = [
 
 export const userService = {
     login,
-    // logout,
-    // signup,
+    logout,
+    add,
     // getUsers,
     // getById,
     // remove,
@@ -82,11 +82,38 @@ function login({ username, password }) {
     return Promise.resolve(_handleLogin(userToLog))
 }
 
-// async function loginAsync(credentials) {
-//     const user = await httpService.post('auth/login', credentials)
-//     return _handleLogin(user)
-// }
+function logout() {
+    // await httpService.post('auth/logout');
+    sessionStorage.clear();
+
+}
+
+async function add({ username, password, imgUrl }) {
+    const user = {
+        _id: _makeId(),
+        username,
+        password,
+        profileImg: imgUrl,
+        isAdmin: false,
+        quizzes: [],
+        friends: []
+    }
+    await gUsers.unshift(user)
+    // const user = await httpService.post('auth/signup', userCred)
+    return _handleLogin(user)
+
+}
+
 function _handleLogin(user) {
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
+}
+
+function _makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
 }
