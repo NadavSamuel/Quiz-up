@@ -36,9 +36,16 @@ export class QuizPreview extends Component {
                         <span>{quiz.quests.length} Questions</span>
                         <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
                     </p>
-                    <div className="flex stars">
-                        ({this.getNumOfReviews()}){this.getRate()}<StarIcon />
+                    <div className='difficulity'>
+
+                    {quiz.difficulity===1 && <h5 style={{color:'green'}}>Easy</h5>}
+                    {quiz.difficulity===2 && <h5 style={{color:'#07689f'}}>Medium</h5>}
+                    {quiz.difficulity===3 && <h5 style={{color:'red'}}>Hard</h5>}
                     </div>
+                    {this.getNumOfReviews()>0 &&
+                        <div className="flex stars">
+                        ({this.getNumOfReviews()}){this.getRate()}<StarIcon />
+                    </div>}
                 </div>
             </div>
             </Link>

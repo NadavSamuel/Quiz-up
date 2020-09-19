@@ -1070,7 +1070,8 @@ export const quizService = {
     getById,
     update,
     remove,
-    add
+    add,
+    getImage
     // save
 }
 
@@ -1086,13 +1087,13 @@ async function getByTag(tag,filterBy) {
     }
 }
 
-function getImg(keyword) {
-    if(!keyword) return Promise.resolve('');
-    var prmRes = axios.get(`https://api.unsplash.com/photos/random?client_id=PA3Oow8kvS9lXoH0KnT7yxn2e_FAaKFzROSIXsAdPNE`)
+async function getImage(keyword) {
+    var prmRes = axios.get(`https://api.unsplash.com/search/photos/?client_id=PA3Oow8kvS9lXoH0KnT7yxn2e_FAaKFzROSIXsAdPNE&query=${keyword}`)
     return prmRes.then(res => {
       return res.data
     })
   }
+
 
 async function query() {
     try {
@@ -1110,7 +1111,6 @@ async function query() {
 }
 
 async function add(quiz) {
-    console.log(quiz);
     try {
         var newQuiz = await storageService.post('quiz', quiz);
         return newQuiz

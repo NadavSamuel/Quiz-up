@@ -9,6 +9,8 @@ import { Navbar } from './cmps/Navbar';
 import { LoginSignup } from './pages/LoginSignup';
 import { QuizEdit } from './pages/QuizEdit';
 import { Browse } from './pages/Browse';
+import { Footer } from './cmps/Footer';
+import { Notification } from './cmps/Notification';
 function App() {
   return (
     <React.Fragment>
@@ -25,6 +27,8 @@ function App() {
           <Route component={QuizApp} path='/' />
         </Switch>
       </div>
+      <Notification/>
+      <Footer/>
     </React.Fragment>
   );
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { TextField, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { onLogin } from '../store/actions/userActions.js'
+import { setNotification } from '../store/actions/notificationActions.js'
 import { QuizPreview } from '../cmps/QuizPreview.jsx';
 import { Link } from 'react-router-dom';
 // import { QuizPreview } from '../cmps/QuizPreviewOrigin.jsx';
@@ -58,8 +59,6 @@ export class _LoginSignup extends Component {
                         <Button variant="outlined" color="primary">
                             Create More</Button></Link>
                 </div>}
-
-
             </div>
         )
     }
@@ -71,6 +70,7 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = {
-    onLogin
+    onLogin,
+    setNotification
 }
 export const LoginSignup = connect(mapStateToProps, mapDispatchToProps)(_LoginSignup)
