@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
+import { utilService } from '../services/utilService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { CircleTimer } from '../cmps/CircleTimer'
 import { GameTimer } from '../cmps/GameTimer'
@@ -12,9 +13,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 class _GameOn extends Component {
     state = {
+        
         currQuestionIdx: 0,
         answerFeedback: null,
-        // chosenAnswerIdx: null,
         correctAnsIdx: null,
         chosenAnsIdx: null
     }
@@ -46,6 +47,7 @@ class _GameOn extends Component {
     }
 
 
+
     render() {
         // const [key, setKey] = useState(0);
         const { questions } = this.props
@@ -53,7 +55,6 @@ class _GameOn extends Component {
         let currQuestion = questions[currQuestionIdx]
         const answerTimeLimit = 3
         // console.log("render -> quizzes", quizzes)
-        // const answerDuration = 3
         const BorderLinearProgress = withStyles((theme) => ({
             root: {
                 height: 10,
@@ -75,7 +76,7 @@ class _GameOn extends Component {
             <main className="quiz-game-main">
                 <div className="game-top">
                 <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
-                    <img src={this.props.questions[currQuestionIdx].img}/>
+                    <img src={this.props.questions[currQuestionIdx].img|| 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png' }/>
 
                 <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
                 <ProgressBar completed = {(currQuestionIdx / questions.length) * 100}/>

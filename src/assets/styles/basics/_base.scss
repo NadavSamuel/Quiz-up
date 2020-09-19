@@ -49,3 +49,9 @@ form {
 .App {
     min-height: 110vh;
 }
+@media(min-width:$narrow-breakpoint){
+    .App {
+        min-height: 130vh;
+    }
+    
+}

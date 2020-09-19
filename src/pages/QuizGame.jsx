@@ -5,21 +5,22 @@ import { GameOn } from '../cmps/GameOn'
 import { EndGame } from '../cmps/EndGame'
 import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
+import { userService } from '../services/userService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 
 class _QuizGame extends Component {
     state = {
         quiz: {},
+        currUser:{fullName: `guest ${utilService.makeId()}`,id:'XXX'},
         gameOn: true,
         rightAns: 0,
         currTimeStamp: 0
     }
 
-
-
     componentDidMount() {
         this.loadQuizz();
         this.setTimer();
+        this.setCurrUser();
 
     }
     getInitialState = () => {
@@ -27,7 +28,14 @@ class _QuizGame extends Component {
             ...this.state, gameOn: true, rightAns: 0,
             currTimeStamp: 0
         },() =>{ this.setTimer()})
-
+    }
+    setCurrUser = () =>{
+        const userInSession = userService.getCurrUser()
+        // console.log('currUser',userInSession)
+        if(!userInSession) return
+        console.log(userInSession)
+        this.setState({...this.state.currUser,currUser:{fullName:userInSession.username,id:userInSession._id}}
+            )
     }
     setTimer = () =>{
         const timer = setInterval(() => {
@@ -39,9 +47,11 @@ class _QuizGame extends Component {
     loadQuizz = async () => {
         const quiz = await quizService.getById(this.props.match.params.quizId)
         quiz.quests.forEach(quest => {
-            utilService.shuffleAnswers(quest.answers)
+            utilService.shuffle(quest.answers)
         })
-        this.setState({ quiz })
+        this.setState({ quiz },()=>{
+            this.arrangeQuestions()
+        })
     }
     onTrueAns = () => {
         this.setState({ rightAns: this.state.rightAns + 1 })
@@ -65,6 +75,11 @@ class _QuizGame extends Component {
         // return true
     }
     ///////////////////////
+    arrangeQuestions = () =>{
+        let questions = this.state.quiz.quests
+        questions = utilService.shuffle(questions,true)
+        this.setState({questions})
+    }
 
     render() {
         // console.log('currQuiz: ', this.state.quiz)
@@ -76,7 +91,7 @@ class _QuizGame extends Component {
         return (
             <main>
                 {this.state.gameOn ? <GameOn currTimeStamp={this.state.currTimeStamp} onTrueAns={this.onTrueAns} questions={questions} onEndGame={this.onEndGame} /> :
-                    <EndGame getInitialState={this.getInitialState} quiz={this.state.quiz} currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers} category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length} />}
+                    <EndGame currUser={this.state.currUser} getInitialState={this.getInitialState} quiz={this.state.quiz} currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers} category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length} />}
             </main>
         )
     }
