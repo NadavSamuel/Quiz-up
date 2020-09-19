@@ -5,6 +5,7 @@ import { quizService } from '../services/quizService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { CircleTimer } from '../cmps/CircleTimer'
 import { GameTimer } from '../cmps/GameTimer'
+import { ProgressBar } from '../cmps/ProgressBar'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -64,7 +65,7 @@ class _GameOn extends Component {
             bar: {
                 borderRadius: 5,
                 backgroundColor: '#07689f',
-                animationDuration: '550ms'
+                
             },
         }))(LinearProgress);
 
@@ -72,25 +73,15 @@ class _GameOn extends Component {
         if (!questions) return <div>Loading....</div>
         return (
             <main className="quiz-game-main">
-                <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
+                <div className="game-top">
                 <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
-                {/* <div className="answer-feedback" style={!this.state.answerFeedback ?
-                    { visibility: 'hidden' } : { visibility: 'visible' }}><h2>{this.state.answerFeedback === 'true' ? 'Right!' : 'Wrong!'}</h2></div> */}
+                    <img src={this.props.questions[currQuestionIdx].img}/>
 
+                <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
+                <ProgressBar completed = {(currQuestionIdx / questions.length) * 100}/>
                 <div className="timer-wrapper">
                     <GameTimer currTimeStamp={this.props.currTimeStamp}/>
-                    {/* <CircleTimer ansSelected = {this.state.chosenAnsIdx}/> */}
-                    {/* <CountdownCircleTimer
-                        key={key}
-                        isPlaying
-                        duration={answerTimeLimit}
-                        colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-                        onComplete={() => {
-                            this.answerQuestion('false')
-                            return [true, 1500]
-                        }}
-                    >
-                    </CountdownCircleTimer> */}
+                </div>
                 </div>
                 <AnswersList chosenAnsIdx={this.state.chosenAnsIdx} correctAnsIdx={this.state.correctAnsIdx} chosenAnswerIdx={this.state.chosenAnswerIdx} answerFeedback={this.state.answerFeedback} answerQuestion={this.answerQuestion} answers={currQuestion.answers} />
             </main>
@@ -99,10 +90,22 @@ class _GameOn extends Component {
 }
 const mapStateToProps = state => {
     return {
-
+        
     }
 }
 const mapDispatchToProps = {
-
+    
 }
 export const GameOn = connect(mapStateToProps, mapDispatchToProps)(_GameOn)
+{/* <CircleTimer ansSelected = {this.state.chosenAnsIdx}/> */}
+{/* <CountdownCircleTimer
+    key={key}
+    isPlaying
+    duration={answerTimeLimit}
+    colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+    onComplete={() => {
+        this.answerQuestion('false')
+        return [true, 1500]
+    }}
+>
+</CountdownCircleTimer> */}
