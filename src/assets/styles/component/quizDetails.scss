@@ -21,7 +21,7 @@
                 justify-content: space-around;
                 text-decoration: underline;
             }
-            .table-line{
+            .table-line {
                 border-bottom: 2px solid $clr2;
             }
         }
@@ -44,12 +44,10 @@
             .quiz-length {
                 font-size: 0.9rem;
             }
-            .creator{
+            .creator {
                 color: #bfbdb7;
                 font-size: 0.7rem;
-            
             }
-
         }
     }
     .review-stats {
@@ -58,13 +56,65 @@
             border-bottom: 3px solid $clr2;
         }
         .reviews-container {
-            .read-more-btn{
+            .read-more-btn {
                 text-align: center;
                 margin: 10px 0;
             }
             .review-card {
                 text-align: center;
-                border-bottom: 3px solid $clr2;
+                border-bottom: 2px solid $clr2;
+                padding: 10px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .quiz-details-container {
+        .quiz-details-head {
+            display: inline;
+            .quiz-img {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            .rank-container {
+                .rank-table {
+                    .table-line {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+            }
+        }
+        .quiz-details-body{
+            display: block;
+            .quiz-info{
+                margin: 20px 0;
+                align-items: center;
+
+                .title{
+                    font-size: 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+            }
+            .btns{
+                .play-single-btn{
+                    margin-bottom: 15px;
+                    button{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .review-stats{
+            margin: 35px 0;
+            .reviews-container{
+                .review-card{
+                    padding: 10px 0;
+                }
             }
         }
     }

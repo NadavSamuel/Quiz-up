@@ -21,7 +21,7 @@ function App() {
           <Route component={QuizGame} path='/game/:quizId' />
           <Route component={QuizEdit} path='/edit/:quizId?' />
           <Route component={QuizDetails} path='/quiz/:quizId' />
-          <Route component={LoginSignup} path='/profile' />
+          <Route component={LoginSignup} path='/user' />
           <Route component={Browse} path='/browse' />
           <Route component={TagQuizzes} path='/:tag' />
           <Route component={QuizApp} path='/' />

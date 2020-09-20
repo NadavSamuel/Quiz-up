@@ -8,7 +8,7 @@ export function _Navbar({loggedInUser}) {
 
             <ul className="flex">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/profile">{loggedInUser ? 'Profile' : 'Login'}</Link></li>
+                <li><Link to="/user">{loggedInUser ? 'Profile' : 'Sign In'}</Link></li>
                 <li><Link to="/browse">Browse</Link></li>
             </ul>
         </div>

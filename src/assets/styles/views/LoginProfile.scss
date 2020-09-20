@@ -1,4 +1,10 @@
 .login-profile-container {
+    .yellow {
+        color: $clr2;
+    }
+    h5 {
+        cursor: pointer;
+    }
     .login-container {
     }
     .profile-container {
@@ -9,17 +15,76 @@
             text-align: center;
             align-items: center;
 
-            h2{
+            h2 {
                 text-align: center;
                 margin-bottom: 15px;
             }
         }
-        img {
-            max-width: 315px;
+        .profile-img{
+            max-width: 350px;
         }
-        .quizzes-header{
+        img {
+            max-width: 100%
+        }
+        .quizzes-header {
             text-align: center;
             margin-bottom: 15px;
+        }
+        .quiz-list-header{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+    }
+    .signup-container{
+        img{
+            max-width: 300px;
+            position: absolute;
+            top: 260px;
+        }
+        label{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+@media (max-width: 770px) {
+    .signup-container {
+        form {
+            display: flex;
+            flex-direction: column;
+            div {
+                display: inline-grid;
+                margin-top: 5px;
+            }
+            .profile-uploader {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                margin: 10px 0;
+            }
+            .register-img {
+                width: 300px;
+                margin-bottom: 10px;
+                position: inherit;
+            }
+            label {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+
+    .login-container {
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        div {
+            display: inline-grid;
+            margin-bottom: 5px;
         }
     }
 }
