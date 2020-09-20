@@ -36,7 +36,7 @@ export class _Navbar extends React.Component {
                 </div>
 
                 <ul className={`popup-menu ${this.getClass()}`}>
-                    <Link onClick={() => this.closeMenu()} to="/profile">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
+                    <Link onClick={() => this.closeMenu()} to="/user">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
                     <Link to="/"><li>Home</li></Link>
                     <Link onClick={() => this.closeMenu()} to="/browse"><li>Browse</li></Link>
                     <Link to="/dashboard"><li>Dashboard</li></Link>
@@ -46,7 +46,7 @@ export class _Navbar extends React.Component {
                 <div>
 
                     <MenuIcon onClick={() => { this.setState({ isMenuShown: true }) }} className='phone-view' />
-                    <Link className='full-view' to="/profile">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
+                    <Link className='full-view' to="/user">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
                     <BlackPage closeMenu={this.closeMenu} isShown={this.state.isMenuShown} />
                 </div>
             </div>

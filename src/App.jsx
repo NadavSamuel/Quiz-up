@@ -21,9 +21,9 @@ function App() {
       <div className="App main-container">
         <Switch>
           <Route component={QuizGame} path='/game/:quizId' />
+          <Route component={LoginSignup} path='/user' />
           <Route component={QuizEdit} path='/edit/:quizId?' />
           <Route component={QuizDetails} path='/quiz/:quizId' />
-          <Route component={LoginSignup} path='/user' />
           <Route component={Browse} path='/browse' />
           <Route component={Dashboard} path='/dashboard' />
           <Route component={TagQuizzes} path='/:tag' />
