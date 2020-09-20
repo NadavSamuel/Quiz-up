@@ -10,7 +10,7 @@ export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestio
     // console.log('correctAnsIdx: ',correctAnsIdx)
     // console.log('chosenAnsIdx in ans div',idx,chosenAnsIdx)
     // console.log('correctAnsIdx in ans div',idx,correctAnsIdx)
-    function setRightWrongClass() {
+    function setRightWrongColor() {
         
         if(( idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
         if((chosenAnsIdx === 0 ||chosenAnsIdx ) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
@@ -20,7 +20,7 @@ export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestio
 
         return (
             <div className={`answer answer-${idx} `}
-                style={setRightWrongClass()}
+                style={setRightWrongColor()}
                 onClick={() => {
                     answerQuestion(answer.isCorrect, idx)
                 }}>

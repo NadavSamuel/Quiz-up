@@ -11,36 +11,30 @@ import { AnswersList } from '../cmps/AnswersList.jsx'
 class _QuizGame extends Component {
     state = {
         quiz: {},
-        currUser:this.props.loggedinUser || {username: `guest ${utilService.makeId()}`,_id:utilService.makeId()},
+        currUser: this.props.loggedinUser || { username: `guest ${utilService.makeId()}`, _id: utilService.makeId() },
         gameOn: true,
+        score: 0,
         rightAns: 0,
         currTimeStamp: 0,
-        gameSessionId:utilService.makeId()
+        gameSessionId: utilService.makeId(),
+        isQuizReady: false
 
     }
 
     componentDidMount() {
         this.loadQuizz();
         this.setTimer();
-        // this.setCurrUser();
 
     }
     getInitialState = () => {
         this.setState({
-            ...this.state, gameOn: true, rightAns: 0,
-            currTimeStamp: 0, gameSessionId:utilService.makeId(),
-            currUser:this.props.loggedinUser || {fullName: `guest ${utilService.makeId()}`,id:utilService.makeId()}
-        },() =>{ this.setTimer()})
+            ...this.state, gameOn: true, score: 0, rightAns: 0,
+            currTimeStamp: 0, gameSessionId: utilService.makeId(),
+            currUser: this.props.loggedinUser || { fullName: `guest ${utilService.makeId()}`, id: utilService.makeId() }
+        }, () => { this.setTimer() })
     }
-    // setCurrUser = () =>{
-    //     const userInSession = userService.getCurrUser()
-    //     // console.log('currUser',userInSession)
-    //     if(!userInSession) return
-    //     console.log(userInSession)
-    //     this.setState({...this.state.currUser,currUser:{fullName:userInSession.username,id:userInSession._id}}
-    //         )
-    // }
-    setTimer = () =>{
+
+    setTimer = () => {
         const timer = setInterval(() => {
             this.updateTime()
             if (!this.state.gameOn) clearInterval(timer)
@@ -51,16 +45,24 @@ class _QuizGame extends Component {
         const quiz = await quizService.getById(this.props.match.params.quizId)
         quiz.quests.forEach(quest => {
             utilService.shuffle(quest.answers)
+
         })
-        this.setState({ quiz },()=>{
+        this.setState({ quiz }, () => {
             this.arrangeQuestions()
         })
     }
-    onTrueAns = () => {
-        this.setState({ rightAns: this.state.rightAns + 1 },() =>{
-            console.log('props ' ,this.props)
-            console.log('state ' ,this.state)
-        })
+    onAns = value => {
+        if (value === "true") {
+            this.setState({ score: this.state.score + 10, rightAns: this.state.rightAns + 1 }, () => {
+                // console.log('props ', this.props)
+                console.log('state in main ', this.state)
+            })
+        } else {
+            if (this.state.score === 0) return
+            this.setState({ score: this.state.score - 5 }, () => { console.log('state in main ', this.state) })
+
+
+        }
     }
     answerQuestion = answerResult => {
 
@@ -81,10 +83,10 @@ class _QuizGame extends Component {
         // return true
     }
     ///////////////////////
-    arrangeQuestions = () =>{
+    arrangeQuestions = () => {
         let questions = this.state.quiz.quests
-        questions = utilService.shuffle(questions,true)
-        this.setState({questions})
+        questions = utilService.shuffle(questions, true)
+        this.setState({ questions, isQuizReady: true })
     }
 
     render() {
@@ -96,15 +98,19 @@ class _QuizGame extends Component {
         if (!questions) return <div>Loading....</div>
         return (
             <main>
-                {this.state.gameOn ? <GameOn currTimeStamp={this.state.currTimeStamp} onTrueAns={this.onTrueAns} questions={questions} onEndGame={this.onEndGame} /> :
-                    <EndGame gameSessionId={this.state.gameSessionId} currUser={this.state.currUser} getInitialState={this.getInitialState} quiz={this.state.quiz} currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers} category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length} />}
+                {this.state.gameOn && this.state.isQuizReady ? <GameOn isQuizReady={this.state.isQuizReady} score={this.state.score} currTimeStamp={this.state.currTimeStamp} onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
+                    <EndGame rightAns={this.state.rightAns} gameSessionId={this.state.gameSessionId} currUser={this.state.currUser}
+                        getInitialState={this.getInitialState} quiz={this.state.quiz}
+                        currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers}
+                        category={this.state.quiz.tags[0]} score={this.state.score}
+                        allAns={this.state.quiz.quests.length} />}
             </main>
         )
     }
 }
 const mapStateToProps = state => {
     return {
-        loggedinUser:state.userReducer.loggedinUser
+        loggedinUser: state.userReducer.loggedinUser
     }
 }
 const mapDispatchToProps = {

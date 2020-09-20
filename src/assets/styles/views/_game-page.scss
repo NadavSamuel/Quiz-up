@@ -1,25 +1,17 @@
 .quiz-game-main{
+    .score{
+        font-size:2.5rem
+    }
     h1{
         text-align: center;
-        // position: absolute;
-        // right: 0;
-        // left: 0;
-        // top: 80px; 
-        height: 150px;
+
+        height: 80px;
         display:flex;
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
        }
-    // .answer-feedback{
-    //     font-size: 3rem;
-    //     text-align: center;
-    //     position: absolute;
-    //     left: 0;
-    //     right: 0;
-    //     top: 165px;
 
-    // }
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -36,7 +28,9 @@
     }
     .game-progress{
         width:75vw;
-
+    }
+    .game-timer{
+        font-size:2.3rem;
     }
 }
     .game-answers-container{
@@ -46,7 +40,7 @@
         .game-answers{
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: 27px;
+            grid-gap: 10px;
             margin-bottom: 90px;
         }
     }

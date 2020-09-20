@@ -30,7 +30,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 36px;
-        form{
+        form,p{
             flex-direction:column;
             grid-area: 2 / 1 / span 2 / span 2;
 
