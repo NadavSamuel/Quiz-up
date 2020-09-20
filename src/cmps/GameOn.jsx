@@ -76,15 +76,20 @@ class _GameOn extends Component {
             <main className="quiz-game-main">
                 <div className="game-top">
                 <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
+                  <h3> <GameTimer currTimeStamp={this.props.currTimeStamp}/></h3> 
                     <img src={this.props.questions[currQuestionIdx].img|| 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png' }/>
 
                 <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
                 <ProgressBar completed = {(currQuestionIdx / questions.length) * 100}/>
                 <div className="timer-wrapper">
-                    <GameTimer currTimeStamp={this.props.currTimeStamp}/>
                 </div>
                 </div>
-                <AnswersList chosenAnsIdx={this.state.chosenAnsIdx} correctAnsIdx={this.state.correctAnsIdx} chosenAnswerIdx={this.state.chosenAnswerIdx} answerFeedback={this.state.answerFeedback} answerQuestion={this.answerQuestion} answers={currQuestion.answers} />
+                <AnswersList chosenAnsIdx={this.state.chosenAnsIdx} 
+                correctAnsIdx={this.state.correctAnsIdx}
+                 chosenAnswerIdx={this.state.chosenAnswerIdx} 
+                 answerFeedback={this.state.answerFeedback} 
+                 answerQuestion={this.answerQuestion} 
+                 answers={currQuestion.answers} />
             </main>
         )
     }

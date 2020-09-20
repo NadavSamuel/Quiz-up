@@ -10,8 +10,6 @@ import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { utilService } from '../services/utilService';
 
-
-
 export class EndGame extends Component {
     state = {
         review: {
@@ -26,10 +24,9 @@ export class EndGame extends Component {
 
         }
         , isReviewSent: false,
-        isInTable: false
+        idxInRankTable:null
     }
     componentDidMount() {
-        // console.log('currQuiz in EndGame: ', this.props.quiz)
         this.updateAllTimePlayers()
     }
     handleReviewChange = ({ target }) => {
@@ -38,13 +35,24 @@ export class EndGame extends Component {
     }
     updateAllTimePlayers = () => {
         const currQuiz = this.props.quiz
+        const currUser =  this.props.currUser
         const currUserMiniObject = {
-            ...this.props.currUser,
-            score: this.getFinalScore()
+            fullName:currUser.username,
+            id:currUser._id,
+            img:currUser.img,
+            score: this.getFinalScore(),
+            gameSessionId:this.props.gameSessionId
         }
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
-        this.forceUpdate()
+        const bestPlayers = utilService.getBestUsers(currQuiz)
+        const playerPositionInTable = bestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId )
+        if(playerPositionInTable !== -1) this.setState({idxInRankTable:playerPositionInTable+1},()=>{
+            // console.log('playerPositionInTable',playerPositionInTable)
+            // console.log('allTimesPlayers', currQuiz.allTimesPlayers)
+            this.forceUpdate()
+        })
+ 
         // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
     }
     onSubmitReview = ev => {
@@ -110,9 +118,6 @@ export class EndGame extends Component {
         const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz } = this.props
         const bestPlayers = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
-
-
-
             <label htmlFor="review">Review this quiz:</label>
             <textarea onChange={this.handleReviewChange} value={this.state.review.txt} placeholder="your review here" id="review" name="review" rows="4" cols="50">
             </textarea>
@@ -123,20 +128,26 @@ export class EndGame extends Component {
             <p>Thank you for writing a review! </p>
         </div>
         // console.log('curr time stamp in endGame: ',currTimeStamp)
+        function getRankPlaceGood(number){
+            if (number === 1) return '1st'
+            if (number === 2) return '2nd'
+            if (number === 3) return '3rd'
+            else return number+'th'
+        }
 
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1>Wow! you scored {this.getFinalScore()}</h1>
-                    <h3>you answered {allAns} answeres right out of {allAns} questions <br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
-                    <RankTable bestPlayers={bestPlayers} />
-
+                    <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
                     <StyleRoot>
-                        <div className="game-records-break"> <h2 style={styles.tada}>Congratulations! you are 3rd place in Israel in the {category} category! </h2>
-                            <h2>Congratulations! you Broke your best score by 30 points! your new best score is 210</h2>
-                        </div>
+                       { this.state.idxInRankTable && <div className="game-records-break mt30"> 
+                        <h2 style={styles.tada}>Congratulations! you are {getRankPlaceGood(this.state.idxInRankTable) } place in the {category} category! </h2>
+                        </div>}
                     </StyleRoot>
-
-                    <div className="endgame-actions">
+                    <div className="mt30">
+                    <RankTable  bestPlayers={bestPlayers} />
+                    </div>
+                    <div className="endgame-actions mt30" >
                         <button onClick={this.props.getInitialState}>Play again</button>
                         <button><Link to='/browse'> back to browse</Link></button>
                         {!this.state.isReviewSent ? reviewForm : reviewFeedback}

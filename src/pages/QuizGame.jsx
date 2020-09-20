@@ -11,32 +11,35 @@ import { AnswersList } from '../cmps/AnswersList.jsx'
 class _QuizGame extends Component {
     state = {
         quiz: {},
-        currUser:{fullName: `guest ${utilService.makeId()}`,id:'XXX'},
+        currUser:this.props.loggedinUser || {username: `guest ${utilService.makeId()}`,_id:utilService.makeId()},
         gameOn: true,
         rightAns: 0,
-        currTimeStamp: 0
+        currTimeStamp: 0,
+        gameSessionId:utilService.makeId()
+
     }
 
     componentDidMount() {
         this.loadQuizz();
         this.setTimer();
-        this.setCurrUser();
+        // this.setCurrUser();
 
     }
     getInitialState = () => {
         this.setState({
             ...this.state, gameOn: true, rightAns: 0,
-            currTimeStamp: 0
+            currTimeStamp: 0, gameSessionId:utilService.makeId(),
+            currUser:this.props.loggedinUser || {fullName: `guest ${utilService.makeId()}`,id:utilService.makeId()}
         },() =>{ this.setTimer()})
     }
-    setCurrUser = () =>{
-        const userInSession = userService.getCurrUser()
-        // console.log('currUser',userInSession)
-        if(!userInSession) return
-        console.log(userInSession)
-        this.setState({...this.state.currUser,currUser:{fullName:userInSession.username,id:userInSession._id}}
-            )
-    }
+    // setCurrUser = () =>{
+    //     const userInSession = userService.getCurrUser()
+    //     // console.log('currUser',userInSession)
+    //     if(!userInSession) return
+    //     console.log(userInSession)
+    //     this.setState({...this.state.currUser,currUser:{fullName:userInSession.username,id:userInSession._id}}
+    //         )
+    // }
     setTimer = () =>{
         const timer = setInterval(() => {
             this.updateTime()
@@ -54,7 +57,10 @@ class _QuizGame extends Component {
         })
     }
     onTrueAns = () => {
-        this.setState({ rightAns: this.state.rightAns + 1 })
+        this.setState({ rightAns: this.state.rightAns + 1 },() =>{
+            console.log('props ' ,this.props)
+            console.log('state ' ,this.state)
+        })
     }
     answerQuestion = answerResult => {
 
@@ -91,14 +97,14 @@ class _QuizGame extends Component {
         return (
             <main>
                 {this.state.gameOn ? <GameOn currTimeStamp={this.state.currTimeStamp} onTrueAns={this.onTrueAns} questions={questions} onEndGame={this.onEndGame} /> :
-                    <EndGame currUser={this.state.currUser} getInitialState={this.getInitialState} quiz={this.state.quiz} currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers} category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length} />}
+                    <EndGame gameSessionId={this.state.gameSessionId} currUser={this.state.currUser} getInitialState={this.getInitialState} quiz={this.state.quiz} currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers} category={this.state.quiz.tags[0]} rightAns={this.state.rightAns} allAns={this.state.quiz.quests.length} />}
             </main>
         )
     }
 }
 const mapStateToProps = state => {
     return {
-
+        loggedinUser:state.userReducer.loggedinUser
     }
 }
 const mapDispatchToProps = {

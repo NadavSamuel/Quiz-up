@@ -88,6 +88,11 @@
 
 @media(max-width:$narrow-breakpoint){
     .quiz-game-main{
+        .game-top{
+            img{
+                height: 125px;
+            }
+        }
         .game-answers-container{
             .game-answers{
                 display: grid;
@@ -98,9 +103,15 @@
             }
         }
         .answer{
-            height: 65px;
-            width: 100%
-        
+            height: 40px;
+            width: 100%;
+            font-size:1.1rem;
+            &:hover{
+                    background-color: $clr3;
+                    transition:none;
+                    font-size:1.1rem;
+                
+            }
         }
 }
 }
