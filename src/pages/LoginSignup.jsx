@@ -5,7 +5,6 @@ import { setNotification } from '../store/actions/notificationActions.js'
 import { onLogin, onLogout, onSignup } from '../store/actions/userActions.js'
 import { QuizPreview } from '../cmps/QuizPreview.jsx';
 import { Link } from 'react-router-dom';
-import { UploadBtn } from '../cmps/UploadBtn.jsx';
 
 export class _LoginSignup extends Component {
     state = {
@@ -17,7 +16,8 @@ export class _LoginSignup extends Component {
             username: '',
             password: '',
             imgUrl: ''
-        }
+        },
+        isRegister: true
     }
     handleChangeLog = ({ target }) => {
         const { name, value } = target
@@ -34,9 +34,13 @@ export class _LoginSignup extends Component {
         await this.props.onLogin(this.state.loginInfo)
         console.log('user:', this.props.loggedInUser);
     }
-    onSignup = async ev => {
+    onSignup = () => {
         if (!this.state.registerInfo.username || !this.state.registerInfo.password) return alert('Please enter username/password')
-        await this.props.onSignup(this.state.registerInfo)
+        if (!this.state.registerInfo.imgUrl) this.setState({ registerInfo: { ...this.state.registerInfo, imgUrl: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg' } }, async (ev) => {
+            await this.props.onSignup(this.state.registerInfo)
+
+        })
+
 
     }
     onLogout = async ev => {
@@ -65,31 +69,52 @@ export class _LoginSignup extends Component {
         }
 
     }
-
+    showInputs = () => {
+        this.setState({ isRegister: !this.state.isRegister })
+    }
     render() {
 
 
         const { loggedInUser } = this.props
+        const { isRegister } = this.state
         return (
             <div className="login-profile-container">
-                {!loggedInUser && <div className="signup-container">
+                {!loggedInUser && isRegister && <div className="signup-container">
                     <h1>Signup</h1>
-                    <form className="signup-form" onSubmit={this.onSignup}>
-                        <TextField onChange={this.handleChangeSign} name="username" id="outlined-basic" label="Username" variant="outlined" />
-                        <TextField onChange={this.handleChangeSign} name="password" id="outlined-basic" label="Password" variant="outlined" />
-                        {/* <label htmlFor="upload-btn"> */}
-                            <UploadBtn uploadImg={this.uploadImg}/>
+                    <h5 onClick={this.showInputs}>Already have an account? <span className="yellow" >Log In</span> </h5>
+                    <form className="signup-form mt10" onSubmit={this.onSignup}>
+                        <div className="username-input">
+
+                            <TextField autoFocus onChange={this.handleChangeSign} name="username" id="outlined-basic" label="Username" variant="outlined" /></div>
+                        <div className="password-input">
+                            <TextField type="password" onChange={this.handleChangeSign} name="password" id="outlined-basic" label="Password" variant="outlined" /></div>
+
+                        <label className="upload-btn mt10" htmlFor="img-upload">
+
+                            {!this.state.registerInfo.imgUrl && <div className="profile-uploader">
+                                Click to select Profile Image</div>}</label>
+
+                        {this.state.registerInfo.imgUrl &&
+                            <img className="register-img" src={this.state.registerInfo.imgUrl} alt="img" />}
+
+                        <input hidden type="file" className="file-input" name="img-upload" id="img-upload"
+                            onChange={this.uploadImg} />
+
+
+
                         <Button variant="contained" color="primary" onClick={this.onSignup}>Submit</Button>
-                        {/* </label> */}
-                        {/* <input onChange={this.uploadImg} id="upload-btn" type="file" /> */}
+
                     </form>
                 </div>}
-                {!loggedInUser && <div className="login-container">
+                {!loggedInUser && !isRegister && <div className="login-container">
                     <h1>Login</h1>
+                    <h5 onClick={this.showInputs}>Don't have an account? <span className="yellow">Sign Up</span> </h5>
 
-                    <form className="login-form" onSubmit={this.onLogin}>
-                        <TextField autoFocus onChange={this.handleChangeLog} name="username" id="outlined-basic" label="Username" variant="outlined" />
-                        <TextField onChange={this.handleChangeLog} name="password" id="outlined-basic" label="Password" variant="outlined" />
+                    <form className="login-form mt10" onSubmit={this.onLogin}>
+                        <div className="username-input">
+                            <TextField autoFocus onChange={this.handleChangeLog} name="username" id="outlined-basic" label="Username" variant="outlined" /></div>
+                        <div className="password-input">
+                            <TextField onChange={this.handleChangeLog} type="password" name="password" id="outlined-basic" label="Password" variant="outlined" /></div>
                         <Button variant="contained" color="primary" onClick={this.onLogin}>Submit</Button>
                     </form>
 
@@ -97,22 +122,23 @@ export class _LoginSignup extends Component {
                 {loggedInUser && <div className="profile-container">
                     <div className="profile-header">
                         <h2>Welcome, {loggedInUser.username}</h2>
-                        {loggedInUser.profileImg && <img src={loggedInUser.profileImg} alt="" />}
+                        {loggedInUser.profileImg && <img className="profile-img" src={loggedInUser.profileImg} alt="" />}
                         {/* <button onClick={this.onLogout}>Logout</button> */}
                         <div className="logout-btn mt10">
                             <Button variant="outlined" color="secondary" className="mt10" onClick={this.onLogout}>Logout</Button></div>
                     </div>
-
-                    <h2 className="quizzes-header">My Quizzes:</h2>
+                    <div className="quiz-list-header">
+                        <h2 className="quizzes-header">My Quizzes:</h2>
+                        <Link to='/edit'>
+                            <Button variant="outlined" color="primary">
+                                Create </Button></Link></div>
                     <div className="user-quizzes-container list ">
                         {loggedInUser.quizzes.length > 0 &&
                             loggedInUser.quizzes.map(quiz => {
                                 return <QuizPreview key={quiz.quizId} quizId={quiz.quizId} />
                             })}</div>
 
-                    <Link to='/edit'>
-                        <Button variant="outlined" color="primary">
-                            Create More</Button></Link>
+
                 </div>}
             </div>
         )
