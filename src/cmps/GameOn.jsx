@@ -9,6 +9,8 @@ import { GameTimer } from '../cmps/GameTimer'
 import { ProgressBar } from '../cmps/ProgressBar'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { Howl, Howler } from 'howler';
+
 
 
 class _GameOn extends Component {
@@ -17,12 +19,15 @@ class _GameOn extends Component {
         currQuestionIdx: 0,
         answerFeedback: null,
         correctAnsIdx: null,
-        chosenAnsIdx: null
+        chosenAnsIdx: null,
+        didSoundPlay: false
     }
     componentDidMount() {
         window.scrollTo(0, 74)
         this.getRightAnswerIdx(0)
     }
+
+
 
     getRightAnswerIdx = idx => {
         const rightAnswerIdx = this.props.questions[idx].answers.findIndex(answer => answer.isCorrect === "true")
@@ -41,13 +46,41 @@ class _GameOn extends Component {
                 this.props.onEndGame()
                 return
             }
-            this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null }, () => {
+            this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null,didSoundPlay:false }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
     }
 
 
+
+    playSound =(str)=> {
+        if (str === 'true') {
+            var sound = new Howl({
+                src: ['./sounds/correct.wav'],
+            });
+            this.setState({ didSoundPlay: true })
+        }
+        else if (str === 'false')
+            var sound = new Howl({
+                src: ['./sounds/wrong.mp3'],
+            });
+        else if (str === 'bg')
+            var sound = new Howl({
+                src: ['./sounds/bg.wav'],
+                autoplay: true,
+                loop: true,
+                volume: 0.2,
+            });
+
+
+        else
+            var sound = new Howl({
+                src: ['./sounds/end game.wav'],
+            });
+        
+        sound.play();
+    }
 
     render() {
         // const [key, setKey] = useState(0);
@@ -92,6 +125,7 @@ class _GameOn extends Component {
                     answerFeedback={this.state.answerFeedback}
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
+                {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx === this.state.correctAnsIdx) && this.playSound('true')}
             </main>
         )
     }

@@ -1,15 +1,9 @@
 import React from 'react'
 
 export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion, answerFeedback, chosenAnswerIdx }) {
-    // console.log("AnswerList -> answer", answer,idx)
-    const answerColor = answer.isCorrect === 'true' ? 'green' : 'red'
-    // function setRightWrongClass(chosenAnswerIdx){
-    //     if(chosenAnswerIdx === idx) return 'correctAns'   
-    //     else return ''  
-    // }
-    // console.log('correctAnsIdx: ',correctAnsIdx)
-    // console.log('chosenAnsIdx in ans div',idx,chosenAnsIdx)
-    // console.log('correctAnsIdx in ans div',idx,correctAnsIdx)
+    
+    
+    
     function setRightWrongColor() {
         
         if(( idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
