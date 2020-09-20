@@ -19,11 +19,9 @@ class _Notification extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate -> prevProps.txt!=this.props.txt", prevProps.txt, this.props.txt)
         if (prevProps.txt != this.props.txt) {
 
             this.setState({ txt: this.props.txt, kind: this.props.kind, isShown: true })
-            console.log("componentDidUpdate -> this.props.txt", this.props.txt)
 
             setTimeout(() => {
                 this.props.clearNotification()

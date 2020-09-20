@@ -54,6 +54,7 @@ export class EndGame extends Component {
         })
  
         // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
+        this.forceUpdate()
     }
     onSubmitReview = ev => {
         ev.preventDefault()

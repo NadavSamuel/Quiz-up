@@ -2,7 +2,6 @@ import React from 'react'
 import {Answer} from '../cmps/answer.jsx'
 
 export function AnswersList({ chosenAnsIdx, correctAnsIdx,answers ,answerQuestion,answerFeedback,chosenAnswerIdx }) {
-    // console.log("QuizGame -> answers", answers)
  
     return (
         <div className="game-answers-container">
