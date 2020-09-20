@@ -1113,6 +1113,7 @@ async function query() {
 async function add(quiz) {
     try {
         var newQuiz = await storageService.post('quiz', quiz);
+        
         return newQuiz
     } catch (err) {
         console.log(err);
