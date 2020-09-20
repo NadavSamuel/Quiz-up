@@ -228,7 +228,10 @@ export class _QuizEdit extends Component {
                     <form className='quiz-inputs-form mt10' onSubmit={this.onSubmit}>
                         <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
                         <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
+                        <div>
+                        <h3>difficulity:</h3>
                         <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
+                        </div>
                         <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
                             {this.state.img && <img src={this.state.img} alt="img" />}</label>
                         <input hidden type="file" className="file-input" name="img" id="upload-file"

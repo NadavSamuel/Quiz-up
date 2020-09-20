@@ -29,7 +29,6 @@ export class EndGame extends Component {
         isInTable: false
     }
     componentDidMount() {
-        // console.log('currQuiz in EndGame: ', this.props.quiz)
         this.updateAllTimePlayers()
     }
     handleReviewChange = ({ target }) => {
@@ -45,7 +44,6 @@ export class EndGame extends Component {
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
         this.forceUpdate()
-        // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
     }
     onSubmitReview = ev => {
         ev.preventDefault()
@@ -122,7 +120,6 @@ export class EndGame extends Component {
         const reviewFeedback = <div>
             <p>Thank you for writing a review! </p>
         </div>
-        // console.log('curr time stamp in endGame: ',currTimeStamp)
 
         return (
             <main className="endgame-main" >

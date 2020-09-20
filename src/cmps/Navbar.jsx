@@ -1,19 +1,58 @@
 import React from 'react'
+import Avatar from '@material-ui/core/Avatar';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-export function _Navbar({loggedInUser}) {
-    return (
-        <div className="navbar flex align-center justify-between  fill">
-            <Link to="/"><img src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600282324/pvdvrgbpuoihrkdf9oti.png" alt="" /></Link>
+import MenuIcon from '@material-ui/icons/Menu';
+import { BlackPage } from './BlackPage';
 
-            <ul className="flex">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/profile">{loggedInUser ? 'Profile' : 'Login'}</Link></li>
-                <li><Link to="/browse">Browse</Link></li>
-            </ul>
-        </div>
+export class _Navbar extends React.Component {
 
-    )
+    state = {
+        isMenuShown: false
+    }
+
+    getClass = () => {
+        return (this.state.isMenuShown) ? '' : 'hide'
+    }
+
+    closeMenu = () => {
+        this.setState({ isMenuShown: false })
+    }
+
+
+    render() {
+
+
+        return (
+            <div className="navbar flex align-center justify-between  fill">
+                <div className="flex">
+                    <Link to="/"><img className='logo' src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600282324/pvdvrgbpuoihrkdf9oti.png" alt="" /></Link>
+                    <ul className="flex full-view">
+                        <Link to="/"><li>Home</li></Link>
+                        <Link to="/browse"><li>Browse</li></Link>
+                        <Link to="/dashboard"><li>Dashboard</li></Link>
+                        <Link to="/edit"><li>Add new Quiz</li></Link>
+                    </ul>
+                </div>
+
+                <ul className={`popup-menu ${this.getClass()}`}>
+                    <Link onClick={() => this.closeMenu()} to="/profile">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
+                    <Link to="/"><li>Home</li></Link>
+                    <Link onClick={() => this.closeMenu()} to="/browse"><li>Browse</li></Link>
+                    <Link to="/dashboard"><li>Dashboard</li></Link>
+                    <Link onClick={() => this.closeMenu()} to="/edit"><li>Add new Quiz</li></Link>
+                </ul>
+
+                <div>
+
+                    <MenuIcon onClick={() => { this.setState({ isMenuShown: true }) }} className='phone-view' />
+                    <Link className='full-view' to="/profile">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
+                    <BlackPage closeMenu={this.closeMenu} isShown={this.state.isMenuShown} />
+                </div>
+            </div>
+
+        )
+    }
 }
 
 
