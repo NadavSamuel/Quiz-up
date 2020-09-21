@@ -7,6 +7,7 @@ import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { userService } from '../services/userService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
+import { Loading } from '../cmps/Loading'
 
 class _QuizGame extends Component {
     state = {
@@ -95,7 +96,7 @@ class _QuizGame extends Component {
         let { currQuestionIdx } = this.state
         // console.log("render -> quizzes", quizzes)
 
-        if (!questions) return <div>Loading....</div>
+        if (!questions) return <Loading/>
         return (
             <main>
                 {this.state.gameOn && this.state.isQuizReady ? <GameOn isQuizReady={this.state.isQuizReady} score={this.state.score} currTimeStamp={this.state.currTimeStamp} onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :

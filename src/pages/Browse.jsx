@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
 import { BrowseTagPreview } from '../cmps/BrowseTagPreview'
+import { Loading } from '../cmps/Loading'
 
 class _Browse extends Component {
 
@@ -43,7 +44,7 @@ class _Browse extends Component {
     render() {
         const quizzes = this.state.quizzes
         const tags=this.state.tags
-        if (!quizzes) return <div>Loading....</div>
+        if (!quizzes) return <Loading/>
         return (
             <div className="full browse">
                 {tags && tags.map((tag,idx)=><BrowseTagPreview key={idx} tag={tag}/>)}

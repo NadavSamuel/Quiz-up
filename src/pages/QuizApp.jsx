@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
+import { Loading } from '../cmps/Loading'
 
 class _QuizApp extends Component {
 
@@ -23,7 +24,7 @@ class _QuizApp extends Component {
 
     render() {
         const quizzes = this.state.quizzes
-        if (!quizzes) return <div>Loading....</div>
+        if (!quizzes) return <Loading/>
         return (
             <div className="home-page full">
                 <img className="home-page-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif" alt="" />

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import { Link } from 'react-router-dom'
 import { quizService } from '../services/quizService';
+import { Loading } from './Loading';
 export class QuizPreview extends Component {
     state = {
         quiz: null
@@ -25,7 +26,7 @@ export class QuizPreview extends Component {
 
     render() {
         const { quiz } = this.state
-        if (!quiz) return <div>Loading..</div>
+        if (!quiz) return <Loading/>
         return (
             <Link to={`/quiz/${quiz._id}`}>
             <div className="quiz-preview">

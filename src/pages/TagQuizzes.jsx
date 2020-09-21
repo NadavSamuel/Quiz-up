@@ -6,6 +6,7 @@ import { QuizFilter } from '../cmps/QuizFilter'
 import { quizService } from '../services/quizService'
 import { QuizListFull } from '../cmps/QuizListFull'
 import { QuizSort } from '../cmps/QuizSort'
+import { Loading } from '../cmps/Loading'
 
 class _TagQuizzes extends Component {
 
@@ -76,7 +77,7 @@ class _TagQuizzes extends Component {
 
     render() {
         const quizzes = this.state.quizzes
-        if (!quizzes) return <div>Loading....</div>
+        if (!quizzes) return <Loading/>
         return (
             <div className="">
                 <QuizFilter getFilterBy={this.getFilterBy} />

@@ -23,22 +23,16 @@
 
         }
 
-        @media(max-width: 1000px) {
+        @media(max-width: 1020px) {
             flex-direction: column;
 
-            .tag-img .style-tag-img {
-                width: 416px;
-            }
-
-
-        }
-        @media(max-width: 1000px) {
             .tag-img .style-tag-img {
                 width: 350px;
             }
 
 
         }
+        
 
     }
 

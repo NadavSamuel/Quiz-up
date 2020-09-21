@@ -13,10 +13,8 @@ export class QuizList extends Component {
     }
 
     componentDidMount() {
-        if (window.innerWidth < 710 && window.innerWidth>500) {
-
-            this.setState({ numOfRow: 4 })
-        }
+        if (window.innerWidth < 770 && window.innerWidth>540) this.setState({ numOfRow: 4 })
+        
         this.setState({ quizzes: this.props.quizzes })
     }
 
@@ -51,16 +49,16 @@ export class QuizList extends Component {
 
 
         return (
-            <div className="quiz-list flex align-center justify-between">
+            <div className="quiz-list flex align-center justify-around">
 
-                { <ArrowLeftIcon onClick={() => this.prev()} />}
+                { <ArrowLeftIcon className='cursor-pointer arrows'  onClick={() => this.prev()} />}
                 <div className="list">
                     {
 
                         this.getQuizzesToPrev() && this.getQuizzesToPrev().map(quiz => <QuizPreview key={quiz._id} quizId={quiz._id} />)
                     }
                 </div>
-                {<ArrowRightIcon onClick={() => this.next()} />}
+                {<ArrowRightIcon className='cursor-pointer arrows'  onClick={() => this.next()} />}
             </div>
         )
     }

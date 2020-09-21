@@ -70,7 +70,7 @@ export class _QuizEdit extends Component {
     handleChange = ({ target }) => {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
-        this.setState({ [field]: value })
+        this.setState({ [field]: value }, () => console.log(this.state))
     }
 
     onSubmitAns = (event) => {
@@ -140,7 +140,6 @@ export class _QuizEdit extends Component {
             return;
         }
         const miniUser = (user.username) ? { _id: user._id, fullName: user.username, imgUrl: user.profileImg } : { _id: utilService.makeId(), fullName: utilService.getRandomGuest(), imgUrl: "" }
-        console.log("onSubmit -> miniUser", miniUser)
         const quiz = {
             _id,
             reviews,
@@ -194,12 +193,19 @@ export class _QuizEdit extends Component {
 
     }
 
+    setRandomQuiz = async () => {
+        const quiz = await quizService.getRandomQuiz()
+        // console.log('got quiz:', quiz);
+        const { quests, title } = quiz
+        this.setState({ quests, title })
+    }
 
 
 
     render() {
         return (
             <div className="full quiz-edit">
+                <button onClick={this.setRandomQuiz}>Generate random quiz</button>
                 <div className='flex edit-layout'>
                     <div className='quest-list-preview'>
                         <QuestList quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
