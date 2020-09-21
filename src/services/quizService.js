@@ -1054,7 +1054,7 @@ var gQuizzes = [
         ],
         "allTimesPlayers": [
             {
-                "fullName": "asaf Margalit",
+                "fullName": "Asaf Margalit",
                 "score": 150
             },
             {

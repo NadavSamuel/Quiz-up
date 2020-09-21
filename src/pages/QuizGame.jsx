@@ -12,7 +12,7 @@ import { Loading } from '../cmps/Loading'
 class _QuizGame extends Component {
     state = {
         quiz: {},
-        currUser: this.props.loggedinUser || { username: `guest ${utilService.makeId()}`, _id: utilService.makeId() },
+        currUser: null,
         gameOn: true,
         score: 0,
         rightAns: 0,
@@ -26,8 +26,15 @@ class _QuizGame extends Component {
 
     componentDidMount() {
         this.loadQuizz();
-        this.timer=setInterval(this.setTimer,1000)
+        this.setCurrUser();
+        this.timer=setInterval(this.setTimer,1000);
         // this.setTimer();
+    }
+    setCurrUser = ()=>{
+        this.setState({ currUser: this.props.loggedinUser || this.getRandomUserObject()})
+    }
+    getRandomUserObject = () =>{
+        return { username: `guest ${utilService.makeId()}`, id: utilService.makeId() }
     }
     componentWillUnmount(){
         clearInterval(this.timer)
@@ -37,7 +44,7 @@ class _QuizGame extends Component {
         this.setState({
             ...this.state, gameOn: true, score: 0, rightAns: 0,
             currTimeStamp: 0, gameSessionId: utilService.makeId(),
-            currUser: this.props.loggedinUser || { fullName: `guest ${utilService.makeId()}`, id: utilService.makeId() }
+            currUser: this.props.loggedinUser || this.getRandomUserObject()
         },() => {
             this.resetTimer()
         })
@@ -117,7 +124,10 @@ class _QuizGame extends Component {
         if (!questions) return <Loading/>
         return (
             <main>
-                {this.state.gameOn && this.state.isQuizReady ? <GameOn resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady} score={this.state.score} currTimeStamp={this.state.currTimeStamp} onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
+                {this.state.gameOn && this.state.isQuizReady ?
+                 <GameOn resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady} 
+                 score={this.state.score} currTimeStamp={this.state.currTimeStamp}
+                  onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
                     <EndGame rightAns={this.state.rightAns} gameSessionId={this.state.gameSessionId} currUser={this.state.currUser}
                         getInitialState={this.getInitialState} quiz={this.state.quiz}
                         currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers}
