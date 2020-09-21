@@ -4,6 +4,7 @@ import { QuizList } from './QuizList.jsx'
 import { quizService } from '../services/quizService'
 import { imgService } from '../services/imgService'
 import { Link } from 'react-router-dom'
+import { Progress } from './Progress.jsx'
 
 
 export class Timer extends Component {
@@ -60,7 +61,7 @@ export class Timer extends Component {
         return (
             <div className='timer'>
                <h1 >{this.timeToShow()}</h1>
-               <progress  value={''+((15-this.timeToShow())/15*100)} max="100"></progress>
+               <Progress  value={this.timeToShow()} max={15}/>
                
             </div>
 

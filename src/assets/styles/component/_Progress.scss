@@ -1,0 +1,31 @@
+.progress-bar {
+    background-color: whiteSmoke;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+    width: 250px;
+    height: 15px;
+    border-radius: 8px;
+    position: relative;
+    display: block;
+}
+
+.progress-bar > span {
+    border-radius: 8px;
+    transition: all 1s;
+    background-color: blue;
+    height: 100%;
+  
+    display: block;
+    text-indent: -9999px;
+
+    &.red {
+        background-color: #ff0033;
+    }
+
+    &.blue {
+        background-color: $clr4;
+    }
+
+    &.green {
+        background-color: #4BB543;
+    }
+  }
