@@ -69,14 +69,14 @@ export class _QuizEdit extends Component {
     handleChange = ({ target }) => {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
-        this.setState({ [field]: value })
+        this.setState({ [field]: value }, () => console.log(this.state))
     }
 
     onSubmitAns = (event) => {
         event.preventDefault()
         var isDontHaveCurr = false
-        var isOverLetters=false
-        const MAX_LETTER=50
+        var isOverLetters = false
+        const MAX_LETTER = 50
         var quest = {
             txt: this.state.currQuest,
             displayedCount: 0,
@@ -86,16 +86,16 @@ export class _QuizEdit extends Component {
                 if (idx === 0 && !answer.txt) {
                     isDontHaveCurr = true
                 }
-                if(answer.txt.length>MAX_LETTER) isOverLetters=true
+                if (answer.txt.length > MAX_LETTER) isOverLetters = true
                 if (!answer.txt) return acc;
                 if (idx === 0) acc.push({ txt: answer.txt, isCorrect: 'true', count: 0 })
                 else acc.push({ txt: answer.txt, isCorrect: 'false', count: 0 })
                 return acc
             }, [])
         }
-        if (!quest.txt || isDontHaveCurr|| isOverLetters || quest.answers.length == 3 || quest.answers.length === 1 || quest.answers.length === 0) {
+        if (!quest.txt || isDontHaveCurr || isOverLetters || quest.answers.length == 3 || quest.answers.length === 1 || quest.answers.length === 0) {
             if (!quest.txt) this.props.setNotification('err', 'Dont have a question')
-            if(isOverLetters) this.props.setNotification('err', `Max letter of question is ${MAX_LETTER}`)
+            if (isOverLetters) this.props.setNotification('err', `Max letter of question is ${MAX_LETTER}`)
             if (isDontHaveCurr) this.props.setNotification('err', 'Dont have currect answer')
             if (quest.answers.length === 3 || quest.answers.length === 1 || quest.answers.length === 0) this.props.setNotification('err', 'You must to confirm two or four answers')
             return;
@@ -192,15 +192,22 @@ export class _QuizEdit extends Component {
 
     }
 
+    setRandomQuiz = async () => {
+        const quiz = await quizService.getRandomQuiz()
+        // console.log('got quiz:', quiz);
+        const { quests, title } = quiz
+        this.setState({ quests, title })
+    }
 
 
 
     render() {
         return (
             <div className="full quiz-edit">
+                <button onClick={this.setRandomQuiz}>Generate random quiz</button>
                 <div className='flex edit-layout'>
                     <div className='quest-list-preview'>
-                        <QuestList  quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
+                        <QuestList quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
                     </div>
                     <div className='quest-layout'>
 
@@ -211,7 +218,7 @@ export class _QuizEdit extends Component {
                         <form className='quest-answers' onSubmit={this.onSubmitAns}>
 
                             <TextField className='quest' label="Quest" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
-                            <TextField  label="Correct answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
+                            <TextField label="Correct answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
                             <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
                             <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
                             <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
@@ -229,8 +236,8 @@ export class _QuizEdit extends Component {
                         <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
                         <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
                         <div>
-                        <h3>difficulity:</h3>
-                        <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
+                            <h3>difficulity:</h3>
+                            <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
                         </div>
                         <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
                             {this.state.img && <img src={this.state.img} alt="img" />}</label>

@@ -107,6 +107,7 @@ async function add({ username, password, imgUrl }) {
         friends: []
     }
     await gUsers.unshift(user)
+    
     // const user = await httpService.post('auth/signup', userCred)
     return _handleLogin(user)
 

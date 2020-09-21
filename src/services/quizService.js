@@ -413,7 +413,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q103",
@@ -477,7 +477,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "u104",
@@ -541,7 +541,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q105",
@@ -605,7 +605,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q106",
@@ -669,7 +669,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q107",
@@ -733,7 +733,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q108",
@@ -797,7 +797,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q109",
@@ -861,7 +861,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q110",
@@ -925,7 +925,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q111",
@@ -989,7 +989,7 @@ var gQuizzes = [
             }
         ],
         "allTimesPlayers": [
-            
+
         ]
     }, {
         "_id": "q112",
@@ -1071,16 +1071,70 @@ export const quizService = {
     update,
     remove,
     add,
-    getImage
+    getImage,
+    getRandomQuiz
     // save
 }
-
 window.quizService = quizService;
 
-async function getByTag(tag,filterBy) {
+
+// title: '',
+//         quests: [],
+//         style: 'solid',
+//         img: '',
+//         tags: '',
+//         reviews: [],
+//         allTimesPlayers: [],
+//         difficulity: 1,
+//         questImg: '',
+//         currQuest: '',
+//         answers: [
+//             { txt: "" },
+//             { txt: "" },
+//             { txt: "" },
+//             { txt: "" }
+
+
+async function getRandomQuiz() {
+    const res = await axios.get(`https://opentdb.com/api.php?amount=5&category=9&type=multiple`)
+    const quizs = res.data.results
+    console.log(quizs);
+    const quizToReturn = {
+        title: quizs[0].category,
+        quests: quizs.map(quest => {
+            return {
+                answers: [{ count: 0, isCorrect: true, txt: quest.correct_answer },
+                { count: 0, isCorrect: false, txt: quest.incorrect_answers[0] },
+                { count: 0, isCorrect: false, txt: quest.incorrect_answers[1] },
+                { count: 0, isCorrect: false, txt: quest.incorrect_answers[2] },
+
+                ],
+                txt: quest.question,
+                displayedCount: 0,
+                id:'asdasd',
+                img:'',
+                style:'solid'
+        }
+        }),
+        // displayedCount: 0,
+        style: 'solid',
+        reviews: [],
+        allTimesPlayers: [],
+        difficulity: 1,
+        questImg: '',
+        img: '',
+        difficulity: 1,
+        tags: ''
+    }
+    return quizToReturn
+}
+
+
+
+async function getByTag(tag, filterBy) {
     try {
-        var quizzes = await storageService.query('quiz',filterBy);
-        if(quizzes) var quizzesToReturn = quizzes.filter(quiz => quiz.tags.includes(tag));
+        var quizzes = await storageService.query('quiz', filterBy);
+        if (quizzes) var quizzesToReturn = quizzes.filter(quiz => quiz.tags.includes(tag));
         return quizzesToReturn;
     } catch (err) {
         console.log(err);
@@ -1090,9 +1144,9 @@ async function getByTag(tag,filterBy) {
 async function getImage(keyword) {
     var prmRes = axios.get(`https://api.unsplash.com/search/photos/?client_id=PA3Oow8kvS9lXoH0KnT7yxn2e_FAaKFzROSIXsAdPNE&query=${keyword}`)
     return prmRes.then(res => {
-      return res.data
+        return res.data
     })
-  }
+}
 
 
 async function query() {
