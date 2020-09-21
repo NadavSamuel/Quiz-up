@@ -28,7 +28,6 @@ class _GameOn extends Component {
     }
 
 
-
     getRightAnswerIdx = idx => {
         const rightAnswerIdx = this.props.questions[idx].answers.findIndex(answer => answer.isCorrect === "true")
         this.setState({ correctAnsIdx: rightAnswerIdx })
@@ -56,39 +55,39 @@ class _GameOn extends Component {
 
 
 
-    playSound = (str) => {
-        if (str === 'true') {
-            var sound = new Howl({
-                src: ['./sounds/correct1.wav'],
-            });
-            this.setState({ didSoundPlay: true })
-        }
-        else if (str === 'false') {
-            var sound = new Howl({
-                src: ['./sounds/wrong.mp3'],
-            });
-            this.setState({ didSoundPlay: true },() =>{
-                sound.play();
-            })
-            return
+    // playSound = (str) => {
+    //     if (str === 'true') {
+    //         var sound = new Howl({
+    //             src: ['./sounds/correct1.wav'],
+    //         });
+    //         this.setState({ didSoundPlay: true })
+    //     }
+    //     else if (str === 'false') {
+    //         var sound = new Howl({
+    //             src: ['./sounds/wrong.mp3'],
+    //         });
+    //         this.setState({ didSoundPlay: true },() =>{
+    //             sound.play();
+    //         })
+    //         return
 
-        }
-        else if (str === 'bg')
-            var sound = new Howl({
-                src: ['./sounds/bg.wav'],
-                autoplay: true,
-                loop: true,
-                volume: 0.2,
-            });
+    //     }
+    //     else if (str === 'bg')
+    //         var sound = new Howl({
+    //             src: ['./sounds/bg.wav'],
+    //             autoplay: true,
+    //             loop: true,
+    //             volume: 0.2,
+    //         });
 
 
-        else
-            var sound = new Howl({
-                src: ['./sounds/end game.wav'],
-            });
+    //     else
+    //         var sound = new Howl({
+    //             src: ['./sounds/end game.wav'],
+    //         });
 
-        sound.play();
-    }
+    //     sound.play();
+    // }
 
     render() {
         // const [key, setKey] = useState(0);
@@ -121,7 +120,6 @@ class _GameOn extends Component {
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
                     <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
                     <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-
                     <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
                     <ProgressBar completed={(currQuestionIdx / questions.length) * 100} />
                     <div className="timer-wrapper">
@@ -133,8 +131,9 @@ class _GameOn extends Component {
                     answerFeedback={this.state.answerFeedback}
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
-                {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx === this.state.correctAnsIdx) && this.playSound('true')}
-                {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx !== this.state.correctAnsIdx) && this.playSound('false')}
+
+                {/* {this.state.chosenAnsIdx && !this.state.didSoundPlay && this.playSound()} */}
+                {/* {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx !== this.state.correctAnsIdx) && this.playSound('false')} */}
             </main>
         )
     }

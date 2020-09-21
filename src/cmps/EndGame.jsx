@@ -139,10 +139,12 @@ export class EndGame extends Component {
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1>Wow! you scored {this.getFinalScore()}</h1>
-                    <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
+                    <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br />
+                     {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
+                     </h3>
                     <StyleRoot>
                        { this.state.idxInRankTable && <div className="game-records-break mt30"> 
-                        <h2 style={styles.tada}>Congratulations! you are {getRankPlaceGood(this.state.idxInRankTable) } place in the {category} category! </h2>
+                        <h2 style={styles.tada}>Congratulations! you are {getRankPlaceGood(this.state.idxInRankTable) } place in the "{quiz.title}" quiz! </h2>
                         </div>}
                     </StyleRoot>
                     <div className="mt30">

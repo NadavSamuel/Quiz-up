@@ -1,5 +1,5 @@
 
-import React  from 'react'
+import React from 'react'
 import { utilService } from '../services/utilService'
 
 export function GameTimer(props) {
@@ -15,7 +15,10 @@ export function GameTimer(props) {
     }
     return (
         <React.Fragment>
-            {getTimer()}
+            {/* {getTimer()} */}
+            <label for="time"></label>
+            <progress id="time" value={props.currTimeStamp/1000} max="15">  </progress>
+
         </React.Fragment>
         // <div className="main-timer-container">
         //     <h2 >{getTimer()} </h2>

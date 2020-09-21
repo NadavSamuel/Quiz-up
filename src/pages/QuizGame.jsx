@@ -22,10 +22,15 @@ class _QuizGame extends Component {
         isQuizReady: false
 
     }
+    timer=null
 
     componentDidMount() {
         this.loadQuizz();
-        this.setTimer();
+        this.timer=setInterval(this.setTimer,1000)
+        // this.setTimer();
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer)
 
     }
     getInitialState = () => {
@@ -33,19 +38,19 @@ class _QuizGame extends Component {
             ...this.state, gameOn: true, score: 0, rightAns: 0,
             currTimeStamp: 0, gameSessionId: utilService.makeId(),
             currUser: this.props.loggedinUser || { fullName: `guest ${utilService.makeId()}`, id: utilService.makeId() }
-        }, () => { this.setTimer() })
+        },() => {
+            this.resetTimer()
+        })
     }
     resetTimer = () =>{
-        this.setState({currTimeStamp:15000,wasQuestionAnswerd:false},() =>{
-            this.setTimer()
-        })
+        this.setState({currTimeStamp:15000,wasQuestionAnswerd:false})
     }
 
     setTimer = () => {
-        const timer = setInterval(() => {
-            this.updateTime()
-            if (!this.state.gameOn || this.state.wasQuestionAnswerd) clearInterval(timer)
-        }, 1000)
+        this.updateTime()
+        // const timer = setInterval(() => {
+        //     if (!this.state.gameOn) clearInterval(timer)
+        // }, 1000)
     }
 
     loadQuizz = async () => {
@@ -59,9 +64,8 @@ class _QuizGame extends Component {
         })
     }
     onAns = value => {
-        this.setState({wasQuestionAnswerd:true},()=>{
+        this.setState({wasQuestionAnswerd:true,currTimeStamp:this.state.currTimeStamp},()=>{
             if (value === "true") {
-                // debugger
                 let reward
                 if(this.state.currTimeStamp <=15000 && this.state.currTimeStamp >=10000) reward = 10
                 else reward = 10 - (10 -this.state.currTimeStamp /1000)
@@ -92,8 +96,8 @@ class _QuizGame extends Component {
 
     /////////////////////// Timer funcs
     updateTime = () => {
-        if (this.state.currTimeStamp === 0 ) return
-        console.log('currTimeStamp ',this.state.currTimeStamp)
+        if (this.state.currTimeStamp === 0 || this.state.wasQuestionAnswerd ) return
+        // console.log('currTimeStamp ',this.state.currTimeStamp)
         if (this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp - 1000 })
         // return true
     }
