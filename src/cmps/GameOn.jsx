@@ -46,7 +46,9 @@ class _GameOn extends Component {
                 this.props.onEndGame()
                 return
             }
-            this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null,didSoundPlay:false }, () => {
+            this.props.resetTimer()
+            this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
+                // console.log('did sound play?, ',this.state.didSoundPlay)
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
@@ -54,17 +56,23 @@ class _GameOn extends Component {
 
 
 
-    playSound =(str)=> {
+    playSound = (str) => {
         if (str === 'true') {
             var sound = new Howl({
-                src: ['./sounds/correct.wav'],
+                src: ['./sounds/correct1.wav'],
             });
             this.setState({ didSoundPlay: true })
         }
-        else if (str === 'false')
+        else if (str === 'false') {
             var sound = new Howl({
                 src: ['./sounds/wrong.mp3'],
             });
+            this.setState({ didSoundPlay: true },() =>{
+                sound.play();
+            })
+            return
+
+        }
         else if (str === 'bg')
             var sound = new Howl({
                 src: ['./sounds/bg.wav'],
@@ -78,7 +86,7 @@ class _GameOn extends Component {
             var sound = new Howl({
                 src: ['./sounds/end game.wav'],
             });
-        
+
         sound.play();
     }
 
@@ -126,6 +134,7 @@ class _GameOn extends Component {
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
                 {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx === this.state.correctAnsIdx) && this.playSound('true')}
+                {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx !== this.state.correctAnsIdx) && this.playSound('false')}
             </main>
         )
     }
