@@ -12,6 +12,7 @@
     "chart.js": "^2.9.3",
     "google-search-results-nodejs": "^2.0.0",
     "google-search-results-serpwow": "0.0.14",
+    "howler": "^2.2.0",
     "node-sass": "^4.14.1",
     "radium": "^0.26.0",
     "react": "^16.13.1",
@@ -23,6 +24,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-share": "^4.2.1",
+    "react-sound": "^1.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },

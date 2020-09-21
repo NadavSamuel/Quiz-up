@@ -1,6 +1,6 @@
 // import {httpService} from './httpService'
 
-const gUsers = [
+var gUsers = [
     {
         "_id": "asdasas32434234",
         "profileImg": "https://image.freepik.com/free-vector/quiz-logo_2728-12.jpg",
@@ -71,7 +71,8 @@ export const userService = {
     login,
     logout,
     add,
-    getCurrUser
+    getCurrUser,
+    updateUserQuizzes
     // getUsers,
     // getById,
     // remove,
@@ -111,6 +112,17 @@ async function add({ username, password, imgUrl }) {
     // const user = await httpService.post('auth/signup', userCred)
     return _handleLogin(user)
 
+}
+
+async function updateUserQuizzes(addQuizUser,quizId) {
+    addQuizUser.quizzes.unshift({quizId})
+    try{
+        // await storageService.put('user', addQuizUser);
+        const idx= gUsers.findIndex(user=>user._id===addQuizUser.id)
+        gUsers[idx]=addQuizUser;
+    }catch(err){
+        console.log(err);
+    }
 }
 
 function _handleLogin(user) {

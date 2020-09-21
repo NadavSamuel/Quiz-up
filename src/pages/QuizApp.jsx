@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
-import { utils } from '../services/utils'
 
 class _QuizApp extends Component {
 

@@ -8,7 +8,8 @@ export const utilService = {
   getTopRated,
   getRandom,
   getRandomColor,
-  getRate
+  getRate,
+  getRandomGuest
 }
 function shuffle(answers, value = false) {
   var currentIndex = answers.length, temporaryValue, randomIndex;
@@ -102,6 +103,15 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}
+
+function getRandomGuest(){
+  var guest= 'guest'
+  var digit='0123456789'
+  for (var i = 0; i < 3; i++) {
+    guest += digit[Math.floor(Math.random() * 10)];
+  }
+  return guest
 }
 
 

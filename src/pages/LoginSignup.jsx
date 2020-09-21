@@ -76,6 +76,8 @@ export class _LoginSignup extends Component {
 
 
         const { loggedInUser } = this.props
+        console.log("render -> loggedInUser", loggedInUser)
+        
         const { isRegister } = this.state
         return (
             <div className="login-profile-container">

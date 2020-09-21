@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import { QuestList } from '../cmps/QuestList'
 import { quizService } from '../services/quizService'
+import { userService } from '../services/userService'
 import { cloudinaryService } from '../services/cloudinaryService'
-import { utils } from '../services/utils'
+import { utilService } from '../services/utilService'
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import EditIcon from '@material-ui/icons/Edit';
 import PublishIcon from '@material-ui/icons/Publish';
@@ -102,7 +103,7 @@ export class _QuizEdit extends Component {
         }
         var quests = [...this.state.quests]
         if (!this.state.id) {
-            quest.id = utils.makeId();
+            quest.id = utilService.makeId();
             quests.push(quest);
             this.props.setNotification('info', `question added you have ${quests.length} questions `)
         } else {
@@ -128,6 +129,7 @@ export class _QuizEdit extends Component {
     }
 
     onSubmit = async (event) => {
+        const user = { ...this.props.loggedinUser }
         event.preventDefault()
         const { title, tags, difficulity, quests, img, reviews, allTimesPlayers, _id } = this.state
         if (!title || !tags || quests.length === 0) {
@@ -137,6 +139,8 @@ export class _QuizEdit extends Component {
 
             return;
         }
+        const miniUser = (user.username) ? { _id: user._id, fullName: user.username, imgUrl: user.profileImg } : { _id: utilService.makeId(), fullName: utilService.getRandomGuest(), imgUrl: "" }
+        console.log("onSubmit -> miniUser", miniUser)
         const quiz = {
             _id,
             reviews,
@@ -145,15 +149,13 @@ export class _QuizEdit extends Component {
             tags: tags.split(' '),
             difficulity: +difficulity,
             img: (img) ? img : 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600338177/soxwdqgc9djvlrlclkmk.png',
-            createdBy: {
-                _id: utils.makeId(),
-                fullName: "guest202",
-                imgUrl: "http://some-img"
-            },
+            createdBy: miniUser,
             quests,
         }
         if (!this.state._id) {
-            await quizService.add(quiz);
+            const newQuiz=await quizService.add(quiz);
+            console.log(user);
+            if(user._id) await userService.updateUserQuizzes(user,newQuiz._id)
             this.props.setNotification('success', `quiz added`)
         } else {
             quiz._id = this.state._id;
@@ -256,7 +258,7 @@ export class _QuizEdit extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        loggedinUser: state.userReducer.loggedinUser
     }
 }
 const mapDispatchToProps = {

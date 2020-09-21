@@ -14,12 +14,12 @@ export class EndGame extends Component {
     state = {
         review: {
             by: {
-                fullName: "user2",
-                imgUrl: "/img/img2.jpg",
-                _id: "u102"
+                fullName: this.props.currUser.fullName,
+                imgUrl: this.props.currUser.img,
+                _id: this.props.currUser.id
             },
             txt: '',
-            rate: 2,
+            rate: 5,
             id: 123321
 
         }
@@ -69,16 +69,16 @@ export class EndGame extends Component {
     }
     getFinalScore = () => {
         const timeStampInSecs = this.props.currTimeStamp / 1000
-        const { allAns } = this.props
+        const { allAns,score} = this.props
         function calaTimeBonus(secs) {
-            if (allAns < 6) return 0
+            if (allAns < 6 || score/10 < allAns) return 0
             if (secs <= 40) return 40
             if (secs <= 45) return 30
             if (secs <= 60) return 20
             if (secs <= 75) return 10
         }
         const gameTimeCalc = calaTimeBonus(timeStampInSecs)
-        const finalScore = this.props.rightAns * 10 + gameTimeCalc
+        const finalScore = score + gameTimeCalc
         return finalScore
     }
     getRate = (num) => {
