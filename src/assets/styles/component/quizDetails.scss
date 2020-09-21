@@ -9,20 +9,28 @@
             max-height: 370px;
             object-fit: fill;
         }
+        .rank-container{
+
+        }
         .rank-table {
             border: 1px solid black;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border-radius: 3px;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: space-between;
             height: 100%;
             padding: 0 15px;
             .header {
                 display: flex;
                 justify-content: space-around;
                 text-decoration: underline;
+                margin-bottom: 10px;
             }
             .table-line {
-                border-bottom: 2px solid $clr2;
+                // border-bottom: 2px solid $clr2;
+                height: 5vh;
+                text-decoration: underline;
+                text-decoration-color: $clr2;
             }
         }
     }
@@ -39,8 +47,14 @@
             }
         }
         .quiz-info {
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
+            .title{
+                font-size: 2.5rem;
+                display: flex;
+                flex-direction: column;
+            }
             .quiz-length {
                 font-size: 0.9rem;
             }
@@ -51,6 +65,7 @@
         }
     }
     .review-stats {
+        margin-top: 55px;
         .reviews-title {
             text-align: center;
             border-bottom: 3px solid $clr2;
@@ -93,9 +108,7 @@
                 align-items: center;
 
                 .title{
-                    font-size: 2rem;
-                    display: flex;
-                    flex-direction: column;
+
                     align-items: center;
                 }
 
