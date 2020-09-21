@@ -35,7 +35,7 @@ export function Footer({ loggedInUser }) {
                
             </div>
             <p className='flex align-center'><CopyrightIcon/> <span>Tal Lahyani Nadav Samuel Or Damari</span>  </p>
-           <Timer/>
+           {/* <Timer/> */}
         </footer>
 
     )

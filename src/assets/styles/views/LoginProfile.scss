@@ -6,6 +6,18 @@
         cursor: pointer;
     }
     .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+                div{
+                    width: 100%;
+                    margin-bottom: 4px;
+            }
+        }
     }
     .profile-container {
         .profile-header {
@@ -39,52 +51,86 @@
         }
     }
     .signup-container{
-        img{
-            max-width: 300px;
-            position: absolute;
-            top: 260px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .register-img{
+            max-width: 200px;
+            max-height: 250px;
+            margin-bottom: 10px;
+            position: relative;
+            left: 25%;
         }
+
         label{
             display: flex;
             justify-content: center;
         }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+                div{
+                    width: 100%;
+                    margin-bottom: 4px;
+            }
+            .profile-uploader{
+                width: 100%;
+                margin-bottom: 5px;
+                text-align: center;
+                padding: 5px;
+                img{
+                    width: 230px;
+                }
+            }
+
+        }
     }
 }
 @media (max-width: 770px) {
-    .signup-container {
-        form {
-            display: flex;
-            flex-direction: column;
+    .login-profile-container{
+        .MuiOutlinedInput-input{
+            padding: 18.5px 0;
+            padding-left: 3%;
+            width: 97%;
+        }
+        .signup-container {
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                div {
+                    display: inline-grid;
+                    margin-top: 5px;
+                }
+                .profile-uploader {
+                    justify-content: center;
+ 
+                }
+                // .register-img {
+                //     width: 300px;
+                //     margin-bottom: 10px;
+                //     position: inherit;
+                // }
+                label {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    
+        .login-container {
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
             div {
                 display: inline-grid;
-                margin-top: 5px;
-            }
-            .profile-uploader {
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                margin: 10px 0;
-            }
-            .register-img {
-                width: 300px;
-                margin-bottom: 10px;
-                position: inherit;
-            }
-            label {
-                display: flex;
-                justify-content: center;
+                margin-bottom: 5px;
             }
         }
+
     }
 
-    .login-container {
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        div {
-            display: inline-grid;
-            margin-bottom: 5px;
-        }
-    }
 }

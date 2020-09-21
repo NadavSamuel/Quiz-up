@@ -10,12 +10,12 @@ import { ProgressBar } from '../cmps/ProgressBar'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Howl, Howler } from 'howler';
+import { Progress } from '../cmps/Progress'
 
 
 
 class _GameOn extends Component {
     state = {
-
         currQuestionIdx: 0,
         answerFeedback: null,
         correctAnsIdx: null,
@@ -26,7 +26,6 @@ class _GameOn extends Component {
         window.scrollTo(0, 74)
         this.getRightAnswerIdx(0)
     }
-
 
 
     getRightAnswerIdx = idx => {
@@ -52,42 +51,6 @@ class _GameOn extends Component {
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
-    }
-
-
-
-    playSound = (str) => {
-        if (str === 'true') {
-            var sound = new Howl({
-                src: ['./sounds/correct1.wav'],
-            });
-            this.setState({ didSoundPlay: true })
-        }
-        else if (str === 'false') {
-            var sound = new Howl({
-                src: ['./sounds/wrong.mp3'],
-            });
-            this.setState({ didSoundPlay: true },() =>{
-                sound.play();
-            })
-            return
-
-        }
-        else if (str === 'bg')
-            var sound = new Howl({
-                src: ['./sounds/bg.wav'],
-                autoplay: true,
-                loop: true,
-                volume: 0.2,
-            });
-
-
-        else
-            var sound = new Howl({
-                src: ['./sounds/end game.wav'],
-            });
-
-        sound.play();
     }
 
     render() {
@@ -119,9 +82,9 @@ class _GameOn extends Component {
                 <div className="game-top">
                     <h2 className="score">{this.props.score}</h2>
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
-                    <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
+                    {/* <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3> */}
+                    <Progress  value={this.props.currTimeStamp/1000} max={15}/>
                     <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-
                     <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
                     <ProgressBar completed={(currQuestionIdx / questions.length) * 100} />
                     <div className="timer-wrapper">
@@ -133,8 +96,9 @@ class _GameOn extends Component {
                     answerFeedback={this.state.answerFeedback}
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
-                {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx === this.state.correctAnsIdx) && this.playSound('true')}
-                {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx !== this.state.correctAnsIdx) && this.playSound('false')}
+
+                {/* {this.state.chosenAnsIdx && !this.state.didSoundPlay && this.playSound()} */}
+                {/* {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx !== this.state.correctAnsIdx) && this.playSound('false')} */}
             </main>
         )
     }

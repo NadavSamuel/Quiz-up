@@ -14,13 +14,13 @@ export class EndGame extends Component {
     state = {
         review: {
             by: {
-                fullName: this.props.currUser.fullName,
-                imgUrl: this.props.currUser.img,
-                _id: this.props.currUser.id
+                fullName: '',
+                imgUrl: '',
+                _id: ''
             },
             txt: '',
             rate: 5,
-            id: 123321
+            id: utilService.makeId()
 
         }
         , isReviewSent: false,
@@ -28,12 +28,22 @@ export class EndGame extends Component {
     }
     componentDidMount() {
         this.updateAllTimePlayers()
+        this.setReviewComposer()
+    }
+
+    setReviewComposer = ()=>{
+        this.setState({review:{...this.state.review,by: {
+            fullName: this.props.currUser.username,
+            imgUrl: this.props.currUser.img,
+            _id: this.props.currUser.id
+        }}})
     }
     handleReviewChange = ({ target }) => {
         const { name, value } = target
         this.setState({ ...this.state, review: { ...this.state.review, txt: value } })
     }
     updateAllTimePlayers = () => {
+        // debugger
         const currQuiz = this.props.quiz
         const currUser =  this.props.currUser
         const currUserMiniObject = {
@@ -43,6 +53,7 @@ export class EndGame extends Component {
             score: this.getFinalScore(),
             gameSessionId:this.props.gameSessionId
         }
+        if(!currUserMiniObject.score) return
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
         const bestPlayers = utilService.getBestUsers(currQuiz)
@@ -50,13 +61,14 @@ export class EndGame extends Component {
         if(playerPositionInTable !== -1) this.setState({idxInRankTable:playerPositionInTable+1},()=>{
             // console.log('playerPositionInTable',playerPositionInTable)
             // console.log('allTimesPlayers', currQuiz.allTimesPlayers)
-            this.forceUpdate()
+            // this.forceUpdate()
         })
  
         // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
         this.forceUpdate()
     }
     onSubmitReview = ev => {
+        debugger
         ev.preventDefault()
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
@@ -139,10 +151,12 @@ export class EndGame extends Component {
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1>Wow! you scored {this.getFinalScore()}</h1>
-                    <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br /> you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3>
+                    <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br />
+                     {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
+                     </h3>
                     <StyleRoot>
                        { this.state.idxInRankTable && <div className="game-records-break mt30"> 
-                        <h2 style={styles.tada}>Congratulations! you are {getRankPlaceGood(this.state.idxInRankTable) } place in the {category} category! </h2>
+                        <h2 style={styles.tada}>Congratulations! you are {getRankPlaceGood(this.state.idxInRankTable) } place in the "{quiz.title}" quiz! </h2>
                         </div>}
                     </StyleRoot>
                     <div className="mt30">

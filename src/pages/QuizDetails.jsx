@@ -63,8 +63,9 @@ export class _QuizDetails extends Component {
                     </div></div>
                 <div className="quiz-details-body">
                     <div className="quiz-info">
-                        <h1 className="title">{quiz.title} {<span className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</span>}</h1>
+                        <h1 className="title">{quiz.title} </h1>
                         <span className="creator">
+                            
                             {this.getDifficulity()} -
                             By {quiz.createdBy.fullName} - 
                             {quiz.tags[0].length >= 1 && <span>{
@@ -75,9 +76,8 @@ export class _QuizDetails extends Component {
 
                         </span>
 
-                        {avgRate > 0 && <h4>Rated {avgRate}({quiz.reviews.length})</h4>}
-
-                        {quiz.allTimesPlayers.length > 0 && <h5 className="played-times">Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`} </h5>}
+                        {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 &&<span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
+                        {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
                        
 
                     </div>
