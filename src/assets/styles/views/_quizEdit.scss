@@ -1,19 +1,13 @@
 .quiz-edit {
-
     .quiz-inputs-form {
         align-items: center;
         flex-direction: column;
         gap: 10px;
-
-
-
-
     }
 
     .quiz-inputs {
         margin-left: 300px;
     }
-
 
     text-align: center;
 
@@ -25,7 +19,7 @@
         width: 350px;
         max-height: 600px;
         overflow-y: auto;
-        border: 1px solid rgba(0, 0, 0, 0.1)
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .quest-list-preview::-webkit-scrollbar-track {
@@ -34,7 +28,7 @@
 
     .quest-list-preview::-webkit-scrollbar {
         width: 6px;
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
     }
 
     .quest-list-preview::-webkit-scrollbar-thumb {
@@ -46,6 +40,11 @@
         margin-top: 10px;
         width: 300px;
         height: 300px;
+    }
+    .quiz-img {
+        object-fit: cover;
+        max-width: 300px;
+        max-height: 300px;
     }
 
     .quest-answers {
@@ -97,22 +96,14 @@
             border-radius: 50%;
             background-color: $clr3;
             justify-content: center;
-
         }
     }
-
-
-
-
 }
 
-@media(max-width: 575px) {
+@media (max-width: 575px) {
     .quiz-edit {
-
         .edit-layout {
             flex-direction: column;
-
-
 
             .quest-list-preview {
                 width: 100%;
@@ -127,25 +118,18 @@
                 }
 
                 .quest-list {
-                    display: flex
+                    display: flex;
                 }
             }
-
         }
 
         .quiz-inputs {
             width: 100%;
             margin-left: 0;
         }
-
     }
-
-
-
 }
 
 .quest-list {
     margin-top: 10px;
-
-
 }

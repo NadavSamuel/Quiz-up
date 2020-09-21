@@ -31,7 +31,7 @@ export class _Navbar extends React.Component {
                         <Link to="/"><li>Home</li></Link>
                         <Link to="/browse"><li>Browse</li></Link>
                         <Link to="/dashboard"><li>Dashboard</li></Link>
-                        <Link to="/edit"><li>Add new Quiz</li></Link>
+                        <Link to="/edit"><li>Create Quiz</li></Link>
                     </ul>
                 </div>
 
@@ -40,7 +40,7 @@ export class _Navbar extends React.Component {
                     <Link to="/"><li>Home</li></Link>
                     <Link onClick={() => this.closeMenu()} to="/browse"><li>Browse</li></Link>
                     <Link to="/dashboard"><li>Dashboard</li></Link>
-                    <Link onClick={() => this.closeMenu()} to="/edit"><li>Add new Quiz</li></Link>
+                    <Link onClick={() => this.closeMenu()} to="/edit"><li>Create Quiz</li></Link>
                 </ul>
 
                 <div>

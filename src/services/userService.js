@@ -7,13 +7,7 @@ var gUsers = [
         "password": "1234",
         "username": "tal",
         "isAdmin": false,
-        "quizzes": [
-            {
-                "quizId": "1",
-                "topic": "History of bla bla",
-                "img": "/bamia.jpg"
-            }
-        ],
+        "quizzes": [],
         "friends": [
             {
                 "_id": "u105",
