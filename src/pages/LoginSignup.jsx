@@ -109,7 +109,7 @@ export class _LoginSignup extends Component {
 
 
 
-                        <Button variant="contained" color="primary" onClick={this.onSignup}>Submit</Button>
+                        <Button variant="contained" color="primary" type="submit" onClick={this.onSignup}>Submit</Button>
 
                     </form>
                 </div>}
@@ -122,7 +122,7 @@ export class _LoginSignup extends Component {
                             <TextField autoFocus onChange={this.handleChangeLog} name="username" autoComplete="username" id="outlined-basic username" label="Username" variant="outlined" /></div>
                         <div className="password-input">
                             <TextField onChange={this.handleChangeLog} type="password" name="password" autoComplete="current-password" id="outlined-basic password" label="Password" variant="outlined" /></div>
-                        <Button variant="contained" color="primary" onClick={this.onLogin}>Submit</Button>
+                        <Button variant="contained" color="primary" type="submit" onClick={this.onLogin}>Submit</Button>
                     </form>
 
                 </div>}
