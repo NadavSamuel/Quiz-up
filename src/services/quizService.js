@@ -1096,9 +1096,8 @@ window.quizService = quizService;
 
 
 async function getRandomQuiz() {
-    const res = await axios.get(`https://opentdb.com/api.php?amount=5&category=9&type=multiple`)
+    const res = await axios.get(`https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple`)
     const quizs = res.data.results
-    console.log(quizs);
     const quizToReturn = {
         title: quizs[0].category,
         quests: quizs.map(quest => {
@@ -1111,7 +1110,7 @@ async function getRandomQuiz() {
                 ],
                 txt: quest.question,
                 displayedCount: 0,
-                id:'asdasd',
+                id:_makeId(),
                 img:'',
                 style:'solid'
         }
@@ -1220,3 +1219,12 @@ async function remove(quizId) {
 //         return axios.post(BASE_URL, quiz).then(resolveData)
 //     }
 // }
+
+function _makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
+}
