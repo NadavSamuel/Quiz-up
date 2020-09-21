@@ -50,7 +50,7 @@ export class EndGame extends Component {
             fullName:currUser.username,
             id:currUser._id,
             img:currUser.img,
-            score: this.getFinalScore(),
+            score: this.props.score,
             gameSessionId:this.props.gameSessionId
         }
         if(!currUserMiniObject.score) return
@@ -150,7 +150,7 @@ export class EndGame extends Component {
 
         return (
             <main className="endgame-main" >
-                <div className="endgame-top"> <h1>Wow! you scored {this.getFinalScore()}</h1>
+                <div className="endgame-top"> <h1>Wow! you scored {this.props.score}</h1>
                     <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br />
                      {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
                      </h3>

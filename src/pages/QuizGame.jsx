@@ -82,7 +82,13 @@ class _QuizGame extends Component {
                 })
             } else {
                 
-                if (this.state.score === 0) return
+                if (this.state.score-5 === 0) return
+                if (this.state.score-5 < 0) {
+                    this.setState({ score: 0})
+                    return
+                }
+                
+                    
                 this.setState({ score: this.state.score - 5,}, () => { console.log('state in main ', this.state) })
             }
         })
