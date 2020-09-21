@@ -140,7 +140,6 @@ export class _QuizEdit extends Component {
             return;
         }
         const miniUser = (user.username) ? { _id: user._id, fullName: user.username, imgUrl: user.profileImg } : { _id: utilService.makeId(), fullName: utilService.getRandomGuest(), imgUrl: "" }
-        console.log("onSubmit -> miniUser", miniUser)
         const quiz = {
             _id,
             reviews,

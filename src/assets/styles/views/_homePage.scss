@@ -8,6 +8,10 @@
         position: absolute;
         top: 350px;
         font-size: rem(40px);
+        @media(max-width:550px){
+            text-align: center;
+            font-size: rem(30px);
+        }
     }
 
     .tag-title{
