@@ -16,8 +16,9 @@ class _QuizGame extends Component {
         gameOn: true,
         score: 0,
         rightAns: 0,
-        currTimeStamp: 0,
+        currTimeStamp: 15000,
         gameSessionId: utilService.makeId(),
+        wasQuestionAnswerd:false,
         isQuizReady: false
 
     }
@@ -34,11 +35,16 @@ class _QuizGame extends Component {
             currUser: this.props.loggedinUser || { fullName: `guest ${utilService.makeId()}`, id: utilService.makeId() }
         }, () => { this.setTimer() })
     }
+    resetTimer = () =>{
+        this.setState({currTimeStamp:15000,wasQuestionAnswerd:false},() =>{
+            this.setTimer()
+        })
+    }
 
     setTimer = () => {
         const timer = setInterval(() => {
             this.updateTime()
-            if (!this.state.gameOn) clearInterval(timer)
+            if (!this.state.gameOn || this.state.wasQuestionAnswerd) clearInterval(timer)
         }, 1000)
     }
 
@@ -53,26 +59,32 @@ class _QuizGame extends Component {
         })
     }
     onAns = value => {
-        if (value === "true") {
-            this.setState({ score: this.state.score + 10, rightAns: this.state.rightAns + 1 }, () => {
-                // console.log('props ', this.props)
-                console.log('state in main ', this.state)
-            })
-        } else {
-            if (this.state.score === 0) return
-            this.setState({ score: this.state.score - 5 }, () => { console.log('state in main ', this.state) })
+        this.setState({wasQuestionAnswerd:true},()=>{
+            if (value === "true") {
+                // debugger
+                let reward
+                if(this.state.currTimeStamp <=15000 && this.state.currTimeStamp >=10000) reward = 10
+                else reward = 10 - (10 -this.state.currTimeStamp /1000)
+                this.setState({ score: this.state.score + reward, rightAns: this.state.rightAns + 1,wasQuestionAnswerd:true }, () => {
+                    // console.log('props ', this.props)
+                    // console.log('state in main ', this.state)
+                })
+            } else {
+                
+                if (this.state.score === 0) return
+                this.setState({ score: this.state.score - 5,}, () => { console.log('state in main ', this.state) })
+            }
+        })
 
-
-        }
     }
-    answerQuestion = answerResult => {
+    // answerQuestion = answerResult => {
 
-        this.setState({ answerFeedback: answerResult })
-        setTimeout(() => {
+    //     this.setState({ answerFeedback: answerResult })
+    //     setTimeout(() => {
 
-            this.setState({ currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null })
-        }, 1500)
-    }
+    //         this.setState({ currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null })
+    //     }, 1500)
+    // }
     onEndGame = () => {
         this.setState({ gameOn: false })
     }
@@ -80,7 +92,9 @@ class _QuizGame extends Component {
 
     /////////////////////// Timer funcs
     updateTime = () => {
-        if (this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp + 1000 })
+        if (this.state.currTimeStamp === 0 ) return
+        console.log('currTimeStamp ',this.state.currTimeStamp)
+        if (this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp - 1000 })
         // return true
     }
     ///////////////////////
@@ -99,7 +113,7 @@ class _QuizGame extends Component {
         if (!questions) return <Loading/>
         return (
             <main>
-                {this.state.gameOn && this.state.isQuizReady ? <GameOn isQuizReady={this.state.isQuizReady} score={this.state.score} currTimeStamp={this.state.currTimeStamp} onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
+                {this.state.gameOn && this.state.isQuizReady ? <GameOn resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady} score={this.state.score} currTimeStamp={this.state.currTimeStamp} onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
                     <EndGame rightAns={this.state.rightAns} gameSessionId={this.state.gameSessionId} currUser={this.state.currUser}
                         getInitialState={this.getInitialState} quiz={this.state.quiz}
                         currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers}

@@ -46,6 +46,7 @@ class _GameOn extends Component {
                 this.props.onEndGame()
                 return
             }
+            this.props.resetTimer()
             this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
                 // console.log('did sound play?, ',this.state.didSoundPlay)
                 this.getRightAnswerIdx(nextQuestionIdx)
