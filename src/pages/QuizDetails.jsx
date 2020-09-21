@@ -15,6 +15,8 @@ export class _QuizDetails extends Component {
     async componentDidMount() {
         const quiz = await quizService.getById(this.props.match.params.quizId)
         this.setState({ quiz })
+        window.scrollTo(0, 0)
+
     }
 
 

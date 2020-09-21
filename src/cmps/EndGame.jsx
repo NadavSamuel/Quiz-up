@@ -91,10 +91,10 @@ export class EndGame extends Component {
             fiveMinusArr.push(i)
 
         }
-        return <div className='flex justify-around cursor-pointer'>
+        return <div className='flex justify-around'>
 
             {arr.map((i, idx) =>
-                <div key={idx} >
+                <div key={idx} className="cursor-pointer" >
                     <StarIcon onClick={() => { this.changeRate(idx + 1) }} />
                     <i onClick={() => { this.changeRate(idx + 1) }} className="fas fa-star"></i>
                 </div>
