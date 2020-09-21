@@ -31,13 +31,13 @@ export class _QuizEdit extends Component {
             { txt: "" },
             { txt: "" },
             { txt: "" }
-        ]
+        ],
+        difficulity: '1'
 
     }
 
     componentDidMount() {
         if (this.props.match.params.quizId) {
-            console.log(this.props.match.params.quizId);
             this.setQuiz();
         }
     }
@@ -132,6 +132,7 @@ export class _QuizEdit extends Component {
         const user = { ...this.props.loggedinUser }
         event.preventDefault()
         const { title, tags, difficulity, quests, img, reviews, allTimesPlayers, _id } = this.state
+        console.log(img);
         if (!title || !tags || quests.length === 0) {
             if (!title) this.props.setNotification('err', `Dont have a title`)
             if (!tags) this.props.setNotification('err', `Dont have a tags`)
@@ -152,9 +153,9 @@ export class _QuizEdit extends Component {
             quests,
         }
         if (!this.state._id) {
-            const newQuiz=await quizService.add(quiz);
+            const newQuiz = await quizService.add(quiz);
             console.log(user);
-            if(user._id) await userService.updateUserQuizzes(user,newQuiz._id)
+            if (user._id) await userService.updateUserQuizzes(user, newQuiz._id)
             this.props.setNotification('success', `quiz added`)
         } else {
             quiz._id = this.state._id;
@@ -180,7 +181,7 @@ export class _QuizEdit extends Component {
         console.log(quest);
         const { id, txt, style, img, answers } = quest
         console.log(answers);
-        this.setState({ id, currQuest: txt, style, img, answers: [{ txt: answers[0].txt }, { txt: answers[1].txt }, { txt: answers[2].txt }, { txt: answers[3].txt }] })
+        this.setState({ id, currQuest: txt, style, questImg:img, answers: [{ txt: answers[0].txt }, { txt: answers[1].txt }, { txt: answers[2].txt }, { txt: answers[3].txt }] })
     }
 
 
@@ -200,9 +201,15 @@ export class _QuizEdit extends Component {
         this.setState({ quests, title })
     }
 
-
+    getDifficulty = () => {
+        const { difficulity } = this.state
+        if (difficulity === '1') return 'Easy'
+        else if (difficulity === '2') return 'Medium'
+        else if (difficulity === '3') return 'Hard'
+    }
 
     render() {
+        console.log(this.state);
         return (
             <div className="full quiz-edit">
                 <button onClick={this.setRandomQuiz}>Generate random quiz</button>
@@ -218,11 +225,11 @@ export class _QuizEdit extends Component {
                             onChange={this.uploadImg} />
                         <form className='quest-answers' onSubmit={this.onSubmitAns}>
 
-                            <TextField className='quest' label="Quest" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
+                            <TextField className='quest' label="Question" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
                             <TextField label="Correct answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
-                            <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
-                            <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
-                            <TextField label="Wrong answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
+                            <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
+                            <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
+                            <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
                             <div className='edit-btn flex align-center justify-center' onClick={this.onSubmitAns}>
                                 {/* <EditIcon /> */}
                                 <PlaylistAddIcon fontSize="large" />
@@ -237,11 +244,11 @@ export class _QuizEdit extends Component {
                         <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
                         <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
                         <div>
-                            <h3>difficulity:</h3>
+                            <h3> Difficulity: </h3>
                             <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
-                        </div>
+                        </div><span>{this.getDifficulty()}</span>
                         <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
-                            {this.state.img && <img src={this.state.img} alt="img" />}</label>
+                            {this.state.img && <img className="quiz-img" src={this.state.img} alt="img" />}</label>
                         <input hidden type="file" className="file-input" name="img" id="upload-file"
                             onChange={this.uploadImg} />
                         <PublishIcon fontSize="large" onClick={this.onSubmit} />

@@ -87,14 +87,19 @@ export class _LoginSignup extends Component {
                     <form className="signup-form mt10" onSubmit={this.onSignup}>
                         <div className="username-input">
 
-                            <TextField autoFocus onChange={this.handleChangeSign} name="username" id="outlined-basic" label="Username" variant="outlined" /></div>
+                            <TextField autoFocus onChange={this.handleChangeSign} autoComplete="username" name="username" id="outlined-basic" label="Username" variant="outlined" /></div>
                         <div className="password-input">
-                            <TextField type="password" onChange={this.handleChangeSign} name="password" id="outlined-basic" label="Password" variant="outlined" /></div>
+                            <TextField type="password" autoComplete="new-password" onChange={this.handleChangeSign} name="password" id="outlined-basic password" label="Password" variant="outlined" /></div>
 
                         <label className="upload-btn mt10" htmlFor="img-upload">
 
                             {!this.state.registerInfo.imgUrl && <div className="profile-uploader">
-                                Click to select Profile Image</div>}</label>
+                                Click to select Profile Image
+                                <img src="https://www.mini-anes-derivery.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" alt=""/>
+                                </div>}
+                                
+                                
+                                </label>
 
                         {this.state.registerInfo.imgUrl &&
                             <img className="register-img" src={this.state.registerInfo.imgUrl} alt="img" />}
@@ -114,9 +119,9 @@ export class _LoginSignup extends Component {
 
                     <form className="login-form mt10" onSubmit={this.onLogin}>
                         <div className="username-input">
-                            <TextField autoFocus onChange={this.handleChangeLog} name="username" id="outlined-basic" label="Username" variant="outlined" /></div>
+                            <TextField autoFocus onChange={this.handleChangeLog} name="username" autoComplete="username" id="outlined-basic username" label="Username" variant="outlined" /></div>
                         <div className="password-input">
-                            <TextField onChange={this.handleChangeLog} type="password" name="password" id="outlined-basic" label="Password" variant="outlined" /></div>
+                            <TextField onChange={this.handleChangeLog} type="password" name="password" autoComplete="current-password" id="outlined-basic password" label="Password" variant="outlined" /></div>
                         <Button variant="contained" color="primary" onClick={this.onLogin}>Submit</Button>
                     </form>
 

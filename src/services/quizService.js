@@ -22,7 +22,7 @@ var gQuizzes = [
         },
         "quests": [
             {
-                "id": "bkjbk1434324",
+                "id": "1kjbk1434324",
                 "txt": "Who was the israelian that won an Novel?",
                 "style": [
                     "solid",
@@ -55,7 +55,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bkjbk1434324",
+                "id": "2kjbk1434324",
                 "txt": "When does Independence Day fall?",
                 "style": [
                     "solid",
@@ -88,7 +88,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bkjbk1434324",
+                "id": "3kjbk1434324",
                 "txt": "What is the length of the presidency?",
                 "style": [
                     "solid",
@@ -121,7 +121,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bkjbk1434324",
+                "id": "4kjbk1434324",
                 "txt": "Who was the third president?",
                 "style": [
                     "solid",
@@ -154,7 +154,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bkjbk1434324",
+                "id": "5kjbk1434324",
                 "txt": "How many judges in the Supreme Court?",
                 "style": [
                     "solid",
@@ -187,7 +187,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bkjb11434324",
+                "id": "6kjb11434324",
                 "txt": "Which country helped build the reactor in Dimona?",
                 "style": [
                     "solid",
@@ -220,7 +220,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bqjb11434324",
+                "id": "7qjb11434324",
                 "txt": "Whose image appears on a NIS 50 bill?",
                 "style": [
                     "solid",
@@ -253,7 +253,7 @@ var gQuizzes = [
 
             },
             {
-                "id": "bqjb11434324",
+                "id": "8qjb11434324",
                 "txt": "Whose image appears on a NIS 50 bill?",
                 "style": [
                     "solid",
@@ -1076,24 +1076,6 @@ export const quizService = {
     // save
 }
 window.quizService = quizService;
-
-
-// title: '',
-//         quests: [],
-//         style: 'solid',
-//         img: '',
-//         tags: '',
-//         reviews: [],
-//         allTimesPlayers: [],
-//         difficulity: 1,
-//         questImg: '',
-//         currQuest: '',
-//         answers: [
-//             { txt: "" },
-//             { txt: "" },
-//             { txt: "" },
-//             { txt: "" }
-
 
 async function getRandomQuiz() {
     const res = await axios.get(`https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple`)
