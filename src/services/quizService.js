@@ -1115,6 +1115,7 @@ async function getRandomQuiz() {
 async function getByTag(tag, filterBy) {
     try {
         var quizzes = await storageService.query('quiz', filterBy);
+        if(tag==='all')return quizzes
         if (quizzes) var quizzesToReturn = quizzes.filter(quiz => quiz.tags.includes(tag));
         return quizzesToReturn;
     } catch (err) {

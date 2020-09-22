@@ -3,51 +3,55 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
-import { BrowseTagPreview } from '../cmps/BrowseTagPreview'
+// import { BrowseTagPreview } from '../cmps/BrowseTagPreview'
 import { Loading } from '../cmps/Loading'
+import { TagPreview } from '../cmps/TagPreview'
 
 class _Browse extends Component {
 
     state = {
         quizzes: [],
-        tagCount: 0,
-        tags:[]
+        tags: []
     }
 
-    getTags= ()=>{
-        const tags = this.state.quizzes.reduce((acc,quiz)=>{
-            let tags=quiz.tags
+    getTags = () => {
+        const tags = this.state.quizzes.reduce((acc, quiz) => {
+            let tags = quiz.tags
             tags.forEach(tag => {
-                if( !acc.includes(tag))acc.push(tag)
+                if (!acc.includes(tag)) acc.push(tag)
             });
             return acc
-        },[])
-        this.setState({tags});
+        }, [])
+        console.log(tags);
+        this.setState({ tags });
     }
 
     componentDidMount() {
-       
+
         this.loadQuizzes();
     }
 
     loadQuizzes = async () => {
         const quizzes = await quizService.query();
-        this.setState({ quizzes },()=>this.getTags())
+        this.setState({ quizzes }, () => this.getTags())
     }
 
-    getQuizzesByTag= async(tag)=>{
-        const quizzes= await quizService.getByTag(tag)
+    getQuizzesByTag = async (tag) => {
+        const quizzes = await quizService.getByTag(tag)
         console.log(quizzes);
         return quizzes
     }
 
     render() {
         const quizzes = this.state.quizzes
-        const tags=this.state.tags
-        if (!quizzes) return <Loading/>
+        const tags = this.state.tags
+        if (!quizzes) return <Loading />
         return (
             <div className="full browse">
-                {tags && tags.map((tag,idx)=><BrowseTagPreview key={idx} tag={tag}/>)}
+                {tags && tags.map((tag, idx) => 
+                    <TagPreview tag={tag} />
+                
+                    )}
             </div>
         )
     }

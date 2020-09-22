@@ -25,14 +25,14 @@ class _TagQuizzes extends Component {
 
     componentDidMount() {
         const tag = this.props.match.params.tag
-        console.log("componentDidMount -> tag", tag)
-        this.loadQuizzes(tag);
+        const sort = this.props.match.params.sort
+        this.loadQuizzes(tag,sort);
     }
 
 
-    loadQuizzes = async (tag) => {
+    loadQuizzes = async (tag,sort) => {
         const quizzes = await quizService.getByTag(tag, this.state.filterBy);
-        this.setState({ quizzes })
+        this.setState({ quizzes },()=>{if(sort) this.setSortBy(sort)})
     }
 
     getFilterBy = (filterBy) => {
@@ -57,17 +57,17 @@ class _TagQuizzes extends Component {
             })
         } else if (sortBy === 'rate') {
             quizzes = quizzes.sort((quiz1, quiz2) => {
-                const rate1= this.getRate(quiz1)
-                const rate2= this.getRate(quiz2)
-                if(isNaN(rate1) && isNaN(rate2|| rate1===rate2))return 0
-                if(isNaN(rate1) || rate1<rate2) return -1
-                if(isNaN(rate2) || rate1>rate2)return 1
+                const rate1= +this.getRate(quiz1)
+                const rate2= +this.getRate(quiz2)
+                console.log("setSortBy -> rate1-rate2", rate1,rate2)
+                return rate2-rate1
             })
         }
         this.setState({ quizzes, sortBy })
     }
 
     getRate(quiz) {
+        if(quiz.reviews.length===0) return 0
         const sum = quiz.reviews.reduce((acc, review) => {
             return acc + review.rate
         }, 0)

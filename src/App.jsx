@@ -26,7 +26,7 @@ function App() {
           <Route component={QuizDetails} path='/quiz/:quizId' />
           <Route component={Browse} path='/browse' />
           <Route component={Dashboard} path='/dashboard' />
-          <Route component={TagQuizzes} path='/:tag' />
+          <Route component={TagQuizzes} path='/list/:tag/:sort?' />
           <Route component={QuizApp} path='/' />
         </Switch>
       </div>
