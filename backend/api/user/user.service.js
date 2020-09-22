@@ -32,11 +32,11 @@ async function add({ username, password, imgUrl }) {
         throw err;
     }
 }
-async function (user) {4
+async function update(user) {4
     console.log('USER:',user);
     const collection = await dbService.getCollection('user')
-    user._id = ObjectId(user._id);
     console.log('USER:',user);
+    user._id = ObjectId(user._id);
 
     try {
         await collection.replaceOne({ "_id": user._id }, { $set: user })
