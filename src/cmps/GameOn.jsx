@@ -60,20 +60,20 @@ class _GameOn extends Component {
         let currQuestion = questions[currQuestionIdx]
         const answerTimeLimit = 3
         // console.log("render -> quizzes", quizzes)
-        const BorderLinearProgress = withStyles((theme) => ({
-            root: {
-                height: 10,
-                borderRadius: 5,
-            },
-            colorPrimary: {
-                backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
-            },
-            bar: {
-                borderRadius: 5,
-                backgroundColor: '#07689f',
+        // const BorderLinearProgress = withStyles((theme) => ({
+        //     root: {
+        //         height: 10,
+        //         borderRadius: 5,
+        //     },
+        //     colorPrimary: {
+        //         backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+        //     },
+        //     bar: {
+        //         borderRadius: 5,
+        //         backgroundColor: '#07689f',
 
-            },
-        }))(LinearProgress);
+        //     },
+        // }))(LinearProgress);
 
 
         if (!questions) return <div>Loading....</div>
@@ -85,7 +85,7 @@ class _GameOn extends Component {
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
                     {/* <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3> */}
                     <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-                    <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
+                    {/* <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} /> */}
                     {/* <ProgressBar completed={(currQuestionIdx / questions.length) * 100} /> */}
                     <div className="timer-wrapper">
                     </div>

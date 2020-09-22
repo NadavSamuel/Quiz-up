@@ -66,7 +66,7 @@ export class _QuizDetails extends Component {
                         <h1 className="title">{quiz.title} </h1>
 
                         <h5 className="creator">
-                            
+
                             {this.getDifficulity()} -
                             By {quiz.createdBy.fullName} -
                             {quiz.tags[0].length >= 1 && <span>{
@@ -87,7 +87,7 @@ export class _QuizDetails extends Component {
                         } variant="contained" color="primary">Play Single </Button></Link>
                         {/* <Button endIcon={<PeopleAltOutlined />
                         } disabled variant="contained" color="primary">Play Online </Button> */}
-                        </div></div>
+                    </div></div>
                 <div className="review-stats">
                     <h2 className="reviews-title">Reviews for this quiz:</h2>
                     {<ReviewsList reviews={quiz.reviews} />}
