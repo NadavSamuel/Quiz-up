@@ -11,6 +11,7 @@ export class QuizPreview extends Component {
     }
     async componentDidMount() {
         const quiz = await quizService.getById(this.props.quizId)
+        console.log(quiz);
         this.setState({ quiz })
     }
     getRate = () => {

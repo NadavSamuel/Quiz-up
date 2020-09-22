@@ -11,15 +11,15 @@ module.exports = {
 }
 async function getQuizzes(req, res) {
     try {
-        console.log('req query is',req.query);
         const quizzes = await quizService.query(req.query)
         res.send(quizzes)
     } catch (err) {
-        console.log('got err:',err);
+        console.log('got err:', err);
         logger.error('Cannot get Quizzes:', err);
         res.status(500).send({ error: 'cannot get quizzes..@@' })
 
     }
+
 }
 async function getQuiz(req, res) {
     const quiz = await quizService.getById(req.params.id)

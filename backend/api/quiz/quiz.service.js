@@ -10,30 +10,16 @@ module.exports = {
 
 
 async function query(filterBy = {}) {
-    const criteria = {}// _buildCriteria(filterBy)
+    const criteria =  _buildCriteria(filterBy)
     const collection = await dbService.getCollection('quiz')
     try {
         const quizzes = await collection.find(criteria).toArray();
-        // users.forEach(user => delete user.password);
-        console.log('got quizzes:',quizzes);
         return quizzes
     } catch (err) {
         console.log('ERROR: cannot find quizzes')
         throw err;
     }
 
-
-    function _buildCriteria(filterBy) {
-        const criteria = {};
-        if (filterBy.filterText) {
-            criteria.text = filterBy.filterText
-        }
-        if (filterBy.sortBy) {
-            if (filterBy.sortBy === 'price') criteria.price = { $gte: +filterBy.sortBy }
-        }
-        if (filterBy.inStock) criteria.inStock = filterBy.inStock
-        return criteria;
-    }
 
 }
 async function getById(quizId) {
@@ -57,7 +43,6 @@ async function remove(quizId) {
         throw err;
     }
 }
-
 async function update(quiz) {
     console.log('quiz IN SERVICE', quiz);
     const collection = await dbService.getCollection('quiz')
@@ -71,7 +56,6 @@ async function update(quiz) {
         throw err;
     }
 }
-
 async function add(quiz) {
     const collection = await dbService.getCollection('quiz')
     try {
@@ -81,4 +65,12 @@ async function add(quiz) {
         console.log(`ERROR: cannot insert quiz: ${quiz}`)
         throw err;
     }
+}
+function _buildCriteria(filterBy) {
+    const criteria = {};
+    if (filterBy.title) {
+        criteria.title = new RegExp(filterBy.title, 'ig')
+    }
+
+    return criteria;
 }

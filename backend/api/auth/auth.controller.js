@@ -22,7 +22,7 @@ async function signup(req, res) {
         var { username, password, imgUrl } = req.body
         if (!imgUrl) imgUrl = 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg'
         logger.debug(username + ", " + password + ', ' + imgUrl)
-       
+
         const account = await authService.signup(username, password, imgUrl)
         logger.debug(`auth.route - new account created: ` + JSON.stringify(account))
         const user = await authService.login(username, password)

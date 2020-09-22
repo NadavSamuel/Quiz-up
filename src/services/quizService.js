@@ -1,7 +1,7 @@
 import axios from 'axios'
 import storageService from './asyncStorageService'
 import httpService from './httpService'
-const BASE_URL = '/api/quiz'
+const BASE_URL = 'quiz'
 
 const resolveData = res => res.data
 
@@ -1093,10 +1093,10 @@ async function getRandomQuiz() {
                 ],
                 txt: quest.question,
                 displayedCount: 0,
-                id:_makeId(),
-                img:'',
-                style:'solid'
-        }
+                id: _makeId(),
+                img: '',
+                style: 'solid'
+            }
         }),
         // displayedCount: 0,
         style: 'solid',
@@ -1111,12 +1111,17 @@ async function getRandomQuiz() {
     return quizToReturn
 }
 
-
-
 async function getByTag(tag, filterBy) {
+    // eturn axios.get(`${BASE_URL}`,{params: filterBy})
+    console.log('filterBy', filterBy);
+    var queryStr = (!filterBy.title)? '' : `?title=${filterBy.title}`
+
     try {
-        var quizzes = await storageService.query('quiz', filterBy);
-        if(tag==='all')return quizzes
+        var quizzes = await httpService.get(`${BASE_URL}${queryStr}`, { params: filterBy });
+
+
+
+        if (tag === 'all') return quizzes
         if (quizzes) var quizzesToReturn = quizzes.filter(quiz => quiz.tags.includes(tag));
         return quizzesToReturn;
     } catch (err) {
@@ -1133,6 +1138,7 @@ async function getImage(keyword) {
 
 
 async function query() {
+
     try {
         var quizzes = await httpService.get(`${BASE_URL}`,);
         if (quizzes.length === 0) {
@@ -1149,8 +1155,8 @@ async function query() {
 
 async function add(quiz) {
     try {
-        var newQuiz = await storageService.post('quiz', quiz);
-        
+        var newQuiz = await httpService.post('quiz', quiz);
+
         return newQuiz
     } catch (err) {
         console.log(err);
@@ -1159,17 +1165,15 @@ async function add(quiz) {
 
 async function update(quiz) {
     try {
-        await storageService.put('quiz', quiz);
+        await httpService.put(`quiz/${quiz._id}`, quiz);
     } catch (err) {
         console.log(err);
     }
 }
 
-
-
 async function getById(quizId) {
     try {
-        var quiz = await storageService.get('quiz', quizId);
+        var quiz = await httpService.get(`quiz/${quizId}`);
         return quiz
     } catch (err) {
         console.log(err);
@@ -1183,26 +1187,7 @@ async function remove(quizId) {
         console.log(err);
     }
 }
-// function query(filterBy = {}) {
-//     var queryParams = new URLSearchParams()
-//     if (filterBy.vendor) queryParams.set('q', filterBy.vendor)
-//     return axios.get(`${BASE_URL}?${queryParams}`)
-//         .then(resolveData)
-// }
 
-
-
-// function remove(quizId) {
-//     return axios.delete(`${BASE_URL}/${quizId}`)
-// }
-
-// function save(quiz) {
-//     if (quiz._id) {
-//         return axios.put(`${BASE_URL}/${quiz._id}`, quiz)
-//     } else {
-//         return axios.post(BASE_URL, quiz).then(resolveData)
-//     }
-// }
 
 function _makeId(length = 5) {
     var txt = '';

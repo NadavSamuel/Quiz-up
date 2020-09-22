@@ -37,6 +37,7 @@ export class _LoginSignup extends Component {
         this.setState({ registerInfo: { ...this.state.registerInfo, [name]: value } }, () => console.log(this.state.registerInfo))
     }
     onLogin = async ev => {
+        ev.preventDefault()
         if (!this.state.loginInfo.username || !this.state.loginInfo.password) return alert('Please enter username/password')
         await this.props.onLogin(this.state.loginInfo)
         console.log('user:', this.props.loggedInUser);
@@ -47,12 +48,15 @@ export class _LoginSignup extends Component {
 
     }
 }
-onSignup = () => {
+onSignup = (ev) => {
+    ev.preventDefault()
     if (!this.state.registerInfo.username || !this.state.registerInfo.password) return alert('Please enter username/password')
     if (!this.state.registerInfo.imgUrl) this.setState({ registerInfo: { ...this.state.registerInfo, imgUrl: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg' } }, async (ev) => {
         await this.props.onSignup(this.state.registerInfo)
-
     })
+    else{
+        this.props.onSignup(this.state.registerInfo)
+    }
 
 
 }

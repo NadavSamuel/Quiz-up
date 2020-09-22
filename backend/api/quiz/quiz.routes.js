@@ -7,8 +7,8 @@ const router = express.Router()
 // middleware that is specific to this router
 // router.use(requireAuth)
 
-router.get('/', getQuizzes)
 router.get('/:id', getQuiz)
+router.get('/', getQuizzes)
 // router.put('/:id', requireAuth, requireAdmin, updateQuiz)
 router.put('/:id', updateQuiz)
 // router.delete('/:id', requireAuth, requireAdmin, deleteQuiz)

@@ -1,4 +1,5 @@
-// import {httpService} from './httpService'
+import httpService from './httpService'
+
 
 var gUsers = [
     {
@@ -73,13 +74,14 @@ export const userService = {
     // update
 }
 
-function login({ username, password }) {
-    const userToLog = gUsers.find(user => user.username === username && user.password === password)
-    return Promise.resolve(_handleLogin(userToLog))
-}
+// function login({ username, password }) {
+//     const userToLog = gUsers.find(user => user.username === username && user.password === password)
 
-function logout() {
-    // await httpService.post('auth/logout');
+//     return Promise.resolve(_handleLogin(userToLog))
+// }
+
+async function logout() {
+    await httpService.post('auth/logout');
     sessionStorage.clear();
 
 }
@@ -91,29 +93,22 @@ function getCurrUser() {
 
 }
 
-async function add({ username, password, imgUrl }) {
-    const user = {
-        _id: _makeId(),
-        username,
-        password,
-        profileImg: imgUrl,
-        isAdmin: false,
-        quizzes: [],
-        friends: []
-    }
-    await gUsers.unshift(user)
-    
-    // const user = await httpService.post('auth/signup', userCred)
+async function login(userCred) {
+    const user = await httpService.post('auth/login', userCred)
     return _handleLogin(user)
+}
+
+async function add(user) {
+    const returnedUser = await httpService.post('auth/signup', user)
+    return _handleLogin(returnedUser)
 
 }
 
-async function updateUserQuizzes(addQuizUser,quizId) {
-    addQuizUser.quizzes.unshift({quizId})
+async function updateUserQuizzes(user,quizId) {
+    user.quizzes.unshift({quizId})
     try{
-        // await storageService.put('user', addQuizUser);
-        const idx= gUsers.findIndex(user=>user._id===addQuizUser.id)
-        gUsers[idx]=addQuizUser;
+        return httpService.put(`user/${user._id}`, user)
+
     }catch(err){
         console.log(err);
     }
@@ -121,6 +116,7 @@ async function updateUserQuizzes(addQuizUser,quizId) {
 
 function _handleLogin(user) {
     sessionStorage.setItem('user', JSON.stringify(user))
+    console.log(user);
     return user;
 }
 

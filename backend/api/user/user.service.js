@@ -37,28 +37,34 @@ async function getByUsername(username) {
         throw err;
     }
 }
-async function add({ username, password, imgUrl }) {
-    const userToAdd = { username, password, profileImg: imgUrl, isAdmin:false,quizzes:[], }
+async function add(newUser) {
     const collection = await dbService.getCollection('user')
     try {
-        await collection.insertOne(userToAdd)
-        return userToAdd;
+        await collection.insertOne(newUser)
+        return newUser;
     } catch (err) {
-        console.log(`ERROR while adding newUser: ${userToAdd}`);
+        console.log(`ERROR while adding newUser: ${newUser}`);
         throw err;
     }
 }
 async function update(user) {
-    console.log('USER from body',user);
     const collection = await dbService.getCollection('user')
     user._id = ObjectId(user._id);
-    console.log('user with objectId');
 
     try {
-        await collection.replaceOne({ "_id": user._id }, { $set: user })
+        await collection.replaceOne({ "_id": user._id }, user)
         return user
     } catch (err) {
         console.log(`ERROR: cannot update user ${user._id}`)
         throw err;
     }
 }
+
+
+
+
+
+
+
+
+

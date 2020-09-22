@@ -23,7 +23,19 @@ async function signup(username, password, imgUrl) {
     logger.debug(`auth.service - signup with username: ${username}, password: ${password}, imgUrl: ${imgUrl}`)
     if (!username || !password) return Promise.reject('username and password are required!')
     const hash = await bcrypt.hash(password, saltRounds)
-    return userService.add({ username, password: hash, imgUrl })
+
+
+    const newUser = {
+        username,
+        password:hash,
+        profileImg: imgUrl,
+        isAdmin: false,
+        quizzes: [],
+        friends: []
+    }
+
+
+    return userService.add(newUser)
 
 }
 
