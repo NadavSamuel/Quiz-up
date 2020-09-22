@@ -1,20 +1,15 @@
-import { Link } from '@material-ui/core'
 import React, { Component } from 'react'
 import { QuizPreview } from './QuizPreview'
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { Link } from 'react-router-dom'
+
 
 export class QuizList extends Component {
 
     state = {
         quizzes: [],
-        num: 0,
-        numOfRow: 3
     }
 
     componentDidMount() {
-        if (window.innerWidth < 770 && window.innerWidth>540) this.setState({ numOfRow: 4 })
-        
         this.setState({ quizzes: this.props.quizzes })
     }
 
@@ -22,43 +17,21 @@ export class QuizList extends Component {
         if (prevProps.quizzes.length !== this.props.quizzes.length) this.setState({ quizzes: this.props.quizzes })
     }
 
-
-
-    getQuizzesToPrev = () => {
-        const row = this.state.numOfRow        
-        const quizzes = this.state.quizzes
-        if (quizzes.length < row) return quizzes
-        const num = this.state.num % quizzes.length
-        var res = quizzes.length - num
-        if (res >= row) return quizzes.slice(num, num + row)
-        else return [...quizzes.slice(num, num + res), ...quizzes.slice(0, row - res)]
-        
-    }
-
-    next = () => {
-        this.setState({ num: this.state.num + 3 })
-    }
-
-    prev = () => {
-        const row= this.state.numOfRow
-        if (this.state.num >= row) this.setState({ num: this.state.num - row })
-        else  this.setState({ num: this.state.quizzes.length - (row - this.state.num) })
-    }
-
     render() {
 
 
         return (
-            <div className="quiz-list flex align-center justify-around">
+            <div className="quiz-list">
 
-                { <ArrowLeftIcon className='cursor-pointer arrows'  onClick={() => this.prev()} />}
+
                 <div className="list">
                     {
-
-                        this.getQuizzesToPrev() && this.getQuizzesToPrev().map(quiz => <QuizPreview key={quiz._id} quizId={quiz._id} />)
+                        this.state.quizzes && this.state.quizzes.map(quiz => <QuizPreview key={quiz._id} quizId={quiz._id} />)
                     }
                 </div>
-                {<ArrowRightIcon className='cursor-pointer arrows'  onClick={() => this.next()} />}
+                <Link to={`/list/all/${this.props.sort}`}>
+                <h3>Get more...</h3>
+                </Link>
             </div>
         )
     }
