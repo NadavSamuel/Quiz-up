@@ -62,11 +62,11 @@ class _QuizApp extends Component {
             <div className="home-page full">
                 <img className="home-page-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif" alt="" />
                 <h1>Play quizzes. Challenge your friends. Have fun</h1>
-                <h3 className='tag-title'>Most popular:</h3>
-                <QuizList sort='popularity'  quizzes={utilService.getMostPopular(quizzes).slice(0, 4)} />
-                <h3 className='tag-title'>Top rated:</h3>
-                <QuizList sort='rate'  quizzes={utilService.getRandom(quizzes).slice(0, 4)} />
-                <div className="tags-row">
+                <h3 className='tag-title'>Most Popular</h3>
+                <QuizList sort='popularity' quizzes={utilService.getMostPopular(quizzes).slice(0, 4)} />
+                <h3 className='tag-title'>Top Rated</h3>
+                <QuizList sort='rate' quizzes={utilService.getTopRated(quizzes).slice(0, 4)} />
+                {/* <div className="tags-row">
 
                     {this.getTags(utilService.getRandom(quizzes).slice(0, 4)).map((tag, idx) =>
                         <TagPreview tag={tag} key={idx} />
@@ -74,7 +74,7 @@ class _QuizApp extends Component {
                 </div>
                 <h2>
                     <Link to='/browse'>go to browse</Link>
-                </h2>
+                </h2> */}
             </div>
         )
     }

@@ -7,6 +7,7 @@ import { ReviewsList } from '../cmps/ReviewsList'
 import { quizService } from '../services/quizService'
 import { RankTable } from '../cmps/RankTable'
 import { utilService } from '../services/utilService'
+import { Loading } from '../cmps/Loading'
 export class _QuizDetails extends Component {
 
     state = {
@@ -44,7 +45,7 @@ export class _QuizDetails extends Component {
     }
     render() {
         const { quiz } = this.state
-        if (!quiz) return <div>Loading...</div>
+        if (!quiz) return <Loading/>
 
         const quizLength = quiz.quests.length
         const playedTime = quiz.allTimesPlayers.length
@@ -52,6 +53,7 @@ export class _QuizDetails extends Component {
         const avgRate = this.getAvgRate()
         return (
             <section className="quiz-details-container ">
+                <Link to={`/edit/${quiz._id}`}><Button variant="contained" color="primary">Edit</Button></Link>
                 <div className="quiz-details-head">
                     {/* <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" /> */}
                     {quiz.img && <img className="quiz-img" src={quiz.img} alt="" />}

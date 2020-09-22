@@ -30,7 +30,7 @@ export class QuizList extends Component {
                     }
                 </div>
                 <Link to={`/list/all/${this.props.sort}`}>
-                <h3>Get more...</h3>
+                <h3>See More...</h3>
                 </Link>
             </div>
         )
