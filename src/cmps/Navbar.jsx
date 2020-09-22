@@ -29,7 +29,7 @@ export class _Navbar extends React.Component {
                     <Link to="/"><img className='logo' src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600282324/pvdvrgbpuoihrkdf9oti.png" alt="" /></Link>
                     <ul className="flex full-view">
                         <Link to="/"><li>Home</li></Link>
-                        <Link to="/browse"><li>Browse</li></Link>
+                        <Link to="/browse"><li>Category</li></Link>
                         <Link to="/dashboard"><li>Dashboard</li></Link>
                         <Link to="/edit"><li>Create Quiz</li></Link>
                     </ul>
@@ -38,7 +38,7 @@ export class _Navbar extends React.Component {
                 <ul className={`popup-menu ${this.getClass()}`}>
                     <Link onClick={() => this.closeMenu()} to="/user">{this.props.loggedInUser ? <Avatar src={this.props.loggedInUser.profileImg} /> : <Avatar src='src="/broken-image.jpg' />}</Link>
                     <Link to="/"><li>Home</li></Link>
-                    <Link onClick={() => this.closeMenu()} to="/browse"><li>Browse</li></Link>
+                    <Link onClick={() => this.closeMenu()} to="/browse"><li>Category</li></Link>
                     <Link to="/dashboard"><li>Dashboard</li></Link>
                     <Link onClick={() => this.closeMenu()} to="/edit"><li>Create Quiz</li></Link>
                 </ul>

@@ -43,7 +43,6 @@ export class EndGame extends Component {
         this.setState({ ...this.state, review: { ...this.state.review, txt: value } })
     }
     updateAllTimePlayers = () => {
-        // debugger
         const currQuiz = this.props.quiz
         const currUser =  this.props.currUser
         const currUserMiniObject = {
@@ -65,7 +64,6 @@ export class EndGame extends Component {
         this.forceUpdate()
     }
     onSubmitReview = ev => {
-        debugger
         ev.preventDefault()
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)

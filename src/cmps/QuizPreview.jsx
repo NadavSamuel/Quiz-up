@@ -4,6 +4,7 @@ import StarIcon from '@material-ui/icons/Star';
 import { Link } from 'react-router-dom'
 import { quizService } from '../services/quizService';
 import { Loading } from './Loading';
+import { Avatar } from '@material-ui/core';
 export class QuizPreview extends Component {
     state = {
         quiz: null
@@ -33,8 +34,13 @@ export class QuizPreview extends Component {
                 <img className="main-img" src={quiz.img} alt="img" />
                 <div className="info">
                     <h3 className='quiz-title'>{quiz.title}</h3>
+                    {/* <div className="flex align-center"> */}
+
+                    {/* {quiz.createdBy.imgUrl ? <Avatar src={quiz.createdBy.imgUrl} /> : <Avatar src='src="/broken-image.jpg' />} */}
+                    <p>By {quiz.createdBy.fullName}</p>
+                    {/* </div> */}
                     <p>
-                        <span>{quiz.quests.length} Questions</span>
+                        {/* <span>{quiz.quests.length} Questions</span> */}
                         <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
                     </p>
                     <div className='difficulity'>
@@ -44,8 +50,10 @@ export class QuizPreview extends Component {
                     {quiz.difficulity===3 && <h5 style={{color:'red'}}>Hard</h5>}
                     </div>
                     {this.getNumOfReviews()>0 &&
-                        <div className="flex stars">
-                        ({this.getNumOfReviews()}){this.getRate()}<StarIcon />
+                        <div className="flex stars align-center">
+                            <h4>({this.getNumOfReviews()}){this.getRate()}</h4>
+                        
+                        <StarIcon />
                     </div>}
                 </div>
             </div>

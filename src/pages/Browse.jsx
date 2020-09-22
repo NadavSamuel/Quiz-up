@@ -49,7 +49,7 @@ class _Browse extends Component {
         return (
             <div className="full browse">
                 {tags && tags.map((tag, idx) => 
-                    <TagPreview tag={tag} />
+                    <TagPreview tag={tag} key={idx} />
                 
                     )}
             </div>
