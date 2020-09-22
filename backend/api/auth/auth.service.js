@@ -5,7 +5,6 @@ const userService = require('../user/user.service')
 const saltRounds = 10
 
 async function login(username, password) {
-
     logger.debug(`auth.service - login with username: ${username}`)
     if (!username || !password) return Promise.reject('username and password are required!')
 
@@ -23,8 +22,8 @@ async function login(username, password) {
 async function signup(username, password, imgUrl) {
     logger.debug(`auth.service - signup with username: ${username}, password: ${password}, imgUrl: ${imgUrl}`)
     if (!username || !password) return Promise.reject('username and password are required!')
-    const newUser = await userService.add(username, password, imgUrl)
-    return newUser
+    const hash = await bcrypt.hash(password, saltRounds)
+    return userService.add({ username, password: hash, imgUrl })
 
 }
 

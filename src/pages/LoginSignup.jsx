@@ -17,7 +17,7 @@ export class _LoginSignup extends Component {
             password: '',
             imgUrl: ''
         },
-        isRegister: true,
+        isRegister: false,
         fromQuiz: null
     }
     componentDidMount() {

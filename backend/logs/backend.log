@@ -343,6 +343,185 @@ Mon, 21 Sep 2020 18:37:46 GMT - Error - Cannot get Quizzes:
 Mon, 21 Sep 2020 18:38:04 GMT - Info - Server is running on port: 3030
 Mon, 21 Sep 2020 18:38:17 GMT - Info - Server is running on port: 3030
 Mon, 21 Sep 2020 18:40:17 GMT - Info - Server is running on port: 3030
+<<<<<<< HEAD
 Tue, 22 Sep 2020 13:50:50 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 13:54:55 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 13:55:10 GMT - Info - Server is running on port: 3030
+=======
+Tue, 22 Sep 2020 07:28:40 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:28:56 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:29:24 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:40:41 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:40:51 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:41:02 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:43:51 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:44:10 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:44:49 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:45:05 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:45:29 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:46:56 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:47:03 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:47:43 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:48:21 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:48:28 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:50:05 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:51:31 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:51:40 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:53:31 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:55:02 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 07:55:38 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:12:03 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:13:46 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:27:51 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:29:07 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:34:59 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:36:10 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:37:36 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:38:21 GMT - Debug - undefined, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:38:21 GMT - Debug - auth.service - signup with username: undefined, password: itsEncrypted?123, imgUrl: test
+Tue, 22 Sep 2020 08:38:21 GMT - Error - [SIGNUP] username and password are required!
+Tue, 22 Sep 2020 08:44:51 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:45:13 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:45:23 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:45:32 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:45:32 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:45:32 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$USDZt3FBU6lGySfySebnHu2avWJKNiceR6g3twv50pmygiHuueOmy","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69b9ac3d819350ac375a3b"}
+Tue, 22 Sep 2020 08:45:32 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:45:32 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:46:58 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:47:52 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:47:52 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:47:53 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$KBhFhwlbQ7tnV4O.zz2/RuT45fCAheV0/oQPuJp2mzcdh/XQcO1HS","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69ba39b6d2c33b28bdb85b"}
+Tue, 22 Sep 2020 08:47:53 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:47:53 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:48:36 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:48:36 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:48:37 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$141jzFRsZzmWLN8ohJB.KeyiLFYeOja.hG/sy7eRNpD0Z4CDlJPN6","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69ba65b6d2c33b28bdb85c"}
+Tue, 22 Sep 2020 08:48:37 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:48:37 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:49:07 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:49:07 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:49:07 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$owH3ko6It/iwT1OtXPq3kebd6W3YJ5b.h85yF3KMe.HZiW5r6MZAy","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69ba83b6d2c33b28bdb85d"}
+Tue, 22 Sep 2020 08:49:07 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:49:07 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:49:32 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:49:34 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:49:34 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:49:35 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$lN2RwOUKlo8z8lvqsmKyBunOGmpo5vNQsT4jyNmwxVHpnAebhCJxi","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69ba9e17611c1f203cb262"}
+Tue, 22 Sep 2020 08:49:35 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:49:35 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:50:44 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:50:44 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:50:44 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$GcKqCoI1YSfOGJv00oYEre2zpX.6q2DgnQkRocKPVYuHnGDfJ57G.","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69bae417611c1f203cb263"}
+Tue, 22 Sep 2020 08:50:44 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:50:44 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:51:32 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:51:54 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:52:06 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:52:06 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:52:06 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$wTu38.Mdt./WuLdqR7a1WeC0rtjt21qYQ12nUYErIcEz8bPi7vZ7O","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69bb36ae46fb3764b8bc46"}
+Tue, 22 Sep 2020 08:52:06 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:52:06 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:52:23 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:52:24 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test, itsEncrypted?123
+Tue, 22 Sep 2020 08:52:24 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:52:24 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$xfcSiweTVkkLqcZ2bdMSt.li/sucruf1/804PIdTiatxbp.UOQ3C6","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69bb481355e738709d38f0"}
+Tue, 22 Sep 2020 08:52:24 GMT - Debug - auth.service - login with username: test
+Tue, 22 Sep 2020 08:52:24 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:52:50 GMT - Debug - https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg, test4, itsEncrypted?123
+Tue, 22 Sep 2020 08:52:50 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test4, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 08:52:50 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$Y9h1uA0tjkJx8Maf2qLbaOXwQF3qolvSH1lpBiU2sbC84l4nioR1y","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69bb621355e738709d38f1"}
+Tue, 22 Sep 2020 08:52:50 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 08:52:50 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:53:22 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:53:27 GMT - Debug - undefined, test4, itsEncrypted?123
+Tue, 22 Sep 2020 08:53:27 GMT - Debug - auth.service - signup with username: itsEncrypted?123, password: test4, imgUrl: undefined
+Tue, 22 Sep 2020 08:53:27 GMT - Debug - auth.route - new account created: {"username":"itsEncrypted?123","password":"$2a$10$KRAlIr9GhtTSiCq0lYF1.uwWZ765BSrBQeuB1pb5Y3LuvYkbdH9DS","_id":"5f69bb87caac4640c0b5953d"}
+Tue, 22 Sep 2020 08:53:27 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 08:53:27 GMT - Error - [SIGNUP] Invalid username or password
+Tue, 22 Sep 2020 08:54:23 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:55:04 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:55:25 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:56:03 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:56:12 GMT - Debug - test4, itsEncrypted?123, undefined
+Tue, 22 Sep 2020 08:56:12 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: undefined
+Tue, 22 Sep 2020 08:56:12 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$oSNKs3g2ZPA6do2TDyWs6uqe4dIQQc556MViqmQ5kgE3YiHAqsimi","_id":"5f69bc2ca8298e22686e4da4"}
+Tue, 22 Sep 2020 08:56:12 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 08:58:09 GMT - Debug - test4, itsEncrypted?123, undefined
+Tue, 22 Sep 2020 08:58:09 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: undefined
+Tue, 22 Sep 2020 08:58:10 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$o8Y5lv9kNn/sJ8ZgROrKbeKsJoK9gl0EwANmeev4HhUo8HTfJMXqe","_id":"5f69bca2a8298e22686e4da5"}
+Tue, 22 Sep 2020 08:58:10 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 08:59:12 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 08:59:13 GMT - Debug - test4, itsEncrypted?123, undefined
+Tue, 22 Sep 2020 08:59:13 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: undefined
+Tue, 22 Sep 2020 08:59:13 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$t8Dw.TJDsSykUcGnyFPjdu5T10iMUvlMWkuehA8JXSzFZVRtl8M/m","_id":"5f69bce19c17cd22a478b8b9"}
+Tue, 22 Sep 2020 08:59:13 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 08:59:58 GMT - Debug - test4, itsEncrypted?123, asd
+Tue, 22 Sep 2020 08:59:58 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: asd
+Tue, 22 Sep 2020 08:59:58 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$HZ3gtEtZE0zxU5572RoJZ.h6NzNuFidHVVJfGnFCkZ/4ovFYXGDNi","imgUrl":"asd","_id":"5f69bd0e9c17cd22a478b8ba"}
+Tue, 22 Sep 2020 08:59:58 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:00:17 GMT - Debug - test4, itsEncrypted?123, asd
+Tue, 22 Sep 2020 09:00:17 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: asd
+Tue, 22 Sep 2020 09:00:17 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$7w9.NM37/rIfbcWI/hTdCObkkyul.acs90f0jLuS2k.JaCNu0hL5S","imgUrl":"asd","_id":"5f69bd219c17cd22a478b8bb"}
+Tue, 22 Sep 2020 09:00:17 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:00:38 GMT - Debug - test4, itsEncrypted?123, undefined
+Tue, 22 Sep 2020 09:00:38 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: undefined
+Tue, 22 Sep 2020 09:00:38 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$IeBCafczf/wPkupaNeO4AuqpFdHVR/e2er93DY2FpubM.OwQPe0Ya","_id":"5f69bd369c17cd22a478b8bc"}
+Tue, 22 Sep 2020 09:00:38 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:01:21 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:02:32 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:02:34 GMT - Debug - test4, itsEncrypted?123, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 09:02:34 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 09:02:35 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$HnyuLFOWMl7tzNavpemhvOGidSCPIcOoEw4B1KgKTnr4MFdjo/Tqq","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69bdab20ca70495004ce81"}
+Tue, 22 Sep 2020 09:02:35 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:05:49 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:06:00 GMT - Debug - test4, itsEncrypted?123, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 09:06:00 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 09:06:01 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$u3FHysCAqy0qiMwzBOJghOoKXCOVbGYKATYSy4pSrJjZ.IHT4hpb2","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69be7928831e34a09775ce"}
+Tue, 22 Sep 2020 09:06:01 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:06:16 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:06:18 GMT - Debug - test4, itsEncrypted?123, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 09:06:18 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 09:06:19 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$ZcjFLKfrjwq.K9dily6Cy.QBsawRNxC2wIeWYFLpShb2/spdlY3J2","imgUrl":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","_id":"5f69be8b2256170f886a2d47"}
+Tue, 22 Sep 2020 09:06:19 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:06:34 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:07:03 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:07:31 GMT - Debug - test4, itsEncrypted?123, asd
+Tue, 22 Sep 2020 09:07:31 GMT - Debug - auth.service - signup with username: test4, password: itsEncrypted?123, imgUrl: asd
+Tue, 22 Sep 2020 09:07:32 GMT - Debug - auth.route - new account created: {"username":"test4","password":"$2a$10$aXN/.s74PrNmfnSp9t/cqOHRVPZx89l3DvHGvacW5uhmpbG/o7dHG","imgUrl":"asd","_id":"5f69bed418efbc4bdc3a3638"}
+Tue, 22 Sep 2020 09:07:32 GMT - Debug - auth.service - login with username: test4
+Tue, 22 Sep 2020 09:07:44 GMT - Debug - test5, itsEncrypted?123, asd
+Tue, 22 Sep 2020 09:07:44 GMT - Debug - auth.service - signup with username: test5, password: itsEncrypted?123, imgUrl: asd
+Tue, 22 Sep 2020 09:07:45 GMT - Debug - auth.route - new account created: {"username":"test5","password":"$2a$10$Eww7sou.bA0rjJT1BOzpYOe6f0797jddgEVL7bt0X7Jb2x9/QezVq","imgUrl":"asd","_id":"5f69bee118efbc4bdc3a3639"}
+Tue, 22 Sep 2020 09:07:45 GMT - Debug - auth.service - login with username: test5
+Tue, 22 Sep 2020 09:07:54 GMT - Debug - test6, itsEncrypted?123, asd
+Tue, 22 Sep 2020 09:07:54 GMT - Debug - auth.service - signup with username: test6, password: itsEncrypted?123, imgUrl: asd
+Tue, 22 Sep 2020 09:07:54 GMT - Debug - auth.route - new account created: {"username":"test6","password":"$2a$10$13i7EPaH4CwUy8Bw.8XJouxwnXwG5rQFXobTrunlf70yj61p9ro66","imgUrl":"asd","_id":"5f69beea18efbc4bdc3a363a"}
+Tue, 22 Sep 2020 09:07:54 GMT - Debug - auth.service - login with username: test6
+Tue, 22 Sep 2020 09:08:09 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:10:48 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:14:12 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:14:22 GMT - Debug - test8, itsEncrypted?123, asd
+Tue, 22 Sep 2020 09:14:22 GMT - Debug - auth.service - signup with username: test8, password: itsEncrypted?123, imgUrl: asd
+Tue, 22 Sep 2020 09:14:22 GMT - Debug - auth.route - new account created: {"username":"test8","password":"$2a$10$uNzc8ANZpe4bvmAGGdca.eFG8CKNuul0htnNmt57bsdfASoEhe9Ii","profileImg":"asd","isAdmin":false,"quizzes":[],"_id":"5f69c06eb019690cf0205e7a"}
+Tue, 22 Sep 2020 09:14:22 GMT - Debug - auth.service - login with username: test8
+Tue, 22 Sep 2020 09:14:40 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 09:16:41 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:20:36 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:20:42 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:21:58 GMT - Debug - admin, admin, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 10:21:58 GMT - Debug - auth.service - signup with username: admin, password: admin, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 10:21:59 GMT - Debug - auth.route - new account created: {"username":"admin","password":"$2a$10$KndF/VWfHcA3yyzcRE22EO.OLk2Y4Sp1tkdX50re5VvyI/P4rhdvK","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"_id":"5f69d0475907903194849861"}
+Tue, 22 Sep 2020 10:21:59 GMT - Debug - auth.service - login with username: admin
+Tue, 22 Sep 2020 10:24:15 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:27:20 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:29:28 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:31:27 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:32:16 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:35:36 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:37:34 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:38:41 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 10:48:50 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 11:04:37 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 11:05:08 GMT - Info - Server is running on port: 3030
+>>>>>>> 9c7cadf375c40397830aa8a391e75d0430f7203f

@@ -32,14 +32,17 @@ if (process.env.NODE_ENV === 'production') {
 
 // ROUTES 
 const quizRoutes = require('./api/quiz/quiz.routes')
-// const authRoutes = require('./api/auth/auth.routes.js')
+const authRoutes = require('./api/auth/auth.routes.js')
+const userRoutes = require('./api/user/user.routes')
 // const reviewRoutes = require('./api/review/review.routes')
 // const connectSockets = require('./api/socket/socket.routes')
 
 
 // REST API for QUIZZES :)
 app.use('/api/quiz', quizRoutes)
-// app.use('/api/auth', authRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
+
 // app.use('/api/review', reviewRoutes)
 // connectSockets(io)
 
