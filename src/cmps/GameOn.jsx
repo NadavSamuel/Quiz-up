@@ -81,7 +81,7 @@ class _GameOn extends Component {
             <main className="quiz-game-main mt10">
                 <div className="game-top">
                     <Progress  value={this.props.currTimeStamp/1000} max={15}/>
-                    <h2 className="score">Score: {this.props.score}</h2>
+                    <div  className="score"><h2>Score: {this.props.score}</h2></div>
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
                     {/* <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3> */}
                     <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />

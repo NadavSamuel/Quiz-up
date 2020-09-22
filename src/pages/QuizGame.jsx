@@ -9,6 +9,8 @@ import { utilService } from '../services/utilService'
 import { userService } from '../services/userService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Loading } from '../cmps/Loading'
+import { setNotification } from '../store/actions/notificationActions.js'
+
 
 class _QuizGame extends Component {
     state = {
@@ -30,7 +32,10 @@ class _QuizGame extends Component {
         window.scrollTo(0, 100)
         this.setCurrUser();
         this.loadQuizz();
-        // this.setTimer();
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer)
+
     }
     setCurrUser = ()=>{
         this.setState({ currUser: this.props.loggedinUser},() =>{
@@ -42,6 +47,11 @@ class _QuizGame extends Component {
     } 
     getCurrUnregisteredUser=(ev,username) =>{
         ev.preventDefault()
+        if (username.length<3){
+            this.props.setNotification('err', 'Please enter a valid name')
+            return
+        } 
+
         this.setState({currUser:{
             username,
             _id:utilService.makeId(),
@@ -49,13 +59,9 @@ class _QuizGame extends Component {
             this.timer=setInterval(this.setTimer,1000)
         })
     }
-    getRandomUserObject = () =>{
-        return { username: `guest ${utilService.makeId()}`, id: utilService.makeId() }
-    }
-    componentWillUnmount(){
-        clearInterval(this.timer)
-
-    }
+    // getRandomUserObject = () =>{
+    //     return { username: `guest ${utilService.makeId()}`, id: utilService.makeId() }
+    // }
     getInitialState = () => {
         this.setState({
             ...this.state, gameOn: true, score: 0, rightAns: 0,
@@ -72,9 +78,6 @@ class _QuizGame extends Component {
 
     setTimer = () => {
         this.updateTime()
-        // const timer = setInterval(() => {
-        //     if (!this.state.gameOn) clearInterval(timer)
-        // }, 1000)
     }
 
     loadQuizz = async () => {
@@ -90,7 +93,8 @@ class _QuizGame extends Component {
     onAns = value => {
         this.setState({wasQuestionAnswerd:true,currTimeStamp:this.state.currTimeStamp},()=>{
             if (value === "true") {
-                const reward = 15 - (15 -this.state.currTimeStamp /1000)
+                let reward = 15 - (15 -this.state.currTimeStamp /1000)
+                if(this.state.currTimeStamp === 0) reward =1
                 this.setState({ score: this.state.score + reward, rightAns: this.state.rightAns + 1,wasQuestionAnswerd:true }, () => {
                     // console.log('props ', this.props)
                     // console.log('state in main ', this.state)
@@ -107,7 +111,6 @@ class _QuizGame extends Component {
                 this.setState({ score: this.state.score - 5,}, () => { console.log('state in main ', this.state) })
             }
         })
-
     }
     // answerQuestion = answerResult => {
 
@@ -127,6 +130,7 @@ class _QuizGame extends Component {
     /////////////////////// Timer funcs
     updateTime = () => {
         if (this.state.currTimeStamp === 0 || this.state.wasQuestionAnswerd ) return
+
         // console.log('currTimeStamp ',this.state.currTimeStamp)
         if (this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp - 1000 })
         // return true
@@ -169,6 +173,7 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = {
+    setNotification
 
 }
 export const QuizGame = connect(mapStateToProps, mapDispatchToProps)(_QuizGame)

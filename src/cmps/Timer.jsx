@@ -11,7 +11,7 @@ export class Timer extends Component {
 
     state = {
         now: Date.now(),
-        countDown: Date.now()+(1000*15)  
+        countDown: Date.now()+(1000*3)  
     }
     timerInterval=null;
 
