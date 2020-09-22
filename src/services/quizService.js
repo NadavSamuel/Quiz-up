@@ -1,6 +1,7 @@
 import axios from 'axios'
 import storageService from './asyncStorageService'
-const BASE_URL = 'http://localhost:3001/quiz'
+import httpService from './httpService'
+const BASE_URL = '/api/quiz'
 
 const resolveData = res => res.data
 
@@ -1133,7 +1134,7 @@ async function getImage(keyword) {
 
 async function query() {
     try {
-        var quizzes = await storageService.query('quiz');
+        var quizzes = await httpService.get(`${BASE_URL}`,);
         if (quizzes.length === 0) {
             var str = JSON.stringify(gQuizzes);
             localStorage.setItem('quiz', str)

@@ -343,6 +343,11 @@ Mon, 21 Sep 2020 18:37:46 GMT - Error - Cannot get Quizzes:
 Mon, 21 Sep 2020 18:38:04 GMT - Info - Server is running on port: 3030
 Mon, 21 Sep 2020 18:38:17 GMT - Info - Server is running on port: 3030
 Mon, 21 Sep 2020 18:40:17 GMT - Info - Server is running on port: 3030
+<<<<<<< HEAD
+Tue, 22 Sep 2020 13:50:50 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 13:54:55 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 13:55:10 GMT - Info - Server is running on port: 3030
+=======
 Tue, 22 Sep 2020 07:28:40 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 07:28:56 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 07:29:24 GMT - Info - Server is running on port: 3030
@@ -519,3 +524,4 @@ Tue, 22 Sep 2020 10:38:41 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 10:48:50 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 11:04:37 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 11:05:08 GMT - Info - Server is running on port: 3030
+>>>>>>> 9c7cadf375c40397830aa8a391e75d0430f7203f
