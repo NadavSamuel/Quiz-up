@@ -28,54 +28,56 @@ async function query(filterBy = {}) {
             criteria.text = filterBy.filterText
         }
         if (filterBy.sortBy) {
-            if(filterBy.sortBy==='price') criteria.price={$gte:+filterBy.sortBy}
+            if (filterBy.sortBy === 'price') criteria.price = { $gte: +filterBy.sortBy }
         }
-        if(filterBy.inStock) criteria.inStock=filterBy.inStock
+        if (filterBy.inStock) criteria.inStock = filterBy.inStock
         return criteria;
     }
 
 }
-async function getById(toyId) {
-    const collection = await dbService.getCollection('toy')
+async function getById(quizId) {
+    const collection = await dbService.getCollection('quiz')
     try {
-        const toy = await collection.findOne({ "_id": ObjectId(toyId) })
-        return toy
+        const quiz = await collection.findOne({ "_id": ObjectId(quizId) })
+        return quiz
     } catch (err) {
-        console.log(`ERROR: while finding user ${toyId}`)
+        console.log(`ERROR: while finding quiz ${quizId}`)
         throw err;
     }
 }
-async function remove(toyId) {
-    const collection = await dbService.getCollection('toy')
+async function remove(quizId) {
+    const collection = await dbService.getCollection('quiz')
     try {
-        await collection.deleteOne({ "_id": ObjectId(toyId) })
+        await collection.deleteOne({ "_id": ObjectId(quizId) })
+        // const quizzes = await collection.find({}).toArray();
+        // console.log(quizzes);
     } catch (err) {
-        console.log(`ERROR: cannot remove user ${toyId}`)
-        throw err;
-    }
-}
-
-async function update(toy) {
-    console.log('TOY IN SERVICE',toy);
-    const collection = await dbService.getCollection('toy')
-    toy._id = ObjectId(toy._id);
-
-    try {
-        await collection.replaceOne({ '_id': toy._id }, toy)
-        return toy
-    } catch (err) {
-        console.log(`ERROR: cannot update toy ${toy._id}`)
+        console.log(`ERROR: cannot remove user ${quizId}`)
         throw err;
     }
 }
 
-async function add(toy) {
-    const collection = await dbService.getCollection('toy')
+async function update(quiz) {
+    console.log('quiz IN SERVICE', quiz);
+    const collection = await dbService.getCollection('quiz')
+    quiz._id = ObjectId(quiz._id);
+
     try {
-        await collection.insertOne(toy);
-        return toy;
+        await collection.replaceOne({ '_id': quiz._id }, quiz)
+        return quiz
     } catch (err) {
-        console.log(`ERROR: cannot insert toy`)
+        console.log(`ERROR: cannot update quiz ${quiz._id}`)
+        throw err;
+    }
+}
+
+async function add(quiz) {
+    const collection = await dbService.getCollection('quiz')
+    try {
+        await collection.insertOne(quiz);
+        return quiz;
+    } catch (err) {
+        console.log(`ERROR: cannot insert quiz: ${quiz}`)
         throw err;
     }
 }

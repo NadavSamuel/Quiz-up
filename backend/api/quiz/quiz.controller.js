@@ -4,10 +4,10 @@ const quizService = require('./quiz.service')
 
 module.exports = {
     getQuizzes,
-    getToy,
-    deleteToy,
-    addToy,
-    updateToy
+    getQuiz,
+    deleteQuiz,
+    addQuiz,
+    updateQuiz
 }
 async function getQuizzes(req, res) {
     try {
@@ -21,25 +21,24 @@ async function getQuizzes(req, res) {
 
     }
 }
-async function getToy(req, res) {
-    const toy = await toyService.getById(req.params.id)
-    res.send(toy)
+async function getQuiz(req, res) {
+    const quiz = await quizService.getById(req.params.id)
+    res.send(quiz)
 }
 
-async function deleteToy(req, res) {
-    await toyService.remove(req.params.id)
+async function deleteQuiz(req, res) {
+    await quizService.remove(req.params.id)
     res.end()
 }
 
-async function updateToy(req, res) {
-    const toy = req.body;
-    await toyService.update(toy)
-    res.send(toy)
+async function updateQuiz(req, res) {
+    const quiz = req.body;
+    await quizService.update(quiz)
+    res.send(quiz)
 }
-async function addToy(req, res) {
-    var toy = req.body;
-    toy.createdAt = new Date().toJSON()
-
-    toy = await toyService.add(toy)
-    res.send(toy)
+async function addQuiz(req, res) {
+    var quiz = req.body;
+    // quiz.createdAt = new Date().toJSON()
+    quiz = await quizService.add(quiz)
+    res.send(quiz)
 }

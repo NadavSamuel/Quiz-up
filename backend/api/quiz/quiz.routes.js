@@ -1,6 +1,6 @@
 const express = require('express')
-// const {requireAuth, requireAdmin} = require('../../middlewares/requireAuth.middleware')
-const { getQuizzes,  } = require('./quiz.controller')
+const { requireAuth, requireAdmin } = require('../../middlewares/requireAuth.middleware')
+const { getQuizzes, getQuiz, deleteQuiz, updateQuiz, addQuiz } = require('./quiz.controller')
 // , getToys, deleteToy, updateToy, addToy QUIZ CONTROLLER
 const router = express.Router()
 
@@ -8,8 +8,12 @@ const router = express.Router()
 // router.use(requireAuth)
 
 router.get('/', getQuizzes)
-// router.get('/:id', getToy)
-// router.put('/:id', requireAuth, requireAdmin, updateToy)
-// router.delete('/:id', requireAuth, requireAdmin, deleteToy)
-// router.post('/', requireAuth, requireAdmin, addToy)
+router.get('/:id', getQuiz)
+// router.put('/:id', requireAuth, requireAdmin, updateQuiz)
+router.put('/:id', updateQuiz)
+// router.delete('/:id', requireAuth, requireAdmin, deleteQuiz)
+router.delete('/:id', deleteQuiz)
+// router.post('/', requireAuth, requireAdmin, addQuiz)
+router.post('/', addQuiz)
+
 module.exports = router
