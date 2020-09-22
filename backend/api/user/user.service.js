@@ -3,13 +3,29 @@ const ObjectId = require('mongodb').ObjectId
 
 
 module.exports = {
-    // query,
+    query,
     // getById,
     getByUsername,
     // remove,
     update,
     add
 }
+
+
+async function query(filterBy = {}) {
+    // const criteria = (filterBy)
+    const collection = await dbService.getCollection('user')
+    try {
+        const users = await collection.find({}).toArray();
+        // users.forEach(user => delete user.password);
+
+        return users
+    } catch (err) {
+        console.log('ERROR: cannot find users')
+        throw err;
+    }
+}
+
 
 async function getByUsername(username) {
     const collection = await dbService.getCollection('user')
@@ -32,11 +48,11 @@ async function add({ username, password, imgUrl }) {
         throw err;
     }
 }
-async function update(user) {4
-    console.log('USER:',user);
+async function update(user) {
+    console.log('USER from body',user);
     const collection = await dbService.getCollection('user')
-    console.log('USER:',user);
     user._id = ObjectId(user._id);
+    console.log('user with objectId');
 
     try {
         await collection.replaceOne({ "_id": user._id }, { $set: user })

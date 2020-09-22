@@ -15,6 +15,7 @@ async function query(filterBy = {}) {
     try {
         const quizzes = await collection.find(criteria).toArray();
         // users.forEach(user => delete user.password);
+        console.log('got quizzes:',quizzes);
         return quizzes
     } catch (err) {
         console.log('ERROR: cannot find quizzes')
