@@ -64,8 +64,9 @@ export class _QuizDetails extends Component {
                 <div className="quiz-details-body">
                     <div className="quiz-info">
                         <h1 className="title">{quiz.title} </h1>
-                        <span className="creator">
 
+                        <h5 className="creator">
+                            
                             {this.getDifficulity()} -
                             By {quiz.createdBy.fullName} -
                             {quiz.tags[0].length >= 1 && <span>{
@@ -74,7 +75,7 @@ export class _QuizDetails extends Component {
                                 })
                             }</span>}
 
-                        </span>
+                        </h5>
 
                         {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
                         {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
@@ -84,8 +85,9 @@ export class _QuizDetails extends Component {
                     <div className="btns">
                         <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <Button onClick={this.addPlayerCount} endIcon={<PersonOutlineSharp />
                         } variant="contained" color="primary">Play Single </Button></Link>
-                        <Button endIcon={<PeopleAltOutlined />
-                        } disabled variant="contained" color="primary">Play Online </Button></div></div>
+                        {/* <Button endIcon={<PeopleAltOutlined />
+                        } disabled variant="contained" color="primary">Play Online </Button> */}
+                        </div></div>
                 <div className="review-stats">
                     <h2 className="reviews-title">Reviews for this quiz:</h2>
                     {<ReviewsList reviews={quiz.reviews} />}
