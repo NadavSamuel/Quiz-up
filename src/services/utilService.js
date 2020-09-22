@@ -31,13 +31,20 @@ function shuffle(answers, value = false) {
   return answers
 }
 
-function getBestUsers(quiz) {
+function getBestUsers(quiz,gameSessionId = null) {
   // const { quiz } = this.state
   var bestPlayers = [...quiz.allTimesPlayers];
   bestPlayers.sort((player1, player2) => {
     return (player2.score - player1.score)
   })
-  return bestPlayers.slice(0, 10);
+  let playerRank 
+  if(gameSessionId){
+    playerRank  = bestPlayers.findIndex(player => player.gameSessionId === gameSessionId )
+  }
+  return {
+    tenBestPlayers: bestPlayers.slice(0, 10),
+    playerRank
+  };
 }
 function getTime(timeStamp) {
   let m = new Date(timeStamp).getMinutes();
@@ -105,9 +112,9 @@ function getRandomColor() {
   return color;
 }
 
-function getRandomGuest(){
-  var guest= 'guest'
-  var digit='0123456789'
+function getRandomGuest() {
+  var guest = 'guest'
+  var digit = '0123456789'
   for (var i = 0; i < 3; i++) {
     guest += digit[Math.floor(Math.random() * 10)];
   }

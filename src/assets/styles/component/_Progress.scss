@@ -4,13 +4,15 @@
     width: 500px;
     height: 15px;
     border-radius: 8px;
-    position: relative;
+    position: absolute;
+    top:74px;
+    width: 95vw;
     display: block;
 }
 @media(max-width: $narrow-breakpoint){
-    .progress-bar{
-        width: 250px;
-    }
+    // .progress-bar{
+    //     width: 95vw;
+    // }
     
 }
 

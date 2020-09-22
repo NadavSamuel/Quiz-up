@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 // import { QuizList } from '../cmps/QuizList'
 import { GameOn } from '../cmps/GameOn'
 import { EndGame } from '../cmps/EndGame'
+import { SetName } from '../cmps/SetName'
 import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { userService } from '../services/userService'
@@ -25,13 +26,26 @@ class _QuizGame extends Component {
     timer=null
 
     componentDidMount() {
+        window.scrollTo(0, 100)
         this.loadQuizz();
         this.setCurrUser();
-        this.timer=setInterval(this.setTimer,1000);
         // this.setTimer();
     }
     setCurrUser = ()=>{
-        this.setState({ currUser: this.props.loggedinUser || this.getRandomUserObject()})
+        this.setState({ currUser: this.props.loggedinUser},() =>{
+            if(this.state.currUser) this.timer=setInterval(this.setTimer,1000);
+
+        })
+        // this.setState({ cu=>{rrUser: this.props.loggedinUser || this.getRandomUserObject()})
+    } 
+    getCurrUnregisteredUser=(ev,username) =>{
+        ev.preventDefault()
+        this.setState({currUser:{
+            username,
+            _id:utilService.makeId(),
+        }},() =>{
+            this.timer=setInterval(this.setTimer,1000)
+        })
     }
     getRandomUserObject = () =>{
         return { username: `guest ${utilService.makeId()}`, id: utilService.makeId() }
@@ -47,6 +61,8 @@ class _QuizGame extends Component {
             currUser: this.props.loggedinUser || this.getRandomUserObject()
         },() => {
             this.resetTimer()
+            this.timer=setInterval(this.setTimer,1000)
+
         })
     }
     resetTimer = () =>{
@@ -73,9 +89,7 @@ class _QuizGame extends Component {
     onAns = value => {
         this.setState({wasQuestionAnswerd:true,currTimeStamp:this.state.currTimeStamp},()=>{
             if (value === "true") {
-                let reward
-                if(this.state.currTimeStamp <=15000 && this.state.currTimeStamp >=10000) reward = 10
-                else reward = 10 - (10 -this.state.currTimeStamp /1000)
+                const reward = 15 - (15 -this.state.currTimeStamp /1000)
                 this.setState({ score: this.state.score + reward, rightAns: this.state.rightAns + 1,wasQuestionAnswerd:true }, () => {
                     // console.log('props ', this.props)
                     // console.log('state in main ', this.state)
@@ -103,7 +117,9 @@ class _QuizGame extends Component {
     //     }, 1500)
     // }
     onEndGame = () => {
-        this.setState({ gameOn: false })
+        this.setState({ gameOn: false },() =>{
+            clearInterval(this.timer)
+        })
     }
 
 
@@ -126,11 +142,14 @@ class _QuizGame extends Component {
         const questions = this.state.quiz.quests
         let { currQuestionIdx } = this.state
         // console.log("render -> quizzes", quizzes)
+        console.log('curr user: ',this.state.currUser)
+        console.log(' state: ',this.state)
 
         if (!questions) return <Loading/>
         return (
-            <main>
-                {this.state.gameOn && this.state.isQuizReady ?
+            <main className={!this.timer &&'set-unregistered-container'}>
+                {(this.state.currUser===null) &&<SetName getCurrUnregisteredUser={this.getCurrUnregisteredUser}/> }
+                { this.state.currUser &&(this.state.gameOn && this.state.isQuizReady ?
                  <GameOn resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady} 
                  score={this.state.score} currTimeStamp={this.state.currTimeStamp}
                   onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
@@ -138,7 +157,7 @@ class _QuizGame extends Component {
                         getInitialState={this.getInitialState} quiz={this.state.quiz}
                         currTimeStamp={this.state.currTimeStamp} allTimesPlayers={this.state.quiz.allTimesPlayers}
                         category={this.state.quiz.tags[0]} score={this.state.score}
-                        allAns={this.state.quiz.quests.length} />}
+                        allAns={this.state.quiz.quests.length} />)}
             </main>
         )
     }

@@ -80,13 +80,13 @@ class _GameOn extends Component {
         return (
             <main className="quiz-game-main mt10">
                 <div className="game-top">
-                    <h2 className="score">{this.props.score}</h2>
+                    <Progress  value={this.props.currTimeStamp/1000} max={15}/>
+                    <h2 className="score">Score: {this.props.score}</h2>
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
                     {/* <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3> */}
-                    <Progress  value={this.props.currTimeStamp/1000} max={15}/>
                     <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
                     <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} />
-                    <ProgressBar completed={(currQuestionIdx / questions.length) * 100} />
+                    {/* <ProgressBar completed={(currQuestionIdx / questions.length) * 100} /> */}
                     <div className="timer-wrapper">
                     </div>
                 </div>

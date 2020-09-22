@@ -48,7 +48,7 @@ export class _QuizDetails extends Component {
 
         const quizLength = quiz.quests.length
         const playedTime = quiz.allTimesPlayers.length
-        if (quiz.allTimesPlayers) var bestPlayers = utilService.getBestUsers(quiz);
+        if (quiz.allTimesPlayers) var { tenBestPlayers } = utilService.getBestUsers(quiz);
         const avgRate = this.getAvgRate()
         return (
             <section className="quiz-details-container ">
@@ -58,16 +58,16 @@ export class _QuizDetails extends Component {
                     {!quiz.img && <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" />}
                     <div className="rank-container">
 
-                        <RankTable bestPlayers={bestPlayers} />
+                        <RankTable bestPlayers={tenBestPlayers} />
 
                     </div></div>
                 <div className="quiz-details-body">
                     <div className="quiz-info">
                         <h1 className="title">{quiz.title} </h1>
                         <span className="creator">
-                            
+
                             {this.getDifficulity()} -
-                            By {quiz.createdBy.fullName} - 
+                            By {quiz.createdBy.fullName} -
                             {quiz.tags[0].length >= 1 && <span>{
                                 quiz.tags.map((tag, idx) => {
                                     return <span key={idx}> {tag} </span>
@@ -76,9 +76,9 @@ export class _QuizDetails extends Component {
 
                         </span>
 
-                        {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 &&<span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
+                        {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
                         {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
-                       
+
 
                     </div>
                     <div className="btns">

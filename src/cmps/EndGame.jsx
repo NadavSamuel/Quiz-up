@@ -56,13 +56,10 @@ export class EndGame extends Component {
         if(!currUserMiniObject.score) return
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
-        const bestPlayers = utilService.getBestUsers(currQuiz)
-        const playerPositionInTable = bestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId )
-        if(playerPositionInTable !== -1) this.setState({idxInRankTable:playerPositionInTable+1},()=>{
-            // console.log('playerPositionInTable',playerPositionInTable)
-            // console.log('allTimesPlayers', currQuiz.allTimesPlayers)
-            // this.forceUpdate()
-        })
+        const {tenBestPlayers,playerRank} = utilService.getBestUsers(currQuiz,currUserMiniObject.gameSessionId)
+        const playerPositionInTable = tenBestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId )
+        if(playerPositionInTable !== -1) this.setState({idxInRankTable:playerPositionInTable+1})
+        else this.setState({idxInRankTable:playerRank+1})
  
         // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
         this.forceUpdate()
@@ -129,7 +126,7 @@ export class EndGame extends Component {
             }
         }
         const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz } = this.props
-        const bestPlayers = utilService.getBestUsers(quiz)
+        const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
             <label htmlFor="review">Review this quiz:</label>
             <textarea onChange={this.handleReviewChange} value={this.state.review.txt} placeholder="your review here" id="review" name="review" rows="4" cols="50">
@@ -160,7 +157,7 @@ export class EndGame extends Component {
                         </div>}
                     </StyleRoot>
                     <div className="mt30">
-                    <RankTable  bestPlayers={bestPlayers} />
+                    <RankTable  bestPlayers={tenBestPlayers} />
                     </div>
                     <div className="endgame-actions mt30" >
                         <button onClick={this.props.getInitialState}>Play again</button>
