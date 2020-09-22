@@ -1,6 +1,13 @@
 .set-unregistered-container{
     @include center-columns();
     justify-content: center;
+    form{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 190px;
+    }
 
 }
 .quiz-game-main{
@@ -29,8 +36,10 @@
     align-items: center;
     margin-top: 69px;
     img{
-        height: 180px;
-    }
+        height: 200px;
+        width: 230px;
+        margin-bottom: 40px;
+        }
     .game-progress{
         width:75vw;
         transition: all .3s;

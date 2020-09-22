@@ -20,20 +20,22 @@ class _QuizGame extends Component {
         currTimeStamp: 15000,
         gameSessionId: utilService.makeId(),
         wasQuestionAnswerd:false,
-        isQuizReady: false
+        isQuizReady: false,
+        isSetName:false
 
     }
     timer=null
 
     componentDidMount() {
         window.scrollTo(0, 100)
-        this.loadQuizz();
         this.setCurrUser();
+        this.loadQuizz();
         // this.setTimer();
     }
     setCurrUser = ()=>{
         this.setState({ currUser: this.props.loggedinUser},() =>{
-            if(this.state.currUser) this.timer=setInterval(this.setTimer,1000);
+            if(!this.state.currUser) this.setState({ isSetName: true})
+            else this.timer=setInterval(this.setTimer,1000);
 
         })
         // this.setState({ cu=>{rrUser: this.props.loggedinUser || this.getRandomUserObject()})
@@ -43,7 +45,7 @@ class _QuizGame extends Component {
         this.setState({currUser:{
             username,
             _id:utilService.makeId(),
-        }},() =>{
+        },isSetName:false},() =>{
             this.timer=setInterval(this.setTimer,1000)
         })
     }
@@ -57,8 +59,7 @@ class _QuizGame extends Component {
     getInitialState = () => {
         this.setState({
             ...this.state, gameOn: true, score: 0, rightAns: 0,
-            currTimeStamp: 0, gameSessionId: utilService.makeId(),
-            currUser: this.props.loggedinUser || this.getRandomUserObject()
+            currTimeStamp: 0, gameSessionId: utilService.makeId()
         },() => {
             this.resetTimer()
             this.timer=setInterval(this.setTimer,1000)
@@ -142,14 +143,14 @@ class _QuizGame extends Component {
         const questions = this.state.quiz.quests
         let { currQuestionIdx } = this.state
         // console.log("render -> quizzes", quizzes)
-        console.log('curr user: ',this.state.currUser)
-        console.log(' state: ',this.state)
+        // console.log('curr user: ',this.state.currUser)
+        // console.log(' state: ',this.state)
 
         if (!questions) return <Loading/>
         return (
-            <main className={!this.timer &&'set-unregistered-container'}>
-                {(this.state.currUser===null) &&<SetName getCurrUnregisteredUser={this.getCurrUnregisteredUser}/> }
-                { this.state.currUser &&(this.state.gameOn && this.state.isQuizReady ?
+            <main className={this.state.isSetName &&'set-unregistered-container' || ''}>
+                {(this.state.currUser===null && this.state.isSetName) &&<SetName quizId={this.state.quiz._id} getCurrUnregisteredUser={this.getCurrUnregisteredUser}/> }
+                { !this.state.isSetName && this.state.currUser &&(this.state.gameOn && this.state.isQuizReady ?
                  <GameOn resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady} 
                  score={this.state.score} currTimeStamp={this.state.currTimeStamp}
                   onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :

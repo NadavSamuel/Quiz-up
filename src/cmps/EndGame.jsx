@@ -24,7 +24,8 @@ export class EndGame extends Component {
 
         }
         , isReviewSent: false,
-        idxInRankTable:null
+        idxInRankTable:null,
+        tenBestPlayers:[]
     }
     componentDidMount() {
         this.updateAllTimePlayers()
@@ -56,12 +57,16 @@ export class EndGame extends Component {
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
         const {tenBestPlayers,playerRank} = utilService.getBestUsers(currQuiz,currUserMiniObject.gameSessionId)
-        const playerPositionInTable = tenBestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId )
-        if(playerPositionInTable !== -1) this.setState({idxInRankTable:playerPositionInTable+1})
-        else this.setState({idxInRankTable:playerRank+1})
+        let playerPositionInTable = tenBestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId )
+        if(playerPositionInTable !== -1) {
+            playerPositionInTable++
+            this.setState({idxInRankTable:playerPositionInTable,tenBestPlayers})
+        }
+        else this.setState({idxInRankTable:playerRank+1,tenBestPlayers})
  
         // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
-        this.forceUpdate()
+        // this.forceUpdate()
+        console.log('tenBestPlayers: ',tenBestPlayers)
     }
     onSubmitReview = ev => {
         ev.preventDefault()
@@ -74,20 +79,20 @@ export class EndGame extends Component {
         this.setState({ review: { ...this.state.review, rate: num } })
         // this.setState(...this.state,review:{...this.state.review,rate:num})
     }
-    getFinalScore = () => {
-        const timeStampInSecs = this.props.currTimeStamp / 1000
-        const { allAns,score} = this.props
-        function calaTimeBonus(secs) {
-            if (allAns < 6 || score/10 < allAns) return 0
-            if (secs <= 40) return 40
-            if (secs <= 45) return 30
-            if (secs <= 60) return 20
-            if (secs <= 75) return 10
-        }
-        const gameTimeCalc = calaTimeBonus(timeStampInSecs)
-        const finalScore = score + gameTimeCalc
-        return finalScore
-    }
+    // getFinalScore = () => {
+    //     const timeStampInSecs = this.props.currTimeStamp / 1000
+    //     const { allAns,score} = this.props
+    //     function calaTimeBonus(secs) {
+    //         if (allAns < 6 || score/10 < allAns) return 0
+    //         if (secs <= 40) return 40
+    //         if (secs <= 45) return 30
+    //         if (secs <= 60) return 20
+    //         if (secs <= 75) return 10
+    //     }
+    //     const gameTimeCalc = calaTimeBonus(timeStampInSecs)
+    //     const finalScore = score + gameTimeCalc
+    //     return finalScore
+    // }
     getRate = (num) => {
         var arr = []
         var fiveMinusArr = []
@@ -124,15 +129,16 @@ export class EndGame extends Component {
             }
         }
         const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz } = this.props
-        const {tenBestPlayers} = utilService.getBestUsers(quiz)
+        const { idxInRankTable,tenBestPlayers } = this.state
+        // const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
             <label htmlFor="review">Review this quiz:</label>
             <textarea onChange={this.handleReviewChange} value={this.state.review.txt} placeholder="your review here" id="review" name="review" rows="4" cols="50">
             </textarea>
             {this.getRate(this.state.review.rate)}
-            <button>sendReview</button>
+            <button>Send Review</button>
         </form>
-        const reviewFeedback = <div>
+        const reviewFeedback = <div className="review-feedback">
             <p>Thank you for writing a review! </p>
         </div>
         // console.log('curr time stamp in endGame: ',currTimeStamp)
@@ -145,21 +151,21 @@ export class EndGame extends Component {
 
         return (
             <main className="endgame-main" >
-                <div className="endgame-top"> <h1>Wow! you scored {this.props.score}</h1>
-                    <h3 className="mt30">you answered {rightAns} answeres right out of {allAns} questions <br />
+                <div className="endgame-top"> <h1> <span style={{display:idxInRankTable <=10 ?'inlineBlock':'none'}}>Wow!</span> You scored {this.props.score}</h1>
+                    <h3 className="mt30">You answered {rightAns} answeres right out of {allAns} questions <br />
                      {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
                      </h3>
                     <StyleRoot>
                        { this.state.idxInRankTable && <div className="game-records-break mt30"> 
-                        <h2 style={styles.tada}>Congratulations! you are {getRankPlaceGood(this.state.idxInRankTable) } place in the "{quiz.title}" quiz! </h2>
+                        <h2 style={idxInRankTable <=10 &&styles.tada||styles.null}> <span className="top-ten-greet" style={{display:idxInRankTable <=10 ?'block':'none'}}>Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable) } place in the "{quiz.title}" quiz! </h2>
                         </div>}
                     </StyleRoot>
                     <div className="mt30">
                     <RankTable  bestPlayers={tenBestPlayers} />
                     </div>
                     <div className="endgame-actions mt30" >
-                        <button onClick={this.props.getInitialState}>Play again</button>
-                        <button><Link to='/browse'> back to browse</Link></button>
+                        <button onClick={this.props.getInitialState}>Play Again</button>
+                        <button><Link to='/browse'> Back to Browse</Link></button>
                         {!this.state.isReviewSent ? reviewForm : reviewFeedback}
                     </div>
                 </div>

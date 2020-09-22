@@ -32,7 +32,11 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 36px;
-        form,p{
+        button{
+            width: 215px;
+            height: 75px;
+        }
+        form,.review-feedback{
             flex-direction:column;
             grid-area: 2 / 1 / span 2 / span 2;
             textarea{
@@ -41,4 +45,28 @@
 
     }
 }
+}
+@media(max-width:$narrow-breakpoint){
+    .endgame-main {
+        .endgame-top {
+            padding: 5px;
+            .rank-table {
+                width: 400px;
+            }
+    .endgame-actions {  
+        button{
+            width: 150px;
+        }
+      }
+    }
+  }
+}
+@media(max-width:450px){
+    .endgame-main {
+        .endgame-top {
+            .rank-table {
+                width: 350px;
+            }
+    }
+  }
 }
