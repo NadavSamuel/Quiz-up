@@ -5,9 +5,9 @@ export function RankTable({ bestPlayers }) {
     return (
         <div className="rank-table">
             <div className="header">
-                <span className="position">#</span>
-                <span className="name">Name</span>
-                <span className="score">Score</span>
+                {/* <span className="position">#</span>
+                <span className="name">Name</span> */}
+                <span className="score">Top Players</span>
             </div>
             {bestPlayers && bestPlayers.length > 1 && bestPlayers.map((player, idx) => {
                 return <p className="table-line" key={idx}>
