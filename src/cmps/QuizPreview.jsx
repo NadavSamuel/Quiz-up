@@ -32,7 +32,7 @@ export class QuizPreview extends Component {
             <div className="quiz-preview">
                 <img className="main-img" src={quiz.img} alt="img" />
                 <div className="info">
-                    <h3>{quiz.title}</h3>
+                    <h3 className='quiz-title'>{quiz.title}</h3>
                     <p>
                         <span>{quiz.quests.length} Questions</span>
                         <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
