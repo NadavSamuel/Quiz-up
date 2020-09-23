@@ -115,13 +115,10 @@ class _QuizGame extends Component {
         })
     }
 
-
-    /////////////////////// Timer funcs
     updateTime = () => {
         if (this.state.currTimeStamp === 0 || this.state.wasQuestionAnswerd) return
         if (this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp - 1000 })
     }
-    ///////////////////////
     arrangeQuestions = () => {
         let questions = this.state.quiz.quests
         questions = utilService.shuffle(questions, true)

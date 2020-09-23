@@ -79,9 +79,7 @@ function getTopRated(quizzes) {
   var topRated = [...quizzes]
   topRated = topRated.sort((quiz1, quiz2) => {
     const rate1 = getRate(quiz1)
-    console.log("getTopRated -> rate1", rate1)
     const rate2 = getRate(quiz2)
-    console.log("getTopRated -> rate2", rate2)
     return rate2 - rate1
   })
   return topRated

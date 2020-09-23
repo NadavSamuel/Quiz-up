@@ -87,6 +87,10 @@
             grid-column: 2/3;
             grid-row: 4/5;
         }
+        div:nth-child(7) {
+            grid-column: 3/4;
+            grid-row: 4/5;
+        }
 
         .edit-btn {
             cursor: pointer;

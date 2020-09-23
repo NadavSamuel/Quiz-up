@@ -36,7 +36,6 @@ function getById(id) {
 }
 
 function remove(id) {
-    console.log('deleting',id);
     const idx = toys.findIndex(toy => toy._id === id)
     if (idx === -1) return Promise.reject('something went wrong')
     toys.splice(idx, 1)

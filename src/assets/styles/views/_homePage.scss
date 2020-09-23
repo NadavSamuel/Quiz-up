@@ -5,47 +5,60 @@
         object-fit: cover
     }
 
-    .tags-row {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(150px, 1fr));
-        grid-gap: 20px;
-
-        @media(max-width: 950px) {
-            grid-template-columns: repeat(2, minmax(150 px, 1fr));
-        }
-
-    }
-
-    h1 {
-        position: absolute;
-        top: 350px;
-        font-size: rem(40px);
-
-        @media(max-width:550px) {
-            text-align: center;
-            font-size: rem(30px);
-        }
-    }
-
-    h2 {
-        a {
+    a{
+        h3{
             color: $clr1;
         }
-
-        text-align: right;
-        margin-right: 40px;
     }
 
+    .title {
+        background-image: url(https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif);
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        h1 {
+            font-family: montserrat-black;
+            font-size: rem(40px);
+            @media(max-width:550px) {
+                text-align: center;
+                font-size: rem(30px);
+            }
+        }
+
+    }
+
+    .list {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
+        background-color: $clr5;
+        padding: 10px 10px;
+        margin-top: 10px;
+
+       
+
+        @media(max-width: 1000px) {
+            grid-template-columns: repeat(2, minmax(200px, 1fr));
+        }
+
+        @media(max-width: 500px) {
+            grid-template-columns: repeat(1, minmax(300px, 1fr));
+        }
+
+        // @media(max-width: 420px) {
+        //     grid-template-columns: repeat(1, minmax(250px, 1fr));
+        // }
+    }
+
+
+  
     .tag-title {
-        margin-left: 30px;
-        padding: 0 10px;
-        transform: translateY(10px);
-        background-color: $clr6;
-        display: inline-block;
+        margin-top: 10px;
     }
 
     .quiz-list h3 {
         text-align: right;
-        margin-right: 40px;
     }
 }

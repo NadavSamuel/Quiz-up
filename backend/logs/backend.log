@@ -730,3 +730,14 @@ Wed, 23 Sep 2020 06:25:09 GMT - Debug - auth.route - new account created: {"user
 Wed, 23 Sep 2020 06:25:09 GMT - Debug - auth.service - login with username: ordamari
 Wed, 23 Sep 2020 06:25:17 GMT - Debug - auth.service - login with username: ordamari
 Wed, 23 Sep 2020 06:29:46 GMT - Debug - auth.service - login with username: ordamari
+Wed, 23 Sep 2020 07:29:05 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 09:55:02 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 09:55:13 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 09:56:11 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 09:57:02 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 09:57:11 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 10:03:31 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 10:03:37 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 10:03:40 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 10:03:55 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 10:04:09 GMT - Info - Server is running on port: 3030

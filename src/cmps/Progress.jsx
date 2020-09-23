@@ -11,7 +11,6 @@ export function Progress({ value: value, max }) {
 
   return (
     <div className="progress-bar">
-      {/* <span style="width: 80%;"></span> */}
       <span className={getClass()} style={{ width: `${(+value / max) * 100}%` }}></span>
     </div>
   )

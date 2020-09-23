@@ -22,7 +22,6 @@ class _Browse extends Component {
             });
             return acc
         }, [])
-        console.log(tags);
         this.setState({ tags });
     }
 
@@ -38,7 +37,6 @@ class _Browse extends Component {
 
     getQuizzesByTag = async (tag) => {
         const quizzes = await quizService.getByTag(tag)
-        console.log(quizzes);
         return quizzes
     }
 
@@ -47,11 +45,14 @@ class _Browse extends Component {
         const tags = this.state.tags
         if (!quizzes) return <Loading />
         return (
-            <div className="full browse">
-                {tags && tags.map((tag, idx) => 
-                    <TagPreview tag={tag} key={idx} />
-                
+            <div className="main-container">
+
+                <div className="browse ">
+                    {tags && tags.map((tag, idx) =>
+                        <TagPreview tag={tag} key={idx} />
+
                     )}
+                </div>
             </div>
         )
     }

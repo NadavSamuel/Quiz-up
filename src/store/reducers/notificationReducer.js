@@ -6,7 +6,6 @@ const initialState = {
 export function notificationReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_NOTIFICATION':
-            console.log(action.txt);
             return {
                 ...state,
                 txt: action.txt,
