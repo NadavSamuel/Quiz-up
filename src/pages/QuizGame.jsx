@@ -96,8 +96,6 @@ class _QuizGame extends Component {
                 let reward = 15 - (15 -this.state.currTimeStamp /1000)
                 if(this.state.currTimeStamp === 0) reward =1
                 this.setState({ score: this.state.score + reward, rightAns: this.state.rightAns + 1,wasQuestionAnswerd:true }, () => {
-                    // console.log('props ', this.props)
-                    // console.log('state in main ', this.state)
                 })
             } else {
                 
@@ -108,34 +106,22 @@ class _QuizGame extends Component {
                 }
                 
                     
-                this.setState({ score: this.state.score - 5,}, () => { console.log('state in main ', this.state) })
+                this.setState({ score: this.state.score - 5,})
             }
         })
     }
-    // answerQuestion = answerResult => {
-
-    //     this.setState({ answerFeedback: answerResult })
-    //     setTimeout(() => {
-
-    //         this.setState({ currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null })
-    //     }, 1500)
-    // }
+   
     onEndGame = () => {
         this.setState({ gameOn: false },() =>{
             clearInterval(this.timer)
         })
     }
 
-
-    /////////////////////// Timer funcs
     updateTime = () => {
         if (this.state.currTimeStamp === 0 || this.state.wasQuestionAnswerd ) return
 
-        // console.log('currTimeStamp ',this.state.currTimeStamp)
         if (this.state.gameOn) this.setState({ currTimeStamp: this.state.currTimeStamp - 1000 })
-        // return true
     }
-    ///////////////////////
     arrangeQuestions = () => {
         let questions = this.state.quiz.quests
         questions = utilService.shuffle(questions, true)
@@ -143,13 +129,8 @@ class _QuizGame extends Component {
     }
 
     render() {
-        // console.log('currQuiz: ', this.state.quiz)
         const questions = this.state.quiz.quests
         let { currQuestionIdx } = this.state
-        // console.log("render -> quizzes", quizzes)
-        // console.log('curr user: ',this.state.currUser)
-        // console.log(' state: ',this.state)
-
         if (!questions) return <Loading/>
         return (
             <main className={this.state.isSetName &&'set-unregistered-container' || ''}>

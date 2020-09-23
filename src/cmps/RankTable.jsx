@@ -1,12 +1,9 @@
 import React from 'react'
 
 export function RankTable({ bestPlayers }) {
-    // console.log('best players in rank table endgame: ', bestPlayers, bestPlayers.length)
     return (
         <div className="rank-table">
             <div className="header">
-                {/* <span className="position">#</span>
-                <span className="name">Name</span> */}
                 <span className="score">Top Players</span>
             </div>
             {bestPlayers && bestPlayers.length >= 1 && bestPlayers.map((player, idx) => {

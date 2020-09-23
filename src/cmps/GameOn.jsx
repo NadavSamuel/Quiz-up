@@ -35,10 +35,8 @@ class _GameOn extends Component {
     answerQuestion = (answerResult, answerIdx) => {
         if (this.state.answerFeedback) return
         const nextQuestionIdx = this.state.currQuestionIdx + 1
-        // this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult, chosenAnswerIdx: answerIdx }, () => {
         this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult }, () => {
             this.props.onAns(answerResult)
-            // console.log('state: ', this.state)
         })
         setTimeout(() => {
             if ((nextQuestionIdx) === this.props.questions.length) {
@@ -47,7 +45,6 @@ class _GameOn extends Component {
             }
             this.props.resetTimer()
             this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
-                // console.log('did sound play?, ',this.state.didSoundPlay)
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
@@ -66,10 +63,7 @@ class _GameOn extends Component {
                     <Progress  value={this.props.currTimeStamp/1000} max={15}/>
                     <div  className="score"><h2>Score: {this.props.score}</h2></div>
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
-                    {/* <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3> */}
                     <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-                    {/* <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} /> */}
-                    {/* <ProgressBar completed={(currQuestionIdx / questions.length) * 100} /> */}
                     <div className="timer-wrapper">
                     </div>
                 </div>

@@ -70,7 +70,7 @@ export class _QuizEdit extends Component {
     handleChange = ({ target }) => {
         const field = target.name
         const value = (target.type === 'number') ? parseInt(target.value) : target.value
-        this.setState({ [field]: value }, () => console.log(this.state))
+        this.setState({ [field]: value })
     }
 
     onSubmitAns = (event) => {
@@ -132,7 +132,6 @@ export class _QuizEdit extends Component {
         const user = { ...this.props.loggedinUser }
         event.preventDefault()
         const { title, tags, difficulity, quests, img, reviews, allTimesPlayers, _id } = this.state
-        console.log(img);
         if (!title || !tags || quests.length === 0) {
             if (!title) this.props.setNotification('err', `Dont have a title`)
             if (!tags) this.props.setNotification('err', `Dont have a tags`)
@@ -154,7 +153,6 @@ export class _QuizEdit extends Component {
         }
         if (!this.state._id) {
             const newQuiz = await quizService.add(quiz);
-            console.log(user);
             if (user._id) await userService.updateUserQuizzes(user, newQuiz._id)
             this.props.setNotification('success', `quiz added`)
         } else {
@@ -167,27 +165,22 @@ export class _QuizEdit extends Component {
 
     uploadImg = async (ev) => {
         const { name } = ev.target
-        console.log("uploadImg -> name", name)
         try {
             const newImg = await cloudinaryService.uploadImg(ev);
             const img = newImg.secure_url;
             this.setState({ [name]: img })
         } catch (err) {
-            console.log(err);
         }
     }
 
     onUpdateQuest = async (quest) => {
-        console.log(quest);
         const { id, txt, style, img, answers } = quest
-        console.log(answers);
-        this.setState({ id, currQuest: txt, style, questImg:img, answers: [{ txt: answers[0].txt }, { txt: answers[1].txt }, { txt: answers[2].txt }, { txt: answers[3].txt }] })
+        this.setState({ id, currQuest: txt, style, questImg: img, answers: [{ txt: answers[0].txt }, { txt: answers[1].txt }, { txt: answers[2].txt }, { txt: answers[3].txt }] })
     }
 
 
     onDeleteQuest = (questId) => {
         var quests = [...this.state.quests];
-        console.log(quests);
         quests = quests.filter(quest => quest.id !== questId)
         this.setState({ quests })
         this.props.setNotification('info', `Question delete`)
@@ -196,7 +189,6 @@ export class _QuizEdit extends Component {
 
     setRandomQuiz = async () => {
         const quiz = await quizService.getRandomQuiz()
-        // console.log('got quiz:', quiz);
         const { quests, title } = quiz
         this.setState({ quests, title })
     }
@@ -209,10 +201,8 @@ export class _QuizEdit extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="full quiz-edit">
-                <button onClick={this.setRandomQuiz}>Generate random quiz</button>
                 <div className='flex edit-layout'>
                     <div className='quest-list-preview'>
                         <QuestList quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
@@ -230,8 +220,8 @@ export class _QuizEdit extends Component {
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
+                            <button onClick={this.setRandomQuiz}>Generate quiz</button>
                             <div className='edit-btn flex align-center justify-center' onClick={this.onSubmitAns}>
-                                {/* <EditIcon /> */}
                                 <PlaylistAddIcon fontSize="large" />
 
                             </div>

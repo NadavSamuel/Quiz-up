@@ -36,7 +36,7 @@ class _TagQuizzes extends Component {
     }
 
     getFilterBy = (filterBy) => {
-        this.setState({ filterBy }, () => console.log(this.state.filterBy))
+        this.setState({ filterBy })
     }
 
     setSortBy = (sortBy) => {
@@ -59,7 +59,6 @@ class _TagQuizzes extends Component {
             quizzes = quizzes.sort((quiz1, quiz2) => {
                 const rate1= +this.getRate(quiz1)
                 const rate2= +this.getRate(quiz2)
-                console.log("setSortBy -> rate1-rate2", rate1,rate2)
                 return rate2-rate1
             })
         }
