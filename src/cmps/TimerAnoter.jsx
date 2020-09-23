@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
-import { Answer } from '../cmps/answer.jsx'
-import { QuizList } from './QuizList.jsx'
-import { quizService } from '../services/quizService'
-import { imgService } from '../services/imgService'
-import { Link } from 'react-router-dom'
-import { Progress } from './Progress.jsx'
 
-
-export class Timer extends Component {
+export class TimerAnoter extends Component {
 
     state = {
         now: Date.now(),
-        countDown: Date.now()+(1000*15)  
+        countDown: Date.now()+(1000*4)  
     }
     timerInterval=null;
 
@@ -60,8 +53,8 @@ export class Timer extends Component {
     render() {
         return (
             <div className='timer'>
-               <h1 >{this.timeToShow()}</h1>
-               <Progress  value={this.timeToShow()} max={15}/>
+               <h1 className='timer-another' >{this.timeToShow()}</h1>
+               {/* <Progress  value={this.timeToShow()} max={15}/> */}
                
             </div>
 

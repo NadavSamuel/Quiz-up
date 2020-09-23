@@ -63,7 +63,9 @@ class _GameOn extends Component {
                 <div className="game-top">
                     <Progress value={this.props.currTimeStamp / 1000} max={15} />
                     <div className="score"><h2>Score: {this.props.score}</h2></div>
-                    <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
+                    <div className="curr-question">
+                        <h1 >{currQuestion.txt}</h1>
+                        </div>
                     <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
                     <div className="timer-wrapper">
                     </div>

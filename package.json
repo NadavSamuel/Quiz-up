@@ -25,6 +25,7 @@
     "react-scripts": "3.4.3",
     "react-share": "^4.2.1",
     "react-sound": "^1.2.0",
+    "react-typing": "^1.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },

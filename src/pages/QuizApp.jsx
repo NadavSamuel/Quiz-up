@@ -8,6 +8,7 @@ import { Loading } from '../cmps/Loading'
 import { imgService } from '../services/imgService'
 
 
+
 class _QuizApp extends Component {
 
     state = {
@@ -59,16 +60,16 @@ class _QuizApp extends Component {
         return (
             <div className="home-page main-container">
                 <div className='title full'>
-                <h1>Play quizzes</h1>
-                <h1>Challenge your friends</h1>
-                <h1>Have fun</h1>
+                    <h1>Play quizzes</h1>
+                    <h1>Challenge your friends</h1>
+                    <h1>Have fun</h1>
 
                 </div>
                 <h3 className='tag-title'>Most Popular</h3>
                 <QuizList sort='popularity' quizzes={utilService.getMostPopular(quizzes).slice(0, 4)} />
                 <h3 className='tag-title'>Top Rated</h3>
                 <QuizList sort='rate' quizzes={utilService.getTopRated(quizzes).slice(0, 4)} />
-                
+
             </div>
         )
     }
