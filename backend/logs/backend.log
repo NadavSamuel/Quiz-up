@@ -651,6 +651,7 @@ Tue, 22 Sep 2020 17:31:46 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:32:29 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:32:35 GMT - Debug - auth.service - login with username: admin
 Tue, 22 Sep 2020 17:33:16 GMT - Info - Server is running on port: 3030
+<<<<<<< HEAD
 Tue, 22 Sep 2020 17:51:38 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:53:04 GMT - Debug - Nadav , brecker, https://res.cloudinary.com/dsrtl41yz/image/upload/v1600797181/bibi_jpdjzi.jpg
 Tue, 22 Sep 2020 17:53:04 GMT - Debug - auth.service - signup with username: Nadav , password: brecker, imgUrl: https://res.cloudinary.com/dsrtl41yz/image/upload/v1600797181/bibi_jpdjzi.jpg
@@ -659,3 +660,23 @@ Tue, 22 Sep 2020 17:53:04 GMT - Debug - auth.service - login with username: Nada
 Wed, 23 Sep 2020 06:02:00 GMT - Info - Server is running on port: 3030
 Wed, 23 Sep 2020 06:28:32 GMT - Debug - auth.service - login with username: Nadav 
 Wed, 23 Sep 2020 06:29:09 GMT - Debug - auth.service - login with username: admin
+=======
+Tue, 22 Sep 2020 17:45:35 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 17:45:59 GMT - Debug - auth.service - login with username: admin
+Tue, 22 Sep 2020 17:46:23 GMT - Debug - auth.service - login with username: admin
+Tue, 22 Sep 2020 17:46:43 GMT - Debug - or, 123, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 17:46:43 GMT - Debug - auth.service - signup with username: or, password: 123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 17:46:43 GMT - Debug - auth.route - new account created: {"username":"or","password":"$2a$10$irOGHLVsGgvJDvoN1TLXLOas2oCKsb5VBB70S0U/GDfuHg8k0.jOW","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6a3883bad6f141fc9cad2b"}
+Tue, 22 Sep 2020 17:46:43 GMT - Debug - auth.service - login with username: or
+Tue, 22 Sep 2020 17:46:57 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 06:03:00 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 06:03:13 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 06:24:52 GMT - Debug - auth.service - login with username: ordamari
+Wed, 23 Sep 2020 06:25:02 GMT - Debug - auth.service - login with username: ordamari
+Wed, 23 Sep 2020 06:25:08 GMT - Debug - ordamari, 123, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Wed, 23 Sep 2020 06:25:08 GMT - Debug - auth.service - signup with username: ordamari, password: 123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Wed, 23 Sep 2020 06:25:09 GMT - Debug - auth.route - new account created: {"username":"ordamari","password":"$2a$10$vVFxCxOnAK1rJ1quBRuNx.zJ87QC6LqgV30g/Jpsu70Ez7M8PoaE2","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6aea44bad6f141fc9cad2e"}
+Wed, 23 Sep 2020 06:25:09 GMT - Debug - auth.service - login with username: ordamari
+Wed, 23 Sep 2020 06:25:17 GMT - Debug - auth.service - login with username: ordamari
+Wed, 23 Sep 2020 06:29:46 GMT - Debug - auth.service - login with username: ordamari
+>>>>>>> 5e639312b0e29509f587693d9bd1f7ff130e42ab

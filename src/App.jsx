@@ -18,7 +18,6 @@ function App() {
     <React.Fragment>
 
       <Navbar />
-      <div className="App main-container">
         <Switch>
           <Route component={QuizGame} path='/game/:quizId' />
           <Route component={LoginSignup} path='/user/:quizId?' />
@@ -29,7 +28,6 @@ function App() {
           <Route component={TagQuizzes} path='/list/:tag/:sort?' />
           <Route component={QuizApp} path='/' />
         </Switch>
-      </div>
       <Notification/>
       <Footer/>
       <BlackPage/>
