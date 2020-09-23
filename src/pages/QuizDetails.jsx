@@ -57,7 +57,7 @@ export class _QuizDetails extends Component {
                     <img className="bg-img" src={quiz.img} alt="" />
 
                     <div className="quiz-details-head">
-                    <div className="quiz-info">
+                        <div className="quiz-info">
                             <h1 className="title">{quiz.title} </h1>
                             <h5 className="creator">
 
@@ -81,10 +81,9 @@ export class _QuizDetails extends Component {
 
                         </div></div>
                     <div className="quiz-details-body">
-                       
+
                         <div className="btns">
-                            <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button onClick={this.addPlayerCount} endIcon={<PersonOutlineSharp />
-                            } variant="contained" color="primary">Play Single </button></Link>
+                            <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button onClick={this.addPlayerCount} >Play Single </button></Link>
                             {/* <Button endIcon={<PeopleAltOutlined />
                         } disabled variant="contained" color="primary">Play Online </Button> */}
                         </div></div>
