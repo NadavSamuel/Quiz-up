@@ -21,7 +21,7 @@ export function Footer({ loggedInUser }) {
     return (
 
 
-        <footer className='mt10 flex justify-between align-center'>
+        <footer className='flex justify-between align-center'>
             <div className="flex">
                 <FacebookShareButton url='https://www.youtube.com/'>
                     <FacebookIcon/>

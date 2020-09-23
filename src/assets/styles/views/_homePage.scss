@@ -1,12 +1,6 @@
 .home-page {
-    .home-page-img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover
-    }
-
-    a{
-        h3{
+    a {
+        h3 {
             color: $clr1;
         }
     }
@@ -18,9 +12,12 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        margin-bottom: 25px;
+
         h1 {
             font-family: montserrat-black;
             font-size: rem(40px);
+
             @media(max-width:550px) {
                 text-align: center;
                 font-size: rem(30px);
@@ -37,7 +34,7 @@
         padding: 20px;
         margin-top: 10px;
 
-       
+
 
         @media(max-width: 1000px) {
             grid-template-columns: repeat(2, minmax(200px, 1fr));
@@ -53,9 +50,10 @@
     }
 
 
-  
+
     .tag-title {
         margin-top: 10px;
+        font-family: montserrat-black;
     }
 
     .quiz-list h3 {
