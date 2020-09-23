@@ -36,7 +36,8 @@ async function ajax(endpoint, method = 'get', data = null) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: ${data}`);
         console.dir(err);
         if (err.response && err.response.status === 401) {
-            window.location.assign('/#/login');
+            window.location.assign('/#/user');
+            
         }
         throw err;
     }

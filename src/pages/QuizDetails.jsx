@@ -43,12 +43,12 @@ export class _QuizDetails extends Component {
         console.log(quiz);
         return (
             <section className="quiz-details-container main-container">
-                <Link to={`/edit/${quiz._id}`}><Button variant="contained" color="primary">Edit</Button></Link>
                 <div className="bg-container">
                     <img className="bg-img" src={quiz.img} alt="" />
 
                     <div className="quiz-details-head">
                         <div className="quiz-info">
+                            
                             <h1 className="title">{quiz.title} </h1>
                             <div className="mini-info">
                             <h5 className="creator">
@@ -65,6 +65,8 @@ export class _QuizDetails extends Component {
                             {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}),{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
                             {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
                             </div>
+                            <Link to={`/edit/${quiz._id}`}><button>Edit</button></Link>
+
                         </div>
                         <div className="rank-container">
 

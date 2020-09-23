@@ -56,6 +56,9 @@ form {
     background-color: $clr2;
     color: $clr6;
 }
+img{
+    object-fit: contain;
+}
 
 // @media(min-width:$narrow-breakpoint) {
 //     .App {
