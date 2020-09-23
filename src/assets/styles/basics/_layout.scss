@@ -30,7 +30,9 @@
 
     display: grid;
     grid-gap: 20px;
+    padding: 20px;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    background-color: $clr5;
 }
 
 
@@ -47,6 +49,7 @@
         @media(max-width: 1120px) {
             grid-template-columns: repeat(3, minmax(200px, 1fr));
         }
+
         @media(max-width: 770px) {
             grid-template-columns: repeat(2, minmax(200px, 1fr));
         }
@@ -56,3 +59,4 @@
         }
     }
 }
+

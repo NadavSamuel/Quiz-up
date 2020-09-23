@@ -5,6 +5,8 @@ import { Doughnut } from 'react-chartjs-2';
 import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { dashBoardService } from '../services/dashboardService'
+import { Timer } from '../cmps/Timer';
+import { TimerAnoter } from '../cmps/TimerAnoter';
 
 class _Dashboard extends Component {
 
@@ -38,8 +40,7 @@ class _Dashboard extends Component {
 
     render() {
         return (
-            <React.Fragment>
-
+            <div className='main-container'>
             <div className='mt10'>
                 <h2>tags:</h2>
                 <Doughnut data={this.getTagData()} />
@@ -52,7 +53,7 @@ class _Dashboard extends Component {
                 <h2>Rate:</h2>
                 <Doughnut data={this.getRatedData()} />
             </div>
-            </React.Fragment>
+            </div>
         )
     }
 }

@@ -12,6 +12,22 @@
 
 }
 .quiz-game-main{
+    background-color: white;
+    .background-img{
+        position: relative;
+        img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            border-radius: 5px;
+            object-fit: cover;
+            right: 0;
+            left: 0;
+
+        }
+    }
     .score{
         font-size:1rem;
         align-self: start;
@@ -26,18 +42,24 @@
         font-size: 2rem;
        }
 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top:19px;
+       height: 100vh;
+       /* display: flex; */
+       flex-direction: column;
+       justify-content: space-around;
+       margin-top: 19px;
+       position: fixed;
+       bottom: 0;
+       width: 100%;
+       background-position: center;
+       background-size: cover;
+       background-repeat: no-repeat;
     
 .game-top {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 69px;
+    margin-top: 20px;
     img{
         height: 280px;
         width: 280px;
@@ -102,6 +124,7 @@
 
 @media(max-width:$narrow-breakpoint){
     .quiz-game-main{
+
         h1{
             font-size: 1.5rem;
         }

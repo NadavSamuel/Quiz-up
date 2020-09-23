@@ -1,0 +1,19 @@
+@keyframes timer  {
+    0%{
+        
+        opacity: 1;
+    }
+    
+    
+
+    100%{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+
+}
+.timer-another{
+    animation: timer 1s infinite;
+    text-align: center;
+}

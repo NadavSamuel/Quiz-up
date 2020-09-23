@@ -213,10 +213,11 @@ export class _QuizEdit extends Component {
                             {this.state.questImg && <img className="quest-img" src={this.state.questImg} alt="img" />}</label>
                         <input hidden type="file" className="file-input" name="questImg" id="upload-file-quest"
                             onChange={this.uploadImg} />
+
                         <form className='quest-answers' onSubmit={this.onSubmitAns}>
 
                             <TextField className='quest' label="Question" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
-                            <TextField label="imgUrl" variant="outlined" autoComplete="off" type="text" name='questImg' onChange={this.handleChange} value={this.state.questImg} />
+                            <TextField label="Image URL" variant="outlined" autoComplete="off" type="text" name='questImg' onChange={this.handleChange} value={this.state.questImg} />
                             <TextField label="Correct answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
@@ -225,14 +226,16 @@ export class _QuizEdit extends Component {
                                 <PlaylistAddIcon fontSize="large" />
                             </div>
                         </form>
-                        <button onClick={this.setRandomQuiz}>Generate Quiz</button>
                     </div>
                 </div>
                 <div className='quiz-inputs'>
+                        <button  onClick={this.setRandomQuiz}>Set Random Quiz</button>
 
                     <form className='quiz-inputs-form mt10' onSubmit={this.onSubmit}>
                         <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
                         <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
+                        <TextField label="Image URL" variant="outlined" autoComplete="off" type="text" name='img' onChange={this.handleChange} value={this.state.img} />
+
                         <div>
                             <h3> Difficulity: </h3>
                             <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />

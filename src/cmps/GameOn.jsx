@@ -15,10 +15,16 @@ class _GameOn extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 74)
+        document.addEventListener("keydown", this.onEsc, false);
         this.getRightAnswerIdx(0)
     }
-
-
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.onEsc, false);
+    }
+    onEsc = (event) => {
+        if (event.keyCode === 27) this.props.history.push('/')
+        
+    }
     getRightAnswerIdx = idx => {
         const rightAnswerIdx = this.props.questions[idx].answers.findIndex(answer => answer.isCorrect === "true")
         this.setState({ correctAnsIdx: rightAnswerIdx })
@@ -49,6 +55,7 @@ class _GameOn extends Component {
         }, 1500)
     }
 
+
     render() {
         const { questions } = this.props
         let { currQuestionIdx } = this.state
@@ -59,11 +66,16 @@ class _GameOn extends Component {
 
         if (!questions) return <div>Loading....</div>
         return (
-            <main className="quiz-game-main mt10">
+            <main  className="quiz-game-main main-container mt10">
+                <div className="background-img">
+                    <img src={`${this.props.quizImg}`}/>
+                </div>
                 <div className="game-top">
                     <Progress value={this.props.currTimeStamp / 1000} max={15} />
                     <div className="score"><h2>Score: {this.props.score}</h2></div>
-                    <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
+                    <div className="curr-question">
+                        <h1 >{currQuestion.txt}</h1>
+                        </div>
                     <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
                     <div className="timer-wrapper">
                     </div>
