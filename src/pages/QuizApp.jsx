@@ -56,11 +56,10 @@ class _QuizApp extends Component {
 
     render() {
         const quizzes = this.state.quizzes
-        console.log(this.getTags(utilService.getRandom(quizzes).slice(0, 4)));
         if (!quizzes) return <Loading />
         return (
-            <div className="home-page full">
-                <img className="home-page-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif" alt="" />
+            <div className="home-page main-container">
+                <img className="home-page-img full" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif" alt="" />
                 <h1>Play quizzes. Challenge your friends. Have fun</h1>
                 <h3 className='tag-title'>Most Popular</h3>
                 <QuizList sort='popularity' quizzes={utilService.getMostPopular(quizzes).slice(0, 4)} />

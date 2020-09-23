@@ -54,26 +54,9 @@ class _GameOn extends Component {
     }
 
     render() {
-        // const [key, setKey] = useState(0);
         const { questions } = this.props
         let { currQuestionIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
-        const answerTimeLimit = 3
-        // console.log("render -> quizzes", quizzes)
-        // const BorderLinearProgress = withStyles((theme) => ({
-        //     root: {
-        //         height: 10,
-        //         borderRadius: 5,
-        //     },
-        //     colorPrimary: {
-        //         backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
-        //     },
-        //     bar: {
-        //         borderRadius: 5,
-        //         backgroundColor: '#07689f',
-
-        //     },
-        // }))(LinearProgress);
 
 
         if (!questions) return <div>Loading....</div>

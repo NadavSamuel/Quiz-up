@@ -1,9 +1,10 @@
 import React from 'react'
 
-export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion }) {
+export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion ,answerFeedback }) {
     
     
     function playSound(){
+        if(answerFeedback) return
         const sound =  new Audio((( idx === correctAnsIdx))?
         '../sounds/correct.wav':'../sounds/wrong.mp3')
         sound.currentTime = 0;
