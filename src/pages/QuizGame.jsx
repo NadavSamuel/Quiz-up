@@ -71,7 +71,7 @@ class _QuizGame extends Component {
         })
     }
     resetTimer = () => {
-        this.setState({ currTimeStamp: 1000, wasQuestionAnswerd: false })
+        this.setState({ currTimeStamp: 15000, wasQuestionAnswerd: false })
     }
 
     setTimer = () => {
