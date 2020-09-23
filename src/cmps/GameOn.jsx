@@ -1,15 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { QuizList } from '../cmps/QuizList'
-import { quizService } from '../services/quizService'
-import { utilService } from '../services/utilService'
 import { AnswersList } from '../cmps/AnswersList.jsx'
-import { CircleTimer } from '../cmps/CircleTimer'
-import { GameTimer } from '../cmps/GameTimer'
-import { ProgressBar } from '../cmps/ProgressBar'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { Howl, Howler } from 'howler';
 import { Progress } from '../cmps/Progress'
 
 
@@ -35,19 +26,24 @@ class _GameOn extends Component {
     answerQuestion = (answerResult, answerIdx) => {
         if (this.state.answerFeedback) return
         const nextQuestionIdx = this.state.currQuestionIdx + 1
-        // this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult, chosenAnswerIdx: answerIdx }, () => {
         this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult }, () => {
             this.props.onAns(answerResult)
-            // console.log('state: ', this.state)
         })
+        this.onGoToNextQuestion(nextQuestionIdx)
+    }
+    onNoAns = () => {
+        const nextQuestionIdx = this.state.currQuestionIdx + 1
+
+        this.onGoToNextQuestion(nextQuestionIdx)
+    }
+    onGoToNextQuestion = nextQuestionIdx => {
         setTimeout(() => {
             if ((nextQuestionIdx) === this.props.questions.length) {
                 this.props.onEndGame()
                 return
             }
             this.props.resetTimer()
-            this.setState({ chosenAnsIdx: null, currQuestionIdx: this.state.currQuestionIdx + 1, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
-                // console.log('did sound play?, ',this.state.didSoundPlay)
+            this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
@@ -57,19 +53,18 @@ class _GameOn extends Component {
         const { questions } = this.props
         let { currQuestionIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
+        this.props.currTimeStamp === 0 && this.onNoAns()
+
 
 
         if (!questions) return <div>Loading....</div>
         return (
             <main className="quiz-game-main mt10">
                 <div className="game-top">
-                    <Progress  value={this.props.currTimeStamp/1000} max={15}/>
-                    <div  className="score"><h2>Score: {this.props.score}</h2></div>
+                    <Progress value={this.props.currTimeStamp / 1000} max={15} />
+                    <div className="score"><h2>Score: {this.props.score}</h2></div>
                     <div className="curr-question"><h1>{currQuestion.txt}</h1></div>
-                    {/* <h3 className="game-timer"> <GameTimer currTimeStamp={this.props.currTimeStamp} /></h3> */}
-                    <img src={this.props.questions[currQuestionIdx].img || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-                    {/* <BorderLinearProgress variant="determinate" value={(currQuestionIdx / questions.length) * 100} /> */}
-                    {/* <ProgressBar completed={(currQuestionIdx / questions.length) * 100} /> */}
+                    <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
                     <div className="timer-wrapper">
                     </div>
                 </div>
@@ -79,9 +74,6 @@ class _GameOn extends Component {
                     answerFeedback={this.state.answerFeedback}
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
-
-                {/* {this.state.chosenAnsIdx && !this.state.didSoundPlay && this.playSound()} */}
-                {/* {this.state.chosenAnsIdx && !this.state.didSoundPlay && (this.state.chosenAnsIdx !== this.state.correctAnsIdx) && this.playSound('false')} */}
             </main>
         )
     }
@@ -95,15 +87,3 @@ const mapDispatchToProps = {
 
 }
 export const GameOn = connect(mapStateToProps, mapDispatchToProps)(_GameOn)
-{/* <CircleTimer ansSelected = {this.state.chosenAnsIdx}/> */ }
-{/* <CountdownCircleTimer
-    key={key}
-    isPlaying
-    duration={answerTimeLimit}
-    colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-    onComplete={() => {
-        this.answerQuestion('false')
-        return [true, 1500]
-    }}
->
-</CountdownCircleTimer> */}

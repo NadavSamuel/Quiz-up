@@ -1,7 +1,6 @@
 import React from "react";
 
 export function Progress({ value: value, max }) {
-  console.log("Progress -> value, max", value, max)
 
 
   function getClass() {
