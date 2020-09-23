@@ -36,8 +36,6 @@ async function remove(quizId) {
     const collection = await dbService.getCollection('quiz')
     try {
         await collection.deleteOne({ "_id": ObjectId(quizId) })
-        // const quizzes = await collection.find({}).toArray();
-        // console.log(quizzes);
     } catch (err) {
         console.log(`ERROR: cannot remove user ${quizId}`)
         throw err;

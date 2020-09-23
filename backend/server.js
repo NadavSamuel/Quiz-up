@@ -34,7 +34,6 @@ if (process.env.NODE_ENV === 'production') {
 const quizRoutes = require('./api/quiz/quiz.routes')
 const authRoutes = require('./api/auth/auth.routes.js')
 const userRoutes = require('./api/user/user.routes')
-// const reviewRoutes = require('./api/review/review.routes')
 // const connectSockets = require('./api/socket/socket.routes')
 
 

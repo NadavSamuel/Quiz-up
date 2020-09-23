@@ -11,7 +11,6 @@ var axios = Axios.create({
 
 export default {
     get(endpoint, data) {
-        console.log("get -> data", data)
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data) {
@@ -26,7 +25,6 @@ export default {
 }
 
 async function ajax(endpoint, method = 'get', data = null) {
-    console.log('KIBEL DATA?',data);
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,

@@ -20,8 +20,6 @@ function connectSockets(io) {
         socket.on('chat newMsg', msg => {
             history.push(msg)
             console.log('Got Msg:', msg.txt)
-            // io.emit('chat addMsg', msg)
-            // emits only to sockets in the same room
             io.to(socket.myTopic).emit('chat addMsg', msg)
         })
     })

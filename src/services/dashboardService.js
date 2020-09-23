@@ -10,7 +10,6 @@ export const dashBoardService = {
 
 
 function getTagsMap(quizzes) {
-    console.log(quizzes);
     const quizzesCopy = [...quizzes]
     return quizzesCopy.reduce((acc, quiz) => {
         quiz.tags.forEach(tag => {
@@ -36,7 +35,6 @@ function getRatedMap(quizzes) {
     const quizzesCopy = [...quizzes]
     return quizzesCopy.reduce((acc, quiz) => {
         let rate = utilService.getRate(quiz);
-        console.log("getRatedMap -> rate", rate)
         if (rate === 0) acc['Not rated']++;
         else if (rate < 2) acc['1-2']++;
         else if (rate < 3) acc['2-3']++;

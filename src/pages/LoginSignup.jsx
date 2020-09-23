@@ -34,18 +34,14 @@ export class _LoginSignup extends Component {
 
     handleChangeSign = ({ target }) => {
         const { name, value } = target
-        this.setState({ registerInfo: { ...this.state.registerInfo, [name]: value } }, () => console.log(this.state.registerInfo))
+        this.setState({ registerInfo: { ...this.state.registerInfo, [name]: value } })
     }
     onLogin = async ev => {
         ev.preventDefault()
         if (!this.state.loginInfo.username || !this.state.loginInfo.password) return alert('Please enter username/password')
         await this.props.onLogin(this.state.loginInfo)
-        console.log('user:', this.props.loggedInUser);
         if (this.state.fromQuiz) {
         this.props.history.push(`/game/${this.state.fromQuiz}`)
-        console.log('was supposed to go to quiz:', this.state.fromQuiz);
-
-
     }
 }
 onSignup = (ev) => {
@@ -77,8 +73,7 @@ uploadImg = async (ev) => {
             body: formData
         })
         const data = await res.json()
-        // console.log(data);
-        this.setState({ registerInfo: { ...this.state.registerInfo, imgUrl: data.secure_url } }, () => console.log(this.state.registerInfo))
+        this.setState({ registerInfo: { ...this.state.registerInfo, imgUrl: data.secure_url } })
         return data
 
     } catch (err) {
@@ -93,8 +88,6 @@ render() {
 
 
     const { loggedInUser } = this.props
-    console.log("render -> loggedInUser", loggedInUser)
-
     const { isRegister } = this.state
     return (
         

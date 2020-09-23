@@ -24,20 +24,24 @@ export class EndGame extends Component {
 
         }
         , isReviewSent: false,
-        idxInRankTable:null,
-        tenBestPlayers:[]
+        idxInRankTable: null,
+        tenBestPlayers: []
     }
     componentDidMount() {
         this.updateAllTimePlayers()
         this.setReviewComposer()
     }
 
-    setReviewComposer = ()=>{
-        this.setState({review:{...this.state.review,by: {
-            fullName: this.props.currUser.username,
-            imgUrl: this.props.currUser.img,
-            _id: this.props.currUser.id
-        }}})
+    setReviewComposer = () => {
+        this.setState({
+            review: {
+                ...this.state.review, by: {
+                    fullName: this.props.currUser.username,
+                    imgUrl: this.props.currUser.img,
+                    _id: this.props.currUser.id
+                }
+            }
+        })
     }
     handleReviewChange = ({ target }) => {
         const { name, value } = target
@@ -45,28 +49,24 @@ export class EndGame extends Component {
     }
     updateAllTimePlayers = () => {
         const currQuiz = this.props.quiz
-        const currUser =  this.props.currUser
+        const currUser = this.props.currUser
         const currUserMiniObject = {
-            fullName:currUser.username,
-            id:currUser._id,
-            img:currUser.img,
+            fullName: currUser.username,
+            id: currUser._id,
+            img: currUser.img,
             score: this.props.score,
-            gameSessionId:this.props.gameSessionId
+            gameSessionId: this.props.gameSessionId
         }
-        if(!currUserMiniObject.score) return
+        if (!currUserMiniObject.score) return
         currQuiz.allTimesPlayers.unshift(currUserMiniObject)
         quizService.update(currQuiz)
-        const {tenBestPlayers,playerRank} = utilService.getBestUsers(currQuiz,currUserMiniObject.gameSessionId)
-        let playerPositionInTable = tenBestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId )
-        if(playerPositionInTable !== -1) {
+        const { tenBestPlayers, playerRank } = utilService.getBestUsers(currQuiz, currUserMiniObject.gameSessionId)
+        let playerPositionInTable = tenBestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId)
+        if (playerPositionInTable !== -1) {
             playerPositionInTable++
-            this.setState({idxInRankTable:playerPositionInTable,tenBestPlayers})
+            this.setState({ idxInRankTable: playerPositionInTable, tenBestPlayers })
         }
-        else this.setState({idxInRankTable:playerRank+1,tenBestPlayers})
- 
-        // console.log('currQuiz in EndGame after force update: ',this.props.quiz)
-        // this.forceUpdate()
-        console.log('tenBestPlayers: ',tenBestPlayers)
+        else this.setState({ idxInRankTable: playerRank + 1, tenBestPlayers })
     }
     onSubmitReview = ev => {
         ev.preventDefault()
@@ -77,22 +77,7 @@ export class EndGame extends Component {
     }
     changeRate = num => {
         this.setState({ review: { ...this.state.review, rate: num } })
-        // this.setState(...this.state,review:{...this.state.review,rate:num})
     }
-    // getFinalScore = () => {
-    //     const timeStampInSecs = this.props.currTimeStamp / 1000
-    //     const { allAns,score} = this.props
-    //     function calaTimeBonus(secs) {
-    //         if (allAns < 6 || score/10 < allAns) return 0
-    //         if (secs <= 40) return 40
-    //         if (secs <= 45) return 30
-    //         if (secs <= 60) return 20
-    //         if (secs <= 75) return 10
-    //     }
-    //     const gameTimeCalc = calaTimeBonus(timeStampInSecs)
-    //     const finalScore = score + gameTimeCalc
-    //     return finalScore
-    // }
     getRate = (num) => {
         var arr = []
         var fiveMinusArr = []
@@ -129,7 +114,7 @@ export class EndGame extends Component {
             }
         }
         const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz } = this.props
-        const { idxInRankTable,tenBestPlayers } = this.state
+        const { idxInRankTable, tenBestPlayers } = this.state
         // const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
             <label htmlFor="review">Review this quiz:</label>
@@ -141,27 +126,26 @@ export class EndGame extends Component {
         const reviewFeedback = <div className="review-feedback">
             <p>Thank you for writing a review! </p>
         </div>
-        // console.log('curr time stamp in endGame: ',currTimeStamp)
-        function getRankPlaceGood(number){
+        function getRankPlaceGood(number) {
             if (number === 1) return '1st'
             if (number === 2) return '2nd'
             if (number === 3) return '3rd'
-            else return number+'th'
+            else return number + 'th'
         }
 
         return (
             <main className="endgame-main" >
-                <div className="endgame-top"> <h1> <span style={{display:idxInRankTable <=10 ?'inlineBlock':'none'}}>Wow!</span> You scored {this.props.score}</h1>
+                <div className="endgame-top"> <h1> <span style={{ display: idxInRankTable <= 10 ? 'inlineBlock' : 'none' }}>Wow!</span> You scored {this.props.score}</h1>
                     <h3 className="mt30">You answered {rightAns} answeres right out of {allAns} questions <br />
-                     {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
-                     </h3>
+                        {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
+                    </h3>
                     <StyleRoot>
-                       { this.state.idxInRankTable && <div className="game-records-break mt30"> 
-                        <h2 style={idxInRankTable <=10 &&styles.tada||styles.null}> <span className="top-ten-greet" style={{display:idxInRankTable <=10 ?'block':'none'}}>Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable) } place in the "{quiz.title}" quiz! </h2>
+                        {this.state.idxInRankTable && <div className="game-records-break mt30">
+                            <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}> <span className="top-ten-greet" style={{ display: idxInRankTable <= 10 ? 'block' : 'none' }}>Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable)} place in the "{quiz.title}" quiz! </h2>
                         </div>}
                     </StyleRoot>
                     <div className="mt30">
-                    <RankTable  bestPlayers={tenBestPlayers} />
+                        <RankTable bestPlayers={tenBestPlayers} />
                     </div>
                     <div className="endgame-actions mt30" >
                         <button onClick={this.props.getInitialState}>Play Again</button>
