@@ -54,7 +54,7 @@ class _QuizGame extends Component {
                 _id: utilService.makeId(),
             }, isSetName: false
         }, () => {
-            this.timer = setInterval(this.setTimer, 15000)
+            this.timer = setInterval(this.setTimer, 1000)
         })
     }
     // getRandomUserObject = () =>{
@@ -71,7 +71,7 @@ class _QuizGame extends Component {
         })
     }
     resetTimer = () => {
-        this.setState({ currTimeStamp: 1000, wasQuestionAnswerd: false })
+        this.setState({ currTimeStamp: 15000, wasQuestionAnswerd: false })
     }
 
     setTimer = () => {

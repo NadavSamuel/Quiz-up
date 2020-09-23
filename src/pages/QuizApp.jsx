@@ -6,7 +6,6 @@ import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { Loading } from '../cmps/Loading'
 import { imgService } from '../services/imgService'
-import { TagPreview } from '../cmps/TagPreview'
 
 
 class _QuizApp extends Component {

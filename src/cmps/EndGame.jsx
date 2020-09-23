@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { RankTable } from '../cmps/RankTable'
 import { quizService } from '../services/quizService'
-import { GameTimer } from '../cmps/GameTimer'
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { tada } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
-import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { utilService } from '../services/utilService';
 

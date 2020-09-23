@@ -1,9 +1,5 @@
 import React from 'react'
-import Avatar from '@material-ui/core/Avatar';
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import MenuIcon from '@material-ui/icons/Menu';
-import { BlackPage } from './BlackPage';
 import { Loading } from './Loading';
 import { imgService } from '../services/imgService'
 

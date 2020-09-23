@@ -2,7 +2,6 @@ import React from 'react'
 
 export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion ,answerFeedback }) {
     
-    
     function playSound(){
         if(answerFeedback) return
         const sound =  new Audio((( idx === correctAnsIdx))?
@@ -15,7 +14,6 @@ export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestio
         if(( idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
         if((chosenAnsIdx === 0 ||chosenAnsIdx ) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
         if((idx === chosenAnsIdx) && (correctAnsIdx !== chosenAnsIdx)) return { backgroundColor: 'red' }
-        // if((chosenAnsIdx && chosenAnsIdx !== idx ) && (correctAnsIdx !== idx)) return { opacity: 0 }
     }
 
         return (
@@ -29,5 +27,4 @@ export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestio
 
             </div>
         )
-        // style={answerFeedback?{backgroundColor: answerColor}:{color: ''}}
     }
