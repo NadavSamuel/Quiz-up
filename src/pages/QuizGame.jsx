@@ -37,10 +37,11 @@ class _QuizGame extends Component {
 
     setCurrUser = () => {
         this.setState({ currUser: this.props.loggedinUser }, () => {
-            if (!this.state.currUser) this.setState({ isSetName: true })
-            else this.timer = setInterval(this.setTimer, 1000);
-
+            if (!this.state.currUser) this.setState({ isSetName: true }) 
         })
+    }
+    startGameTimer = () =>{
+        this.timer = setInterval(this.setTimer, 1000);
     }
     getCurrUnregisteredUser = (ev, username) => {
         ev.preventDefault()
@@ -54,8 +55,6 @@ class _QuizGame extends Component {
                 username,
                 _id: utilService.makeId(),
             }, isSetName: false
-        }, () => {
-            this.timer = setInterval(this.setTimer, 1000)
         })
     }
 
@@ -136,9 +135,9 @@ class _QuizGame extends Component {
             <main onKeyDown={this.onEsc} className={this.state.isSetName && 'set-unregistered-container' || 'main-container'}>
                 {(this.state.currUser === null && this.state.isSetName) &&
                     <SetName quizId={this.state.quiz._id}
-                        getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
+                    getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
                 { !this.state.isSetName && this.state.currUser && (this.state.gameOn && this.state.isQuizReady ?
-                    <GameOn history={this.props.history} onEsc={this.onEsc} quizImg={this.state.quiz.img} resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady}
+                    <GameOn startGameTimer={this.startGameTimer} history={this.props.history} onEsc={this.onEsc} quizImg={this.state.quiz.img} resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady}
                         score={this.state.score} currTimeStamp={this.state.currTimeStamp}
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
                     <EndGame rightAns={this.state.rightAns} gameSessionId={this.state.gameSessionId}

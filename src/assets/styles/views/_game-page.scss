@@ -11,7 +11,20 @@
     }
 
 }
+.game-countdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .game-countdown-time{
+        font-size: 5rem;
+    }
+    // @include classic-flex;
+    // flex-direction: column;
+    // font-size:5rem
+
+}
 .quiz-game-main{
+
     background-color: white;
     .background-img{
         position: relative;
@@ -25,7 +38,6 @@
             object-fit: cover;
             right: 0;
             left: 0;
-
         }
     }
     .score{
@@ -61,7 +73,7 @@
     align-items: center;
     margin-top: 20px;
     img{
-        height: 280px;
+        height: 225px;
         width: 280px;
         margin-bottom: 10px;
         }
@@ -130,7 +142,7 @@
         }
         .game-top{
             img{
-                height: 265px;
+                height: 215px;
             }
         }
         .game-answers-container{
@@ -155,6 +167,26 @@
         }
 }
 }
+@keyframes timer  {
+    0%{
+        
+        opacity: 1;
+    }
+    
+    
+
+    100%{
+        opacity: 0;
+        transform: translateY(100px);
+    }
 
 
+}
+.game-countdown-time {
+    animation: timer 1.3s infinite;
+    text-align: center;
+}
+// background-color: #ffffffb3;
+//     border-radius: 10px;
+//     padding: 0 7px;
 

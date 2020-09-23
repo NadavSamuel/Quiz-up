@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Progress } from '../cmps/Progress'
-
-
+import {GameCountdown} from '../cmps/GameCountdown'
 
 class _GameOn extends Component {
     state = {
+        isGameCountdown:true,
         currQuestionIdx: 0,
         answerFeedback: null,
         correctAnsIdx: null,
@@ -54,39 +54,52 @@ class _GameOn extends Component {
             })
         }, 1500)
     }
+    onGameCountdownFinished = () =>{
+        this.setState({isGameCountdown:false},() =>{
+            this.props.startGameTimer()
+        })
+    }
 
 
     render() {
+        let isGameCountdown = this.state.isGameCountdown
         const { questions } = this.props
         let { currQuestionIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
         this.props.currTimeStamp === 0 && this.onNoAns()
 
+        const gameplay= 
+        <div>
+
+        <div className="game-top">
+            <Progress value={this.props.currTimeStamp / 1000} max={15} />
+            <div className="score"><h2>Score: {this.props.score}</h2></div>
+            <div className="curr-question">
+                <h1 >{currQuestion.txt}</h1>
+                </div>
+            <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
+            <div className="timer-wrapper">
+            </div>
+        </div>
+        <AnswersList chosenAnsIdx={this.state.chosenAnsIdx}
+            correctAnsIdx={this.state.correctAnsIdx}
+            chosenAnswerIdx={this.state.chosenAnswerIdx}
+            answerFeedback={this.state.answerFeedback}
+            answerQuestion={this.answerQuestion}
+            answers={currQuestion.answers} />
+</div>
+console.log('isGameCountdown?, ',isGameCountdown)
 
 
         if (!questions) return <div>Loading....</div>
         return (
             <main  className="quiz-game-main main-container mt10">
-                <div className="background-img">
-                    <img src={`${this.props.quizImg}`}/>
-                </div>
-                <div className="game-top">
-                    <Progress value={this.props.currTimeStamp / 1000} max={15} />
-                    <div className="score"><h2>Score: {this.props.score}</h2></div>
-                    <div className="curr-question">
-                        <h1 >{currQuestion.txt}</h1>
-                        </div>
-                    <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-                    <div className="timer-wrapper">
-                    </div>
-                </div>
-                <AnswersList chosenAnsIdx={this.state.chosenAnsIdx}
-                    correctAnsIdx={this.state.correctAnsIdx}
-                    chosenAnswerIdx={this.state.chosenAnswerIdx}
-                    answerFeedback={this.state.answerFeedback}
-                    answerQuestion={this.answerQuestion}
-                    answers={currQuestion.answers} />
-            </main>
+                        <div className="background-img">
+            <img src={`${this.props.quizImg}`}/>
+        </div>
+          { isGameCountdown && <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished}/> }
+          {!isGameCountdown && gameplay}
+           </main>
         )
     }
 }
