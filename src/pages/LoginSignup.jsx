@@ -97,6 +97,7 @@ render() {
 
     const { isRegister } = this.state
     return (
+        
         <div className="login-profile-container">
             {!loggedInUser && isRegister && <div className="signup-container">
                 <h1>Signup</h1>

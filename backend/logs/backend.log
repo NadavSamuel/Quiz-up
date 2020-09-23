@@ -651,3 +651,52 @@ Tue, 22 Sep 2020 17:31:46 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:32:29 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:32:35 GMT - Debug - auth.service - login with username: admin
 Tue, 22 Sep 2020 17:33:16 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 20:55:35 GMT - Debug - Tal, 1234, https://res.cloudinary.com/dsrtl41yz/image/upload/v1600808133/profile-tal_knu5ti.jpg
+Tue, 22 Sep 2020 20:55:35 GMT - Debug - auth.service - signup with username: Tal, password: 1234, imgUrl: https://res.cloudinary.com/dsrtl41yz/image/upload/v1600808133/profile-tal_knu5ti.jpg
+Tue, 22 Sep 2020 20:55:35 GMT - Debug - auth.route - new account created: {"username":"Tal","password":"$2a$10$XVqnSppV/QBblMxH9ObXO.tI8a6S8MV0exRcHzlZ5lAgdPuV2BCxK","profileImg":"https://res.cloudinary.com/dsrtl41yz/image/upload/v1600808133/profile-tal_knu5ti.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6a64c7cb3e590ef0b3bd3b"}
+Tue, 22 Sep 2020 20:55:35 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:31:59 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:32:28 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:32:32 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:32:44 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:33:03 GMT - Debug - Tal, 12345, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 21:33:03 GMT - Debug - auth.service - signup with username: Tal, password: 12345, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Tue, 22 Sep 2020 21:33:04 GMT - Debug - auth.route - new account created: {"username":"Tal","password":"$2a$10$vD7.Ez4WrzP70ByjeJss8uc3tqTrphjMXCfmjynsUSXzN/dzQcLP.","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6a6d90cb3e590ef0b3bd3d"}
+Tue, 22 Sep 2020 21:33:04 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:33:04 GMT - Error - [SIGNUP] Error: Illegal arguments: string, undefined
+Tue, 22 Sep 2020 21:33:14 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:33:21 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:33:24 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:33:48 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:33:59 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:34:40 GMT - Debug - Tal, 1234, https://res.cloudinary.com/dsrtl41yz/image/upload/v1600810474/profile-tal_xjwbwf.jpg
+Tue, 22 Sep 2020 21:34:40 GMT - Debug - auth.service - signup with username: Tal, password: 1234, imgUrl: https://res.cloudinary.com/dsrtl41yz/image/upload/v1600810474/profile-tal_xjwbwf.jpg
+Tue, 22 Sep 2020 21:34:41 GMT - Debug - auth.route - new account created: {"username":"Tal","password":"$2a$10$hVcVh4tBaTlzY1bVg8pETuCx4cn1p0wt.K2fM71MzP11TYDQM45Om","profileImg":"https://res.cloudinary.com/dsrtl41yz/image/upload/v1600810474/profile-tal_xjwbwf.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6a6df1cb3e590ef0b3bd3e"}
+Tue, 22 Sep 2020 21:34:41 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 21:34:41 GMT - Error - [SIGNUP] Error: Illegal arguments: string, undefined
+Tue, 22 Sep 2020 21:34:54 GMT - Debug - Tal., 1234, https://res.cloudinary.com/dsrtl41yz/image/upload/v1600810474/profile-tal_xjwbwf.jpg
+Tue, 22 Sep 2020 21:34:54 GMT - Debug - auth.service - signup with username: Tal., password: 1234, imgUrl: https://res.cloudinary.com/dsrtl41yz/image/upload/v1600810474/profile-tal_xjwbwf.jpg
+Tue, 22 Sep 2020 21:34:54 GMT - Debug - auth.route - new account created: {"username":"Tal.","password":"$2a$10$ppYNdwmit6wD4ir.qoKCpeZVtkxUKLLrXwROgIhWGvBH2bghC7Wz.","profileImg":"https://res.cloudinary.com/dsrtl41yz/image/upload/v1600810474/profile-tal_xjwbwf.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6a6dfecb3e590ef0b3bd3f"}
+Tue, 22 Sep 2020 21:34:54 GMT - Debug - auth.service - login with username: Tal.
+Tue, 22 Sep 2020 21:42:24 GMT - Debug - auth.service - login with username: Talץ
+Tue, 22 Sep 2020 21:42:35 GMT - Debug - auth.service - login with username: Tal.
+Tue, 22 Sep 2020 22:02:02 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 22:02:05 GMT - Debug - auth.service - login with username: Tal
+Tue, 22 Sep 2020 22:02:20 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 06:02:31 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 06:02:36 GMT - Debug - auth.service - login with username: Tal.
+Wed, 23 Sep 2020 06:02:49 GMT - Debug - auth.service - login with username: Tal.
+Wed, 23 Sep 2020 06:12:12 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 06:20:30 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 06:20:43 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 06:22:58 GMT - Debug - admin, admin, https://res.cloudinary.com/dsrtl41yz/image/upload/v1600842177/Batman-BruceWayne_p5wbw8.jpg
+Wed, 23 Sep 2020 06:22:58 GMT - Debug - auth.service - signup with username: admin, password: admin, imgUrl: https://res.cloudinary.com/dsrtl41yz/image/upload/v1600842177/Batman-BruceWayne_p5wbw8.jpg
+Wed, 23 Sep 2020 06:23:00 GMT - Debug - auth.route - new account created: {"username":"admin","password":"$2a$10$pL0OH1jbg71Ow/l7dqVX1udCucMPydmoHc0aDuo6HJTzY0cGvRLRK","profileImg":"https://res.cloudinary.com/dsrtl41yz/image/upload/v1600842177/Batman-BruceWayne_p5wbw8.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6ae9c49782325420ae51c3"}
+Wed, 23 Sep 2020 06:23:00 GMT - Debug - auth.service - login with username: admin
+Wed, 23 Sep 2020 06:23:23 GMT - Debug - auth.service - login with username: admin
+Wed, 23 Sep 2020 06:23:35 GMT - Debug - auth.service - login with username: admin
+Wed, 23 Sep 2020 06:23:55 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 06:24:51 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 06:27:32 GMT - Debug - auth.service - login with username: admins
+Wed, 23 Sep 2020 06:27:37 GMT - Debug - auth.service - login with username: admin
+Wed, 23 Sep 2020 06:29:37 GMT - Debug - auth.service - login with username: admin

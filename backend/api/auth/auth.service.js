@@ -15,8 +15,9 @@ async function login(username, password) {
         logger.warn('No match')
         return Promise.reject('Invalid username or password')
     }
-    delete user.password;
-    return user;
+    const userToReturn = {...user}
+    delete userToReturn.password;
+    return userToReturn;
 }
 
 async function signup(username, password, imgUrl) {
