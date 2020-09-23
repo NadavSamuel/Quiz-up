@@ -730,3 +730,7 @@ Wed, 23 Sep 2020 06:25:09 GMT - Debug - auth.route - new account created: {"user
 Wed, 23 Sep 2020 06:25:09 GMT - Debug - auth.service - login with username: ordamari
 Wed, 23 Sep 2020 06:25:17 GMT - Debug - auth.service - login with username: ordamari
 Wed, 23 Sep 2020 06:29:46 GMT - Debug - auth.service - login with username: ordamari
+Wed, 23 Sep 2020 08:04:11 GMT - Debug - admin, admin, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Wed, 23 Sep 2020 08:04:11 GMT - Debug - auth.service - signup with username: admin, password: admin, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Wed, 23 Sep 2020 08:04:11 GMT - Debug - auth.route - new account created: {"username":"admin","password":"$2a$10$CBjRy3lXiNaqlHVErBIwR.s92RPOdxLGTnRooQmx3YyWh4sr/HJbO","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6b017b9782325420ae51c4"}
+Wed, 23 Sep 2020 08:04:11 GMT - Debug - auth.service - login with username: admin

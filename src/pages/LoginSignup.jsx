@@ -98,7 +98,7 @@ render() {
     const { isRegister } = this.state
     return (
         
-        <div className="login-profile-container">
+        <div className="login-profile-container main-container">
             {!loggedInUser && isRegister && <div className="signup-container">
                 <h1>Signup</h1>
                 <h5 onClick={this.showInputs}>Already have an account? <span className="yellow" >Log In</span> </h5>

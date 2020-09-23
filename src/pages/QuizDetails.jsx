@@ -19,8 +19,6 @@ export class _QuizDetails extends Component {
         window.scrollTo(0, 0)
 
     }
-
-
     getAvgRate = () => {
         const { quiz } = this.state
         const sum = quiz.reviews.reduce((acc, review) => {
@@ -45,55 +43,57 @@ export class _QuizDetails extends Component {
     }
     render() {
         const { quiz } = this.state
-        if (!quiz) return <Loading/>
-
+        if (!quiz) return <Loading />
+        console.log(quiz);
         const quizLength = quiz.quests.length
         const playedTime = quiz.allTimesPlayers.length
         if (quiz.allTimesPlayers) var { tenBestPlayers } = utilService.getBestUsers(quiz);
         const avgRate = this.getAvgRate()
+        // style={{ backgroundImage: `url(${quiz.img})`, backgroundSize: `cover`}}
         return (
-            <section className="quiz-details-container ">
+            <section className="quiz-details-container main-container">
                 <Link to={`/edit/${quiz._id}`}><Button variant="contained" color="primary">Edit</Button></Link>
-                <div className="quiz-details-head">
-                    {/* <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" /> */}
-                    {quiz.img && <img className="quiz-img" src={quiz.img} alt="" />}
-                    {!quiz.img && <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" />}
-                    <div className="rank-container">
+                <div className="bg-container">
+                    <img className="bg-img" src={quiz.img} alt="" />
 
-                        <RankTable bestPlayers={tenBestPlayers} />
-
-                    </div></div>
-                <div className="quiz-details-body">
+                    <div className="quiz-details-head">
                     <div className="quiz-info">
-                        <h1 className="title">{quiz.title} </h1>
+                            <h1 className="title">{quiz.title} </h1>
+                            <h5 className="creator">
 
-                        <h5 className="creator">
-
-                            {this.getDifficulity()} -
+                                {this.getDifficulity()} -
                             By {quiz.createdBy.fullName} -
                             {quiz.tags[0].length >= 1 && <span>{
-                                quiz.tags.map((tag, idx) => {
-                                    return <span key={idx}> {tag} </span>
-                                })
-                            }</span>}
+                                    quiz.tags.map((tag, idx) => {
+                                        return <span key={idx}> {tag} </span>
+                                    })
+                                }</span>}
 
-                        </h5>
+                            </h5>
+                            {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
+                            {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
+                        </div>
+                        {/* {quiz.img && <img className="quiz-img" src={quiz.img} alt="" />}
+                    {!quiz.img && <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" />} */}
+                        <div className="rank-container">
 
-                        {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
-                        {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
+                            <RankTable bestPlayers={tenBestPlayers} />
 
-
-                    </div>
-                    <div className="btns">
-                        <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <Button onClick={this.addPlayerCount} endIcon={<PersonOutlineSharp />
-                        } variant="contained" color="primary">Play Single </Button></Link>
-                        {/* <Button endIcon={<PeopleAltOutlined />
+                        </div></div>
+                    <div className="quiz-details-body">
+                       
+                        <div className="btns">
+                            <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button onClick={this.addPlayerCount} endIcon={<PersonOutlineSharp />
+                            } variant="contained" color="primary">Play Single </button></Link>
+                            {/* <Button endIcon={<PeopleAltOutlined />
                         } disabled variant="contained" color="primary">Play Online </Button> */}
-                    </div></div>
+                        </div></div>
+                </div>
                 <div className="review-stats">
                     <h2 className="reviews-title">Reviews for this quiz:</h2>
                     {<ReviewsList reviews={quiz.reviews} />}
                 </div>
+
             </section>
         )
     }
