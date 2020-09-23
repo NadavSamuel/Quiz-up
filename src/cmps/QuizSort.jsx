@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 export function QuizSort({setSortBy}) {
     return (
         <div>
-            <button onClick={()=>{setSortBy('title')}}>title</button>
-            <button onClick={()=>{setSortBy('difficulity')}}>difficulity</button>
-            <button onClick={()=>{setSortBy('popularity')}}>popularity</button>
-            <button onClick={()=>{setSortBy('rate')}}>rate</button>
+            <button onClick={()=>{setSortBy('title')}}>Title</button>
+            <button onClick={()=>{setSortBy('difficulity')}}>Difficulity</button>
+            <button onClick={()=>{setSortBy('popularity')}}>Popularity</button>
+            <button onClick={()=>{setSortBy('rate')}}>Rate</button>
         </div>
         
     )
