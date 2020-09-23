@@ -1,5 +1,5 @@
 import React from 'react'
-import {Answer} from './Answer.jsx'
+import { Answer } from './Answer'
 
 export function AnswersList({ chosenAnsIdx, correctAnsIdx,answers ,answerQuestion,answerFeedback,chosenAnswerIdx }) {
  

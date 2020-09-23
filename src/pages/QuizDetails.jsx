@@ -40,6 +40,7 @@ export class _QuizDetails extends Component {
         const playedTime = quiz.allTimesPlayers.length
         if (quiz.allTimesPlayers) var { tenBestPlayers } = utilService.getBestUsers(quiz);
         const avgRate = this.getAvgRate()
+        console.log(quiz);
         return (
             <section className="quiz-details-container main-container">
                 <Link to={`/edit/${quiz._id}`}><Button variant="contained" color="primary">Edit</Button></Link>
@@ -49,10 +50,11 @@ export class _QuizDetails extends Component {
                     <div className="quiz-details-head">
                         <div className="quiz-info">
                             <h1 className="title">{quiz.title} </h1>
+                            <div className="mini-info">
                             <h5 className="creator">
 
-                                {this.getDifficulity()} -
-                            By {quiz.createdBy.fullName} -
+                             <span>   {this.getDifficulity()}, </span>
+                          <span>  By {quiz.createdBy.fullName} </span>
                             {quiz.tags[0].length >= 1 && <span>{
                                     quiz.tags.map((tag, idx) => {
                                         return <span key={idx}> {tag} </span>
@@ -60,8 +62,9 @@ export class _QuizDetails extends Component {
                                 }</span>}
 
                             </h5>
-                            {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
+                            {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}),{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
                             {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
+                            </div>
                         </div>
                         <div className="rank-container">
 
