@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
-import { utilService } from '../services/utilService'
 
 
 export class _SetName extends Component {
@@ -25,7 +24,6 @@ export class _SetName extends Component {
 
 
     render() {
-        // console.log('here');
         return (
             <div className="set-name-container">
                 <form onSubmit={event => this.props.getCurrUnregisteredUser(event, this.state.fullName)}>
