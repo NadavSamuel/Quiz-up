@@ -17,6 +17,7 @@ class _QuizApp extends Component {
 
     componentDidMount() {
         this.loadQuizzes();
+
     }
 
     loadQuizzes = async () => {
