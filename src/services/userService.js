@@ -1,6 +1,5 @@
 import httpService from './httpService'
 
-
 var gUsers = [
     {
         "_id": "asdasas32434234",
@@ -95,6 +94,7 @@ function getCurrUser() {
 
 async function login(userCred) {
     const user = await httpService.post('auth/login', userCred)
+    .catch(err=>console.log('Cant login because:',err))
     return _handleLogin(user)
 }
 

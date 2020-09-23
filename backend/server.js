@@ -29,13 +29,12 @@ if (process.env.NODE_ENV === 'production') {
     };
     app.use(cors(corsOptions));
 }
-
+app.use(express.static('public'));
 // ROUTES 
 const quizRoutes = require('./api/quiz/quiz.routes')
 const authRoutes = require('./api/auth/auth.routes.js')
 const userRoutes = require('./api/user/user.routes')
 // const connectSockets = require('./api/socket/socket.routes')
-
 
 // REST API for QUIZZES :)
 app.use('/api/quiz', quizRoutes)

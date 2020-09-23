@@ -752,3 +752,37 @@ Wed, 23 Sep 2020 10:08:44 GMT - Info - Server is running on port: 3030
 Wed, 23 Sep 2020 10:13:55 GMT - Info - Server is running on port: 3030
 Wed, 23 Sep 2020 11:37:39 GMT - Info - Server is running on port: 3030
 Wed, 23 Sep 2020 11:56:43 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 14:20:25 GMT - Debug - auth.service - login with username: admin
+Wed, 23 Sep 2020 14:20:33 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 14:21:02 GMT - Debug - auth.service - login with username: Tal.
+Wed, 23 Sep 2020 14:23:55 GMT - Debug - auth.service - login with username: kiki
+Wed, 23 Sep 2020 14:24:59 GMT - Debug - auth.service - login with username: Tal.s
+Wed, 23 Sep 2020 14:25:09 GMT - Debug - auth.service - login with username: Tal.vbv
+Wed, 23 Sep 2020 14:25:58 GMT - Debug - auth.service - login with username: Tal.vnbnvb
+Wed, 23 Sep 2020 14:28:23 GMT - Debug - auth.service - login with username: Tal.jhjh
+Wed, 23 Sep 2020 14:32:50 GMT - Debug - auth.service - login with username: Tal.fgfg
+Wed, 23 Sep 2020 14:33:28 GMT - Debug - auth.service - login with username: Tal.
+Wed, 23 Sep 2020 14:35:21 GMT - Debug - auth.service - login with username: Tal.sss
+Wed, 23 Sep 2020 14:35:22 GMT - Debug - auth.service - login with username: Tal.sss
+Wed, 23 Sep 2020 14:35:23 GMT - Debug - auth.service - login with username: Tal.sss
+Wed, 23 Sep 2020 14:35:23 GMT - Debug - auth.service - login with username: Tal.sss
+Wed, 23 Sep 2020 14:35:23 GMT - Debug - auth.service - login with username: Tal.sss
+Wed, 23 Sep 2020 14:38:07 GMT - Debug - auth.service - login with username: Tal.
+Wed, 23 Sep 2020 14:39:05 GMT - Debug - auth.service - login with username: Tal.sss
+Wed, 23 Sep 2020 14:39:17 GMT - Debug - auth.service - login with username: Tal.
+Wed, 23 Sep 2020 14:39:21 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 14:39:48 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 14:40:23 GMT - Debug - auth.service - login with username: Tal....
+Wed, 23 Sep 2020 14:42:46 GMT - Debug - auth.service - login with username: Talsss
+Wed, 23 Sep 2020 16:40:22 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 16:41:40 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 16:45:06 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 18:28:31 GMT - Debug - auth.service - login with username: Tal
+Wed, 23 Sep 2020 18:44:03 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 18:44:07 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 18:44:13 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 18:44:18 GMT - Debug - auth.service - login with username: or
+Wed, 23 Sep 2020 18:44:38 GMT - Debug - or, 123, https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.service - signup with username: or, password: 123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
+Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.route - new account created: {"username":"or","password":"$2a$10$jH.kniq6FKbXf4MqNm3og.6wWt4W0ukdjoXzaQXSm1iupsiwOX1YS","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6b979603450f2d104c7f77"}
+Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.service - login with username: or
