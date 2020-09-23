@@ -16,7 +16,7 @@ class _QuizGame extends Component {
         gameOn: true,
         score: 0,
         rightAns: 0,
-        currTimeStamp: 1000,
+        currTimeStamp: 15000,
         gameSessionId: utilService.makeId(),
         wasQuestionAnswerd: false,
         isQuizReady: false,
@@ -54,7 +54,7 @@ class _QuizGame extends Component {
                 _id: utilService.makeId(),
             }, isSetName: false
         }, () => {
-            this.timer = setInterval(this.setTimer, 1000)
+            this.timer = setInterval(this.setTimer, 15000)
         })
     }
     // getRandomUserObject = () =>{
