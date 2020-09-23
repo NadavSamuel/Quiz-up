@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { QuizList } from '../cmps/QuizList'
 import { quizService } from '../services/quizService'
 // import { BrowseTagPreview } from '../cmps/BrowseTagPreview'
 import { Loading } from '../cmps/Loading'

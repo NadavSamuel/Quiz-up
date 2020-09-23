@@ -216,16 +216,16 @@ export class _QuizEdit extends Component {
                         <form className='quest-answers' onSubmit={this.onSubmitAns}>
 
                             <TextField className='quest' label="Question" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
+                            <TextField label="imgUrl" variant="outlined" autoComplete="off" type="text" name='questImg' onChange={this.handleChange} value={this.state.questImg} />
                             <TextField label="Correct answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
                             <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
-                            <button onClick={this.setRandomQuiz}>Generate quiz</button>
                             <div className='edit-btn flex align-center justify-center' onClick={this.onSubmitAns}>
                                 <PlaylistAddIcon fontSize="large" />
-
                             </div>
                         </form>
+                        <button onClick={this.setRandomQuiz}>Generate Quiz</button>
                     </div>
                 </div>
                 <div className='quiz-inputs'>
