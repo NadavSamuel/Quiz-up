@@ -651,3 +651,11 @@ Tue, 22 Sep 2020 17:31:46 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:32:29 GMT - Info - Server is running on port: 3030
 Tue, 22 Sep 2020 17:32:35 GMT - Debug - auth.service - login with username: admin
 Tue, 22 Sep 2020 17:33:16 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 17:51:38 GMT - Info - Server is running on port: 3030
+Tue, 22 Sep 2020 17:53:04 GMT - Debug - Nadav , brecker, https://res.cloudinary.com/dsrtl41yz/image/upload/v1600797181/bibi_jpdjzi.jpg
+Tue, 22 Sep 2020 17:53:04 GMT - Debug - auth.service - signup with username: Nadav , password: brecker, imgUrl: https://res.cloudinary.com/dsrtl41yz/image/upload/v1600797181/bibi_jpdjzi.jpg
+Tue, 22 Sep 2020 17:53:04 GMT - Debug - auth.route - new account created: {"username":"Nadav ","password":"$2a$10$5SE1FpdL/TP797iK3Pv3H.CX/x6NcIPnfMM4U1vGmucW8jHC3WEVK","profileImg":"https://res.cloudinary.com/dsrtl41yz/image/upload/v1600797181/bibi_jpdjzi.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6a3a005666a84c0850df42"}
+Tue, 22 Sep 2020 17:53:04 GMT - Debug - auth.service - login with username: Nadav 
+Wed, 23 Sep 2020 06:02:00 GMT - Info - Server is running on port: 3030
+Wed, 23 Sep 2020 06:28:32 GMT - Debug - auth.service - login with username: Nadav 
+Wed, 23 Sep 2020 06:29:09 GMT - Debug - auth.service - login with username: admin
