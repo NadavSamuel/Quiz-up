@@ -32,8 +32,9 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 36px;
+        width: 570px;
         button{
-            width: 215px;
+            // width: 215px;
             height: 75px;
         }
         form,.review-feedback{
@@ -54,9 +55,11 @@
                 width: 400px;
             }
     .endgame-actions {  
-        button{
-            width: 150px;
-        }
+        width: 405px;
+
+        // button{
+        //     // width: 150px;
+        // }
       }
     }
   }
@@ -67,6 +70,11 @@
             .rank-table {
                 width: 350px;
             }
+            .endgame-actions {  
+                width: 360px;
+
+
+              }
     }
   }
 }
