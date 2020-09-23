@@ -27,14 +27,6 @@ export class _QuizDetails extends Component {
         return (sum / quiz.reviews.length).toFixed(1);
     }
 
-    addPlayerCount = () => {
-        // const { quiz } = this.state
-        // const { loggedInUser } = this.props
-        // if(loggedInUser) 
-        //Check if he already played...
-        //  userToAdd = { id: loggedInUser._id, score: 0, fullName: loggedInUser.username }
-        // quiz.allTimesPlayers=[...quiz.allTimesPlayers,userToAdd]
-    }
     getDifficulity = () => {
         const { quiz } = this.state
         if (quiz.difficulity === 1) return 'Easy'
@@ -44,12 +36,10 @@ export class _QuizDetails extends Component {
     render() {
         const { quiz } = this.state
         if (!quiz) return <Loading />
-        console.log(quiz);
         const quizLength = quiz.quests.length
         const playedTime = quiz.allTimesPlayers.length
         if (quiz.allTimesPlayers) var { tenBestPlayers } = utilService.getBestUsers(quiz);
         const avgRate = this.getAvgRate()
-        // style={{ backgroundImage: `url(${quiz.img})`, backgroundSize: `cover`}}
         return (
             <section className="quiz-details-container main-container">
                 <Link to={`/edit/${quiz._id}`}><Button variant="contained" color="primary">Edit</Button></Link>
@@ -73,8 +63,6 @@ export class _QuizDetails extends Component {
                             {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}) ,{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
                             {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
                         </div>
-                        {/* {quiz.img && <img className="quiz-img" src={quiz.img} alt="" />}
-                    {!quiz.img && <img className="quiz-img" src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" />} */}
                         <div className="rank-container">
 
                             <RankTable bestPlayers={tenBestPlayers} />
@@ -103,7 +91,5 @@ const mapStateToProps = state => {
 
     }
 }
-const mapDispatchToProps = {
 
-}
-export const QuizDetails = connect(mapStateToProps, mapDispatchToProps)(_QuizDetails)
+export const QuizDetails = connect(mapStateToProps)(_QuizDetails)

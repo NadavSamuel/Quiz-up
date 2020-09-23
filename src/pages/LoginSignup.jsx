@@ -53,8 +53,6 @@ onSignup = (ev) => {
     else{
         this.props.onSignup(this.state.registerInfo)
     }
-
-
 }
 onLogout = async ev => {
     await this.props.onLogout()

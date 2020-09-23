@@ -79,8 +79,12 @@
                 margin-bottom: 5px;
                 text-align: center;
                 padding: 5px;
+                display: flex;
+                flex-direction: column;
                 img{
                     width: 230px;
+                    position: relative;
+                    left: 25%;
                 }
             }
 
