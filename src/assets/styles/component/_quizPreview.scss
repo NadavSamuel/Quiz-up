@@ -3,6 +3,8 @@
     @include aspect-ratio(1, 1);
     color: $clr1;
     background-color: $clr6;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
     p,h3{
         padding-left: 5px;
     }
@@ -12,16 +14,15 @@
         object-fit: cover;
     }
     .info{
+        font-size: rem(14px);
+
         h3.quiz-title{
-            font-size: rem(20px);
+            font-size: rem(16px);
             text-align: left;
             padding: 3px;
         }
         height: 50%;
         margin-top: 50%;
-    }
-    .num-of-players{
-        font-size: rem(12px);
     }
     .stars{
         color:$clr2;
@@ -30,13 +31,19 @@
         margin-left:auto; 
         margin-right:0;
         justify-content: flex-end;
-        bottom: 0;
-        right: 0;
+        bottom: 5px;
+        right: 5px;
     }
     .difficulity{
         position: absolute;
-        bottom: 2px;
-        left: 2px;
+        bottom: 5px;
+        left: 5px;
+        h5{
+            border-radius: 3rem;
+            padding: 2px 7px;
+            color: $clr6;
+
+        }
 
     }
 }

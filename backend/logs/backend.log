@@ -787,7 +787,18 @@ Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.service - signup with username: or,
 Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.route - new account created: {"username":"or","password":"$2a$10$jH.kniq6FKbXf4MqNm3og.6wWt4W0ukdjoXzaQXSm1iupsiwOX1YS","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6b979603450f2d104c7f77"}
 Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.service - login with username: or
 <<<<<<< HEAD
+Thu, 24 Sep 2020 07:59:56 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 10:03:07 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 10:07:47 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 10:19:50 GMT - Info - Server is running on port: 3030
+=======
+<<<<<<< HEAD
 Wed, 23 Sep 2020 18:59:42 GMT - Info - Server is running on port: 3030
 =======
 Wed, 23 Sep 2020 19:00:57 GMT - Info - Server is running on port: 3030
 >>>>>>> c3a07dbf02da906df62a939c537e5d764a593b22
+Thu, 24 Sep 2020 08:07:46 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 09:33:21 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 09:34:27 GMT - Info - Server is running on port: 3030
+>>>>>>> 53defb60f56eb352ec27d9c09dfa4738c655a829
+Thu, 24 Sep 2020 10:26:27 GMT - Info - Server is running on port: 3030
