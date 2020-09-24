@@ -1,26 +1,26 @@
 
 module.exports = connectSockets
-const history = []
+const players = []
 
 function connectSockets(io) {
     io.on('connection', socket => {
-        socket.on('chat topic', topic => {
-            if (socket.myTopic) {
-                socket.leave(socket.myTopic)
+        socket.on('room quiz', quiz => {
+            if (socket.currQuiz) {
+                socket.leave(socket.currQuiz)
             }
-            socket.join(topic)
-            socket.emit('getMsgs', history)
-            socket.myTopic = topic;
+            socket.join(quiz)
+            socket.emit('getPlayers', players)
+            socket.currQuiz = quiz;
         })
-        socket.on('is typing', username => {
-            socket.to(socket.myTopic).emit('user typing',username)
+        // socket.on('is typing', username => {
+        //     socket.to(socket.myTopic).emit('user typing',username)
             
-        })
+        // })
 
-        socket.on('chat newMsg', msg => {
-            history.push(msg)
-            console.log('Got Msg:', msg.txt)
-            io.to(socket.myTopic).emit('chat addMsg', msg)
+        socket.on('game newPlayer', player => {
+            players.push(player)
+            console.log('New Player:', player)
+            io.to(socket.currQuiz).emit('game addPlayer', player)
         })
     })
 }

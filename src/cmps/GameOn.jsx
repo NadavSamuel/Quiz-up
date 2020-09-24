@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Progress } from '../cmps/Progress'
 import {GameCountdown} from '../cmps/GameCountdown'
+import { Loading } from './Loading.jsx'
 
 class _GameOn extends Component {
     state = {
@@ -60,7 +61,6 @@ class _GameOn extends Component {
         })
     }
 
-
     render() {
         let isGameCountdown = this.state.isGameCountdown
         const { questions } = this.props
@@ -91,7 +91,7 @@ class _GameOn extends Component {
 console.log('isGameCountdown?, ',isGameCountdown)
 
 
-        if (!questions) return <div>Loading....</div>
+        if (!questions) return <div><Loading/></div>
         return (
             <main  className="quiz-game-main main-container mt10">
                         <div className="background-img">

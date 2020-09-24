@@ -786,3 +786,7 @@ Wed, 23 Sep 2020 18:44:38 GMT - Debug - or, 123, https://moonvillageassociation.
 Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.service - signup with username: or, password: 123, imgUrl: https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg
 Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.route - new account created: {"username":"or","password":"$2a$10$jH.kniq6FKbXf4MqNm3og.6wWt4W0ukdjoXzaQXSm1iupsiwOX1YS","profileImg":"https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg","isAdmin":false,"quizzes":[],"friends":[],"_id":"5f6b979603450f2d104c7f77"}
 Wed, 23 Sep 2020 18:44:38 GMT - Debug - auth.service - login with username: or
+Thu, 24 Sep 2020 07:59:56 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 10:03:07 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 10:07:47 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 10:19:50 GMT - Info - Server is running on port: 3030
