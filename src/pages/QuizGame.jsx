@@ -7,6 +7,7 @@ import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { Loading } from '../cmps/Loading'
 import { setNotification } from '../store/actions/notificationActions.js'
+import { Room } from './Room'
 
 class _QuizGame extends Component {
     state = {
@@ -25,8 +26,7 @@ class _QuizGame extends Component {
     timer = null
 
     componentDidMount() {
-        console.log('Params:', this.props.match.params);
-        const {onlineId}=this.props.match.params
+        const { onlineId } = this.props.match.params
         if (onlineId) this.setState({ onlineId })
         window.scrollTo(0, 100)
         this.setCurrUser();
@@ -48,18 +48,28 @@ class _QuizGame extends Component {
     }
 
     getCurrUnregisteredUser = (ev, username) => {
+        const { onlineId } = this.state
         ev.preventDefault()
-        if (username.length < 3) {
+        if (username.length < 2) {
             this.props.setNotification('err', 'Please enter a valid name')
             return
         }
-
-        this.setState({
+        if (!onlineId) { 
+          this.setState({
+                currUser: {
+                    username,
+                    _id: utilService.makeId(),
+                }, isSetName: false
+            })
+        }
+        else {this.setState({
+            gameOn:false,
             currUser: {
                 username,
                 _id: utilService.makeId(),
             }, isSetName: false
         })
+    }
     }
 
     getInitialState = () => {
@@ -134,8 +144,8 @@ class _QuizGame extends Component {
     render() {
         const questions = this.state.quiz.quests
         const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
-             currTimeStamp,gameSessionId,totalRightAnswers } = this.state
-        const { img,allTimesPlayers } = quiz
+            currTimeStamp, gameSessionId, totalRightAnswers, onlineId } = this.state
+        const { img, allTimesPlayers } = quiz
         const { history } = this.props
         const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
 
@@ -145,12 +155,18 @@ class _QuizGame extends Component {
                 {(!currUser && isSetName) &&
                     <SetName quizId={this.state.quiz._id}
                         getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
+
+                {(currUser && onlineId && !gameOn) && <Room />}
+
+
+
                 { !isSetName && currUser && (gameOn && isQuizReady ?
                     <GameOn startGameTimer={this.startGameTimer} history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
                         score={score} currTimeStamp={currTimeStamp}
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
+                        
                     <EndGame totalRightAnswers={totalRightAnswers} gameSessionId={gameSessionId}
                         currUser={currUser}
                         getInitialState={this.getInitialState} quiz={this.state.quiz}

@@ -1,5 +1,6 @@
 import React from 'react'
-import {Answer} from './Answer'
+import { Answer } from './Answer'
+// import {Answer} from './Answer'
 
 export function AnswersList({  currTimeStamp,chosenAnsIdx, correctAnsIdx, answers, answerQuestion, wasQuestionAnswered, chosenAnswerIdx }) {
 
