@@ -32,6 +32,8 @@ export class _QuizDetails extends Component {
         else if (quiz.difficulity === 2) return 'Medium'
         else if (quiz.difficulity === 3) return 'Hard'
     }
+
+
     render() {
         const { quiz } = this.state
         if (!quiz) return <Loading />
@@ -75,9 +77,8 @@ export class _QuizDetails extends Component {
                     <div className="quiz-details-body">
 
                         <div className="btns">
-                            <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button onClick={this.addPlayerCount} >Play Single </button></Link>
-                            {/* <Button endIcon={<PeopleAltOutlined />
-                        } disabled variant="contained" color="primary">Play Online </Button> */}
+                            <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button >Play Single </button></Link>
+                            <Link className="play-single-btn" to={`/game/${quiz._id}/`}>  <button >Play Online </button></Link>
                         </div></div>
                 </div>
                 <div className="review-stats">

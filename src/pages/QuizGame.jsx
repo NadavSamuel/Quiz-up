@@ -19,11 +19,15 @@ class _QuizGame extends Component {
         gameSessionId: utilService.makeId(),
         wasQuestionAnswerd: false,
         isQuizReady: false,
-        isSetName: false
+        isSetName: false,
+        onlineId: ''
     }
     timer = null
 
     componentDidMount() {
+        console.log('Params:', this.props.match.params);
+        const {onlineId}=this.props.match.params
+        if (onlineId) this.setState({ onlineId })
         window.scrollTo(0, 100)
         this.setCurrUser();
         this.loadQuizz();

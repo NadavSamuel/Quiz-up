@@ -110,7 +110,7 @@ export class _QuizEdit extends Component {
             quest.id = this.state.id
             const idx = quests.findIndex(quest => quest.id === this.state.id);
             quests[idx] = quest;
-            this.props.setNotification('info', 'Question editted ')
+            this.props.setNotification('info', 'Question edited ')
         }
         this.state.id = '';
         this.setState(prevState => ({
