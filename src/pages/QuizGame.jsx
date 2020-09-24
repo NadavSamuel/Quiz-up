@@ -8,7 +8,6 @@ import { utilService } from '../services/utilService'
 import { Loading } from '../cmps/Loading'
 import { setNotification } from '../store/actions/notificationActions.js'
 
-
 class _QuizGame extends Component {
     state = {
         quiz: {},
@@ -32,17 +31,18 @@ class _QuizGame extends Component {
     }
     componentWillUnmount() {
         clearInterval(this.timer)
-
     }
 
     setCurrUser = () => {
         this.setState({ currUser: this.props.loggedinUser }, () => {
-            if (!this.state.currUser) this.setState({ isSetName: true }) 
+            if (!this.state.currUser) this.setState({ isSetName: true })
         })
     }
-    startGameTimer = () =>{
+
+    startGameTimer = () => {
         this.timer = setInterval(this.setTimer, 1000);
     }
+
     getCurrUnregisteredUser = (ev, username) => {
         ev.preventDefault()
         if (username.length < 3) {
@@ -68,6 +68,7 @@ class _QuizGame extends Component {
 
         })
     }
+    
     resetTimer = () => {
         this.setState({ currTimeStamp: 15000, wasQuestionAnswerd: false })
     }
@@ -122,7 +123,7 @@ class _QuizGame extends Component {
         questions = utilService.shuffle(questions, true)
         this.setState({ questions, isQuizReady: true })
     }
-    onEscInGameOn = () =>{
+    onEscInGameOn = () => {
         this.props.history.push(`/`)
     }
 
@@ -135,7 +136,7 @@ class _QuizGame extends Component {
             <main onKeyDown={this.onEsc} className={this.state.isSetName && 'set-unregistered-container' || 'main-container'}>
                 {(this.state.currUser === null && this.state.isSetName) &&
                     <SetName quizId={this.state.quiz._id}
-                    getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
+                        getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
                 { !this.state.isSetName && this.state.currUser && (this.state.gameOn && this.state.isQuizReady ?
                     <GameOn startGameTimer={this.startGameTimer} history={this.props.history} onEsc={this.onEsc} quizImg={this.state.quiz.img} resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady}
                         score={this.state.score} currTimeStamp={this.state.currTimeStamp}

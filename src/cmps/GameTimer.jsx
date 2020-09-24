@@ -17,7 +17,7 @@ export function GameTimer(props) {
         <React.Fragment>
             {/* {getTimer()} */}
             <label for="time"></label>
-            <progress id="time" value={props.currTimeStamp/1000} max="15">  </progress>
+            <progress id="time" value={props.currTimeStamp / 1000} max="15">  </progress>
 
         </React.Fragment>
         // <div className="main-timer-container">

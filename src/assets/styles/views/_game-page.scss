@@ -12,15 +12,10 @@
 
 }
 .game-countdown{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     .game-countdown-time{
-        font-size: 5rem;
+        font-size: 15rem;
     }
-    // @include classic-flex;
-    // flex-direction: column;
-    // font-size:5rem
 
 }
 .quiz-game-main{
@@ -183,7 +178,7 @@
 
 }
 .game-countdown-time {
-    animation: timer 1.3s infinite;
+    animation: timer 1s infinite;
     text-align: center;
 }
 // background-color: #ffffffb3;

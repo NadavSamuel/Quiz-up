@@ -6,7 +6,6 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 export function QuizListFull({ quizzes }) {
 
-
     return (
         <ul className="list">
             {quizzes && quizzes.map(quiz => <li key={quiz._id}><QuizPreview key={quiz._id} quizId={quiz._id} /></li>)}

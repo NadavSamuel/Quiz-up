@@ -6,7 +6,6 @@ import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { dashBoardService } from '../services/dashboardService'
 import { Timer } from '../cmps/Timer';
-// import { TimerAnoter } from '../cmps/TimerAnoter';
 
 class _Dashboard extends Component {
 

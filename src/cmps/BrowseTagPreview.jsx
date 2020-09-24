@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Answer } from '../cmps/answer.jsx'
 import { QuizList } from './QuizList.jsx'
 import { quizService } from '../services/quizService'
 import { imgService } from '../services/imgService'

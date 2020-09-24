@@ -24,18 +24,18 @@ export function Footer({ loggedInUser }) {
         <footer className='flex justify-between align-center'>
             <div className="flex">
                 <FacebookShareButton url='https://www.youtube.com/'>
-                    <FacebookIcon/>
+                    <FacebookIcon />
                 </FacebookShareButton>
                 <WhatsappShareButton url='https://www.youtube.com/'>
-                    <WhatsAppIcon  />
+                    <WhatsAppIcon />
                 </WhatsappShareButton>
                 <LinkedinShareButton url='https://www.youtube.com/'>
-                    <LinkedInIcon  />
+                    <LinkedInIcon />
                 </LinkedinShareButton>
-               
+
             </div>
-            <p className='flex align-center'><CopyrightIcon/> <span>Tal Lahyani Nadav Samuel Or Damari</span>  </p>
-           {/* <Timer/> */}
+            <p className='flex align-center'><CopyrightIcon /> <span>Tal Lahyani Nadav Samuel Or Damari</span>  </p>
+            {/* <Timer/> */}
         </footer>
 
     )

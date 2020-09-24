@@ -22,8 +22,6 @@ export class QuizList extends Component {
 
         return (
             <div className="quiz-list">
-
-
                 <div className="list">
                     {
                         this.state.quizzes && this.state.quizzes.map(quiz => <QuizPreview key={quiz._id} quizId={quiz._id} />)

@@ -26,13 +26,13 @@ class _TagQuizzes extends Component {
     componentDidMount() {
         const tag = this.props.match.params.tag
         const sort = this.props.match.params.sort
-        this.loadQuizzes(tag,sort);
+        this.loadQuizzes(tag, sort);
     }
 
 
-    loadQuizzes = async (tag,sort) => {
+    loadQuizzes = async (tag, sort) => {
         const quizzes = await quizService.getByTag(tag, this.state.filterBy);
-        this.setState({ quizzes },()=>{if(sort) this.setSortBy(sort)})
+        this.setState({ quizzes }, () => { if (sort) this.setSortBy(sort) })
     }
 
     getFilterBy = (filterBy) => {
@@ -57,16 +57,16 @@ class _TagQuizzes extends Component {
             })
         } else if (sortBy === 'rate') {
             quizzes = quizzes.sort((quiz1, quiz2) => {
-                const rate1= +this.getRate(quiz1)
-                const rate2= +this.getRate(quiz2)
-                return rate2-rate1
+                const rate1 = +this.getRate(quiz1)
+                const rate2 = +this.getRate(quiz2)
+                return rate2 - rate1
             })
         }
         this.setState({ quizzes, sortBy })
     }
 
     getRate(quiz) {
-        if(quiz.reviews.length===0) return 0
+        if (quiz.reviews.length === 0) return 0
         const sum = quiz.reviews.reduce((acc, review) => {
             return acc + review.rate
         }, 0)
@@ -76,7 +76,7 @@ class _TagQuizzes extends Component {
 
     render() {
         const quizzes = this.state.quizzes
-        if (!quizzes) return <Loading/>
+        if (!quizzes) return <Loading />
         return (
             <div className="main-container">
                 <QuizFilter getFilterBy={this.getFilterBy} />

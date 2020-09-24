@@ -3,12 +3,12 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 
 export class CircleTimer extends Component {
-    state={
-        isTimerOn:true
-    }
+  state = {
+    isTimerOn: true
+  }
 
-    render(){
-        const {ansSelected} = this.props
+  render() {
+    const { ansSelected } = this.props
 
     return (
       <div className="App">
@@ -30,9 +30,9 @@ export class CircleTimer extends Component {
         </div> */}
       </div>
     );
-    }
   }
-  
-  
+}
+
+
 
 

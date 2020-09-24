@@ -2,7 +2,6 @@ import React from 'react'
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { Link } from 'react-router-dom'
-// import StarOutlineIcon from '@material-ui/icons/StarOutline';
 
 export function QuizPreview({ quiz }) {
 
@@ -14,11 +13,11 @@ export function QuizPreview({ quiz }) {
         return (sum / quiz.reviews.length).toFixed(2);
     }
 
-    function getNumOfReviews(){
+    function getNumOfReviews() {
         return quiz.reviews.length
     }
 
-    
+
     return (
         <Link to={`/quiz/${quiz._id}`}>
             <div className="quiz-preview">
@@ -30,7 +29,7 @@ export function QuizPreview({ quiz }) {
                         <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
                     </p>
                     <div className="flex stars">
-                        ({getNumOfReviews()}){getRate()}<StarIcon/>
+                        ({getNumOfReviews()}){getRate()}<StarIcon />
                     </div>
                 </div>
             </div>

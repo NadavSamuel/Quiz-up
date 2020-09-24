@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { fadeInDown } from 'react-animations';
+import Radium, { StyleRoot } from 'radium';
 
 export class GameCountdown extends Component {
 
@@ -19,7 +21,7 @@ export class GameCountdown extends Component {
     diffTime = () => {
         var currTime = Date.now();
         var diffTime = this.state.countDown - currTime;
-        var seconds = Math.floor(diffTime % (60 * 1300) / 1000);
+        var seconds = Math.floor(diffTime % (60 * 1000) / 1000);
         return seconds
     }
 
@@ -30,14 +32,13 @@ export class GameCountdown extends Component {
     }
 
     interval = () => {
-        this.timerInterval = setInterval(this.updateTime, 1300);
+        this.timerInterval = setInterval(this.updateTime, 1000);
     }
 
     updateTime = () => {
-        // console.log(this.diffTime())
         if (this.diffTime() === -1) {
             clearInterval(this.timerInterval);
-             this.props.onGameCountdownFinished();
+            this.props.onGameCountdownFinished();
             // this.playSound();
         }
         this.setState({ now: Date.now() });
@@ -52,13 +53,21 @@ export class GameCountdown extends Component {
 
 
     render() {
+        const styles = {
+            fadeInDown: {
+                animation: 'x 1s',
+                animationName: Radium.keyframes(fadeInDown, 'fadeInDown')
+            }
+        }
         return (
             <div className='game-countdown'>
              {/* <React.Fregment> */}
-                <h1 className='game-countdown-time' >{this.timeToShow()}</h1>
+             <StyleRoot>
+                <h1 style={styles.fadeInDown} className='game-countdown-time' >{this.timeToShow()}</h1>
+                </StyleRoot>
                 {/* <Progress  value={this.timeToShow()} max={15}/> */}
-                 {/* </React.Fregment> */}
-             </div>
+                {/* </React.Fregment> */}
+            </div>
 
         )
     }
