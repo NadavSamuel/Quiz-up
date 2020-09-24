@@ -20,6 +20,8 @@ class _GameOn extends Component {
     }
     componentWillUnmount() {
         document.removeEventListener("keydown", this.onEsc, false);
+        // this.onTimeAlmostOver(false)
+
     }
     onEsc = (event) => {
         if (event.keyCode === 27) this.props.history.push('/')
@@ -59,16 +61,29 @@ class _GameOn extends Component {
             this.props.startGameTimer()
         })
     }
+    tikSound = new Audio('../sounds/clock-tick2.wav')
+    onTimeAlmostOver = value => {
+        // console.log('hi!!!')
+        if(value){
+        this.tikSound.currentTime = 0;
+        this.tikSound.play()
+        }
+        else{
+            this.tikSound.pause()
+        }
+    }
 
 
     render() {
-        let isGameCountdown = this.state.isGameCountdown
-        const { questions } = this.props
-        let { currQuestionIdx } = this.state
+        let { questions,currTimeStamp } = this.props
+        let { currQuestionIdx,isGameCountdown,wasQuestionAnswered } = this.state
         let currQuestion = questions[currQuestionIdx]
-        this.props.currTimeStamp === 0 && this.onNoAns()
+        currTimeStamp === 0 && this.onNoAns()
+        // currTimeStamp === 5000 && this.onTimeAlmostOver(true)
+        // ((currTimeStamp <= 5000 && wasQuestionAnswered) || (currTimeStamp === 0))  && this.onTimeAlmostOver(false)
 
         const gameplay =
+
             <div>
 
                 <div className="game-top">
@@ -88,7 +103,6 @@ class _GameOn extends Component {
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
             </div>
-        console.log('isGameCountdown?, ', isGameCountdown)
 
 
         if (!questions) return <div>Loading....</div>
