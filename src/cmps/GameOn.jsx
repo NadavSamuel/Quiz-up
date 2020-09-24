@@ -2,12 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Progress } from '../cmps/Progress'
-<<<<<<< HEAD
 import {GameCountdown} from '../cmps/GameCountdown'
 import { Loading } from './Loading.jsx'
-=======
-import { GameCountdown } from '../cmps/GameCountdown'
->>>>>>> 53defb60f56eb352ec27d9c09dfa4738c655a829
 
 class _GameOn extends Component {
     state = {
