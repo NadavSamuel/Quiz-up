@@ -34,20 +34,16 @@ export class QuizPreview extends Component {
                     <img className="main-img" src={quiz.img} alt="img" />
                     <div className="info">
                         <h3 className='quiz-title'>{quiz.title}</h3>
-                        {/* <div className="flex align-center"> */}
 
-                        {/* {quiz.createdBy.imgUrl ? <Avatar src={quiz.createdBy.imgUrl} /> : <Avatar src='src="/broken-image.jpg' />} */}
                         <p>By {quiz.createdBy.fullName}</p>
-                        {/* </div> */}
                         <p>
-                            {/* <span>{quiz.quests.length} Questions</span> */}
-                            <span className='num-of-players'> {quiz.allTimesPlayers.length} played</span>
+                            <span> {quiz.allTimesPlayers.length} played</span>
                         </p>
                         <div className='difficulity'>
 
-                            {quiz.difficulity === 1 && <h5 style={{ color: 'green' }}>Easy</h5>}
-                            {quiz.difficulity === 2 && <h5 style={{ color: '#07689f' }}>Medium</h5>}
-                            {quiz.difficulity === 3 && <h5 style={{ color: 'red' }}>Hard</h5>}
+                            {quiz.difficulity === 1 && <h5 style={{ backgroundColor: 'rgb(21 176 191)' }}>Easy</h5>}
+                            {quiz.difficulity === 2 && <h5 style={{ backgroundColor: '#07689f' }}>Medium</h5>}
+                            {quiz.difficulity === 3 && <h5 style={{ backgroundColor: '#ff6120' }}>Hard</h5>}
                         </div>
                         {this.getNumOfReviews() > 0 &&
                             <div className="flex stars align-center">

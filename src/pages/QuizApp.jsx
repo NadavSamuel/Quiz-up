@@ -65,10 +65,16 @@ class _QuizApp extends Component {
                         <h1>Have fun</h1>
                     </div>
                 </div>
+                <section>
+
                 <h3 className='tag-title'>Most Popular</h3>
                 <QuizList sort='popularity' quizzes={utilService.getMostPopular(quizzes).slice(0, 4)} />
+                </section>
+                <section>
+
                 <h3 className='tag-title'>Top Rated</h3>
                 <QuizList sort='rate' quizzes={utilService.getTopRated(quizzes).slice(0, 4)} />
+                </section>
 
             </div>
         )
