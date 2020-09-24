@@ -14,7 +14,7 @@ class _QuizGame extends Component {
         currUser: null,
         gameOn: true,
         score: 0,
-        rightAns: 0,
+        totalRightAnswers: 0,
         currTimeStamp: 15000,
         gameSessionId: utilService.makeId(),
         wasQuestionAnswerd: false,
@@ -60,7 +60,7 @@ class _QuizGame extends Component {
 
     getInitialState = () => {
         this.setState({
-            ...this.state, gameOn: true, score: 0, rightAns: 0,
+            ...this.state, gameOn: true, score: 0, totalRightAnswers: 0,
             currTimeStamp: 0, gameSessionId: utilService.makeId()
         }, () => {
             this.resetTimer()
@@ -68,7 +68,7 @@ class _QuizGame extends Component {
 
         })
     }
-    
+
     resetTimer = () => {
         this.setState({ currTimeStamp: 15000, wasQuestionAnswerd: false })
     }
@@ -92,7 +92,7 @@ class _QuizGame extends Component {
             if (value === "true") {
                 let reward = 15 - (15 - this.state.currTimeStamp / 1000)
                 if (this.state.currTimeStamp === 0) reward = 1
-                this.setState({ score: this.state.score + reward, rightAns: this.state.rightAns + 1, wasQuestionAnswerd: true }, () => {
+                this.setState({ score: this.state.score + reward, totalRightAnswers: this.state.totalRightAnswers + 1, wasQuestionAnswerd: true }, () => {
                 })
             } else {
 
@@ -129,24 +129,30 @@ class _QuizGame extends Component {
 
     render() {
         const questions = this.state.quiz.quests
-
+        const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
+             currTimeStamp,gameSessionId,totalRightAnswers } = this.state
+        const { img,allTimesPlayers } = quiz
+        const { history } = this.props
+        const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
 
         if (!questions) return <Loading />
         return (
-            <main onKeyDown={this.onEsc} className={this.state.isSetName && 'set-unregistered-container' || 'main-container'}>
-                {(this.state.currUser === null && this.state.isSetName) &&
+            <main onKeyDown={this.onEsc} className={isInSetName}>
+                {(!currUser && isSetName) &&
                     <SetName quizId={this.state.quiz._id}
                         getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
-                { !this.state.isSetName && this.state.currUser && (this.state.gameOn && this.state.isQuizReady ?
-                    <GameOn startGameTimer={this.startGameTimer} history={this.props.history} onEsc={this.onEsc} quizImg={this.state.quiz.img} resetTimer={this.resetTimer} isQuizReady={this.state.isQuizReady}
-                        score={this.state.score} currTimeStamp={this.state.currTimeStamp}
+                { !isSetName && currUser && (gameOn && isQuizReady ?
+                    <GameOn startGameTimer={this.startGameTimer} history={history}
+                        onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
+                        isQuizReady={isQuizReady}
+                        score={score} currTimeStamp={currTimeStamp}
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
-                    <EndGame rightAns={this.state.rightAns} gameSessionId={this.state.gameSessionId}
-                        currUser={this.state.currUser}
+                    <EndGame totalRightAnswers={totalRightAnswers} gameSessionId={gameSessionId}
+                        currUser={currUser}
                         getInitialState={this.getInitialState} quiz={this.state.quiz}
-                        currTimeStamp={this.state.currTimeStamp}
-                        allTimesPlayers={this.state.quiz.allTimesPlayers}
-                        category={this.state.quiz.tags[0]} score={this.state.score}
+                        currTimeStamp={currTimeStamp}
+                        allTimesPlayers={allTimesPlayers}
+                        category={this.state.quiz.tags[0]} score={score}
                         allAns={this.state.quiz.quests.length} />)}
             </main>
         )

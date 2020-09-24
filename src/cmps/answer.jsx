@@ -1,9 +1,9 @@
 import React from 'react'
 
-export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion, wasQuestionAnswered }) {
+export function Answer({ currTimeStamp, chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion, wasQuestionAnswered }) {
 
     function playSound() {
-        if (wasQuestionAnswered) return
+        if (wasQuestionAnswered || !currTimeStamp) return
         const sound = new Audio(((idx === correctAnsIdx)) ?
             '../sounds/correct.wav' : '../sounds/wrong.mp3')
         sound.currentTime = 0;
@@ -11,6 +11,7 @@ export function Answer({ chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestio
     }
 
     function setRightWrongColor() {
+        if ((correctAnsIdx === idx) && (!currTimeStamp)) return { backgroundColor: 'green' }
         if ((idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
         if ((chosenAnsIdx === 0 || chosenAnsIdx) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
         if ((idx === chosenAnsIdx) && (correctAnsIdx !== chosenAnsIdx)) return { backgroundColor: 'red' }
