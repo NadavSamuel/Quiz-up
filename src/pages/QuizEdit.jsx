@@ -105,12 +105,12 @@ export class _QuizEdit extends Component {
         if (!this.state.id) {
             quest.id = utilService.makeId();
             quests.push(quest);
-            this.props.setNotification('info', `question added you have ${quests.length} questions `)
+            this.props.setNotification('info', `Question added you have ${quests.length} questions `)
         } else {
             quest.id = this.state.id
             const idx = quests.findIndex(quest => quest.id === this.state.id);
             quests[idx] = quest;
-            this.props.setNotification('info', 'question editted ')
+            this.props.setNotification('info', 'Question editted ')
         }
         this.state.id = '';
         this.setState(prevState => ({
@@ -154,11 +154,11 @@ export class _QuizEdit extends Component {
         if (!this.state._id) {
             const newQuiz = await quizService.add(quiz);
             if (user._id) await userService.updateUserQuizzes(user, newQuiz._id)
-            this.props.setNotification('success', `quiz added`)
+            this.props.setNotification('success', `Quiz added`)
         } else {
             quiz._id = this.state._id;
             await quizService.update(quiz);
-            this.props.setNotification('success', `quiz edited`)
+            this.props.setNotification('success', `Quiz edited`)
         }
         this.props.history.push('/')
     }
@@ -229,7 +229,7 @@ export class _QuizEdit extends Component {
                     </div>
                 </div>
                 <div className='quiz-inputs'>
-                        <button  onClick={this.setRandomQuiz}>Set Random Quiz</button>
+                    <button onClick={this.setRandomQuiz}>Set Random Quiz</button>
 
                     <form className='quiz-inputs-form mt10' onSubmit={this.onSubmit}>
                         <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />

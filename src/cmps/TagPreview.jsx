@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Loading } from './Loading';
 import { imgService } from '../services/imgService'
 
-
 export class TagPreview extends React.Component {
 
     state = {

@@ -4,9 +4,6 @@ import { Button } from '@material-ui/core'
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import React, { Component } from 'react';
 
-
-
-
 export class ReviewsList extends Component {
     state = {
         allReviewsShown: false

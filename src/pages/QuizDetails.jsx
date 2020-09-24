@@ -1,6 +1,4 @@
-import { PeopleAltOutlined, PersonOutlineSharp } from '@material-ui/icons'
 import React, { Component } from 'react'
-import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ReviewsList } from '../cmps/ReviewsList'
@@ -8,6 +6,7 @@ import { quizService } from '../services/quizService'
 import { RankTable } from '../cmps/RankTable'
 import { utilService } from '../services/utilService'
 import { Loading } from '../cmps/Loading'
+
 export class _QuizDetails extends Component {
 
     state = {
@@ -48,22 +47,22 @@ export class _QuizDetails extends Component {
 
                     <div className="quiz-details-head">
                         <div className="quiz-info">
-                            
+
                             <h1 className="title">{quiz.title} </h1>
                             <div className="mini-info">
-                            <h5 className="creator">
+                                <h5 className="creator">
 
-                             <span>   {this.getDifficulity()}, </span>
-                          <span>  By {quiz.createdBy.fullName} </span>
-                            {quiz.tags[0].length >= 1 && <span>{
-                                    quiz.tags.map((tag, idx) => {
-                                        return <span key={idx}> {tag} </span>
-                                    })
-                                }</span>}
+                                    <span>   {this.getDifficulity()}, </span>
+                                    <span>  By {quiz.createdBy.fullName} </span>
+                                    {quiz.tags[0].length >= 1 && <span>{
+                                        quiz.tags.map((tag, idx) => {
+                                            return <span key={idx}> {tag} </span>
+                                        })
+                                    }</span>}
 
-                            </h5>
-                            {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}),{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
-                            {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
+                                </h5>
+                                {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}),{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
+                                {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
                             </div>
                             <Link to={`/edit/${quiz._id}`}><button>Edit</button></Link>
 

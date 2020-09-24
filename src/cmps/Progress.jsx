@@ -6,7 +6,7 @@ export function Progress({ value: value, max }) {
   function getClass() {
     if (value > 10) return 'green'
     if (value > 5) return 'blue'
-     return 'red'
+    return 'red'
   }
 
   return (
