@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Progress } from '../cmps/Progress'
-import {GameCountdown} from '../cmps/GameCountdown'
+import { GameCountdown } from '../cmps/GameCountdown'
 
 class _GameOn extends Component {
     state = {
-        isGameCountdown:true,
+        isGameCountdown: true,
         currQuestionIdx: 0,
-        answerFeedback: null,
+        wasQuestionAnswered: null,
         correctAnsIdx: null,
         chosenAnsIdx: null,
         didSoundPlay: false
@@ -23,16 +23,16 @@ class _GameOn extends Component {
     }
     onEsc = (event) => {
         if (event.keyCode === 27) this.props.history.push('/')
-        
+
     }
     getRightAnswerIdx = idx => {
         const rightAnswerIdx = this.props.questions[idx].answers.findIndex(answer => answer.isCorrect === "true")
         this.setState({ correctAnsIdx: rightAnswerIdx })
     }
     answerQuestion = (answerResult, answerIdx) => {
-        if (this.state.answerFeedback) return
+        if (this.state.wasQuestionAnswered) return
         const nextQuestionIdx = this.state.currQuestionIdx + 1
-        this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult }, () => {
+        this.setState({ chosenAnsIdx: answerIdx, wasQuestionAnswered: answerResult }, () => {
             this.props.onAns(answerResult)
         })
         this.onGoToNextQuestion(nextQuestionIdx)
@@ -49,13 +49,13 @@ class _GameOn extends Component {
                 return
             }
             this.props.resetTimer()
-            this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
+            this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, wasQuestionAnswered: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
     }
-    onGameCountdownFinished = () =>{
-        this.setState({isGameCountdown:false},() =>{
+    onGameCountdownFinished = () => {
+        this.setState({ isGameCountdown: false }, () => {
             this.props.startGameTimer()
         })
     }
@@ -68,38 +68,38 @@ class _GameOn extends Component {
         let currQuestion = questions[currQuestionIdx]
         this.props.currTimeStamp === 0 && this.onNoAns()
 
-        const gameplay= 
-        <div>
+        const gameplay =
+            <div>
 
-        <div className="game-top">
-            <Progress value={this.props.currTimeStamp / 1000} max={15} />
-            <div className="score"><h2>Score: {this.props.score}</h2></div>
-            <div className="curr-question">
-                <h1 >{currQuestion.txt}</h1>
+                <div className="game-top">
+                    <Progress value={this.props.currTimeStamp / 1000} max={15} />
+                    <div className="score"><h2>Score: {this.props.score}</h2></div>
+                    <div className="curr-question">
+                        <h1 >{currQuestion.txt}</h1>
+                    </div>
+                    <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
+                    <div className="timer-wrapper">
+                    </div>
                 </div>
-            <img src={this.props.questions[currQuestionIdx].img || this.props.quizImg || 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'} />
-            <div className="timer-wrapper">
+                <AnswersList chosenAnsIdx={this.state.chosenAnsIdx}
+                    correctAnsIdx={this.state.correctAnsIdx}
+                    chosenAnswerIdx={this.state.chosenAnswerIdx}
+                    wasQuestionAnswered={this.state.wasQuestionAnswered}
+                    answerQuestion={this.answerQuestion}
+                    answers={currQuestion.answers} />
             </div>
-        </div>
-        <AnswersList chosenAnsIdx={this.state.chosenAnsIdx}
-            correctAnsIdx={this.state.correctAnsIdx}
-            chosenAnswerIdx={this.state.chosenAnswerIdx}
-            answerFeedback={this.state.answerFeedback}
-            answerQuestion={this.answerQuestion}
-            answers={currQuestion.answers} />
-</div>
-console.log('isGameCountdown?, ',isGameCountdown)
+        console.log('isGameCountdown?, ', isGameCountdown)
 
 
         if (!questions) return <div>Loading....</div>
         return (
-            <main  className="quiz-game-main main-container mt10">
-                        <div className="background-img">
-            <img src={`${this.props.quizImg}`}/>
-        </div>
-          { isGameCountdown && <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished}/> }
-          {!isGameCountdown && gameplay}
-           </main>
+            <main className="quiz-game-main main-container mt10">
+                <div className="background-img">
+                    <img src={`${this.props.quizImg}`} />
+                </div>
+                { isGameCountdown && <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished} />}
+                {!isGameCountdown && gameplay}
+            </main>
         )
     }
 }
