@@ -5,22 +5,21 @@ const players = []
 function connectSockets(io) {
     io.on('connection', socket => {
         socket.on('room quiz', quiz => {
-            if (socket.currQuiz) {
-                socket.leave(socket.currQuiz)
+            if (socket.roomId) {
+                socket.leave(socket.roomId)
             }
             socket.join(quiz)
             socket.emit('getPlayers', players)
             socket.currQuiz = quiz;
         })
-        // socket.on('is typing', username => {
-        //     socket.to(socket.myTopic).emit('user typing',username)
-            
-        // })
 
         socket.on('game newPlayer', player => {
             players.push(player)
-            console.log('New Player:', player)
-            io.to(socket.currQuiz).emit('game addPlayer', player)
+            io.to(socket.roomId).emit('game addPlayer', player)
+        })
+
+        socket.on('start game', gamePlayers => {
+            io.to(socket.roomId).emit('game started',gamePlayers)
         })
     })
 }

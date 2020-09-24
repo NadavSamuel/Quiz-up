@@ -34,7 +34,7 @@ app.use(express.static('public'));
 const quizRoutes = require('./api/quiz/quiz.routes')
 const authRoutes = require('./api/auth/auth.routes.js')
 const userRoutes = require('./api/user/user.routes')
-// const connectSockets = require('./api/socket/socket.routes')
+const connectSockets = require('./api/socket/socket.routes')
 
 // REST API for QUIZZES :)
 app.use('/api/quiz', quizRoutes)
@@ -42,7 +42,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 
 // app.use('/api/review', reviewRoutes)
-// connectSockets(io)
+connectSockets(io)
 
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

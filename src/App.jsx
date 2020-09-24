@@ -13,19 +13,22 @@ import { Footer } from './cmps/Footer';
 import { Notification } from './cmps/Notification';
 import { BlackPage } from './cmps/BlackPage';
 import { Dashboard } from './pages/Dashboard';
+import { Room } from './pages/Room';
+
 function App() {
   return (
     <React.Fragment>
 
       <Navbar />
         <Switch>
-          <Route component={QuizGame} path='/game/:quizId' />
+          <Route component={QuizGame} path='/game/:quizId/:onlineId?' />
           <Route component={LoginSignup} path='/user/:quizId?' />
           <Route component={QuizEdit} path='/edit/:quizId?' />
           <Route component={QuizDetails} path='/quiz/:quizId' />
           <Route component={Browse} path='/browse' />
           <Route component={Dashboard} path='/dashboard' />
           <Route component={TagQuizzes} path='/list/:tag/:sort?' />
+          <Route component={Room} path='/room/:roomId' />
           <Route component={QuizApp} path='/' />
         </Switch>
       <Notification/>
