@@ -8,7 +8,7 @@ class _GameOn extends Component {
     state = {
         isGameCountdown: true,
         currQuestionIdx: 0,
-        answerFeedback: null,
+        wasQuestionAnswered: null,
         correctAnsIdx: null,
         chosenAnsIdx: null,
         didSoundPlay: false
@@ -30,9 +30,9 @@ class _GameOn extends Component {
         this.setState({ correctAnsIdx: rightAnswerIdx })
     }
     answerQuestion = (answerResult, answerIdx) => {
-        if (this.state.answerFeedback) return
+        if (this.state.wasQuestionAnswered) return
         const nextQuestionIdx = this.state.currQuestionIdx + 1
-        this.setState({ chosenAnsIdx: answerIdx, answerFeedback: answerResult }, () => {
+        this.setState({ chosenAnsIdx: answerIdx, wasQuestionAnswered: answerResult }, () => {
             this.props.onAns(answerResult)
         })
         this.onGoToNextQuestion(nextQuestionIdx)
@@ -49,7 +49,7 @@ class _GameOn extends Component {
                 return
             }
             this.props.resetTimer()
-            this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, answerFeedback: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
+            this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, wasQuestionAnswered: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
             })
         }, 1500)
@@ -84,7 +84,7 @@ class _GameOn extends Component {
                 <AnswersList chosenAnsIdx={this.state.chosenAnsIdx}
                     correctAnsIdx={this.state.correctAnsIdx}
                     chosenAnswerIdx={this.state.chosenAnswerIdx}
-                    answerFeedback={this.state.answerFeedback}
+                    wasQuestionAnswered={this.state.wasQuestionAnswered}
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers} />
             </div>
