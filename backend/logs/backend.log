@@ -941,11 +941,19 @@ Fri, 25 Sep 2020 10:41:04 GMT - Info - Server is running on port: 3030
 Fri, 25 Sep 2020 13:13:57 GMT - Info - Server is running on port: 3030
 =======
 Fri, 25 Sep 2020 13:30:38 GMT - Info - Server is running on port: 3030
+<<<<<<< HEAD
+Fri, 25 Sep 2020 13:46:20 GMT - Info - Server is running on port: 3030
+=======
 >>>>>>> 5b98dc075f4f0c13eb028ddd74ed2c89e3681f9c
 >>>>>>> 6d28a939bd4e112774318cd2c5f4ebf14272c9fb
+<<<<<<< HEAD
 Fri, 25 Sep 2020 13:43:32 GMT - Info - Server is running on port: 3030
 Fri, 25 Sep 2020 15:04:23 GMT - Debug - auth.service - login with username: Tal
 Fri, 25 Sep 2020 15:04:25 GMT - Debug - auth.service - login with username: Tal
 Fri, 25 Sep 2020 15:04:28 GMT - Debug - auth.service - login with username: Tal
 Fri, 25 Sep 2020 15:04:29 GMT - Debug - auth.service - login with username: Tal
 Fri, 25 Sep 2020 15:04:33 GMT - Debug - auth.service - login with username: or
+=======
+Fri, 25 Sep 2020 13:50:25 GMT - Info - Server is running on port: 3030
+Fri, 25 Sep 2020 14:46:04 GMT - Info - Server is running on port: 3030
+>>>>>>> c095c984eabefb67ddd1346e070f79756c957105
