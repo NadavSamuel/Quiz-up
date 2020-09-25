@@ -6,7 +6,9 @@ import { quizService } from '../services/quizService'
 import { RankTable } from '../cmps/RankTable'
 import { utilService } from '../services/utilService'
 import { Loading } from '../cmps/Loading'
-
+import GroupIcon from '@material-ui/icons/Group';
+import PersonIcon from '@material-ui/icons/Person';
+import EditIcon from '@material-ui/icons/Edit';
 export class _QuizDetails extends Component {
 
     state = {
@@ -66,8 +68,11 @@ export class _QuizDetails extends Component {
                                 {avgRate > 0 && <h5>Rated {avgRate}({quiz.reviews.length}),{quiz.allTimesPlayers.length > 0 && <span>  Played {playedTime > 1 ? `${playedTime} times` : `${playedTime} time`}     </span>}             </h5>}
                                 {<h5 className="quiz-length">{quizLength > 1 ? `${quizLength} Questions` : `${quizLength} Question`}</h5>}
                             </div>
-                            <Link to={`/edit/${quiz._id}`}><button>Edit</button></Link>
-
+                            <div className="btns">
+                                <Link to={`/edit/${quiz._id}`}><button>Edit Quiz <EditIcon /></button></Link>
+                                <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button >Start Single <PersonIcon /></button></Link>
+                                <Link className="play-single-btn" to={`/game/${quiz._id}/${utilService.makeId()}`}>  <button >Create Room <GroupIcon /> </button></Link>
+                            </div>
                         </div>
                         <div className="rank-container">
 
@@ -76,10 +81,7 @@ export class _QuizDetails extends Component {
                         </div></div>
                     <div className="quiz-details-body">
 
-                        <div className="btns">
-                            <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button >Play Single </button></Link>
-                            <Link className="play-single-btn" to={`/game/${quiz._id}/${utilService.makeId()}`}>  <button >Play Online </button></Link>
-                        </div></div>
+                    </div>
                 </div>
                 <div className="review-stats">
                     <h2 className="reviews-title">Reviews for this quiz:</h2>
