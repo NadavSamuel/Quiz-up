@@ -7,6 +7,7 @@ import { quizService } from '../services/quizService'
 import { utilService } from '../services/utilService'
 import { Loading } from '../cmps/Loading'
 import { setNotification } from '../store/actions/notificationActions.js'
+import { socketService } from '../services/socketService.js'
 import { Room } from './Room'
 
 class _QuizGame extends Component {
@@ -28,13 +29,31 @@ class _QuizGame extends Component {
 
     componentDidMount() {
         const { onlineId } = this.props.match.params
+        socketService.setup();
+        socketService.emit('room quiz', onlineId);
+        console.log('here');
         if (onlineId) this.setState({ onlineId })
         window.scrollTo(0, 100)
         this.setCurrUser();
+        socketService.on('update score', this.updateScore);
+        // send score
         this.determinOnline(onlineId)
         this.loadQuizz();
 
     }
+
+    updateScore = ({playerName,score}) => {
+        const newScore ={score,username:playerName.username};
+        let onlinePlayers=[...this.state.onlinePlayers];
+        const idx= onlinePlayers.findIndex(player=>player.username===newScore.username)
+        if(idx===-1){
+            console.log('cant find user');
+            return;
+        }
+        onlinePlayers[idx]=newScore
+        this.setState({onlinePlayers},()=>{console.log(this.state.onlinePlayers);})
+    }
+
     componentWillUnmount() {
         this.stopTimer()
     }
@@ -122,19 +141,25 @@ class _QuizGame extends Component {
         this.setState({ wasQuestionAnswerd: true, currTimeStamp: this.state.currTimeStamp }, () => {
             if (value === "true") {
                 let reward = 15 - (15 - this.state.currTimeStamp / 1000)
+
                 if (this.state.currTimeStamp === 0) reward = 1
-                this.setState({ score: this.state.score + reward, totalRightAnswers: this.state.totalRightAnswers + 1, wasQuestionAnswerd: true }, () => {
-                })
+                this.setState({ score: this.state.score + reward, totalRightAnswers: this.state.totalRightAnswers + 1, wasQuestionAnswerd: true }, this.sendScore)
             } else {
                 if (this.state.score - 5 <= 0) {
-                    this.setState({ score: 0 })
+                    this.setState({ score: 0 }, this.sendScore)
                     return
                 }
-
-
-                this.setState({ score: this.state.score - 5, })
+                this.setState({ score: this.state.score - 5}, this.sendScore)
             }
         })
+    }
+
+    sendScore = () => {
+        if(!this.state.onlineId) return;
+        socketService.setup();
+        socketService.emit('room quiz', this.state.onlineId);
+        const { currUser, score } = this.state
+        socketService.emit('send score', { playerName: currUser, score });
     }
 
     onEndGame = () => {
@@ -154,6 +179,10 @@ class _QuizGame extends Component {
     }
     onEscInGameOn = () => {
         this.props.history.push(`/`)
+    }
+
+    startGame = (onlinePlayers) => {
+        this.setState({ gameOn: true, onlinePlayers })
     }
 
     render() {
