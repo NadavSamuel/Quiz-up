@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { socketService } from '../services/socketService.js'
+import FacebookIcon from '@material-ui/icons/Facebook';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import {
+    FacebookShareButton,
+    WhatsappShareButton,
+    FacebookMessengerShareButton
+} from "react-share";
 
 export class _Room extends Component {
 
@@ -12,17 +19,19 @@ export class _Room extends Component {
 
     componentDidMount() {
         const { gameSessionId, roomId } = this.props
-        console.log('roomid:',roomId);
+        console.log('roomid:', roomId);
         // const gameSessionId = this.props.match.params.gameSessionId
         socketService.setup();
         socketService.emit('room quiz', roomId);
+        socketService.on('game started', this.props.startGame);
         this.setUser()
-        //IMPOVE:
-        socketService.on('game addPlayer', this.addPlayer)
-        socketService.on('getPlayers', this.getPlayers)
-        // socketService.on('user typing', this.setUserTyping)
-        // socketService.on('game started', this.gameOn)
+        this.addNewUser();
 
+    }
+
+    addNewUser = async () => {
+        await socketService.on('game addPlayer', this.addPlayer);
+        await socketService.on('getPlayers', this.getPlayers);
     }
 
     setUser = async () => {
@@ -34,17 +43,22 @@ export class _Room extends Component {
 
     componentWillUnmount() {
         socketService.off('chat addMsg', this.addMsg);
+        socketService.off('game addPlayer', this.addPlayer);
+        socketService.off('getPlayers', this.getPlayers);
+        socketService.off('game started', this.props.startGame);
+        // socketService.emit('user leave', roomId);
+
         socketService.terminate();
     }
 
     getPlayers = (players) => {
-        if(!players) return;
+        if (!players) return;
         this.setState({ players }, () => console.log('Players on this room: ', players))
     }
     addPlayer = (player) => {
-        console.log('got player:@@@@@',player);
+        console.log('got player:@@@@@', player);
         var { players } = this.state
-        console.log(players,'THIS IS PLAYERS');
+        console.log(players, 'THIS IS PLAYERS');
         this.setState({ players: [...players, player] })
     }
 
@@ -63,17 +77,25 @@ export class _Room extends Component {
         console.log(players, 'players')
         if (!players) return <div>No Players</div>
         return (
-            <div>
-                <button onClick={this.newPlayer}></button>
+            <div className='room'>
                 <div className="players-list-container">
+                    <h2>users:</h2>
                     <ul className="players-list">
                         {players.map((player, idx) => {
                             if (!player.username) return
-                            return <li key={idx}>{player.username}</li>
+                            return <li key={idx}><h2>{player.username}</h2>
+                            {/* <button>{getIsReady}</button> */}
+                            </li>
                         })}
 
                     </ul>
                 </div>
+                <FacebookShareButton url={window.location}>
+                    <FacebookIcon />
+                </FacebookShareButton>
+                <WhatsappShareButton url={window.location}>
+                    <WhatsAppIcon />
+                </WhatsappShareButton>
 
                 <button onClick={this.startGame}>Start Game</button>
             </div>
