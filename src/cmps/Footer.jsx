@@ -23,13 +23,13 @@ export function Footer({ loggedInUser }) {
 
         <footer className='flex justify-between align-center'>
             <div className="flex">
-                <FacebookShareButton url='https://www.youtube.com/'>
+                <FacebookShareButton url='https://quiz-upp.herokuapp.com/#/'>
                     <FacebookIcon />
                 </FacebookShareButton>
-                <WhatsappShareButton url='https://www.youtube.com/'>
+                <WhatsappShareButton url='https://quiz-upp.herokuapp.com/#/'>
                     <WhatsAppIcon />
                 </WhatsappShareButton>
-                <LinkedinShareButton url='https://www.youtube.com/'>
+                <LinkedinShareButton url='https://quiz-upp.herokuapp.com/#/'>
                     <LinkedInIcon />
                 </LinkedinShareButton>
 
