@@ -23,7 +23,7 @@ class _QuizGame extends Component {
         isQuizReady: false,
         isSetName: false,
         onlineId: '',
-        isWaitingRoom:false
+        isWaitingRoom: false
     }
     timer = null
 
@@ -42,25 +42,25 @@ class _QuizGame extends Component {
 
     }
 
-    updateScore = ({playerName,score}) => {
-        const newScore ={score,username:playerName.username};
-        let onlinePlayers=[...this.state.onlinePlayers];
-        const idx= onlinePlayers.findIndex(player=>player.username===newScore.username)
-        if(idx===-1){
+    updateScore = ({ playerName, score }) => {
+        const newScore = { score, username: playerName.username };
+        let onlinePlayers = [...this.state.onlinePlayers];
+        const idx = onlinePlayers.findIndex(player => player.username === newScore.username)
+        if (idx === -1) {
             console.log('cant find user');
             return;
         }
-        onlinePlayers[idx]=newScore
-        this.setState({onlinePlayers},()=>{console.log(this.state.onlinePlayers);})
+        onlinePlayers[idx] = newScore
+        this.setState({ onlinePlayers }, () => { console.log(this.state.onlinePlayers); })
     }
 
     componentWillUnmount() {
         this.stopTimer()
     }
 
-    stopTimer = (value = false) =>{
+    stopTimer = (value = false) => {
         clearInterval(this.timer)
-        if(value) this.setState({currTimeStamp:-1})
+        if (value) this.setState({ currTimeStamp: -1 })
     }
 
     setCurrUser = () => {
@@ -131,11 +131,10 @@ class _QuizGame extends Component {
             this.arrangeQuestions()
         })
     }
-    determinOnline = (value) =>{
-        debugger
+    determinOnline = (value) => {
         // const isOnline = (value === 'online')
-        if(value) this.setState({isWaitingRoom:value })
-       
+        if (value) this.setState({ isWaitingRoom: value })
+
     }
     onAns = value => {
         this.setState({ wasQuestionAnswerd: true, currTimeStamp: this.state.currTimeStamp }, () => {
@@ -149,13 +148,13 @@ class _QuizGame extends Component {
                     this.setState({ score: 0 }, this.sendScore)
                     return
                 }
-                this.setState({ score: this.state.score - 5}, this.sendScore)
+                this.setState({ score: this.state.score - 5 }, this.sendScore)
             }
         })
     }
 
     sendScore = () => {
-        if(!this.state.onlineId) return;
+        if (!this.state.onlineId) return;
         socketService.setup();
         socketService.emit('room quiz', this.state.onlineId);
         const { currUser, score } = this.state
@@ -182,32 +181,37 @@ class _QuizGame extends Component {
     }
 
     startGame = (onlinePlayers) => {
+<<<<<<< HEAD
         console.log('hi hi hi')
         this.setState({ gameOn: true, onlinePlayers })
+=======
+        this.setState({ gameOn: true,isWaitingRoom:false, onlinePlayers })
+>>>>>>> 2d689eb438248a9965f0880c5d5e3e8fac88126f
     }
 
     render() {
         const questions = this.state.quiz.quests
         const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
-        currTimeStamp, gameSessionId, totalRightAnswers, onlineId,isWaitingRoom } = this.state
+            currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom } = this.state
         const { img, allTimesPlayers } = quiz
         const { history } = this.props
         const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
 
         if (!questions) return <Loading />
+        console.log("render -> this.props.match.params.roomId", this.props.match.params)
         return (
             <main onKeyDown={this.onEsc} className={isInSetName}>
                 {(!currUser && isSetName) &&
                     <SetName quizId={this.state.quiz._id}
                         getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
 
-                {(currUser && onlineId && !gameOn && isWaitingRoom ) && 
-                <Room gameSessionId={gameSessionId} currUser={currUser} />}
+                {(currUser && onlineId && !gameOn && isWaitingRoom) &&
+                    < Room roomId={this.props.match.params.onlineId} gameSessionId={gameSessionId} currUser={currUser} startGame={this.startGame} />}
 
 
-
-                {  (!isSetName && currUser && isQuizReady &&!isWaitingRoom) && (gameOn  ?
-                    <GameOn stopTimer ={this.stopTimer} startGameTimer={this.startGameTimer}
+                {/* (currUser && onlineId && !gameOn && isWaitingRoom) */}
+                {  (!isSetName && currUser && isQuizReady && !isWaitingRoom) && (gameOn ?
+                    <GameOn stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
                         history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
@@ -215,7 +219,7 @@ class _QuizGame extends Component {
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
 
                     <EndGame setNotification={this.props.setNotification}
-                        totalRightAnswers={totalRightAnswers} 
+                        totalRightAnswers={totalRightAnswers}
                         gameSessionId={gameSessionId}
                         currUser={currUser}
                         getInitialState={this.getInitialState} quiz={this.state.quiz}

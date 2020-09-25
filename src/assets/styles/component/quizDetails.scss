@@ -37,20 +37,31 @@
                 display: flex;
                 flex-direction: column;
             }
-            .mini-info > *{
+            .mini-info > * {
                 font-size: 15px;
                 padding-bottom: 8px;
             }
-            // .quiz-length {
-            //     font-size: 0.9rem;
-            // }
+            .btns {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 100%;
+                margin-top: 50px;
+                button {
+                    // margin-top: 12px;
+                    min-width: 400px;
+                    // margin: 10px 10px;
+                }
+            }
         }
+
         .rank-container {
             width: 37.5%;
             background-color: #ffffffcc;
             border-radius: 3px;
             opacity: 0.8;
             margin-right: 15px;
+            margin-bottom: 8px;
         }
         .rank-table {
             border-radius: 7px;
@@ -81,19 +92,6 @@
     .quiz-details-body {
         display: flex;
         justify-content: space-between;
-        .btns {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 100%;
-            margin-top: 10px;
-            button {
-                padding: 25px 140px;
-                // margin-top: 12px;
-                width: 100%;
-                margin: 0;
-            }
-        }
     }
     .review-stats {
         margin-top: 55px;
@@ -117,6 +115,7 @@
 
 @media (max-width: 1000px) {
     .quiz-details-container {
+
         .quiz-details-head {
             display: inline;
             .quiz-img {
@@ -126,6 +125,7 @@
             .rank-container {
                 width: 96%;
                 margin: auto;
+                margin-bottom: 5px;
                 .rank-table {
 
                     .table-line {
@@ -140,15 +140,17 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            .btns {
+                button {
+                    min-width: 70% !important;
+                    
+                }
+            }
         }
         .quiz-details-body {
             display: block;
 
-            .btns {
-                button {
-                    width: 100%;
-                }
-            }
         }
         .review-stats {
             margin: 35px 0;
