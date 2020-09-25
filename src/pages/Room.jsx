@@ -13,7 +13,8 @@ export class _Room extends Component {
 
     state = {
         players: [],
-        currUser: { username: '', score: 0 }
+        currUser: { username: '', score: 0 },
+        isReady:false
 
     }
 
@@ -72,6 +73,13 @@ export class _Room extends Component {
         socketService.emit('start game', this.state.players)
     }
 
+    changeReady = () => {
+        socketService.setup();
+        socketService.emit('room quiz', this.state.onlineId);
+        const { currUser, score,isReady} = this.state
+        socketService.emit('change ready', { playerName: currUser, score, isReady:!isReady});
+    }
+
     render() {
         const { players, currUser } = this.state
         console.log(players, 'players')
@@ -84,7 +92,7 @@ export class _Room extends Component {
                         {players.map((player, idx) => {
                             if (!player.username) return
                             return <li key={idx}><h2>{player.username}</h2>
-                            {/* <button>{getIsReady}</button> */}
+                            <button onClick={this.changeReady}>{(player.isReady)? 'ready':'Not Ready'}</button>
                             </li>
                         })}
 
