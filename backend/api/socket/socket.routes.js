@@ -6,7 +6,7 @@ const players = [];
 function connectSockets(io) {
     io.on('connection', socket => {
         socket.on('room quiz', quiz => {
-            console.log('got quiz: ', quiz)
+            // console.log('got quiz: ', quiz)
             if (socket.currQuiz) {
                 socket.leave(socket.currQuiz)
             }
@@ -28,7 +28,10 @@ function connectSockets(io) {
         })
 
         socket.on('start game', gamePlayers => {
+            // console.log('here',gamePlayers)
             io.to(socket.currQuiz).emit('game started', gamePlayers)
+            // io.to(socket.currQuiz).emit('game addPlayer', player)
+
         })
 
         socket.on('send score', data => {

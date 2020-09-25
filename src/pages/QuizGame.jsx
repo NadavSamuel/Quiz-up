@@ -182,6 +182,7 @@ class _QuizGame extends Component {
     }
 
     startGame = (onlinePlayers) => {
+        console.log('hi hi hi')
         this.setState({ gameOn: true, onlinePlayers })
     }
 
