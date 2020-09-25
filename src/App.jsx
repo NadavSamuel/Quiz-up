@@ -28,7 +28,7 @@ function App() {
           <Route component={Browse} path='/browse' />
           <Route component={Dashboard} path='/dashboard' />
           <Route component={TagQuizzes} path='/list/:tag/:sort?' />
-          <Route component={Room} path='/room/:roomId' />
+          {/* <Route component={Room} path='/room/:roomId' /> */}
           <Route component={QuizApp} path='/' />
         </Switch>
       <Notification/>

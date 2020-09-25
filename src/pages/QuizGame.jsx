@@ -156,7 +156,7 @@ class _QuizGame extends Component {
                     <SetName quizId={this.state.quiz._id}
                         getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
 
-                {(currUser && onlineId && !gameOn) && <Room gameSessionId={gameSessionId} currUser={currUser} />}
+                {(currUser && onlineId && !gameOn) && <Room roomId={onlineId} gameSessionId={gameSessionId} currUser={currUser} />}
 
 
 

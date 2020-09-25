@@ -1,26 +1,30 @@
 
 module.exports = connectSockets
-const players = []
+
 
 function connectSockets(io) {
     io.on('connection', socket => {
         socket.on('room quiz', quiz => {
-            console.log('got quiz: ',quiz)
-            if (socket.roomId) {
-                socket.leave(socket.roomId)
+            console.log('got quiz: ', quiz)
+            const players = [];
+            if (socket.currQuiz) {
+                socket.leave(socket.currQuiz)
             }
             socket.join(quiz)
-            socket.emit('getPlayers', players)
             socket.currQuiz = quiz;
+            console.log('Players:',players);
+            io.to(socket.currQuiz).emit('getPlayers', players)
         })
 
         socket.on('game newPlayer', player => {
-            players.push(player)
-            io.to(socket.roomId).emit('game addPlayer', player)
+            if (socket.currQuiz.players) socket.currQuiz.players.push(player)
+            else socket.currQuiz.players = [player]
+            console.log('players in backend:', socket.currQuiz.players);
+            io.to(socket.currQuiz).emit('game addPlayer', player)
         })
 
         socket.on('start game', gamePlayers => {
-            io.to(socket.roomId).emit('game started',gamePlayers)
+            io.to(socket.currQuiz).emit('game started', gamePlayers)
         })
     })
 }

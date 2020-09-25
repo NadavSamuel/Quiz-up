@@ -2,42 +2,35 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { socketService } from '../services/socketService.js'
 
-export default class _Room extends Component {
+export class _Room extends Component {
 
     state = {
         players: [],
-        currUser: { name: '', score: 0 }
+        currUser: { username: '', score: 0 }
 
     }
 
     componentDidMount() {
-        const { gameSessionId } = this.props
+        const { gameSessionId, roomId } = this.props
+        console.log('roomid:',roomId);
         // const gameSessionId = this.props.match.params.gameSessionId
         socketService.setup();
-        socketService.emit('room quiz', gameSessionId);
+        socketService.emit('room quiz', roomId);
         this.setUser()
         //IMPOVE:
-        socketService.on('getPlayers', this.getPlayers)
         socketService.on('game addPlayer', this.addPlayer)
+        socketService.on('getPlayers', this.getPlayers)
         // socketService.on('user typing', this.setUserTyping)
         // socketService.on('game started', this.gameOn)
-        console.log('props:',this.props)
-        console.log('state:',this.state)
+
     }
 
-    setUser = () => {
-        const {currUser} = this.props
-        this.setState({currUser})
-        // const { loggedInUser, currUser } = this.props
+    setUser = async () => {
+        const { currUser } = this.props
         // if (loggedInUser) await this.setState({ currUser: { ...this.state.currUser, name: loggedInUser.username } })
-        // else await this.setState({ currUser: { ...this.state.currUser, name: currUser } })
-        // socketService.emit('game newPlayer', this.state.currUser);
+        await this.setState({ currUser: { ...this.state.currUser, username: currUser.username } })
+        socketService.emit('game newPlayer', this.state.currUser);
     }
-
-    // gameOn = (players) => {
-    //     this.props.history.push('/')
-    // }
-
 
     componentWillUnmount() {
         socketService.off('chat addMsg', this.addMsg);
@@ -45,19 +38,20 @@ export default class _Room extends Component {
     }
 
     getPlayers = (players) => {
+        if(!players) return;
         this.setState({ players }, () => console.log('Players on this room: ', players))
     }
     addPlayer = (player) => {
-        const { players } = this.state
+        console.log('got player:@@@@@',player);
+        var { players } = this.state
+        console.log(players,'THIS IS PLAYERS');
         this.setState({ players: [...players, player] })
     }
 
     //Outside the CMP
     newPlayer = () => {
-        // ev.preventDefault();
         console.log('trying to add new player:', this.state.currUser);
         socketService.emit('game newPlayer', this.state.currUser);
-        // this.setState({ msg: { from: 'Me', txt: '' } });
     };
 
     startGame = () => {
@@ -65,19 +59,18 @@ export default class _Room extends Component {
     }
 
     render() {
-        const { players,currUser } = this.state
-        console.log(players,'players')
+        const { players, currUser } = this.state
+        console.log(players, 'players')
         if (!players) return <div>No Players</div>
         return (
             <div>
                 <button onClick={this.newPlayer}></button>
                 <div className="players-list-container">
-                    <ul className="players-list">    
-        <li className="currUser">{currUser.username}</li>
-                     {players.map((player, idx) => {
-                    if(!player.username) return
-                    return <li key={idx}>{player.username}</li>
-                })}
+                    <ul className="players-list">
+                        {players.map((player, idx) => {
+                            if (!player.username) return
+                            return <li key={idx}>{player.username}</li>
+                        })}
 
                     </ul>
                 </div>
@@ -88,7 +81,6 @@ export default class _Room extends Component {
     }
 }
 
-
 const mapStateToProps = state => {
     return {
         loggedInUser: state.userReducer.loggedinUser
@@ -97,5 +89,4 @@ const mapStateToProps = state => {
 
 export const Room = connect(mapStateToProps)(_Room)
 
-
-// Details > Play Online = Room
+// Details > Play Online = Room -> Start Game -> Game - EndGame with scores
