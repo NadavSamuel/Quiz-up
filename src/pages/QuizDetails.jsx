@@ -78,7 +78,7 @@ export class _QuizDetails extends Component {
 
                         <div className="btns">
                             <Link className="play-single-btn" to={`/game/${quiz._id}`}>  <button >Play Single </button></Link>
-                            <Link className="play-single-btn" to={`/game/${quiz._id}/mashu`}>  <button >Play Online </button></Link>
+                            <Link className="play-single-btn" to={`/game/${quiz._id}/online`}>  <button >Play Online </button></Link>
                         </div></div>
                 </div>
                 <div className="review-stats">

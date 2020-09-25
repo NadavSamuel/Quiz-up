@@ -144,7 +144,7 @@ class _QuizGame extends Component {
     render() {
         const questions = this.state.quiz.quests
         const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
-            currTimeStamp, gameSessionId, totalRightAnswers, onlineId } = this.state
+        currTimeStamp, gameSessionId, totalRightAnswers, onlineId } = this.state
         const { img, allTimesPlayers } = quiz
         const { history } = this.props
         const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
@@ -156,11 +156,11 @@ class _QuizGame extends Component {
                     <SetName quizId={this.state.quiz._id}
                         getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
 
-                {(currUser && onlineId && !gameOn) && <Room />}
+                {(currUser && onlineId && !gameOn) && <Room gameSessionId={gameSessionId} currUser={currUser} />}
 
 
 
-                { !isSetName && currUser && (gameOn && isQuizReady ?
+                { gameOn && !isSetName && currUser && ( isQuizReady ?
                     <GameOn startGameTimer={this.startGameTimer} history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}

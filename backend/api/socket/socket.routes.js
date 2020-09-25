@@ -5,6 +5,7 @@ const players = []
 function connectSockets(io) {
     io.on('connection', socket => {
         socket.on('room quiz', quiz => {
+            console.log('got quiz: ',quiz)
             if (socket.roomId) {
                 socket.leave(socket.roomId)
             }
