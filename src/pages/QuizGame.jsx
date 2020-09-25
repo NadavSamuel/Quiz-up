@@ -113,8 +113,10 @@ class _QuizGame extends Component {
         })
     }
     determinOnline = (value) =>{
-        const isOnline = (value === 'online')
-        this.setState({isWaitingRoom:isOnline })
+        debugger
+        // const isOnline = (value === 'online')
+        if(value) this.setState({isWaitingRoom:value })
+       
     }
     onAns = value => {
         this.setState({ wasQuestionAnswerd: true, currTimeStamp: this.state.currTimeStamp }, () => {
