@@ -80,6 +80,18 @@ export class _Room extends Component {
         socketService.emit('change ready', { playerName: currUser, score, isReady:!isReady});
     }
 
+    updateReady = ({playerName,score,isReady}) => {
+        const newReady ={score,username:playerName.username,isReady};
+        let onlinePlayers=[...this.state.onlinePlayers];
+        const idx= onlinePlayers.findIndex(player=>player.username===newReady.username)
+        if(idx===-1){
+            console.log('cant find user');
+            return;
+        }
+        onlinePlayers[idx]=newReady
+        this.setState({onlinePlayers},()=>{console.log(this.state.onlinePlayers);})
+    }
+
     render() {
         const { players, currUser } = this.state
         console.log(players, 'players')
