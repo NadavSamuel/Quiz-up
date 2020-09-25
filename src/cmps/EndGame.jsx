@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { RankTable } from '../cmps/RankTable'
 import { quizService } from '../services/quizService'
 import StarIcon from '@material-ui/icons/Star';
@@ -7,8 +8,9 @@ import { tada } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 import { Link } from 'react-router-dom'
 import { utilService } from '../services/utilService';
+import { setNotification } from '../store/actions/notificationActions';
 
-export class EndGame extends Component {
+export class _EndGame extends Component {
     state = {
         review: {
             by: {
@@ -46,19 +48,18 @@ export class EndGame extends Component {
         this.setState({ ...this.state, review: { ...this.state.review, txt: value } })
     }
     updateAllTimePlayers = () => {
-        const currQuiz = this.props.quiz
-        const currUser = this.props.currUser
+        const {currUser,gameSessionId,score,quiz} = this.props
         const currUserMiniObject = {
             fullName: currUser.username,
             id: currUser._id,
             img: currUser.img,
-            score: this.props.score,
-            gameSessionId: this.props.gameSessionId
+            score,
+            gameSessionId
         }
-        if (!currUserMiniObject.score) return
-        currQuiz.allTimesPlayers.unshift(currUserMiniObject)
-        quizService.update(currQuiz)
-        const { tenBestPlayers, playerRank } = utilService.getBestUsers(currQuiz, currUserMiniObject.gameSessionId)
+        // if (!currUserMiniObject.score) return
+        quiz.allTimesPlayers.unshift(currUserMiniObject)
+        quizService.update(quiz)
+        const { tenBestPlayers, playerRank } = utilService.getBestUsers(quiz, currUserMiniObject.gameSessionId)
         let playerPositionInTable = tenBestPlayers.findIndex(player => player.gameSessionId === currUserMiniObject.gameSessionId)
         if (playerPositionInTable !== -1) {
             playerPositionInTable++
@@ -68,10 +69,17 @@ export class EndGame extends Component {
     }
     onSubmitReview = ev => {
         ev.preventDefault()
+        
+        if(this.state.isReviewSent ){
+            this.props.setNotification('err','You already sent a review!')
+            return
+        } 
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
         quizService.update(currQuiz)
-        this.setState({ isReviewSent: true })
+        this.setState({ isReviewSent: true },() =>{
+            this.props.setNotification('info','Review sent')
+        })
     }
     changeRate = num => {
         this.setState({ review: { ...this.state.review, rate: num } })
@@ -111,7 +119,7 @@ export class EndGame extends Component {
                 animationName: Radium.keyframes(tada, 'tada')
             }
         }
-        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz } = this.props
+        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz,score } = this.props
         const { idxInRankTable, tenBestPlayers } = this.state
         // const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
@@ -134,12 +142,14 @@ export class EndGame extends Component {
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1> <span style={{ display: idxInRankTable <= 10 ? 'inlineBlock' : 'none' }}>Wow!</span> You scored {this.props.score}</h1>
-                    <h3 className="mt30">You answered {rightAns} answeres right out of {allAns} questions <br />
+                    <h3 className="mt30">You answered {rightAns || '0'} answeres right out of {allAns} questions <br />
                         {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
                     </h3>
                     <StyleRoot>
                         {this.state.idxInRankTable && <div className="game-records-break mt30">
-                            <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}> <span className="top-ten-greet" style={{ display: idxInRankTable <= 10 ? 'block' : 'none' }}>Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable)} place in the "{quiz.title}" quiz! </h2>
+                        {score &&<h2 style={idxInRankTable <= 10 && styles.tada || styles.null}> 
+                           <span className="top-ten-greet" style={{ display: idxInRankTable <= 10 ? 'block' : 'none' }}>
+                            Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
                         </div>}
                     </StyleRoot>
                     <div className="mt30">
@@ -148,10 +158,21 @@ export class EndGame extends Component {
                     <div className="endgame-actions mt30" >
                         <button onClick={this.props.getInitialState}>Play Again</button>
                         <button><Link to='/browse'> Back to Browse</Link></button>
-                        {!this.state.isReviewSent ? reviewForm : reviewFeedback}
+                        {reviewForm}
+                        {/* {!this.state.isReviewSent ? reviewForm : reviewFeedback} */}
                     </div>
                 </div>
             </main>
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        // loggedinUser: state.userReducer.loggedinUser
+    }
+}
+const mapDispatchToProps = {
+    setNotification
+
+}
+export const EndGame = connect(mapStateToProps, mapDispatchToProps)(_EndGame)

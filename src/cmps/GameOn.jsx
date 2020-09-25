@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Progress } from '../cmps/Progress'
-import {GameCountdown} from '../cmps/GameCountdown'
+import { GameCountdown } from '../cmps/GameCountdown'
 import { Loading } from './Loading.jsx'
 
 class _GameOn extends Component {
@@ -10,10 +10,11 @@ class _GameOn extends Component {
         isGameCountdown: true,
         currQuestionIdx: 0,
         wasQuestionAnswered: null,
-        isNoAnswer:false,
+        isNoAnswer: false,
         correctAnsIdx: null,
         chosenAnsIdx: null,
-        didSoundPlay: false
+        didSoundPlay: false,
+        // helper: false
     }
     componentDidMount() {
         window.scrollTo(0, 74)
@@ -22,7 +23,7 @@ class _GameOn extends Component {
     }
     componentWillUnmount() {
         document.removeEventListener("keydown", this.onEsc, false);
-        this.onTimeAlmostOver(this.tikSound,false)
+        this.onTimeAlmostOver(this.tikSound, false)
 
     }
     onEsc = (event) => {
@@ -41,10 +42,12 @@ class _GameOn extends Component {
         this.onGoToNextQuestion(nextQuestionIdx)
     }
     onNoAns = () => {
-        setTimeout(() =>{
+        this.props.stopTimer(true)
+        this.onTimeAlmostOver(this.dingSound, true)
+        setTimeout(() => {
             const nextQuestionIdx = this.state.currQuestionIdx + 1
             this.onGoToNextQuestion(nextQuestionIdx)
-        },3000)
+        }, 2000)
     }
     onGoToNextQuestion = nextQuestionIdx => {
         setTimeout(() => {
@@ -52,9 +55,11 @@ class _GameOn extends Component {
                 this.props.onEndGame()
                 return
             }
-            this.props.resetTimer()
             this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, wasQuestionAnswered: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
+                this.props.resetTimer()         
+                this.props.startGameTimer()
+                
             })
         }, 1500)
     }
@@ -66,32 +71,46 @@ class _GameOn extends Component {
 
     tikSound = new Audio('../sounds/clock-tick2.wav')
     dingSound = new Audio('../sounds/Ding.mp3')
-    onTimeAlmostOver = (sound,value) => {
-        if(value){
-        sound.currentTime = 0;
-        sound.play()
+    onTimeAlmostOver = (sound, value) => {
+        if (value) {
+            sound.currentTime = 0;
+            sound.play()
         }
-        else{
+        else {
             sound.pause()
         }
     }
+    //  blabla = () =>{
+    //     if(!this.props.currTimeStamp){
+    //         if(this.state.helper) return
+    //         console.log('hi')
+    //         this.onNoAns()
+    //         this.onTimeAlmostOver(this.tikSound,false)
+    //         this.onTimeAlmostOver(this.dingSound,true)
+    //     }
+    // }
 
-    
+
 
     render() {
-        let { questions,currTimeStamp,score,quizImg} = this.props
-        let { currQuestionIdx,isGameCountdown,wasQuestionAnswered,chosenAnsIdx,correctAnsIdx } = this.state
+        let { questions, currTimeStamp, score, quizImg } = this.props
+        let { currQuestionIdx, isGameCountdown, wasQuestionAnswered, chosenAnsIdx, correctAnsIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
         const defaultImgUrl = 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'
-        if(currTimeStamp === 5000 )  this.onTimeAlmostOver(this.tikSound,true)
-        if((currTimeStamp <= 5000 && wasQuestionAnswered) || (currTimeStamp === 0)) {
-            this.onTimeAlmostOver(this.tikSound,false)
-        } 
-        if(!currTimeStamp){
-            this.onNoAns()
-            this.onTimeAlmostOver(this.tikSound,false)
-            this.onTimeAlmostOver(this.dingSound,true)
+        if (currTimeStamp === 5000 && !wasQuestionAnswered) {
+            this.onTimeAlmostOver(this.tikSound, true)
         }
+        if ((currTimeStamp <= 5000 && wasQuestionAnswered) || (currTimeStamp === 0 || currTimeStamp > 5000)) {
+            this.onTimeAlmostOver(this.tikSound, false)
+        }
+        if (!currTimeStamp) {
+            console.log('hi1')
+            // this.onTimeAlmostOver(this.tikSound, false)
+            this.onTimeAlmostOver(this.dingSound, true)
+            this.onNoAns()
+
+        }
+
 
         const gameplay =
 
@@ -103,25 +122,25 @@ class _GameOn extends Component {
                     <div className="curr-question">
                         <h1 >{currQuestion.txt}</h1>
                     </div>
-                    <img src={questions[currQuestionIdx].img || quizImg ||defaultImgUrl} />
+                    <img src={questions[currQuestionIdx].img || quizImg || defaultImgUrl} />
                 </div>
                 <AnswersList chosenAnsIdx={chosenAnsIdx}
                     correctAnsIdx={correctAnsIdx}
                     wasQuestionAnswered={wasQuestionAnswered}
                     answerQuestion={this.answerQuestion}
-                    answers={currQuestion.answers} 
+                    answers={currQuestion.answers}
                     currTimeStamp={currTimeStamp} />
             </div>
 
 
-        if (!questions) return <div><Loading/></div>
+        if (!questions) return <div><Loading /></div>
         return (
             <main className="quiz-game-main main-container mt10">
                 <div className="background-img">
                     <img src={`${quizImg}`} />
                 </div>
-                { isGameCountdown && 
-                <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished} />}
+                { isGameCountdown &&
+                    <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished} />}
                 {!isGameCountdown && gameplay}
             </main>
         )
