@@ -832,3 +832,6 @@ Thu, 24 Sep 2020 16:35:43 GMT - Info - Server is running on port: 3030
 Thu, 24 Sep 2020 16:48:00 GMT - Info - Server is running on port: 3030
 >>>>>>> d3291a2e34a9ec4a7bf8ee8dc7996da34e883706
 Thu, 24 Sep 2020 17:07:47 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 17:40:04 GMT - Info - Server is running on port: 3030
+Thu, 24 Sep 2020 17:45:37 GMT - Debug - auth.service - login with username: or
+Fri, 25 Sep 2020 06:35:46 GMT - Info - Server is running on port: 3030

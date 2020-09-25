@@ -32,8 +32,8 @@ export class _QuizEdit extends Component {
             { txt: "" },
             { txt: "" }
         ],
-        difficulity: '1'
-
+        difficulity: '1',
+        firstPage: true
     }
 
     componentDidMount() {
@@ -205,51 +205,72 @@ export class _QuizEdit extends Component {
             <div className="full quiz-edit">
                 <div className='flex edit-layout'>
                     <div className='quest-list-preview'>
+                        <h3>Quiz Questions</h3>
+                        {this.state.quests.length === 0 && <h4 className='mt10'>No questions yet</h4>}
                         <QuestList quests={this.state.quests} onUpdateQuest={this.onUpdateQuest} onDeleteQuest={this.onDeleteQuest} />
                     </div>
                     <div className='quest-layout'>
 
-                        <label className="upload-btn" htmlFor="upload-file-quest">{!this.state.questImg && <img className="quest-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600370634/ckkxyhlemtikzm8nmg0r.png" alt="" />}
-                            {this.state.questImg && <img className="quest-img" src={this.state.questImg} alt="img" />}</label>
-                        <input hidden type="file" className="file-input" name="questImg" id="upload-file-quest"
-                            onChange={this.uploadImg} />
 
-                        <form className='quest-answers' onSubmit={this.onSubmitAns}>
+                        {this.state.firstPage && <React.Fragment>
+                            <h2 className='mt10'>Add Questions</h2>
 
-                            <TextField className='quest' label="Question" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
-                            <TextField label="Image URL" variant="outlined" autoComplete="off" type="text" name='questImg' onChange={this.handleChange} value={this.state.questImg} />
-                            <TextField label="Correct answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
-                            <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
-                            <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
-                            <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
-                            <div className='edit-btn flex align-center justify-center' onClick={this.onSubmitAns}>
-                                <PlaylistAddIcon fontSize="large" />
+
+
+                            <label className="upload-btn" htmlFor="upload-file-quest">{!this.state.questImg && <img className="quest-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600370634/ckkxyhlemtikzm8nmg0r.png" alt="" />}
+                                {this.state.questImg && <img className="quest-img" src={this.state.questImg} alt="img" />}</label>
+                            <input hidden type="file" className="file-input" name="questImg" id="upload-file-quest"
+                                onChange={this.uploadImg} />
+
+
+
+                            <form className='quest-answers' onSubmit={this.onSubmitAns}>
+
+                                <TextField label="Image URL" variant="outlined" autoComplete="off" type="text" name='questImg' onChange={this.handleChange} value={this.state.questImg} />
+                                <TextField className='quest' label="Question" variant="outlined" autoComplete="off" type="text" name='currQuest' onChange={this.handleChange} value={this.state.currQuest} />
+                                <TextField label="Correct Answer" variant="outlined" autoComplete="off" type="text" name='0' onChange={this.handleChangeAns} value={this.state.answers[0].txt} />
+                                <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='1' onChange={this.handleChangeAns} value={this.state.answers[1].txt} />
+                                <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='2' onChange={this.handleChangeAns} value={this.state.answers[2].txt} />
+                                <TextField label="Wrong Answer" variant="outlined" autoComplete="off" type="text" name='3' onChange={this.handleChangeAns} value={this.state.answers[3].txt} />
+                                <div  >
+                                    <button onClick={this.onSubmitAns}>Save</button>
+                                </div>
+                                <div>
+                                    <button className='swich-btn' onClick={() => { this.setState({ firstPage: !this.state.firstPage }) }}>Edit Quiz</button>
+                                </div>
+                            </form>
+                        </React.Fragment>
+                        }
+                        {!this.state.firstPage &&
+                            <div className='quiz-inputs'>
+                                <h2 className='mt10'>Quiz Details</h2>
+                                {/* <button onClick={this.setRandomQuiz}>Set Random Quiz</button> */}
+
+                                <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <img className="quest-img" src="https://res.cloudinary.com/dif8yy3on/image/upload/v1600370634/ckkxyhlemtikzm8nmg0r.png" alt="" />}
+                                    {this.state.img && <img className="quiz-img" src={this.state.img} alt="img" />}</label>
+                                <input hidden type="file" className="file-input" name="img" id="upload-file"
+                                    onChange={this.uploadImg} />
+                                <form className='quiz-inputs-form mt10' onSubmit={this.onSubmit}>
+                                    <TextField label="Image URL" variant="outlined" autoComplete="off" type="text" name='img' onChange={this.handleChange} value={this.state.img} />
+                                    <TextField label="Quiz Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
+                                    <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
+
+                                    <div>
+                                        <h3> Difficulity: </h3>
+                                        <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
+                                    </div><span>{this.getDifficulty()}</span>
+                                    <button onClick={() => { this.setState({ firstPage: !this.state.firstPage }) }}>Edit Questions</button>
+                                    <button onClick={this.onSubmit}>Publish</button>
+                                </form>
+
+
+
                             </div>
-                        </form>
+                        }
+
                     </div>
                 </div>
-                <div className='quiz-inputs'>
-                    <button onClick={this.setRandomQuiz}>Set Random Quiz</button>
 
-                    <form className='quiz-inputs-form mt10' onSubmit={this.onSubmit}>
-                        <TextField label="Title" variant="outlined" autoComplete="off" type="text" name='title' value={this.state.title} onChange={this.handleChange} />
-                        <TextField label="Tags" variant="outlined" autoComplete="off" type="text" name='tags' value={this.state.tags} onChange={this.handleChange} />
-                        <TextField label="Image URL" variant="outlined" autoComplete="off" type="text" name='img' onChange={this.handleChange} value={this.state.img} />
-
-                        <div>
-                            <h3> Difficulity: </h3>
-                            <input type="range" name='difficulity' value={this.state.difficulity} min='1' max='3' onChange={this.handleChange} />
-                        </div><span>{this.getDifficulty()}</span>
-                        <label className="upload-btn" htmlFor="upload-file">{!this.state.img && <p>Choose file</p>}
-                            {this.state.img && <img className="quiz-img" src={this.state.img} alt="img" />}</label>
-                        <input hidden type="file" className="file-input" name="img" id="upload-file"
-                            onChange={this.uploadImg} />
-                        <PublishIcon fontSize="large" onClick={this.onSubmit} />
-                    </form>
-
-
-
-                </div>
             </div>
         )
     }

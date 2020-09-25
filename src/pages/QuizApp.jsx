@@ -59,7 +59,7 @@ class _QuizApp extends Component {
         return (
             <div className="home-page main-container">
                 <div className='title full'>
-                    <div>
+                    <div className='title-txt'>
                         <h1>Play quizzes</h1>
                         <h1>Challenge your friends</h1>
                         <h1>Have fun</h1>

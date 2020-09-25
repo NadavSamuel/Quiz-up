@@ -18,8 +18,8 @@ import { Room } from './pages/Room';
 function App() {
   return (
     <React.Fragment>
-
       <Navbar />
+      <div className='navbar-height'></div>
         <Switch>
           <Route component={QuizGame} path='/game/:quizId/:onlineId?' />
           <Route component={LoginSignup} path='/user/:quizId?' />

@@ -1,15 +1,29 @@
 .quiz-edit {
+    min-height:120vh;
+
     .quiz-inputs-form {
-        align-items: center;
-        flex-direction: column;
-        gap: 10px;
+        // align-items: center;
+        // flex-direction: column;
+        // gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr minmax(150px, 1fr) 1fr;
+        grid-gap: 10px;
+
+        div,button,label,span{
+            grid-column: 2/3;
+        }
+        
+        
     }
 
+    .swich-btn {
+        width: 100%;
+
+    }
     
 
-    .quiz-inputs {
-        margin-left: 300px;
-    }
+
+
 
     text-align: center;
 
@@ -19,7 +33,7 @@
 
     .quest-list-preview {
         width: 350px;
-        max-height: 600px;
+        height: 120vh;
         overflow-y: auto;
         border: 1px solid rgba(0, 0, 0, 0.1);
     }
@@ -44,6 +58,7 @@
         height: 300px;
         object-fit: cover;
     }
+
     .quiz-img {
         object-fit: cover;
         max-width: 300px;
@@ -51,17 +66,23 @@
     }
 
     .quest-answers {
-        margin: 0 auto;
+        margin: 20px auto;
         display: grid;
         width: 100%;
         gap: 10px;
-        grid-template-columns: 1fr repeat(2, 150px) 1fr;
+        grid-template-columns: 1fr repeat(2, minmax(150px, 1fr)) 1fr;
 
         div {
             text-align: left;
+            button{
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
         }
 
         div:nth-child(1) {
+            margin-top: 10px;
             grid-column: 2/4;
             grid-row: 1/2;
         }
@@ -90,14 +111,26 @@
             grid-column: 3/4;
             grid-row: 4/5;
         }
+
         div:nth-child(7) {
             grid-column: 2/3;
             grid-row: 5/6;
         }
+
         div:nth-child(8) {
             grid-column: 3/4;
             grid-row: 5/6;
+            height: 100%;
+            
         }
+        
+        div:nth-child(9) {
+            
+            height: 100%;
+            grid-column: 3/4;
+            grid-row: 5/6;
+        }
+
 
         .edit-btn {
             cursor: pointer;
@@ -115,6 +148,7 @@
     .quiz-edit {
         .edit-layout {
             flex-direction: column;
+            height: 300px;
 
             .quest-list-preview {
                 width: 100%;
