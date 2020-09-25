@@ -1,7 +1,5 @@
 import React from 'react'
-import { Answer } from './Answer'
-// import {Answer} from './Answer'
-
+import { Answer } from '../cmps/Answer.jsx'
 export function AnswersList({  currTimeStamp,chosenAnsIdx, correctAnsIdx, answers, answerQuestion, wasQuestionAnswered, chosenAnswerIdx }) {
 
     return (
