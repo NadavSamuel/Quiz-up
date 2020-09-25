@@ -20,7 +20,7 @@ export class _Room extends Component {
 
     componentDidMount() {
         const { gameSessionId, roomId } = this.props
-        console.log('roomid:', roomId);
+        console.log('roomId:', roomId);
         // const gameSessionId = this.props.match.params.gameSessionId
         socketService.setup();
         socketService.emit('room quiz', roomId);
@@ -57,15 +57,12 @@ export class _Room extends Component {
         this.setState({ players }, () => console.log('Players on this room: ', players))
     }
     addPlayer = (player) => {
-        console.log('got player:@@@@@', player);
         var { players } = this.state
-        console.log(players, 'THIS IS PLAYERS');
         this.setState({ players: [...players, player] })
     }
 
     //Outside the CMP
     newPlayer = () => {
-        console.log('trying to add new player:', this.state.currUser);
         socketService.emit('game newPlayer', this.state.currUser);
     };
 
@@ -73,24 +70,24 @@ export class _Room extends Component {
         socketService.emit('start game', this.state.players)
     }
 
-    changeReady = () => {
-        socketService.setup();
-        socketService.emit('room quiz', this.state.onlineId);
-        const { currUser, score,isReady} = this.state
-        socketService.emit('change ready', { playerName: currUser, score, isReady:!isReady});
-    }
+    // changeReady = () => {
+    //     socketService.setup();
+    //     socketService.emit('room quiz', this.state.onlineId);
+    //     const { currUser, score,isReady} = this.state
+    //     socketService.emit('change ready', { playerName: currUser, score, isReady:!isReady});
+    // }
 
-    updateReady = ({playerName,score,isReady}) => {
-        const newReady ={score,username:playerName.username,isReady};
-        let onlinePlayers=[...this.state.onlinePlayers];
-        const idx= onlinePlayers.findIndex(player=>player.username===newReady.username)
-        if(idx===-1){
-            console.log('cant find user');
-            return;
-        }
-        onlinePlayers[idx]=newReady
-        this.setState({onlinePlayers},()=>{console.log(this.state.onlinePlayers);})
-    }
+    // updateReady = ({playerName,score,isReady}) => {
+    //     const newReady ={score,username:playerName.username,isReady};
+    //     let onlinePlayers=[...this.state.onlinePlayers];
+    //     const idx= onlinePlayers.findIndex(player=>player.username===newReady.username)
+    //     if(idx===-1){
+    //         console.log('cant find user');
+    //         return;
+    //     }
+    //     onlinePlayers[idx]=newReady
+    //     this.setState({onlinePlayers},()=>{console.log(this.state.onlinePlayers);})
+    // }
 
     render() {
         const { players, currUser } = this.state
@@ -104,7 +101,7 @@ export class _Room extends Component {
                         {players.map((player, idx) => {
                             if (!player.username) return
                             return <li key={idx}><h2>{player.username}</h2>
-                            <button onClick={this.changeReady}>{(player.isReady)? 'ready':'Not Ready'}</button>
+                            {/* <button onClick={this.changeReady}>{(player.isReady)? 'ready':'Not Ready'}</button> */}
                             </li>
                         })}
 
