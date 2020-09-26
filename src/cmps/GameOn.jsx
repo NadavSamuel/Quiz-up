@@ -93,7 +93,7 @@ class _GameOn extends Component {
 
 
     render() {
-        let { questions, currTimeStamp, score, quizImg } = this.props
+        let { questions, currTimeStamp, score, quizImg,onlineId } = this.props
         let { currQuestionIdx, isGameCountdown, wasQuestionAnswered, chosenAnsIdx, correctAnsIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
         const defaultImgUrl = 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'
@@ -104,12 +104,12 @@ class _GameOn extends Component {
             this.onTimeAlmostOver(this.tikSound, false)
         }
         if (!currTimeStamp) {
-            console.log('hi1')
-            // this.onTimeAlmostOver(this.tikSound, false)
             this.onTimeAlmostOver(this.dingSound, true)
             this.onNoAns()
 
         }
+
+        const isMultiplayerClass = !onlineId? 'quiz-game-main main-container ':'quiz-game-main multiplayer-container '
 
 
         const gameplay =
@@ -130,24 +130,28 @@ class _GameOn extends Component {
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers}
                     currTimeStamp={currTimeStamp} />
+
             </div>
+
 
 
         if (!questions) return <div><Loading /></div>
         return (
-            <main className="quiz-game-main main-container mt10">
+            <main className={isMultiplayerClass}>
                 <div className="background-img">
                     <img src={`${quizImg}`} />
                 </div>
                 { isGameCountdown &&
                     <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished} />}
                 {!isGameCountdown && gameplay}
-                <div className='users-score'>
+                
+                {onlineId &&<div className='users-score'>
                     {this.props.players &&
                         this.props.players.map(player =>
                             <p>{player.username}:{' ' + player.score}</p>
                         )}
-                </div>
+                </div>}
+
             </main>
         )
     }

@@ -131,20 +131,36 @@
             margin: 0;
         }
     }
-
     .users-score {
         p {
-            font-size: rem(15px);
+            font-size: rem(25px);
         }
-
-        width: 100vw;
+        background: #ffffff6b;
+        height: 100vh;
         position: absolute;
-        right: 0;
-        bottom: 30px;
         display: flex;
         justify-content: space-around;
+        grid-column: 1;
+        flex-direction: column;
+        width: 100px;
+        align-items: center;
     }
 
+}
+@media(max-width:450px){
+    .quiz-game-main{
+
+    .users-score {
+        height: 70px;
+        bottom: 0;
+        display: flex;
+        justify-content: space-around;
+        grid-column: 1;
+         flex-direction: row; 
+        width: 100vw;
+        align-items: center;
+}
+}
 }
 
 .timer-wrapper {
@@ -214,6 +230,9 @@
     animation: timer 1s infinite;
     text-align: center;
 }
+// .multiplayer{
+//     grid-template-columns: 2fr 6fr 1fr;
+// }
 
 // background-color: #ffffffb3;
 //     border-radius: 10px;

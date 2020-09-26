@@ -25,6 +25,33 @@
             minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
     }
 }
+.multiplayer-container {
+    display: grid;
+    grid-template-columns: 115px 1fr 10px;
+
+    >* {
+        grid-column: 2;
+
+        &.full {
+            grid-column: 1 /-1;
+        }
+    }
+
+    @include for-narrow-layout {
+        grid-template-columns:
+            minmax(145px, 1fr) minmax(auto, 900px) minmax(50px, 1fr);
+    }
+
+    @include for-normal-layout {
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto,720) minmax(20px, 1fr);
+    }
+
+    @include for-wide-layout {
+        grid-template-columns:
+            minmax(110px, 1fr) minmax(auto,400) minmax(10px, 1fr);
+    }
+}
 
 .list {
 
