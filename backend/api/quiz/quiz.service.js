@@ -42,7 +42,6 @@ async function remove(quizId) {
     }
 }
 async function update(quiz) {
-    console.log('quiz IN SERVICE', quiz);
     const collection = await dbService.getCollection('quiz')
     quiz._id = ObjectId(quiz._id);
 

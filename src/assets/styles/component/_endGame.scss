@@ -28,53 +28,55 @@
         }
     }
     .endgame-actions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 36px;
-        width: 570px;
-        button{
+        button {
             // width: 215px;
             height: 75px;
+            width: 100%;
         }
-        form,.review-feedback{
-            flex-direction:column;
+
+        width: 570px;
+        display: flex;
+        flex-direction: column;
+        .btns {
+            display: flex;
+            justify-content: center;
+        }
+        form,
+        .review-feedback {
+            flex-direction: column;
             grid-area: 2 / 1 / span 2 / span 2;
-            textarea{
+            textarea {
                 padding: 20px 0 0 15px;
             }
-
+        }
     }
 }
-}
-@media(max-width:$narrow-breakpoint){
+@media (max-width: $narrow-breakpoint) {
     .endgame-main {
         .endgame-top {
             padding: 5px;
             .rank-table {
                 width: 400px;
             }
-    .endgame-actions {  
-        width: 405px;
+            .endgame-actions {
+                width: 405px;
 
-        // button{
-        //     // width: 150px;
-        // }
-      }
+                // button{
+                //     // width: 150px;
+                // }
+            }
+        }
     }
-  }
 }
-@media(max-width:450px){
+@media (max-width: 450px) {
     .endgame-main {
         .endgame-top {
             .rank-table {
                 width: 350px;
             }
-            .endgame-actions {  
+            .endgame-actions {
                 width: 360px;
-
-
-              }
+            }
+        }
     }
-  }
 }

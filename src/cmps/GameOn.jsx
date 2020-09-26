@@ -7,7 +7,7 @@ import { Loading } from './Loading.jsx'
 
 class _GameOn extends Component {
     state = {
-        isGameCountdown: true,
+        // isGameCountdown: true,
         currQuestionIdx: 0,
         wasQuestionAnswered: null,
         isNoAnswer: false,
@@ -63,11 +63,11 @@ class _GameOn extends Component {
             })
         }, 1500)
     }
-    onGameCountdownFinished = () => {
-        this.setState({ isGameCountdown: false }, () => {
-            this.props.startGameTimer()
-        })
-    }
+    // onGameCountdownFinished = () => {
+    //     this.setState({ isGameCountdown: false }, () => {
+    //         this.props.startGameTimer()
+    //     })
+    // }
 
     tikSound = new Audio('../sounds/clock-tick2.wav')
     dingSound = new Audio('../sounds/ding.mp3')
@@ -80,21 +80,13 @@ class _GameOn extends Component {
             sound.pause()
         }
     }
-    //  blabla = () =>{
-    //     if(!this.props.currTimeStamp){
-    //         if(this.state.helper) return
-    //         console.log('hi')
-    //         this.onNoAns()
-    //         this.onTimeAlmostOver(this.tikSound,false)
-    //         this.onTimeAlmostOver(this.dingSound,true)
-    //     }
-    // }
+
 
 
 
     render() {
-        let { questions, currTimeStamp, score, quizImg,onlineId } = this.props
-        let { currQuestionIdx, isGameCountdown, wasQuestionAnswered, chosenAnsIdx, correctAnsIdx } = this.state
+        let { questions, currTimeStamp, score, quizImg,onlineId,isGameCountdown,onGameCountdownFinished } = this.props
+        let { currQuestionIdx, wasQuestionAnswered, chosenAnsIdx, correctAnsIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
         const defaultImgUrl = 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'
         if (currTimeStamp === 5000 && !wasQuestionAnswered) {
@@ -109,7 +101,12 @@ class _GameOn extends Component {
 
         }
 
-        const isMultiplayerClass = !onlineId? 'quiz-game-main main-container ':'quiz-game-main multiplayer-container '
+        function determinIsMultiplayerClass() {
+            console.log('screen.width', window.innerWidth)
+            if(!onlineId || window.innerWidth<=450) return'quiz-game-main main-container '
+            else return'quiz-game-main multiplayer-container '
+
+        }
 
 
         const gameplay =
@@ -137,12 +134,12 @@ class _GameOn extends Component {
 
         if (!questions) return <div><Loading /></div>
         return (
-            <main className={isMultiplayerClass}>
+            <main className={determinIsMultiplayerClass()}>
                 <div className="background-img">
                     <img src={`${quizImg}`} />
                 </div>
                 { isGameCountdown &&
-                    <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished} />}
+                    <GameCountdown onGameCountdownFinished={onGameCountdownFinished} />}
                 {!isGameCountdown && gameplay}
                 
                 {onlineId &&<div className='users-score'>
