@@ -57,9 +57,9 @@ class _GameOn extends Component {
             }
             this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, wasQuestionAnswered: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
                 this.getRightAnswerIdx(nextQuestionIdx)
-                this.props.resetTimer()         
+                this.props.resetTimer()
                 this.props.startGameTimer()
-                
+
             })
         }, 1500)
     }
@@ -70,7 +70,7 @@ class _GameOn extends Component {
     }
 
     tikSound = new Audio('../sounds/clock-tick2.wav')
-    dingSound = new Audio('../sounds/Ding.mp3')
+    dingSound = new Audio('../sounds/ding.mp3')
     onTimeAlmostOver = (sound, value) => {
         if (value) {
             sound.currentTime = 0;
@@ -142,6 +142,12 @@ class _GameOn extends Component {
                 { isGameCountdown &&
                     <GameCountdown onGameCountdownFinished={this.onGameCountdownFinished} />}
                 {!isGameCountdown && gameplay}
+                <div className='users-score'>
+                    {this.props.players &&
+                        this.props.players.map(player =>
+                            <p>{player.username}:{' ' + player.score}</p>
+                        )}
+                </div>
             </main>
         )
     }

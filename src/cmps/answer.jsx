@@ -11,7 +11,7 @@ export function Answer({ currTimeStamp, chosenAnsIdx, correctAnsIdx, answer, idx
     }
 
     function setRightWrongColor() {
-        if ((correctAnsIdx === idx) && (!currTimeStamp)) return { backgroundColor: 'green' }
+        if ((correctAnsIdx === idx) && (currTimeStamp === -1)) return { backgroundColor: 'green' }
         if ((idx === chosenAnsIdx) && (correctAnsIdx === chosenAnsIdx)) return { backgroundColor: 'green' }
         if ((chosenAnsIdx === 0 || chosenAnsIdx) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
         if ((idx === chosenAnsIdx) && (correctAnsIdx !== chosenAnsIdx)) return { backgroundColor: 'red' }

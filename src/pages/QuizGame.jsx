@@ -180,20 +180,22 @@ class _QuizGame extends Component {
         this.props.history.push(`/`)
     }
 
+
     startGame = (onlinePlayers) => {
         this.setState({ gameOn: true,isWaitingRoom:false, onlinePlayers })
     }
 
+
     render() {
         const questions = this.state.quiz.quests
         const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
-            currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom } = this.state
+        currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom } = this.state
         const { img, allTimesPlayers } = quiz
         const { history } = this.props
         const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
 
         if (!questions) return <Loading />
-        console.log("render -> this.props.match.params.roomId", this.props.match.params)
+        // console.log("render -> this.props.match.params.roomId", this.props.match.params)
         return (
             <main onKeyDown={this.onEsc} className={isInSetName}>
                 {(!currUser && isSetName) &&
@@ -206,14 +208,14 @@ class _QuizGame extends Component {
 
                 {/* (currUser && onlineId && !gameOn && isWaitingRoom) */}
                 {  (!isSetName && currUser && isQuizReady && !isWaitingRoom) && (gameOn ?
-                    <GameOn stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
+                    <GameOn players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
                         history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
                         score={score} currTimeStamp={currTimeStamp}
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
 
-                    <EndGame setNotification={this.props.setNotification}
+                    <EndGame players={this.state.onlinePlayers} setNotification={this.props.setNotification}
                         totalRightAnswers={totalRightAnswers}
                         gameSessionId={gameSessionId}
                         currUser={currUser}
