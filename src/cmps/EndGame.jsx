@@ -48,7 +48,7 @@ export class _EndGame extends Component {
         this.setState({ ...this.state, review: { ...this.state.review, txt: value } })
     }
     updateAllTimePlayers = () => {
-        const {currUser,gameSessionId,score,quiz} = this.props
+        const { currUser, gameSessionId, score, quiz } = this.props
         const currUserMiniObject = {
             fullName: currUser.username,
             id: currUser._id,
@@ -69,16 +69,16 @@ export class _EndGame extends Component {
     }
     onSubmitReview = ev => {
         ev.preventDefault()
-        
-        if(this.state.isReviewSent ){
-            this.props.setNotification('err','You already sent a review!')
+
+        if (this.state.isReviewSent) {
+            this.props.setNotification('err', 'You already sent a review!')
             return
-        } 
+        }
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
         quizService.update(currQuiz)
-        this.setState({ isReviewSent: true },() =>{
-            this.props.setNotification('info','Review sent')
+        this.setState({ isReviewSent: true }, () => {
+            this.props.setNotification('info', 'Review sent')
         })
     }
     changeRate = num => {
@@ -119,8 +119,9 @@ export class _EndGame extends Component {
                 animationName: Radium.keyframes(tada, 'tada')
             }
         }
-        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz,score } = this.props
+        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz, score} = this.props
         const { idxInRankTable, tenBestPlayers } = this.state
+        const players=this.props.players.sort((player1,player2)=>player2.score-player1.score)
         // const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
             <label htmlFor="review">Review this quiz:</label>
@@ -147,11 +148,16 @@ export class _EndGame extends Component {
                     </h3>
                     <StyleRoot>
                         {this.state.idxInRankTable && <div className="game-records-break mt30">
-                        {score &&<h2 style={idxInRankTable <= 10 && styles.tada || styles.null}> 
-                           <span className="top-ten-greet" style={{ display: idxInRankTable <= 10 ? 'block' : 'none' }}>
-                            Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
+                            {score && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
+                                <span className="top-ten-greet" style={{ display: idxInRankTable <= 10 ? 'block' : 'none' }}>
+                                    Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
                         </div>}
                     </StyleRoot>
+
+                    <div className="online-game">
+                        <h1>your and your friends score:</h1>
+                    {players && players.map(player => <h2>{player.username}:{' '+player.score}</h2>)}
+                    </div>
                     <div className="mt30">
                         <RankTable bestPlayers={tenBestPlayers} />
                     </div>

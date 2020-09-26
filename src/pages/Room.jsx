@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { socketService } from '../services/socketService.js'
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import { setNotification } from '../store/actions/notificationActions';
 import {
     FacebookShareButton,
     WhatsappShareButton,
@@ -13,18 +14,17 @@ export class _Room extends Component {
 
     state = {
         players: [],
-        currUser: { username: '', score: 0 },
-        isReady:false
+        currUser: { username: '', score: 0, isReady: false },
+
 
     }
 
     componentDidMount() {
-        const { gameSessionId, roomId } = this.props
-        console.log('roomId:', roomId);
-        // const gameSessionId = this.props.match.params.gameSessionId
+        const { roomId, startGame } = this.props
         socketService.setup();
         socketService.emit('room quiz', roomId);
-        socketService.on('game started', this.props.startGame);
+        socketService.on('game started', startGame);
+        socketService.on('update ready', this.updateReady);
         this.setUser()
         this.addNewUser();
 
@@ -54,7 +54,7 @@ export class _Room extends Component {
 
     getPlayers = (players) => {
         if (!players) return;
-        this.setState({ players }, () => console.log('Players on this room: ', players))
+        this.setState({ players }, () => { console.log(this.state.players) })
     }
     addPlayer = (player) => {
         var { players } = this.state
@@ -67,31 +67,38 @@ export class _Room extends Component {
     };
 
     startGame = () => {
+        console.log(this.props); 
+        if(this.state.players.findIndex(player=>player.isReady)===-1){
+            this.props.setNotification('err', 'All players must be ready')
+            return;
+        }
         socketService.emit('start game', this.state.players)
     }
 
-    // changeReady = () => {
-    //     socketService.setup();
-    //     socketService.emit('room quiz', this.state.onlineId);
-    //     const { currUser, score,isReady} = this.state
-    //     socketService.emit('change ready', { playerName: currUser, score, isReady:!isReady});
-    // }
+    changeReady = () => {
+        socketService.setup();
+        socketService.emit('room quiz', this.props.roomId);
+        const { currUser } = this.state
+        this.setState({ currUser: { ...currUser, isReady: !currUser.isReady } }, () => {
+            socketService.emit('change ready', { playerName: currUser.username, isReady: !currUser.isReady });
+        })
+    }
 
-    // updateReady = ({playerName,score,isReady}) => {
-    //     const newReady ={score,username:playerName.username,isReady};
-    //     let onlinePlayers=[...this.state.onlinePlayers];
-    //     const idx= onlinePlayers.findIndex(player=>player.username===newReady.username)
-    //     if(idx===-1){
-    //         console.log('cant find user');
-    //         return;
-    //     }
-    //     onlinePlayers[idx]=newReady
-    //     this.setState({onlinePlayers},()=>{console.log(this.state.onlinePlayers);})
-    // }
+    updateReady = ({ playerName, isReady }) => {
+        console.log("updateReady -> playerName, isReady", playerName, isReady)
+        console.log(this.state.players);
+        let players = [...this.state.players];
+        players = players.map(player => {
+            if (player.username === playerName) return { ...player, isReady }
+            return player
+        })
+        console.log("updateReady -> players", players)
+
+        this.getPlayers(players)
+    }
 
     render() {
         const { players, currUser } = this.state
-        console.log(players, 'players')
         if (!players) return <div>No Players</div>
         return (
             <div className='room'>
@@ -99,9 +106,8 @@ export class _Room extends Component {
                     <h2>users:</h2>
                     <ul className="players-list">
                         {players.map((player, idx) => {
-                            if (!player.username) return
-                            return <li key={idx}><h2>{player.username}</h2>
-                            {/* <button onClick={this.changeReady}>{(player.isReady)? 'ready':'Not Ready'}</button> */}
+                            if (!player.username) return;
+                            return <li key={idx}><h2>{player.username} {(player.isReady) ? 'Ready' : 'Not Ready'}</h2>
                             </li>
                         })}
 
@@ -115,6 +121,7 @@ export class _Room extends Component {
                 </WhatsappShareButton>
 
                 <button onClick={this.startGame}>Start Game</button>
+                <button onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
             </div>
         )
     }
@@ -125,7 +132,11 @@ const mapStateToProps = state => {
         loggedInUser: state.userReducer.loggedinUser
     }
 }
+const mapDispatchToProps = {
+    setNotification
 
-export const Room = connect(mapStateToProps)(_Room)
+}
+
+export const Room = connect(mapStateToProps, mapDispatchToProps)(_Room)
 
 // Details > Play Online = Room -> Start Game -> Game - EndGame with scores

@@ -2,7 +2,7 @@
 module.exports = connectSockets
 
 
-const players = [];
+var players = [];
 function connectSockets(io) {
     io.on('connection', socket => {
         socket.on('room quiz', quiz => {
@@ -31,9 +31,21 @@ function connectSockets(io) {
             io.to(socket.currQuiz).emit('game started', gamePlayers)
         })
 
+        socket.on('change ready', data => {
+            var quizPlayers= players.find(player=>player.id===socket.currQuiz)
+            const {playerName,isReady}=data
+            if(!quizPlayers.players) return;
+            let newPlayers = [...quizPlayers.players];
+            newPlayers = newPlayers.map(player => {
+                if (player.username === playerName) return { ...player, isReady }
+                return player
+            })
+            quizPlayers.players=newPlayers
+            io.to(socket.currQuiz).emit('update ready', data)
+        })
+
         socket.on('send score', data => {
             io.to(socket.currQuiz).emit('update score', data)
-          // socketService.emit('update score', {playerName:currUser, score});
         })
 
 

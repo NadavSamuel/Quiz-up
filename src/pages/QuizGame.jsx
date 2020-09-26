@@ -206,14 +206,14 @@ class _QuizGame extends Component {
 
                 {/* (currUser && onlineId && !gameOn && isWaitingRoom) */}
                 {  (!isSetName && currUser && isQuizReady && !isWaitingRoom) && (gameOn ?
-                    <GameOn stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
+                    <GameOn players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
                         history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
                         score={score} currTimeStamp={currTimeStamp}
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
 
-                    <EndGame setNotification={this.props.setNotification}
+                    <EndGame players={this.state.onlinePlayers} setNotification={this.props.setNotification}
                         totalRightAnswers={totalRightAnswers}
                         gameSessionId={gameSessionId}
                         currUser={currUser}
