@@ -1,4 +1,6 @@
 .quiz-edit {
+    background-image: url(https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif);
+
     min-height:120vh;
 
     .quiz-inputs-form {
@@ -29,9 +31,11 @@
 
     .quest-layout {
         width: 100%;
+        background-color: #f6f5f5f0;
     }
-
+    
     .quest-list-preview {
+        background-color: #f6f5f5f0;
         width: 350px;
         height: 120vh;
         overflow-y: auto;

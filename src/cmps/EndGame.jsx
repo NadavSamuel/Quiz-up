@@ -119,9 +119,8 @@ export class _EndGame extends Component {
                 animationName: Radium.keyframes(tada, 'tada')
             }
         }
-        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz, score} = this.props
+        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz, score,players} = this.props
         const { idxInRankTable, tenBestPlayers } = this.state
-        const players=this.props.players.sort((player1,player2)=>player2.score-player1.score)
         // const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
             <label htmlFor="review">Review this quiz:</label>
@@ -154,10 +153,10 @@ export class _EndGame extends Component {
                         </div>}
                     </StyleRoot>
 
-                    <div className="online-game">
-                        <h1>your and your friends score:</h1>
-                    {players && players.map(player => <h2>{player.username}:{' '+player.score}</h2>)}
-                    </div>
+                    {players && < div className="online-game">
+                    <h1>your and your friends score:</h1>
+                    {players.map(player => <h2>{player.username}:{' '+player.score}</h2>)}
+                    </div>}
                     <div className="mt30">
                         <RankTable bestPlayers={tenBestPlayers} />
                     </div>

@@ -1,21 +1,55 @@
 .room {
-    height: 80vh;
     background-image: url(https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif);
     background-attachment: fixed;
 
-    ul {
-        background-color: $clr5;
-        display: grid;
-        grid-template-columns: 1fr minmax(150px, 1fr) 1fr;
-        grid-gap: 10px;
-        padding: 10px;
+    .main-container {
+        background-color:  #f6f5f59c;
+        min-height: 85vh;
+        ul {
+            min-height: 50vh;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-gap: 10px;
+            padding: 10px;
 
-        li {
-            grid-column: 2/3;
-            text-align: center;
-            background-color: $clr6;
-            padding: 5px;
-            border-radius: 2px;
+            li {
+                text-align: center;
+
+                h2.name {
+                    background-color: $clr5;
+                    padding: 5px;
+                    border-radius: 2px;
+                }
+            }
+        }
+
+        .game-controler{
+            @media(max-width: 755px){
+                text-align: center;
+            }
+        }
+
+        .share-btn {
+            @media (max-width:400px) {
+                display: flex;
+                flex-direction: column;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                button svg {
+                    font-size: rem(40px);
+                }
+            }
+
+            padding: 3px 6px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

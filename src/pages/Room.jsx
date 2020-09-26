@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 import { socketService } from '../services/socketService.js'
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import { Loading } from '../cmps/Loading';
 import { setNotification } from '../store/actions/notificationActions';
 import {
     FacebookShareButton,
     WhatsappShareButton,
     FacebookMessengerShareButton
 } from "react-share";
+import { CopyToClipboard } from '../cmps/CopyToClipboard.jsx';
 
 export class _Room extends Component {
 
@@ -67,8 +69,8 @@ export class _Room extends Component {
     };
 
     startGame = () => {
-        console.log(this.props); 
-        if(this.state.players.findIndex(player=>player.isReady)===-1){
+        console.log(this.props);
+        if (this.state.players.findIndex(player => player.isReady) === -1) {
             this.props.setNotification('err', 'All players must be ready')
             return;
         }
@@ -99,29 +101,42 @@ export class _Room extends Component {
 
     render() {
         const { players, currUser } = this.state
-        if (!players) return <div>No Players</div>
+        if (!players) return <Loading/>
         return (
-            <div className='room'>
-                <div className="players-list-container">
-                    <h2>users:</h2>
-                    <ul className="players-list">
-                        {players.map((player, idx) => {
-                            if (!player.username) return;
-                            return <li key={idx}><h2>{player.username} {(player.isReady) ? 'Ready' : 'Not Ready'}</h2>
-                            </li>
-                        })}
+            <div className='room full'>
+                <div className='main-container'>
 
-                    </ul>
+                    <div className="players-list-container">
+                        <h2>Waitting Room</h2>
+                        <ul className="players-list">
+                            {players.map((player, idx) => {
+                                if (!player.username) return;
+                                return <li key={idx}>
+                                    <h2 className='name'>{player.username}</h2>
+                                    <h2 className='ready'>{(player.isReady) ? 'Ready' : 'Not Ready'}</h2>
+
+                                </li>
+                            })}
+
+                        </ul>
+                    </div>
+                    <div className='game-controler'>
+                        <button onClick={this.startGame}>Start Game</button>
+                        <button onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
+                    </div>
+                    <div className='share-btn'>
+                        <CopyToClipboard />
+                        <div>
+
+                            <FacebookShareButton url={window.location}>
+                                <FacebookIcon />
+                            </FacebookShareButton>
+                            <WhatsappShareButton url={window.location}>
+                                <WhatsAppIcon />
+                            </WhatsappShareButton>
+                        </div>
+                    </div>
                 </div>
-                <FacebookShareButton url={window.location}>
-                    <FacebookIcon />
-                </FacebookShareButton>
-                <WhatsappShareButton url={window.location}>
-                    <WhatsAppIcon />
-                </WhatsappShareButton>
-
-                <button onClick={this.startGame}>Start Game</button>
-                <button onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
             </div>
         )
     }

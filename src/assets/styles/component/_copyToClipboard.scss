@@ -1,0 +1,15 @@
+.copy-to-clipboard{
+    display: inline-block;
+    div{
+        display: inline-block;
+    }
+   textarea,form{
+       width: 0;
+       height: 0;
+       overflow: none;
+       display: inline-block;
+       margin: 0;
+       padding: 0;
+       opacity: 0;
+   } 
+}
