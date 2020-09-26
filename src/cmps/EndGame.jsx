@@ -119,7 +119,7 @@ export class _EndGame extends Component {
                 animationName: Radium.keyframes(tada, 'tada')
             }
         }
-        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz, score,players} = this.props
+        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players } = this.props
         const { idxInRankTable, tenBestPlayers } = this.state
         // const {tenBestPlayers} = utilService.getBestUsers(quiz)
         const reviewForm = <form onSubmit={this.onSubmitReview}>
@@ -154,15 +154,15 @@ export class _EndGame extends Component {
                     </StyleRoot>
 
                     {players && < div className="online-game">
-                    <h1>your and your friends score:</h1>
-                    {players.map(player => <h2>{player.username}:{' '+player.score}</h2>)}
+                        <RankTable bestPlayers={players} />
                     </div>}
                     <div className="mt30">
                         <RankTable bestPlayers={tenBestPlayers} />
                     </div>
                     <div className="endgame-actions mt30" >
-                        <button onClick={this.props.getInitialState}>Play Again</button>
-                        <button><Link to='/browse'> Back to Browse</Link></button>
+                        <div className="btns">
+                        {!players && <button  onClick={this.props.getInitialState}>Play Again</button>}
+                        <button className="back-btn"><Link to='/browse'> Back to Browse</Link></button></div>
                         {reviewForm}
                         {/* {!this.state.isReviewSent ? reviewForm : reviewFeedback} */}
                     </div>
