@@ -71,7 +71,7 @@ class _QuizGame extends Component {
 
     startGameTimer = () => {
         clearInterval(this.timer)
-        this.timer = setInterval(this.setTimer, 1000);
+        // this.timer = setInterval(this.setTimer, 1000);
     }
 
     getCurrUnregisteredUser = (ev, username) => {
@@ -208,7 +208,7 @@ class _QuizGame extends Component {
 
                 {/* (currUser && onlineId && !gameOn && isWaitingRoom) */}
                 {  (!isSetName && currUser && isQuizReady && !isWaitingRoom) && (gameOn ?
-                    <GameOn players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
+                    <GameOn onlineId={onlineId} players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
                         history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
