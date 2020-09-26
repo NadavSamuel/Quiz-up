@@ -3,8 +3,14 @@
     background-attachment: fixed;
 
     .main-container {
-        background-color:  #f6f5f59c;
+        background-color: #f6f5f59c;
         min-height: 85vh;
+
+        .title {
+            margin-top: 20px;
+            text-align: center;
+        }
+
         ul {
             min-height: 50vh;
             display: grid;
@@ -23,8 +29,8 @@
             }
         }
 
-        .game-controler{
-            @media(max-width: 755px){
+        .game-controler {
+            @media(max-width: 755px) {
                 text-align: center;
             }
         }

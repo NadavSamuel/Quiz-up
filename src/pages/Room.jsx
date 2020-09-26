@@ -27,9 +27,16 @@ export class _Room extends Component {
         socketService.emit('room quiz', roomId);
         socketService.on('game started', startGame);
         socketService.on('update ready', this.updateReady);
+        socketService.on('update players', this.updatePlayers);
         this.setUser()
         this.addNewUser();
 
+    }
+
+    updatePlayers=(username)=>{
+        var newPlayers=[...this.state.players]
+        newPlayers=newPlayers.filter(player=>player.username!==username)
+        this.setState({players:newPlayers});
     }
 
     addNewUser = async () => {
@@ -45,6 +52,9 @@ export class _Room extends Component {
     }
 
     componentWillUnmount() {
+        socketService.setup();
+        socketService.emit('room quiz', this.props.roomId);
+        socketService.emit('game removePlayer', this.state.currUser.username);
         socketService.off('chat addMsg', this.addMsg);
         socketService.off('game addPlayer', this.addPlayer);
         socketService.off('getPlayers', this.getPlayers);
@@ -53,6 +63,8 @@ export class _Room extends Component {
 
         socketService.terminate();
     }
+
+    
 
     getPlayers = (players) => {
         if (!players) return;
@@ -69,8 +81,7 @@ export class _Room extends Component {
     };
 
     startGame = () => {
-        console.log(this.props);
-        if (this.state.players.findIndex(player => player.isReady) === -1) {
+        if (this.state.players.findIndex(player => !player.isReady) !== -1) {
             this.props.setNotification('err', 'All players must be ready')
             return;
         }
@@ -107,7 +118,7 @@ export class _Room extends Component {
                 <div className='main-container'>
 
                     <div className="players-list-container">
-                        <h2>Waitting Room</h2>
+                        <h2 className='title'>Waiting Room</h2>
                         <ul className="players-list">
                             {players.map((player, idx) => {
                                 if (!player.username) return;

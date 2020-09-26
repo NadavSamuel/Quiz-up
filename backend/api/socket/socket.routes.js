@@ -47,6 +47,15 @@ function connectSockets(io) {
             io.to(socket.currQuiz).emit('update ready', data)
         })
 
+        socket.on('game removePlayer', username => {
+            var quizPlayers= players.find(player=>player.id===socket.currQuiz)
+            if(!quizPlayers.players) return;
+            let newPlayers = [...quizPlayers.players];
+            newPlayers = newPlayers.filter(player => player.username!==username)
+            quizPlayers.players=newPlayers
+            io.to(socket.currQuiz).emit('update players', username)
+        })
+
         socket.on('send score', data => {
             io.to(socket.currQuiz).emit('update score', data)
         })
