@@ -41,7 +41,7 @@ class _Dashboard extends Component {
         return (
             <div className='main-container'>
             <div className='mt10'>
-                <h2>tags:</h2>
+                <h2>Tags:</h2>
                 <Doughnut data={this.getTagData()} />
             </div>
             <div className='mt10'>

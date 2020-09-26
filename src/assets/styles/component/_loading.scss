@@ -1,9 +1,9 @@
 .lds-dual-ring {
   display: inline-block;
   width: 250px;
-  height: 250px;
+  height: 100vh;
   position: fixed;
-  top:50%;
+  top:100%;
   left:50%;
   transform: translate(-50%,-50%)
 }
@@ -15,7 +15,7 @@
   height: 150px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid $clr1;
+  border: 10px solid $clr1;
   border-color: $clr1 transparent  $clr2;
   animation: lds-dual-ring 1.2s linear infinite;
 }
