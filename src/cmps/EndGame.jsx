@@ -103,7 +103,7 @@ export class _EndGame extends Component {
                 </div>
             )}
             {fiveMinusArr.map((i, idx) =>
-                <div key={idx}>
+                <div key={idx} className="cursor-pointer">
                     <StarBorderIcon onClick={() => { this.changeRate(this.state.review.rate + idx + 1) }} />
                     {/* <i onClick={() => { this.changeRate(this.state.rate + idx + 1) }} className="far fa-star"></i> */}
                 </div>
@@ -112,16 +112,15 @@ export class _EndGame extends Component {
     }
 
     render() {
-
+        const { totalRightAnswers, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players,getInitialState } = this.props
+        const { idxInRankTable, tenBestPlayers } = this.state
         const styles = {
             tada: {
                 animation: 'x 2s',
                 animationName: Radium.keyframes(tada, 'tada')
             }
         }
-        const { rightAns, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players } = this.props
-        const { idxInRankTable, tenBestPlayers } = this.state
-        // const {tenBestPlayers} = utilService.getBestUsers(quiz)
+        const isDisplayGreet = { display: idxInRankTable <= 10 ? 'inlineBlock' : 'none' }
         const reviewForm = <form onSubmit={this.onSubmitReview}>
             <label htmlFor="review">Review this quiz:</label>
             <textarea onChange={this.handleReviewChange} value={this.state.review.txt} placeholder="your review here" id="review" name="review" rows="4" cols="50">
@@ -129,9 +128,9 @@ export class _EndGame extends Component {
             {this.getRate(this.state.review.rate)}
             <button>Send Review</button>
         </form>
-        const reviewFeedback = <div className="review-feedback">
-            <p>Thank you for writing a review! </p>
-        </div>
+        // const reviewFeedback = <div className="review-feedback">
+        //     <p>Thank you for writing a review! </p>
+        // </div>
         function getRankPlaceGood(number) {
             if (number === 1) return '1st'
             if (number === 2) return '2nd'
@@ -141,17 +140,19 @@ export class _EndGame extends Component {
 
         return (
             <main className="endgame-main" >
-                <div className="endgame-top"> <h1> <span style={{ display: idxInRankTable <= 10 ? 'inlineBlock' : 'none' }}>Wow!</span> You scored {this.props.score}</h1>
-                    <h3 className="mt30">You answered {rightAns || '0'} answeres right out of {allAns} questions <br />
+                <div className="endgame-top"> <h1> <span style={isDisplayGreet}>Wow!</span> You scored {this.props.score}</h1>
+                    <h3 className="mt30">You answered {totalRightAnswers || '0'} answeres right out of {allAns} questions <br />
                         {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
                     </h3>
-                    <StyleRoot>
-                        {this.state.idxInRankTable && <div className="game-records-break mt30">
-                            {score && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
-                                <span className="top-ten-greet" style={{ display: idxInRankTable <= 10 ? 'block' : 'none' }}>
-                                    Congratulations!</span> you are {getRankPlaceGood(this.state.idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
-                        </div>}
-                    </StyleRoot>
+                    
+                    {idxInRankTable &&  <StyleRoot>
+                        <div className="game-records-break mt30">
+                            
+                            {(score>0) && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
+                                <span className="top-ten-greet" style={isDisplayGreet}>
+                                    Congratulations!</span> you are {getRankPlaceGood(idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
+                        </div>
+                    </StyleRoot>}
 
                     {players && < div className="online-game">
                         <RankTable bestPlayers={players} />
@@ -161,10 +162,12 @@ export class _EndGame extends Component {
                     </div>
                     <div className="endgame-actions mt30" >
                         <div className="btns">
-                        {!players && <button  onClick={this.props.getInitialState}>Play Again</button>}
+
+                        {!players && <button  onClick={getInitialState}>Play Again</button>}
                         <button className="back-btn"><Link to='/browse'> Back to Browse</Link></button></div>
                         {reviewForm}
-                        {/* {!this.state.isReviewSent ? reviewForm : reviewFeedback} */}
+
+
                     </div>
                 </div>
             </main>

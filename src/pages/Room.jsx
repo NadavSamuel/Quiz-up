@@ -33,10 +33,10 @@ export class _Room extends Component {
 
     }
 
-    updatePlayers=(username)=>{
-        var newPlayers=[...this.state.players]
-        newPlayers=newPlayers.filter(player=>player.username!==username)
-        this.setState({players:newPlayers});
+    updatePlayers = (username) => {
+        var newPlayers = [...this.state.players]
+        newPlayers = newPlayers.filter(player => player.username !== username)
+        this.setState({ players: newPlayers });
     }
 
     addNewUser = async () => {
@@ -64,7 +64,7 @@ export class _Room extends Component {
         socketService.terminate();
     }
 
-    
+
 
     getPlayers = (players) => {
         if (!players) return;
@@ -112,7 +112,7 @@ export class _Room extends Component {
 
     render() {
         const { players, currUser } = this.state
-        if (!players) return <Loading/>
+        if (!players) return <Loading />
         return (
             <div className='room full'>
                 <div className='main-container'>
@@ -132,11 +132,11 @@ export class _Room extends Component {
                         </ul>
                     </div>
                     <div className='game-controler'>
+                        <CopyToClipboard />
                         <button onClick={this.startGame}>Start Game</button>
                         <button onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
                     </div>
                     <div className='share-btn'>
-                        <CopyToClipboard />
                         <div>
 
                             <FacebookShareButton url={window.location}>

@@ -1,12 +1,13 @@
 .quiz-edit {
     background-image: url(https://res.cloudinary.com/dif8yy3on/image/upload/v1600269447/x5bvokrzpyqjtzbz0lmd.gif);
 
-    min-height:120vh;
-
+    // min-height:133vh;
+    
     .quiz-inputs-form {
         // align-items: center;
         // flex-direction: column;
         // gap: 10px;
+        height: 100%;
         display: grid;
         grid-template-columns: 1fr minmax(150px, 1fr) 1fr;
         grid-gap: 10px;
@@ -30,6 +31,7 @@
     text-align: center;
 
     .quest-layout {
+        
         width: 100%;
         background-color: #f6f5f5f0;
     }
@@ -149,14 +151,17 @@
 }
 
 @media (max-width: 575px) {
+
+    
+
     .quiz-edit {
         .edit-layout {
             flex-direction: column;
-            height: 300px;
+            // height: 300px;
 
             .quest-list-preview {
                 width: 100%;
-                min-height: 162px;
+                height: 190px;
                 overflow-y: none;
                 overflow-x: auto;
 
