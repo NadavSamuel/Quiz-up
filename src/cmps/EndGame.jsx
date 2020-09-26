@@ -71,14 +71,14 @@ export class _EndGame extends Component {
         ev.preventDefault()
 
         if (this.state.isReviewSent) {
-            this.props.setNotification('err', 'You already sent a review!')
+            this.props.setNotification('err', 'You Already Sent Review!')
             return
         }
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
         quizService.update(currQuiz)
         this.setState({ isReviewSent: true }, () => {
-            this.props.setNotification('info', 'Review sent')
+            this.props.setNotification('info', 'Review Sent!')
         })
     }
     changeRate = num => {
@@ -141,8 +141,7 @@ export class _EndGame extends Component {
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1> <span style={isDisplayGreet}>Wow!</span> You scored {this.props.score}</h1>
-                    <h3 className="mt30">You answered {totalRightAnswers || '0'} answeres right out of {allAns} questions <br />
-                        {/* you did it in <GameTimer currTimeStamp={this.props.currTimeStamp} /> */}
+                    <h3 className="mt30">You answered right {totalRightAnswers || '0'} questions out of {allAns} questions <br />
                     </h3>
                     
                     {idxInRankTable &&  <StyleRoot>
@@ -150,7 +149,7 @@ export class _EndGame extends Component {
                             
                             {(score>0) && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
                                 <span className="top-ten-greet" style={isDisplayGreet}>
-                                    Congratulations!</span> you are {getRankPlaceGood(idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
+                                    Congratulations!</span> You are {getRankPlaceGood(idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
                         </div>
                     </StyleRoot>}
 

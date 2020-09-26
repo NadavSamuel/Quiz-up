@@ -46,7 +46,7 @@ export class _LoginSignup extends Component {
     }
     onSignup = (ev) => {
         ev.preventDefault()
-        if (!this.state.registerInfo.username || !this.state.registerInfo.password) return alert('Please enter username/password')
+        if (!this.state.registerInfo.username || !this.state.registerInfo.password) return this.props.setNotification('err', 'Please Enter username/password!')
         if (!this.state.registerInfo.imgUrl) this.setState({ registerInfo: { ...this.state.registerInfo, imgUrl: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg' } }, async (ev) => {
             await this.props.onSignup(this.state.registerInfo)
         })

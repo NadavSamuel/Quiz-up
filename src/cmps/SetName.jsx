@@ -29,7 +29,7 @@ export class _SetName extends Component {
                 <form onSubmit={event => this.props.getCurrUnregisteredUser(event, this.state.fullName)}>
                     <TextField className='set-name' label="What's your name?" variant="outlined" autoComplete="off"
                         type="text" name='fullName' onChange={this.handleChange} value={this.state.fullName} />
-                    <h3>Already have a user?<Link to={`/user/${this.props.quizId}`}><span className="yellow"> Sign In!</span> </Link></h3>
+                    <h3>Already have a user?<Link to={`/user/${this.props.quizId}`}><span className="yellow">Sign In!</span> </Link></h3>
 
                     <button>Quiz-Up!</button>
 

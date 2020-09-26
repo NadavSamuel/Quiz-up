@@ -22,7 +22,7 @@ export class TagPreview extends React.Component {
                 this.setState({ imgUrl: imgs[idx].url })
             } else {
                 const data = await imgService.getNewImage(this.props.tag)
-                const imgUrl = data.results[0].urls.raw
+                const imgUrl = data.results[0].urls.small
                 imgService.add({ name: this.props.tag, url: imgUrl })
                 this.setState({ imgUrl })
             }
