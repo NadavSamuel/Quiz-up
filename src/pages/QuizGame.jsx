@@ -29,6 +29,7 @@ class _QuizGame extends Component {
 
     componentDidMount() {
         const { onlineId } = this.props.match.params
+        if(onlineId)this.setState({gameOn:false})
         socketService.setup();
         socketService.emit('room quiz', onlineId);
         console.log('here');
@@ -199,7 +200,7 @@ class _QuizGame extends Component {
         return (
             <main onKeyDown={this.onEsc} className={isInSetName}>
                 {(!currUser && isSetName) &&
-                    <SetName quizId={this.state.quiz._id}
+                    <SetName quizId={this.state.quiz._id} onlineId={this.state.onlineId}
                         getCurrUnregisteredUser={this.getCurrUnregisteredUser} />}
 
                 {(currUser && onlineId && !gameOn && isWaitingRoom) &&

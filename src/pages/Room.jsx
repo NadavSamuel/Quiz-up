@@ -133,8 +133,8 @@ export class _Room extends Component {
                     </div>
                     <div className='game-controler'>
                         <CopyToClipboard />
+                        <button className='ready-btn' onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
                         <button onClick={this.startGame}>Start Game</button>
-                        <button onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
                     </div>
                     <div className='share-btn'>
                         <div>
@@ -164,5 +164,3 @@ const mapDispatchToProps = {
 }
 
 export const Room = connect(mapStateToProps, mapDispatchToProps)(_Room)
-
-// Details > Play Online = Room -> Start Game -> Game - EndGame with scores
