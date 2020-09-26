@@ -180,25 +180,22 @@ class _QuizGame extends Component {
         this.props.history.push(`/`)
     }
 
+
     startGame = (onlinePlayers) => {
-<<<<<<< HEAD
-        console.log('hi hi hi')
-        this.setState({ gameOn: true, onlinePlayers })
-=======
         this.setState({ gameOn: true,isWaitingRoom:false, onlinePlayers })
->>>>>>> 2d689eb438248a9965f0880c5d5e3e8fac88126f
     }
+
 
     render() {
         const questions = this.state.quiz.quests
         const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
-            currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom } = this.state
+        currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom } = this.state
         const { img, allTimesPlayers } = quiz
         const { history } = this.props
         const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
 
         if (!questions) return <Loading />
-        console.log("render -> this.props.match.params.roomId", this.props.match.params)
+        // console.log("render -> this.props.match.params.roomId", this.props.match.params)
         return (
             <main onKeyDown={this.onEsc} className={isInSetName}>
                 {(!currUser && isSetName) &&

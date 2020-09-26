@@ -70,7 +70,7 @@ class _GameOn extends Component {
     }
 
     tikSound = new Audio('../sounds/clock-tick2.wav')
-    dingSound = new Audio('../sounds/Ding.mp3')
+    dingSound = new Audio('../sounds/ding.mp3')
     onTimeAlmostOver = (sound, value) => {
         if (value) {
             sound.currentTime = 0;

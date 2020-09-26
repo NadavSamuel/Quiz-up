@@ -15,6 +15,7 @@ export class GameCountdown extends Component {
     }
 
     componentWillUnmount() {
+        console.log('gag')
         clearInterval(this.timerInterval);
     }
 
