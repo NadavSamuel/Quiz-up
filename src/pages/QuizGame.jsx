@@ -23,7 +23,9 @@ class _QuizGame extends Component {
         isQuizReady: false,
         isSetName: false,
         onlineId: '',
-        isWaitingRoom: false
+        isWaitingRoom: false,
+        isGameCountdown: true,
+
     }
     timer = null
 
@@ -31,7 +33,7 @@ class _QuizGame extends Component {
         const { onlineId } = this.props.match.params
         socketService.setup();
         socketService.emit('room quiz', onlineId);
-        console.log('here');
+        // console.log('here');
         if (onlineId) this.setState({ onlineId })
         window.scrollTo(0, 100)
         this.setCurrUser();
@@ -70,8 +72,9 @@ class _QuizGame extends Component {
     }
 
     startGameTimer = () => {
+        console.log('here')
         clearInterval(this.timer)
-        // this.timer = setInterval(this.setTimer, 1000);
+        this.timer = setInterval(this.setTimer, 1000);
     }
 
     getCurrUnregisteredUser = (ev, username) => {
@@ -102,11 +105,13 @@ class _QuizGame extends Component {
 
     getInitialState = () => {
         this.setState({
-            ...this.state, gameOn: true, score: 0, totalRightAnswers: 0,
-            currTimeStamp: 0, gameSessionId: utilService.makeId()
+            ...this.state,isGameCountdown:true,wasQuestionAnswerd:false,
+             gameOn: true, score: 0, totalRightAnswers: 0,
+            currTimeStamp: 15000, gameSessionId: utilService.makeId()
         }, () => {
-            this.resetTimer()
-            this.timer = setInterval(this.setTimer, 1000)
+            console.log('this.state ',this.state)
+            // this.resetTimer()
+            // this.timer  =setInterval(this.setTimer, 1000)
 
         })
     }
@@ -121,6 +126,11 @@ class _QuizGame extends Component {
     setTimer = () => {
         this.updateTime()
     }
+    onGameCountdownFinished = () => {
+        this.setState({ isGameCountdown: false }, () => {
+            this.startGameTimer()
+        })
+    }
 
     loadQuizz = async () => {
         const quiz = await quizService.getById(this.props.match.params.quizId)
@@ -132,7 +142,6 @@ class _QuizGame extends Component {
         })
     }
     determinOnline = (value) => {
-        // const isOnline = (value === 'online')
         if (value) this.setState({ isWaitingRoom: value })
 
     }
@@ -189,7 +198,7 @@ class _QuizGame extends Component {
     render() {
         const questions = this.state.quiz.quests
         const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
-        currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom } = this.state
+        currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom,isGameCountdown } = this.state
         const { img, allTimesPlayers } = quiz
         const { history } = this.props
         const isInSetName = (this.state.isSetName && 'set-unregistered-container' || 'main-container')
@@ -208,7 +217,7 @@ class _QuizGame extends Component {
 
                 {/* (currUser && onlineId && !gameOn && isWaitingRoom) */}
                 {  (!isSetName && currUser && isQuizReady && !isWaitingRoom) && (gameOn ?
-                    <GameOn onlineId={onlineId} players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
+                    <GameOn onGameCountdownFinished={this.onGameCountdownFinished} isGameCountdown={isGameCountdown} onlineId={onlineId} players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
                         history={history}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
