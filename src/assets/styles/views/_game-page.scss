@@ -137,17 +137,19 @@
         }
         background: #ffffff6b;
         height: 100vh;
-        position: absolute;
+        position: fixed;
         display: flex;
         justify-content: space-around;
         grid-column: 1;
         flex-direction: column;
         width: 100px;
         align-items: center;
+        left: 0;
+        bottom: 0;
     }
 
 }
-@media(max-width:450px){
+@media(max-width:720px){
     .quiz-game-main{
 
     .users-score {
@@ -159,6 +161,7 @@
          flex-direction: row; 
         width: 100vw;
         align-items: center;
+        right:0
 }
 }
 }
@@ -182,7 +185,7 @@
 
         .game-top {
             img {
-                height: 215px;
+                height: 30vh;
             }
         }
 
@@ -196,7 +199,7 @@
         }
 
         .answer {
-            height: 100px;
+            height: 10vh;
             width: 100%;
             font-size: 1.2rem;
 
