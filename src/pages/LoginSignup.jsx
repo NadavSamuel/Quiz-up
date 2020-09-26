@@ -41,7 +41,7 @@ export class _LoginSignup extends Component {
         if (!this.state.loginInfo.username || !this.state.loginInfo.password) return this.props.setNotification('err', 'Please Enter username/password!')
         await this.props.onLogin(this.state.loginInfo)
         if (this.state.fromQuiz) {
-            this.props.history.push(`/game/${this.state.fromQuiz}`)
+            this.props.history.push(`/game/${this.state.fromQuiz}/${this.props.onlineId}`)
         }
     }
     onSignup = (ev) => {

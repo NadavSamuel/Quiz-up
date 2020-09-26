@@ -27,7 +27,7 @@ export class _CopyToClipboard extends React.Component {
                 {
                     document.queryCommandSupported('copy') &&
                     <div>
-                        <button onClick={this.copyToClipboard}>Copy Game Link</button>
+                        <button onClick={this.copyToClipboard}>Copy Link</button>
                     </div>
                 }
                 <form>
