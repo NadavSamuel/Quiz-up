@@ -15,6 +15,7 @@ class _Browse extends Component {
     getTags = () => {
         const tags = this.state.quizzes.reduce((acc, quiz) => {
             let tags = quiz.tags
+            console.log(tags);
             tags.forEach(tag => {
                 if (!acc.includes(tag)) acc.push(tag)
             });

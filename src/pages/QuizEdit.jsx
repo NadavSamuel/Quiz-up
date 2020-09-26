@@ -145,7 +145,7 @@ export class _QuizEdit extends Component {
             reviews,
             allTimesPlayers,
             title,
-            tags: tags.split(' '),
+            tags: this.getTags(tags),
             difficulity: +difficulity,
             img: (img) ? img : 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600338177/soxwdqgc9djvlrlclkmk.png',
             createdBy: miniUser,
@@ -161,6 +161,12 @@ export class _QuizEdit extends Component {
             this.props.setNotification('success', `Quiz edited`)
         }
         this.props.history.push('/')
+    }
+
+    getTags=(strTags)=>{
+        var tags=strTags.split(' ');
+        tags=tags.map(tag=>tag.charAt(0).toUpperCase() + tag.slice(1))
+        return tags
     }
 
     uploadImg = async (ev) => {
