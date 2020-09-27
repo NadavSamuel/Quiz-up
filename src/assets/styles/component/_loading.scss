@@ -1,11 +1,16 @@
+.loader-container{
+  position: relative;
+  min-height: 100vh;
+}
 .lds-dual-ring {
   display: inline-block;
-  width: 250px;
+  // width: 250px;
   height: 100vh;
   position: fixed;
-  top:100%;
+  top:50%;
   left:50%;
-  transform: translate(-50%,-50%)
+  transform: translate(-50%,-10%)
+
 }
 
 .lds-dual-ring:after {

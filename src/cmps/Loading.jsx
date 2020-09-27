@@ -4,8 +4,12 @@ export function Loading() {
 
 
     return (
-        <div className="lds-dual-ring"></div>
+        <div className="loader-container">
+            <div className="lds-dual-ring">
+            </div>
+        </div>
     )
+
 }
 
 
