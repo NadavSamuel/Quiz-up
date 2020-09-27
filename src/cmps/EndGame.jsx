@@ -137,11 +137,11 @@ export class _EndGame extends Component {
             if (number === 3) return '3rd'
             else return number + 'th'
         }
-
+        // You answered one of the 5 questions correctly
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1> <span style={isDisplayGreet}>Wow!</span> You scored {this.props.score}</h1>
-                    <h3 className="mt30">You answered right {totalRightAnswers || '0'} questions out of {allAns} questions <br />
+                    <h3 className="mt30">You answered right {totalRightAnswers || '0'} of  {allAns} questions correctly <br />
                     </h3>
                     
                     {idxInRankTable &&  <StyleRoot>
@@ -153,7 +153,7 @@ export class _EndGame extends Component {
                         </div>
                     </StyleRoot>}
 
-                    {players && < div className="online-game">
+                    {players && < div className="online-game mt10">
                         <RankTable bestPlayers={players} />
                     </div>}
                     <div className="mt30">
