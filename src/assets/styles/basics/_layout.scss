@@ -27,7 +27,8 @@
 }
 .multiplayer-container {
     display: grid;
-    grid-template-columns: 115px 1fr 10px;
+    // grid-template-columns: minmax(190px, 1fr) minmax(auto, 900px) minmax(10px, 1fr);
+    grid-template-columns: 100px 1fr;
 
     >* {
         grid-column: 2;
@@ -37,20 +38,19 @@
         }
     }
 
-    @include for-narrow-layout {
+    // @include for-narrow-layout {
+    //     grid-template-columns: 20px 1fr 20px;
+    // }
+
+    @media (max-width:720px) {
         grid-template-columns:
-            minmax(145px, 1fr) minmax(auto, 900px) minmax(50px, 1fr);
+            minmax(20px, 1fr) minmax(auto,6fr) minmax(20px, 1fr);
     }
 
-    @include for-normal-layout {
-        grid-template-columns:
-            minmax(20px, 1fr) minmax(auto,720) minmax(20px, 1fr);
-    }
-
-    @include for-wide-layout {
-        grid-template-columns:
-            minmax(110px, 1fr) minmax(auto,400) minmax(10px, 1fr);
-    }
+    // @include for-wide-layout {
+    //     grid-template-columns:
+    //         minmax(110px, 1fr) minmax(auto,400) minmax(10px, 1fr);
+    // }
 }
 
 .list {

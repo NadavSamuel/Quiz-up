@@ -125,7 +125,7 @@ class _QuizGame extends Component {
     }
 
     setTimer = () => {
-        this.updateTime()
+        // this.updateTime()
     }
     onGameCountdownFinished = () => {
         this.setState({ isGameCountdown: false }, () => {

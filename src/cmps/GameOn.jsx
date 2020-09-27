@@ -102,9 +102,8 @@ class _GameOn extends Component {
         }
 
         function determinIsMultiplayerClass() {
-            console.log('screen.width', window.innerWidth)
-            if(!onlineId || window.innerWidth<=450) return'quiz-game-main main-container '
-            else return'quiz-game-main multiplayer-container '
+            if(!onlineId || window.innerWidth<=720) return'quiz-game-main main-container '
+            else return'quiz-game-main multiplayer-container pad-side-30 '
 
         }
 
@@ -127,7 +126,12 @@ class _GameOn extends Component {
                     answerQuestion={this.answerQuestion}
                     answers={currQuestion.answers}
                     currTimeStamp={currTimeStamp} />
-
+                {onlineId &&<div className='users-score'>
+                    {this.props.players &&
+                        this.props.players.map(player =>
+                            <p>{player.username}:{' ' + player.score}</p>
+                        )}
+                </div>}
             </div>
 
 
@@ -142,12 +146,7 @@ class _GameOn extends Component {
                     <GameCountdown onGameCountdownFinished={onGameCountdownFinished} />}
                 {!isGameCountdown && gameplay}
                 
-                {onlineId &&<div className='users-score'>
-                    {this.props.players &&
-                        this.props.players.map(player =>
-                            <p>{player.username}:{' ' + player.score}</p>
-                        )}
-                </div>}
+
 
             </main>
         )
