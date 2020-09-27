@@ -33,7 +33,8 @@ export class _Room extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // if(this.state.players[0] && this.state.currUser.playerName===this.state.players[0].username && !this.state.isAdmin) this.setState({isAdmin:true})
+        if(this.state.players[0]) console.log(this.state.currUser.username===this.state.players[0].username,)
+        if(this.state.players[0] && this.state.currUser.username===this.state.players[0].username && !this.state.isAdmin) this.setState({isAdmin:true})
     }
     
 
