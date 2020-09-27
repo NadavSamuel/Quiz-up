@@ -17,8 +17,7 @@ export class _Room extends Component {
     state = {
         players: [],
         currUser: { username: '', score: 0, isReady: false },
-
-
+        isAdmin:false
     }
 
     componentDidMount() {
@@ -32,6 +31,12 @@ export class _Room extends Component {
         this.addNewUser();
 
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.players[0]) console.log(this.state.currUser.username===this.state.players[0].username,)
+        if(this.state.players[0] && this.state.currUser.username===this.state.players[0].username && !this.state.isAdmin) this.setState({isAdmin:true})
+    }
+    
 
     updatePlayers = (username) => {
         var newPlayers = [...this.state.players]
@@ -98,8 +103,6 @@ export class _Room extends Component {
     }
 
     updateReady = ({ playerName, isReady }) => {
-        console.log("updateReady -> playerName, isReady", playerName, isReady)
-        console.log(this.state.players);
         let players = [...this.state.players];
         players = players.map(player => {
             if (player.username === playerName) return { ...player, isReady }
@@ -111,7 +114,7 @@ export class _Room extends Component {
     }
 
     render() {
-        const { players, currUser } = this.state
+        const { players, currUser,isAdmin } = this.state
         if (!players) return <Loading />
         return (
             <div className='room full'>
@@ -134,7 +137,7 @@ export class _Room extends Component {
                     <div className='game-controler'>
                         <CopyToClipboard />
                         <button className='ready-btn' onClick={this.changeReady}>{(!currUser.isReady) ? 'Ready' : 'Not Ready'}</button>
-                        <button onClick={this.startGame}>Start Game</button>
+                        {isAdmin && <button onClick={this.startGame}>Start Game</button>}
                     </div>
                     <div className='share-btn'>
                         <div>
