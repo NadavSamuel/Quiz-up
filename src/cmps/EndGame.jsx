@@ -112,7 +112,7 @@ export class _EndGame extends Component {
     }
 
     render() {
-        const { totalRightAnswers, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players,getInitialState } = this.props
+        const { totalRightAnswers, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players, getInitialState } = this.props
         const { idxInRankTable, tenBestPlayers } = this.state
         const styles = {
             tada: {
@@ -143,11 +143,11 @@ export class _EndGame extends Component {
                 <div className="endgame-top"> <h1> <span style={isDisplayGreet}>Wow!</span> You scored {this.props.score}</h1>
                     <h3 className="mt30">You answered right {totalRightAnswers || '0'} of  {allAns} questions correctly <br />
                     </h3>
-                    
-                    {idxInRankTable &&  <StyleRoot>
+
+                    {idxInRankTable && <StyleRoot>
                         <div className="game-records-break mt30">
-                            
-                            {(score>0) && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
+
+                            {!players && (score > 0) && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
                                 <span className="top-ten-greet" style={isDisplayGreet}>
                                     Congratulations!</span> You are {getRankPlaceGood(idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
                         </div>
@@ -156,14 +156,14 @@ export class _EndGame extends Component {
                     {players && < div className="online-game mt10">
                         <RankTable bestPlayers={players} />
                     </div>}
-                    <div className="mt30">
+                    {!players && <div className="mt30">
                         <RankTable bestPlayers={tenBestPlayers} />
-                    </div>
+                    </div>}
                     <div className="endgame-actions mt30" >
                         <div className="btns">
 
-                        {!players && <button  onClick={getInitialState}>Play Again</button>}
-                        <button className="back-btn"><Link to='/browse'> Back to Browse</Link></button></div>
+                            {!players && <button onClick={getInitialState}>Play Again</button>}
+                            <button className="back-btn"><Link to='/browse'> Back to Browse</Link></button></div>
                         {reviewForm}
 
 
