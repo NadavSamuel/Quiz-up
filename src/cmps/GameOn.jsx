@@ -85,10 +85,11 @@ class _GameOn extends Component {
          onGameCountdownFinished, reward } = this.props
         let { currQuestionIdx, wasQuestionAnswered, chosenAnsIdx, correctAnsIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
-        const animation = {
-            fadeOutUp: {
+        function rewardAnimation(value){
+            return {
                 animation: 'x 2s',
-                animationName: Radium.keyframes(fadeOutUp, 'fadeOutUp')
+                animationName: Radium.keyframes(fadeOutUp, 'fadeOutUp'),
+                color: value  ?'green':'red'
             }
         }
         const defaultImgUrl = 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'
@@ -109,8 +110,8 @@ class _GameOn extends Component {
             else return 'quiz-game-main multiplayer-container pad-side-30 '
 
         }
-        const positiveReward = ('+' , reward)
-        // console.log(positiveReward ,'positiveReward')
+        const positiveReward = ('+' , reward);
+        const isPositiveRewrd = (reward>0) ? true:false;
 
 
         const gameplay =
@@ -123,7 +124,7 @@ class _GameOn extends Component {
                     <h2 className="total-score">Score: {score}</h2>
                     {reward !== 0 &&
                     <StyleRoot>
-                    <h2 style={animation.fadeOutUp}> {(reward>0) ? positiveReward : reward} </h2>
+                    <h2 style={rewardAnimation(isPositiveRewrd)}> {(reward>0) ? positiveReward : reward} </h2>
                     </StyleRoot> }
                     </div>
                     <div className="curr-question">

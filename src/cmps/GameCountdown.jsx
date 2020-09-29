@@ -15,7 +15,6 @@ export class GameCountdown extends Component {
     }
 
     componentWillUnmount() {
-        console.log('this.timerInterval',this.timerInterval)
         clearInterval(this.timerInterval);
     }
 
@@ -40,18 +39,10 @@ export class GameCountdown extends Component {
         if (this.diffTime() === -1) {
             clearInterval(this.timerInterval);
             this.props.onGameCountdownFinished();
-            // this.playSound();
         }
         if(this.diffTime()<=-1) return
         this.setState({ now: Date.now() });
     }
-
-    playSound = () => {
-        // this.sound.play();
-    }
-
-
-
 
 
     render() {
@@ -63,12 +54,9 @@ export class GameCountdown extends Component {
         }
         return (
             <div className='game-countdown'>
-             {/* <React.Fregment> */}
              <StyleRoot>
-                <h1 style={styles.fadeInDown} className='game-countdown-time' >{this.timeToShow()}</h1>
+                <h1 style={styles.fadeInDown} className='game-countdown-time center-abs' >{this.timeToShow()}</h1>
                 </StyleRoot>
-                {/* <Progress  value={this.timeToShow()} max={15}/> */}
-                {/* </React.Fregment> */}
             </div>
 
         )

@@ -78,7 +78,7 @@ class _TagQuizzes extends Component {
         const quizzes = this.state.quizzes
         if (!quizzes) return <Loading />
         return (
-            <div className="main-container">
+            <div className="main-container  h-100vh">
                 <QuizFilter getFilterBy={this.getFilterBy} />
                 <QuizSort setSortBy={this.setSortBy} />
                 <QuizListFull quizzes={this.state.quizzes} />

@@ -25,7 +25,7 @@ class _Browse extends Component {
     }
 
     componentDidMount() {
-
+        window.scrollTo(0,0)
         this.loadQuizzes();
     }
 
@@ -44,7 +44,7 @@ class _Browse extends Component {
         const tags = this.state.tags
         if (!quizzes) return <Loading />
         return (
-            <div className="main-container">
+            <div className="main-container h-100vh">
 
                 <div className="browse ">
                     {tags && tags.map((tag, idx) =>

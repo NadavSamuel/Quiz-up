@@ -43,7 +43,7 @@ export class TagPreview extends React.Component {
 
                 {!this.state.imgUrl && <Loading />}
                 {this.state.imgUrl &&
-                    <div>
+                    <div >
                         <Link to={`/list/${this.props.tag}`}>
                             <img className='tag-img cursor-pointer' src={this.state.imgUrl} alt="img" />
                         </Link>

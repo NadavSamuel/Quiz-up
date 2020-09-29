@@ -45,7 +45,7 @@ export class _QuizDetails extends Component {
         const avgRate = this.getAvgRate()
         console.log(quiz);
         return (
-            <section className="quiz-details-container main-container">
+            <section className="quiz-details-container main-container  h-100vh">
                 <div className="bg-container">
                     <img className="bg-img" src={quiz.img} alt="" />
 
