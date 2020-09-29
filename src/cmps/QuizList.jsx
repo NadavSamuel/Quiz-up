@@ -10,6 +10,7 @@ export class QuizList extends Component {
     }
 
     componentDidMount() {
+        // window.scrollTo(0,0)
         this.setState({ quizzes: this.props.quizzes })
     }
 

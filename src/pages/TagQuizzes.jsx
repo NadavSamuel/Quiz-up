@@ -24,6 +24,8 @@ class _TagQuizzes extends Component {
 
 
     componentDidMount() {
+        window.scrollTo(0,0)
+
         const tag = this.props.match.params.tag
         const sort = this.props.match.params.sort
         this.loadQuizzes(tag, sort);

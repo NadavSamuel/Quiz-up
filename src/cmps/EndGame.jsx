@@ -19,7 +19,7 @@ export class _EndGame extends Component {
                 _id: ''
             },
             txt: '',
-            rate: 5,
+            rate: 0,
             id: utilService.makeId()
 
         }
