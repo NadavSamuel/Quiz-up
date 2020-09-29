@@ -33,7 +33,7 @@ export class _CopyToClipboard extends React.Component {
                 <form>
                     <textarea
                         ref={(textarea) => this.textArea = textarea}
-                        value={window.location}
+                        value={window.location} onChange={()=>{}}
                     />
                 </form>
             </div>
