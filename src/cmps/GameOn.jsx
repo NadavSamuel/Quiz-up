@@ -129,7 +129,10 @@ class _GameOn extends Component {
                 {onlineId &&<div className='users-score'>
                     {this.props.players &&
                         this.props.players.map(player =>
+
                             <p>{player.username}:{' ' + player.score}</p>
+
+                            
                         )}
                 </div>}
             </div>
