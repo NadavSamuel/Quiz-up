@@ -15,7 +15,7 @@ export class GameCountdown extends Component {
     }
 
     componentWillUnmount() {
-        console.log('gag')
+        console.log('this.timerInterval',this.timerInterval)
         clearInterval(this.timerInterval);
     }
 
@@ -42,6 +42,7 @@ export class GameCountdown extends Component {
             this.props.onGameCountdownFinished();
             // this.playSound();
         }
+        if(this.diffTime()<=-1) return
         this.setState({ now: Date.now() });
     }
 

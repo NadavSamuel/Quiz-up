@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Answer({ currTimeStamp, chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion, wasQuestionAnswered }) {
+export function Answer({ onlineId, currTimeStamp, chosenAnsIdx, correctAnsIdx, answer, idx, answerQuestion, wasQuestionAnswered }) {
 
     function playSound() {
         if (wasQuestionAnswered || !currTimeStamp) return
@@ -16,9 +16,16 @@ export function Answer({ currTimeStamp, chosenAnsIdx, correctAnsIdx, answer, idx
         if ((chosenAnsIdx === 0 || chosenAnsIdx) && (correctAnsIdx === idx)) return { backgroundColor: 'green' }
         if ((idx === chosenAnsIdx) && (correctAnsIdx !== chosenAnsIdx)) return { backgroundColor: 'red' }
     }
+    function determinHeightOnMobile(){
+        if(window.innerWidth <= 720){
+            if(!onlineId) return 'answers-mobile-singleplayer'
+            else return 'answers-mobile-multiplayer'
+        }  
+        return ""
+    }
 
     return (
-        <div className={`answer answer-${idx} `}
+        <div className={`answer answer-${idx} ${determinHeightOnMobile()} `}
             style={setRightWrongColor()}
             onClick={() => {
                 answerQuestion(answer.isCorrect, idx)

@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { AnswersList } from '../cmps/AnswersList.jsx'
 import { Progress } from '../cmps/Progress'
 import { GameCountdown } from '../cmps/GameCountdown'
+import { fadeOutUp } from 'react-animations';
+import Radium, { StyleRoot } from 'radium';
+
 import { Loading } from './Loading.jsx'
 
 class _GameOn extends Component {
@@ -14,7 +17,6 @@ class _GameOn extends Component {
         correctAnsIdx: null,
         chosenAnsIdx: null,
         didSoundPlay: false,
-        // helper: false
     }
     componentDidMount() {
         window.scrollTo(0, 74)
@@ -56,6 +58,7 @@ class _GameOn extends Component {
                 return
             }
             this.setState({ chosenAnsIdx: null, currQuestionIdx: nextQuestionIdx, wasQuestionAnswered: null, chosenAnswerIdx: null, didSoundPlay: false }, () => {
+                this.props.resetReward()
                 this.getRightAnswerIdx(nextQuestionIdx)
                 this.props.resetTimer()
                 this.props.startGameTimer()
@@ -63,11 +66,7 @@ class _GameOn extends Component {
             })
         }, 1500)
     }
-    // onGameCountdownFinished = () => {
-    //     this.setState({ isGameCountdown: false }, () => {
-    //         this.props.startGameTimer()
-    //     })
-    // }
+
 
     tikSound = new Audio('../sounds/clock-tick2.wav')
     dingSound = new Audio('../sounds/ding.mp3')
@@ -81,13 +80,17 @@ class _GameOn extends Component {
         }
     }
 
-
-
-
     render() {
-        let { questions, currTimeStamp, score, quizImg,onlineId,isGameCountdown,onGameCountdownFinished } = this.props
+        let { questions, currTimeStamp, score, quizImg, onlineId, isGameCountdown,
+         onGameCountdownFinished, reward } = this.props
         let { currQuestionIdx, wasQuestionAnswered, chosenAnsIdx, correctAnsIdx } = this.state
         let currQuestion = questions[currQuestionIdx]
+        const animation = {
+            fadeOutUp: {
+                animation: 'x 2s',
+                animationName: Radium.keyframes(fadeOutUp, 'fadeOutUp')
+            }
+        }
         const defaultImgUrl = 'https://res.cloudinary.com/dif8yy3on/image/upload/v1600433790/vqwcawytiymc8xjzdki6.png'
         if (currTimeStamp === 5000 && !wasQuestionAnswered) {
             this.onTimeAlmostOver(this.tikSound, true)
@@ -102,10 +105,12 @@ class _GameOn extends Component {
         }
 
         function determinIsMultiplayerClass() {
-            if(!onlineId || window.innerWidth<=720) return'quiz-game-main main-container '
-            else return'quiz-game-main multiplayer-container pad-side-30 '
+            if (!onlineId || window.innerWidth <= 720) return 'quiz-game-main main-container '
+            else return 'quiz-game-main multiplayer-container pad-side-30 '
 
         }
+        const positiveReward = ('+' , reward)
+        // console.log(positiveReward ,'positiveReward')
 
 
         const gameplay =
@@ -114,7 +119,13 @@ class _GameOn extends Component {
 
                 <div className="game-top">
                     <Progress value={currTimeStamp / 1000} max={15} />
-                    <div className="score"><h2>Score: {score}</h2></div>
+                    <div className="score">
+                    <h2 className="total-score">Score: {score}</h2>
+                    {reward !== 0 &&
+                    <StyleRoot>
+                    <h2 style={animation.fadeOutUp}> {(reward>0) ? positiveReward : reward} </h2>
+                    </StyleRoot> }
+                    </div>
                     <div className="curr-question">
                         <h1 >{currQuestion.txt}</h1>
                     </div>
@@ -124,15 +135,21 @@ class _GameOn extends Component {
                     correctAnsIdx={correctAnsIdx}
                     wasQuestionAnswered={wasQuestionAnswered}
                     answerQuestion={this.answerQuestion}
+                    onlineId={onlineId}
                     answers={currQuestion.answers}
-                    currTimeStamp={currTimeStamp} />
-                {onlineId &&<div className='users-score'>
-                    {this.props.players &&
-                        this.props.players.map(player =>
-                            <p>{player.username}:{' ' + player.score}</p>
-                        )}
-                </div>}
+                    currTimeStamp={currTimeStamp} determinIsMultiplayerClass={this.determinIsMultiplayerClass} />
+        {
+            onlineId && <div className='users-score'>
+                {this.props.players &&
+                    this.props.players.map(player =>
+
+                        <p>{player.username}:{' ' + player.score}</p>
+
+
+                    )}
             </div>
+        }
+            </div >
 
 
 
@@ -145,7 +162,7 @@ class _GameOn extends Component {
                 { isGameCountdown &&
                     <GameCountdown onGameCountdownFinished={onGameCountdownFinished} />}
                 {!isGameCountdown && gameplay}
-                
+
 
 
             </main>

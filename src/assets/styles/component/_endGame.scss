@@ -6,13 +6,15 @@
             font-size: 3rem;
         }
         .rank-table {
+            margin-bottom: 15px;
             .header {
                 display: flex;
                 justify-content: space-around;
                 text-decoration: underline;
             }
             font-size: 1.2rem;
-            border: 1px solid black;
+            background: #ceeefc4d;
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -32,6 +34,10 @@
             // width: 215px;
             height: 75px;
             width: 100%;
+            margin-bottom: 30px;
+            a {
+                color: $clr2;
+            }
         }
 
         width: 570px;
@@ -45,6 +51,9 @@
         .review-feedback {
             flex-direction: column;
             grid-area: 2 / 1 / span 2 / span 2;
+            button {
+                margin-top: 30px;
+            }
             textarea {
                 padding: 20px 0 0 15px;
             }

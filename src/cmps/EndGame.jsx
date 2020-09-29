@@ -77,7 +77,7 @@ export class _EndGame extends Component {
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
         quizService.update(currQuiz)
-        this.setState({ isReviewSent: true }, () => {
+        this.setState({ isReviewSent: true, review:{...this.state.review,txt:'' }}, () => {
             this.props.setNotification('info', 'Review Sent!')
         })
     }
@@ -112,7 +112,7 @@ export class _EndGame extends Component {
     }
 
     render() {
-        const { totalRightAnswers, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players,getInitialState } = this.props
+        const { totalRightAnswers, allAns, category, allTimesPlayers, currTimeStamp, quiz, score, players, getInitialState } = this.props
         const { idxInRankTable, tenBestPlayers } = this.state
         const styles = {
             tada: {
@@ -128,42 +128,40 @@ export class _EndGame extends Component {
             {this.getRate(this.state.review.rate)}
             <button>Send Review</button>
         </form>
-        // const reviewFeedback = <div className="review-feedback">
-        //     <p>Thank you for writing a review! </p>
-        // </div>
+
         function getRankPlaceGood(number) {
             if (number === 1) return '1st'
             if (number === 2) return '2nd'
             if (number === 3) return '3rd'
             else return number + 'th'
         }
-
+        // You answered one of the 5 questions correctly
         return (
             <main className="endgame-main" >
                 <div className="endgame-top"> <h1> <span style={isDisplayGreet}>Wow!</span> You scored {this.props.score}</h1>
-                    <h3 className="mt30">You answered right {totalRightAnswers || '0'} questions out of {allAns} questions <br />
+                    <h3 className="mt30">You answered right {totalRightAnswers || '0'} of  {allAns} questions correctly <br />
                     </h3>
-                    
-                    {idxInRankTable &&  <StyleRoot>
+
+                    {idxInRankTable && <StyleRoot>
                         <div className="game-records-break mt30">
-                            
-                            {(score>0) && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
+
+                            {!players && (score > 0) && <h2 style={idxInRankTable <= 10 && styles.tada || styles.null}>
                                 <span className="top-ten-greet" style={isDisplayGreet}>
                                     Congratulations!</span> You are {getRankPlaceGood(idxInRankTable)} place in the "{quiz.title}" quiz! </h2>}
                         </div>
                     </StyleRoot>}
 
-                    {players && < div className="online-game">
+                    {players && < div className="online-game mt10">
                         <RankTable bestPlayers={players} />
                     </div>}
-                    <div className="mt30">
+                    {!players && <div className="mt30">
                         <RankTable bestPlayers={tenBestPlayers} />
-                    </div>
+                    </div>}
                     <div className="endgame-actions mt30" >
                         <div className="btns">
 
-                        {!players && <button  onClick={getInitialState}>Play Again</button>}
-                        <button className="back-btn"><Link to='/browse'> Back to Browse</Link></button></div>
+                            {!players && <button onClick={getInitialState}>Play Again</button>}
+                            <button className="back-btn"><Link to='/browse'> Back to Browse</Link></button></div>
                         {reviewForm}
 
 
