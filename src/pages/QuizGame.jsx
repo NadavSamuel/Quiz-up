@@ -34,7 +34,7 @@ class _QuizGame extends Component {
         const { onlineId } = this.props.match.params
         if(onlineId)this.setState({gameOn:false})
         socketService.setup();
-        socketService.emit('room quiz', onlineId);
+        socketService.emit('sign game', onlineId);
         if (onlineId) this.setState({ onlineId })
         // window.scrollTo(0, 100)
         this.setCurrUser();
@@ -159,7 +159,7 @@ class _QuizGame extends Component {
     sendScore = () => {
         if (!this.state.onlineId) return;
         socketService.setup();
-        socketService.emit('room quiz', this.state.onlineId);
+        socketService.emit('sign game', this.state.onlineId);
         const { currUser, score } = this.state
         socketService.emit('send score', { playerName: currUser, score });
     }

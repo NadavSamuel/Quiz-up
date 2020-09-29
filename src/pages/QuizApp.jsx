@@ -16,6 +16,8 @@ class _QuizApp extends Component {
 
     componentDidMount() {
         this.loadQuizzes();
+        window.scrollTo(0, 0);
+        
 
     }
 
@@ -61,8 +63,8 @@ class _QuizApp extends Component {
                 <div className='title full'>
                     <div className='title-txt'>
                         <h1>Play quizzes</h1>
-                        <h1>Challenge your friends</h1>
-                        <h1>Have fun</h1>
+                        <h1>Challenge Your Friends</h1>
+                        <h1>Have Fun!</h1>
                     </div>
                 </div>
                 <section>
