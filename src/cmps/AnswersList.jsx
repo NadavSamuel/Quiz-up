@@ -1,6 +1,6 @@
 import React from 'react'
 import { Answer } from '../cmps/Answer.jsx'
-export function AnswersList({  currTimeStamp,chosenAnsIdx, correctAnsIdx, answers, answerQuestion, wasQuestionAnswered, chosenAnswerIdx }) {
+export function AnswersList({ onlineId, currTimeStamp,chosenAnsIdx, correctAnsIdx, answers, answerQuestion, wasQuestionAnswered, chosenAnswerIdx,determinIsMultiplayerClass }) {
 
     return (
         <div className="game-answers-container">
@@ -9,7 +9,7 @@ export function AnswersList({  currTimeStamp,chosenAnsIdx, correctAnsIdx, answer
                     answers.map((answer, idx) => <li key={idx}>
                         <Answer currTimeStamp={currTimeStamp }chosenAnsIdx={chosenAnsIdx} correctAnsIdx={correctAnsIdx} 
                         chosenAnswerIdx={chosenAnswerIdx} wasQuestionAnswered={wasQuestionAnswered} 
-                        answerQuestion={answerQuestion} idx={idx} answer={answer} /></li>)
+                        answerQuestion={answerQuestion} idx={idx} answer={answer} onlineId={onlineId} determinIsMultiplayerClass={determinIsMultiplayerClass} /></li>)
                 }
             </ul>
         </div>

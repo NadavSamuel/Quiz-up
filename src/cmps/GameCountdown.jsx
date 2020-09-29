@@ -42,7 +42,7 @@ export class GameCountdown extends Component {
             this.props.onGameCountdownFinished();
             // this.playSound();
         }
-        if(this.diffTime()<=0) return
+        if(this.diffTime()<=-1) return
         this.setState({ now: Date.now() });
     }
 

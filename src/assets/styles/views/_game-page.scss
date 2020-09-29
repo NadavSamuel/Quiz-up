@@ -44,6 +44,11 @@
     .score {
         font-size: 1rem;
         align-self: start;
+        display: inline-flex;
+        .total-score{
+            margin-inline-end: 1rem;
+
+        }
     }
 
     h1 {
@@ -163,6 +168,14 @@
         align-items: center;
         right:0
 }
+.answer {
+    font-size: 1.2rem;
+
+    &:hover {
+        font-size: 1.2rem;
+
+    }
+}
 }
 }
 
@@ -199,14 +212,12 @@
         }
 
         .answer {
-            height: 10vh;
+            // height: 14vh;
             width: 100%;
-            font-size: 1.2rem;
 
             &:hover {
                 background-color: $clr3;
                 transition: none;
-                font-size: 1.2rem;
 
             }
         }
@@ -232,6 +243,12 @@
 .game-countdown-time {
     animation: timer 1s infinite;
     text-align: center;
+}
+.answers-mobile-singleplayer{
+    height: 20vh !important; 
+}
+.answers-mobile-multiplayer{
+    height: 14vh !important;
 }
 // .multiplayer{
 //     grid-template-columns: 2fr 6fr 1fr;

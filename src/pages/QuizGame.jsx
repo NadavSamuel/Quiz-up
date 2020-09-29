@@ -16,6 +16,7 @@ class _QuizGame extends Component {
         currUser: null,
         gameOn: true,
         score: 0,
+        reward:0,
         totalRightAnswers: 0,
         currTimeStamp: 15000,
         gameSessionId: utilService.makeId(),
@@ -24,7 +25,7 @@ class _QuizGame extends Component {
         isSetName: false,
         onlineId: '',
         isWaitingRoom: false,
-        isGameCountdown: true,
+        isGameCountdown: true
 
     }
     timer = null
@@ -34,9 +35,8 @@ class _QuizGame extends Component {
         if(onlineId)this.setState({gameOn:false})
         socketService.setup();
         socketService.emit('room quiz', onlineId);
-        // console.log('here');
         if (onlineId) this.setState({ onlineId })
-        window.scrollTo(0, 100)
+        // window.scrollTo(0, 100)
         this.setCurrUser();
         socketService.on('update score', this.updateScore);
         // send score
@@ -73,7 +73,6 @@ class _QuizGame extends Component {
     }
 
     startGameTimer = () => {
-        console.log('here')
         clearInterval(this.timer)
         this.timer = setInterval(this.setTimer, 1000);
     }
@@ -107,21 +106,14 @@ class _QuizGame extends Component {
     getInitialState = () => {
         this.setState({
             ...this.state,isGameCountdown:true,wasQuestionAnswerd:false,
-             gameOn: true, score: 0, totalRightAnswers: 0,
+             gameOn: true, score: 0,reward:0, totalRightAnswers: 0,
             currTimeStamp: 15000, gameSessionId: utilService.makeId()
-        }, () => {
-            console.log('this.state ',this.state)
-            // this.resetTimer()
-            // this.timer  =setInterval(this.setTimer, 1000)
-
         })
     }
 
     resetTimer = () => {
         clearInterval(this.timer)
-        this.setState({ currTimeStamp: 15000, wasQuestionAnswerd: false }, () => {
-            console.log('currTimeStamp, ', this.state.currTimeStamp)
-        })
+        this.setState({ currTimeStamp: 15000, wasQuestionAnswerd: false })
     }
 
     setTimer = () => {
@@ -147,18 +139,19 @@ class _QuizGame extends Component {
 
     }
     onAns = value => {
+        if(this.state.currTimeStamp <= 0 ) return
         this.setState({ wasQuestionAnswerd: true, currTimeStamp: this.state.currTimeStamp }, () => {
             if (value === "true") {
                 let reward = 15 - (15 - this.state.currTimeStamp / 1000)
 
                 if (this.state.currTimeStamp === 0) reward = 1
-                this.setState({ score: this.state.score + reward, totalRightAnswers: this.state.totalRightAnswers + 1, wasQuestionAnswerd: true }, this.sendScore)
+                this.setState({ reward, score: this.state.score + reward, totalRightAnswers: this.state.totalRightAnswers + 1, wasQuestionAnswerd: true }, this.sendScore)
             } else {
                 if (this.state.score - 5 <= 0) {
-                    this.setState({ score: 0 }, this.sendScore)
+                    this.setState({ score: 0,reward:-this.state.score }, this.sendScore)
                     return
                 }
-                this.setState({ score: this.state.score - 5 }, this.sendScore)
+                this.setState({ score: this.state.score - 5,reward:-5 }, this.sendScore)
             }
         })
     }
@@ -175,6 +168,9 @@ class _QuizGame extends Component {
         this.setState({ gameOn: false }, () => {
             clearInterval(this.timer)
         })
+    }
+    resetReward = () =>{
+        this.setState({reward:0})
     }
 
     updateTime = () => {
@@ -197,8 +193,9 @@ class _QuizGame extends Component {
 
 
     render() {
+        // console.log('got reward in main, ',this.state.reward)
         const questions = this.state.quiz.quests
-        const { currUser, isSetName, gameOn, isQuizReady, quiz, score,
+        const { currUser, isSetName, gameOn, isQuizReady, quiz, score, reward,
         currTimeStamp, gameSessionId, totalRightAnswers, onlineId, isWaitingRoom,isGameCountdown } = this.state
         const { img, allTimesPlayers } = quiz
         const { history } = this.props
@@ -219,10 +216,10 @@ class _QuizGame extends Component {
                 {/* (currUser && onlineId && !gameOn && isWaitingRoom) */}
                 {  (!isSetName && currUser && isQuizReady && !isWaitingRoom) && (gameOn ?
                     <GameOn onGameCountdownFinished={this.onGameCountdownFinished} isGameCountdown={isGameCountdown} onlineId={onlineId} players={this.state.onlinePlayers} stopTimer={this.stopTimer} startGameTimer={this.startGameTimer}
-                        history={history}
+                        history={history} resetReward={this.resetReward}
                         onEsc={this.onEsc} quizImg={img} resetTimer={this.resetTimer}
                         isQuizReady={isQuizReady}
-                        score={score} currTimeStamp={currTimeStamp}
+                        score={score} reward={reward} currTimeStamp={currTimeStamp}
                         onAns={this.onAns} questions={questions} onEndGame={this.onEndGame} /> :
 
                     <EndGame players={this.state.onlinePlayers} setNotification={this.props.setNotification}

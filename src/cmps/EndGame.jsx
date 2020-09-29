@@ -77,7 +77,7 @@ export class _EndGame extends Component {
         const currQuiz = this.props.quiz
         currQuiz.reviews.unshift(this.state.review)
         quizService.update(currQuiz)
-        this.setState({ isReviewSent: true }, () => {
+        this.setState({ isReviewSent: true, review:{...this.state.review,txt:'' }}, () => {
             this.props.setNotification('info', 'Review Sent!')
         })
     }
@@ -128,9 +128,7 @@ export class _EndGame extends Component {
             {this.getRate(this.state.review.rate)}
             <button>Send Review</button>
         </form>
-        // const reviewFeedback = <div className="review-feedback">
-        //     <p>Thank you for writing a review! </p>
-        // </div>
+
         function getRankPlaceGood(number) {
             if (number === 1) return '1st'
             if (number === 2) return '2nd'
