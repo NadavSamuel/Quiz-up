@@ -23,7 +23,7 @@ export class _Room extends Component {
     componentDidMount() {
         const { roomId, startGame } = this.props
         socketService.setup();
-        socketService.emit('room quiz', roomId);
+        socketService.emit('sign game', roomId);
         socketService.on('game started', startGame);
         socketService.on('update ready', this.updateReady);
         socketService.on('update players', this.updatePlayers);
@@ -58,7 +58,7 @@ export class _Room extends Component {
 
     componentWillUnmount() {
         socketService.setup();
-        socketService.emit('room quiz', this.props.roomId);
+        socketService.emit('sign game', this.props.roomId);
         socketService.emit('game removePlayer', this.state.currUser.username);
         socketService.off('chat addMsg', this.addMsg);
         socketService.off('game addPlayer', this.addPlayer);
@@ -95,10 +95,10 @@ export class _Room extends Component {
 
     changeReady = () => {
         socketService.setup();
-        socketService.emit('room quiz', this.props.roomId);
+        socketService.emit('sign game', this.props.roomId);
         const { currUser } = this.state
         this.setState({ currUser: { ...currUser, isReady: !currUser.isReady } }, () => {
-            socketService.emit('change ready', { playerName: currUser.username, isReady: !currUser.isReady });
+            socketService.emit('toggle ready', { playerName: currUser.username, isReady: !currUser.isReady });
         })
     }
 
@@ -108,8 +108,6 @@ export class _Room extends Component {
             if (player.username === playerName) return { ...player, isReady }
             return player
         })
-        console.log("updateReady -> players", players)
-
         this.getPlayers(players)
     }
 
