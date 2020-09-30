@@ -1,10 +1,6 @@
 
 module.exports = connectSockets
 
-// quiz up sockets for multiplayer game 
-//by: Or Damari, Tal Lahyani, Nadav Samuel
-
-
 var activeRooms = {};
 function connectSockets(io) {
     io.on('connection', socket => {
@@ -21,38 +17,29 @@ function connectSockets(io) {
             }
             io.to(socket.roomId).emit('getPlayers', quizPlayers.players)
         })
-
         socket.on('game newPlayer', player => {
             const room = activeRooms[socket.roomId];     
             room.players.push(player)
             io.to(socket.roomId).emit('game addPlayer', player)
         })
-        
         socket.on('start game', gamePlayers => {
             io.to(socket.roomId).emit('game started', gamePlayers)
         })
-
         socket.on('toggle ready', playerData => {
             const room = activeRooms[socket.roomId]
             const { playerName, isReady } = playerData
-            let newPlayers = [...room.players];
-            newPlayers = newPlayers.map(player => {
+            room.players = room.players.map(player => {
                 if (player.username === playerName) return { ...player, isReady }
                 return player
             })
-            room.players=newPlayers;
             io.to(socket.roomId).emit('update ready', playerData)
         })
-
         socket.on('game removePlayer', username => {
             const room = activeRooms[socket.roomId]
             if (!room.players) return;
-            let newPlayers = [...room.players];
-            newPlayers = newPlayers.filter(player => player.username !== username);
-            room.players=newPlayers
+            room.players = room.players.filter(player => player.username !== username);
             io.to(socket.roomId).emit('update players', username)
         })
-
         socket.on('send score', score => {
             io.to(socket.roomId).emit('update score', score)
         })
